@@ -2,15 +2,23 @@
 
 BEGIN;
 
-DROP TABLE article;
-DROP TABLE "user";
-DROP TABLE "role";
-DROP TABLE media;
-DROP TABLE tag;
-DROP TABLE category;
-DROP TABLE species;
-DROP TABLE breed;
-DROP TABLE gender;
-DROP TABLE animal;
+DROP TABLE
+    article,
+    "user",
+    "role",
+    media,
+    tag,
+    category,
+    species,
+    breed,
+    gender,
+    animal,
+    animal_media,
+    animal_breed,
+    animal_tag,
+    article_edition,
+    animal_edition
+CASCADE ;
 
 COMMIT;
+
