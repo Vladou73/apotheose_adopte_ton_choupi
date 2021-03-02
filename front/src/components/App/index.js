@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 // == Import
 import './styles.scss';
 import Adoption from '../Adoption';
+import Error404 from '../Error404';
 
 // == Composant
 const App = () => (
@@ -17,6 +18,7 @@ const App = () => (
       <Route path="/animaux" exact>
         <Adoption />
       </Route>
+      <Error404 />
     </Switch>
   </div>
 );
