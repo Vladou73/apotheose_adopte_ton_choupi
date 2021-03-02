@@ -6,14 +6,20 @@ import './styles.scss';
 
 // == Composant
 const Search = () => (
-  <form>
+  <form className="search-form">
 
-    <p>Rechercher un animal avec son nom</p>
-    <input type="search" name="search bar" aria-label="Rechercher votre choupi par son nom" />
-    <button type="button">ok</button>
+    <p className="search-form--text">Rechercher ton choupi avec son nom</p>
+    <input
+      className="search-form--case"
+      type="text"
+      value=""
+    />
 
-    <p>Espèce</p>
-    <select name="species">
+    <p className="search-form--text">Espèce</p>
+    <select
+      className="search-form--case"
+      name="species"
+    >
       <option value="">Indifférent</option>
       <option value="dog">Chien</option>
       <option value="cat">Chat</option>
@@ -21,8 +27,11 @@ const Search = () => (
     </select>
 
     {/* Keep input select for choice of breef or consider another way ? */}
-    <p>Race</p>
-    <select name="breed">
+    <p className="search-form--text">Race</p>
+    <select
+      className="search-form--case"
+      name="breed"
+    >
       <option value="">Indifférent</option>
       <option value="dog">Labrador</option>
       <option value="dog">Berger allemand</option>
@@ -32,8 +41,11 @@ const Search = () => (
       <option value="dog">Bouledogue</option>
     </select>
 
-    <p>Caractère</p>
-    <select name="category">
+    <p className="search-form--text">Caractère</p>
+    <select
+      className="search-form--case"
+      name="category"
+    >
       <option value="">Indifférent</option>
       <option value="dog">Gardien</option>
       <option value="dog">Calme</option>
@@ -41,11 +53,15 @@ const Search = () => (
       <option value="dog">Sportif</option>
     </select>
 
-    <p>Sexe :</p>
+    <p className="search-form--text">Sexe :</p>
     <div>
-      <label htmlFor="checkbox-female">
+      <label
+        htmlFor="checkbox-female"
+        className="search-form--label"
+      >
         Femelle
         <input
+          className="search-form--checkbox"
           id="checkbox-female"
           type="checkbox"
           name="female"
@@ -54,20 +70,23 @@ const Search = () => (
       </label>
     </div>
     <div>
-      <label htmlFor="checkbox-male">
+      <label
+        htmlFor="checkbox-male"
+        className="search-form--label"
+      >
         Male
         <input
+          className="search-form--checkbox"
           id="checkbox-male"
           type="checkbox"
           name="male"
-          checked="false"
         />
       </label>
     </div>
 
     <div>
-      <p>Age :</p>
-      <span>Entre 2 mois</span>
+      <p className="search-form--text">Age :</p>
+      <span> 3 mois </span>
       <input
         id="input-age"
         type="range"
@@ -75,13 +94,17 @@ const Search = () => (
         min="Entre 2 mois"
         max="10 +"
       />
-      <span>10 ans et +</span>
+      <span> 10 ans et + </span>
     </div>
 
     <div>
-      <label htmlFor="checkbox-sos">
+      <label
+        htmlFor="checkbox-sos"
+        className="search-form--label"
+      >
         SOS
         <input
+          className="search-form--checkbox"
           id="checkbox-sos"
           type="checkbox"
           name="sos"
@@ -89,7 +112,11 @@ const Search = () => (
       </label>
     </div>
 
-    <button type="button"> Rechercher </button>
+    <button
+      className="search-form--case"
+      type="button"
+    > Rechercher
+    </button>
   </form>
 );
 

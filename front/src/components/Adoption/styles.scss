@@ -1,10 +1,51 @@
+// ADOPTION PAGE
+.adoption-page {
+  &--title {
+    font-size: 1.5em;
+    margin: 2em auto;
+  }
+}
+
+// SEARCH FORM
+.search-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  &--text {
+    font-weight: bold;
+  }
+  &--label {
+    color: rgb(63, 63, 63);
+  }
+  &--case {
+    margin: 0.5em auto;
+    width: 25%;
+    padding: 1em;
+  }
+  &--checkbox {
+    margin: 0.5em;
+  }
+}
+
+
+// CARDS ANIMALS
 .cards-animals {
   width: 80%;
   margin: auto;
+  display: flex;
+  &--title {
+    font-size: 1.3em;
+  }
 }
-
 .card-animal {
   width: 25%;
+  &--name {
+    text-transform: uppercase;
+  }
+  &--picture {
+    border-radius: 0.5em;
+  }
 }
 
 
