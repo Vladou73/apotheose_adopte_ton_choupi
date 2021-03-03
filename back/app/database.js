@@ -1,5 +1,11 @@
 const { Pool } = require('pg');
 
+
+//connextion information are retrieved into environment
+// PGHOST pour l'hôte
+// PGUSER for user
+// PGPASSWORD for pwd
+// PGDATABASE for db
 // const db = new Pool(
 //     {connectionString: process.env.PG_URL}
 // );

@@ -1,12 +1,26 @@
 const { Router } = require('express');
+const db = require('./database');
 
 const router = Router();
 
-router.get('/', (req, res)=>{
+const findAll = async () => {
+    const result = await db.query(`
+        SELECT
+            gender.*
+        FROM gender;
+    `);
+    return result.rows;
+}
 
+const testController = async (request, response) => {
+    // console.log('Hello World');
+    // response.send('hello world');
     
-    console.log('Hello World');
-    res.send('hello world');
-});
+    const posts = await findAll();
+
+    response.json(posts);
+}
+
+router.get('/', testController);
 
 module.exports = router;
