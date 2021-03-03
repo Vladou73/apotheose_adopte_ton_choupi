@@ -12,6 +12,7 @@ import Contact from '../Contact';
 import Blog from '../Blog';
 import Footer from '../Footer';
 import Error404 from '../Error404';
+import Join from '../Join';
 
 // == Composant
 const App = () => (
@@ -23,6 +24,9 @@ const App = () => (
       </Route>
       <Route path="/animaux" exact>
         <Adoption />
+      </Route>
+      <Route path="/rejoindre" exact>
+        <Join />
       </Route>
       <Route path="/don" exact>
         <Donate />
