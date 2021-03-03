@@ -1,0 +1,37 @@
+.contact {
+  margin: 2em;
+  &__title {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 2em;
+  }
+  & form {
+    border: 1px solid black;
+    width: 50%;
+    margin: auto;
+    padding-bottom: 1em;
+    text-align: center;
+  }
+  & label {
+    margin: 1em;
+    display: block;
+  }
+  &__content {
+    margin: 3em !important;
+  }
+  &__contentField {
+    margin-bottom: 2em;
+  }
+  &__submitButton {
+    display: block;
+    margin: .5em auto;
+    background-color: #677369;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+  }
+}

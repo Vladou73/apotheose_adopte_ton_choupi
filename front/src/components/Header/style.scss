@@ -1,0 +1,102 @@
+.header {
+  text-align: center;
+  width: 100%;
+  background-color: #677369;
+  padding-bottom: 1em;
+}
+
+.titleHeader {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  color: white;
+}
+
+.donate {
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  color: white;
+  background-color: #49554b;
+}
+
+.logoHeader {
+  margin-top: 2em;
+  max-width: 50px;
+}
+
+.nav__submenu {
+  display: none;
+}
+
+.nav__menu-item:hover {
+  .nav__submenu {
+    display: block;
+  }
+}
+
+$color: #49554b;
+$submenu-width: 180px;
+
+
+
+nav {
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.nav {
+  display: inline-block;
+  margin: 2rem auto 0;
+  color: #fff;
+  text-align: left;
+  
+  a {
+    display: block;
+    padding: 1em;
+    line-height: inherit;
+    cursor: pointer;
+  }
+}
+  
+.nav__menu {
+  line-height: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+  
+.nav__menu-item {
+  margin-right: 3em;
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    background-color: $color;
+
+    .nav__submenu {
+      display: block;
+    }
+  }
+}
+    
+.nav__submenu {
+  font-weight: 300;
+  text-transform: none;
+  display: none;
+  position: absolute;
+  width: $submenu-width;
+  background-color: $color;
+}
+    
+.nav__submenu-item {
+  &:hover {
+    background: rgba(#000, 0.1);
+  }
+  &--active {
+    background-color: #49554b;
+  }
+}

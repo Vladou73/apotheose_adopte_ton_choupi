@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=spa
+
+init 2021-03-02T13:43:31Z Vladimir <vlad.nafissi@gmail.com> # first step : create all tables
+populate_db 2021-03-03T09:13:03Z Vladimir <vlad.nafissi@gmail.com> # fake small data to populate db
