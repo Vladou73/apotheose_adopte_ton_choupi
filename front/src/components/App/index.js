@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
+import Home from '../Home';
 import Header from '../Header';
 import Adoption from '../Adoption';
 import Footer from '../Footer';
@@ -15,7 +16,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route path="/" exact>
-        {/* Composant Home */}
+        <Home />
       </Route>
       <Route path="/animaux" exact>
         <Adoption />
