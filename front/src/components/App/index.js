@@ -7,6 +7,9 @@ import './styles.scss';
 import Home from '../Home';
 import Header from '../Header';
 import Adoption from '../Adoption';
+import Donate from '../Donate';
+import Contact from '../Contact';
+import Blog from '../Blog';
 import Footer from '../Footer';
 import Error404 from '../Error404';
 import Join from '../Join';
@@ -24,6 +27,15 @@ const App = () => (
       </Route>
       <Route path="/rejoindre" exact>
         <Join />
+      </Route>
+      <Route path="/don" exact>
+        <Donate />
+      </Route>
+      <Route path="/contact" exact>
+        <Contact />
+      </Route>
+      <Route path="/articles" exact>
+        <Blog />
       </Route>
       <Error404 />
     </Switch>

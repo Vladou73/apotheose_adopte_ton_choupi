@@ -12,6 +12,7 @@ CREATE TABLE species (
 CREATE TABLE breed (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL,
+    species_id int NOT NULL REFERENCES species(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ
 );
