@@ -1,5 +1,6 @@
 // == Import npm
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
@@ -7,33 +8,110 @@ import loulou from './pictures/loulou.jpg';
 
 // == Composant
 const Cards = () => (
-  <div className="cards-animals">
-    <h2 className="cards-animals--title">3 animaux à l'adoption</h2>
-    <div className="card-animal">
-      <p className="card-animal--name">Loulou</p>
-      <img
-        className="card-animal--picture"
-        src={loulou}
-        alt="loulou"
-      />
+  <section className="section-animals">
+    <h2 className="section-animals--title">8 animaux à l'adoption</h2>
+    <div className="cards-animals">
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
+      <div className="card-animal">
+        <p className="card-animal--name">Loulou</p>
+        <img
+          className="card-animal--picture"
+          src={loulou}
+          alt="loulou"
+        />
+        <Link to="/animaux/nom_animal">
+          <span className="card-animal--span">Voir la fiche</span>
+        </Link>
+      </div>
     </div>
-    <div className="card-animal">
-      <p className="card-animal--name">Loulou</p>
-      <img
-        className="card-animal--picture"
-        src={loulou}
-        alt="loulou"
-      />
-    </div>
-    <div className="card-animal">
-      <p className="card-animal--name">Loulou</p>
-      <img
-        className="card-animal--picture"
-        src={loulou}
-        alt="loulou"
-      />
-    </div>
-  </div>
+  </section>
 );
 
 // == Export
