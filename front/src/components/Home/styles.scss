@@ -16,10 +16,11 @@
 .main{
   text-align: center;
   background-color: rgb(240, 236, 236);
-  padding: 5em;
+  //padding: 5em;
   &__title{
     font-size: 35px;
     padding-bottom: 7px;
+    margin-top: 2em;
   };
   &__subtitle{
     font-size: 15px;
@@ -29,3 +30,16 @@
     text-align: left;
   }
 };
+
+.box {
+  margin: auto;
+}
+
+.containerHome {
+  width: 80%;
+  margin: auto;
+}
+
+.newsTitle {
+  margin-bottom: 2em;
+}
