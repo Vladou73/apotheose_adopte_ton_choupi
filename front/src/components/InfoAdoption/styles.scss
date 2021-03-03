@@ -23,4 +23,10 @@
   &--li {
     list-style-type: square;
   }
+  &--picture {
+    display: block;
+    max-width: 100%;
+    margin: 1.5em auto;
+    border-radius: 1em;
+  }
 }

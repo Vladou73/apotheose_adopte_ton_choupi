@@ -3,6 +3,7 @@ import React from 'react';
 
 // == Import
 import './styles.scss';
+import animals from './cat_dog.jpg';
 
 // == Composant
 const InfoAdoption = () => (
@@ -21,7 +22,11 @@ const InfoAdoption = () => (
       à considérer pour éviter de faire un mauvais choix.
       Une adoption faite sur un coup de tête a souvent à long terme une répercussion négative.
     </p>
-
+    <img
+      className="info-adoption--picture"
+      src={animals}
+      alt="cats"
+    />
     <h2 className="info-adoption--subtitle">Quelques erreurs à ne pas commmettre</h2>
     <ul className="info-adoption--ul">
       <li className="info-adoption--li">Adopter sur un coup de tête</li>
