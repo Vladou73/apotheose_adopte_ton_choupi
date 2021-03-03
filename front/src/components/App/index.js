@@ -7,6 +7,7 @@ import './styles.scss';
 import Home from '../Home';
 import Header from '../Header';
 import Adoption from '../Adoption';
+import Donate from '../Donate';
 import Footer from '../Footer';
 import Error404 from '../Error404';
 
@@ -20,6 +21,9 @@ const App = () => (
       </Route>
       <Route path="/animaux" exact>
         <Adoption />
+      </Route>
+      <Route path="/don" exact>
+        <Donate />
       </Route>
       <Error404 />
     </Switch>

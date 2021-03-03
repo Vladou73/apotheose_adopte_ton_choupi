@@ -1,0 +1,22 @@
+.donateComp {
+  margin: 4em;
+  text-align: center;
+  &__title {
+    text-align: center;
+    margin: 2em;
+    font-weight: bold;
+    font-size: 2em;
+  }
+  & p {
+    margin-bottom: 1em;
+  }
+  &__paypalButton {
+    margin-top: 2em;
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #49554b;
+    color: white;
+    padding: 1em;
+    border-radius: 5px;
+  }
+}
