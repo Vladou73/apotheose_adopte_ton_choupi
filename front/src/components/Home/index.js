@@ -16,7 +16,7 @@ const Home = () => (
 
   <div className="home">
     <main className="main">
-      <img src={homepicture} className="picture" alt="home logo" />
+      <img src={homepicture} className="homePicture" alt="home logo" />
       <h1 className="main__title">Association reconnue d'utilité publique</h1>
       <h2 className="main__subtitle"> Société protectrice des animaux</h2>
       <div className="main__paragraph">
