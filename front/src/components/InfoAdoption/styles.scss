@@ -1,0 +1,26 @@
+.info-adoption {
+  width: 80%;
+  margin: 2.5em auto;
+  &--title,
+  &--subtitle {
+    margin-bottom: 1.5em;
+  }
+  &--title {
+    text-align: center;
+    font-size: 2em;
+  }
+  &--subtitle {
+    font-size: 1.5em;
+  }
+  &--text {
+   padding: 1em;
+   margin-bottom: 1.5em;
+  }
+  &--ul {
+    padding: 0.5em;
+    margin-bottom: 1.5em;
+  }
+  &--li {
+    list-style-type: square;
+  }
+}
