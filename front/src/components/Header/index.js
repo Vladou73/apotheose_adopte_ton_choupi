@@ -7,7 +7,7 @@ import AgirSubmenu from './AgirSubmenu';
 
 const Header = () => (
   <div className="header">
-    <a href="/"><img src={Logo} alt="Logo adopte ton choupi" />
+    <a href="/"><img className="logoHeader" src={Logo} alt="Logo adopte ton choupi" />
       <h1 className="titleHeader">Adopte ton choupi</h1>
     </a>
     <nav className="nav">
