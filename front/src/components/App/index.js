@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import './styles.scss';
 import Header from '../Header';
 import Adoption from '../Adoption';
+import Footer from '../Footer';
 
 // == Composant
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
         <Adoption />
       </Route>
     </Switch>
+    <Footer />
   </div>
 );
 
