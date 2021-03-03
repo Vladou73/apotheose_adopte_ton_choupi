@@ -4,22 +4,25 @@ import { Route, Switch } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
+import Header from '../Header';
 import Adoption from '../Adoption';
+import Footer from '../Footer';
 import Error404 from '../Error404';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <h1>Projet SPA</h1>
-    <Switch >
-    <Route path="/" exact>
-      // Composant Home
-    </Route>
+    <Header />
+    <Switch>
+      <Route path="/" exact>
+        {/* Composant Home */}
+      </Route>
       <Route path="/animaux" exact>
         <Adoption />
       </Route>
       <Error404 />
     </Switch>
+    <Footer />
   </div>
 );
 
