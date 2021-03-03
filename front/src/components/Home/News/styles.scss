@@ -1,0 +1,12 @@
+.news{
+  display: flex;
+};
+
+.box {
+  width: 30%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1em;
+  border: 1px solid black;
+  padding: 1em;
+}
