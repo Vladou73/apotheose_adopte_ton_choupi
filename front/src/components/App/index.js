@@ -11,8 +11,10 @@ import InfoAdoption from '../InfoAdoption';
 import Donate from '../Donate';
 import Contact from '../Contact';
 import Blog from '../Blog';
+import Article from '../Article';
 import Footer from '../Footer';
 import Error404 from '../Error404';
+import Join from '../Join';
 
 // == Composant
 const App = () => (
@@ -28,6 +30,9 @@ const App = () => (
       <Route path="/info_adoption" exact>
         <InfoAdoption />
       </Route>
+      <Route path="/rejoindre" exact>
+        <Join />
+      </Route>
       <Route path="/don" exact>
         <Donate />
       </Route>
@@ -36,6 +41,9 @@ const App = () => (
       </Route>
       <Route path="/articles" exact>
         <Blog />
+      </Route>
+      <Route path="/articles/article" exact>
+        <Article />
       </Route>
       <Error404 />
     </Switch>

@@ -1,0 +1,33 @@
+.joinTitle{
+  font-size: 200%;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+};
+
+.main{
+  text-align: center;
+  padding-bottom: 5em;
+
+  &__joinPicture{
+  width: 50%;
+  height: auto;
+  };
+  &__redirection__ToContact{
+    text-align: right;
+    padding-top: 2em;
+    font-size: 125%;
+    color: rgb(73, 51, 9);
+    float: right;
+    text-decoration: underline;
+  };
+};
+
+.blocJoin{
+  padding-top: 2.5em;
+  &__subtitle{
+    text-align: left;
+    font-size: 250%;
+    padding-bottom: 1em;
+  };
+};
