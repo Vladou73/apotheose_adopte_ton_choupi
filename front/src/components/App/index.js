@@ -7,6 +7,7 @@ import './styles.scss';
 import Home from '../Home';
 import Header from '../Header';
 import Adoption from '../Adoption';
+import Animal from '../Animal';
 import InfoAdoption from '../InfoAdoption';
 import Donate from '../Donate';
 import Contact from '../Contact';
@@ -26,6 +27,9 @@ const App = () => (
       </Route>
       <Route path="/animaux" exact>
         <Adoption />
+      </Route>
+      <Route path="/animaux/nom_animal" exact>
+        <Animal />
       </Route>
       <Route path="/info_adoption" exact>
         <InfoAdoption />

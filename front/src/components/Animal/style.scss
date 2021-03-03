@@ -1,0 +1,43 @@
+.animal {
+  width: 80%;
+  text-align: center;
+  margin: 2em auto;
+  &__name {
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.5em;
+  }
+  & img {
+    min-width: 50%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+  }
+  &__category {
+    padding: 2em auto;
+    &-text {
+      margin: 0.5em auto;
+    }
+  }
+  &__content {
+    text-align: center;
+    margin-top: 1.5em;
+    & p {
+      margin: 0.5em auto;
+      font-size: 1.2em;
+    }
+  }
+  &__span {
+    padding: 2em;
+  }
+  &__link {
+    display: block;
+    background-color: #49554b;
+    color: #fff;
+    width: 200px;
+    padding: 1em;
+    margin: auto;
+  }
+}
