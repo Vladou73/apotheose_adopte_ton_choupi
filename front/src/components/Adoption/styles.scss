@@ -1,0 +1,91 @@
+// ADOPTION PAGE
+.adoption-page {
+  &--title {
+    font-size: 1.5em;
+    margin: 2em auto;
+  }
+}
+
+// SEARCH FORM
+.search-div {
+  width: 80%;
+  padding: 1em;
+  margin: 2em auto;
+  background-color: #e4ebe4;
+}
+.search-form {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  width:80%;
+  &--name,
+  &--species,
+  &--breed,
+  &--age,
+  &--gender,
+  &--category {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+  }
+  &--text {
+    font-weight: bold;
+  }
+  &--label {
+    color: rgb(63, 63, 63);
+    display: inline;
+  }
+  &--case,
+  &--button {
+    margin: 0.5em auto;
+    width: 200px;
+    padding: 1em;
+  }
+  &--checkbox {
+    margin: 0.5em;
+  }
+  &--range {
+    margin:0;
+  }
+}
+
+
+// CARDS ANIMALS
+.section-animals{
+  width:80%;
+  display:block;
+  margin: auto;
+  &--title {
+    font-size: 1.3em;
+  }
+}
+.cards-animals {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.card-animal {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin: 1em;
+  padding:1em;
+  -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+  box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0);
+  &--name {
+    text-transform: uppercase;
+    padding: 1em;
+  }
+  &--picture {
+    border-radius: 0.5em;
+  }
+  &--span {
+    display: inline-block;
+    background-color: antiquewhite;
+    margin-top: 1em;
+  }
+}
+
+
