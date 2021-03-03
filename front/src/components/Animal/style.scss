@@ -23,7 +23,7 @@
   }
   &__content {
     text-align: center;
-    margin-top: 1.5em;
+    margin: 2em 0;
     & p {
       margin: 0.5em auto;
       font-size: 1.2em;
@@ -34,10 +34,15 @@
   }
   &__link {
     display: block;
-    background-color: #49554b;
-    color: #fff;
     width: 200px;
     padding: 1em;
     margin: auto;
+    &-adoption {
+      background-color: #eeeeee;
+    }
+    &-contact {
+      background-color: #49554b;
+      color: #fff;
+    }
   }
 }

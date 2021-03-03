@@ -19,10 +19,15 @@ const Animal = () => (
       <p>Loulou a été retiré il y a quelques semaines il vivait dans de mauvaises conditions.</p>
       <p>C'est un chien sportif qui aime le jeu. Ses ententes chiens et chats sont inconnu</p>
     </div>
+    <Link
+      to="/info_adoption"
+      className="animal__link animal__link-adoption"
+    >En savoir plus sur l'adoption
+    </Link>
     <p className="animal__span">Vous souhaitez en savoir plus sur Loulou ?</p>
     <Link
       to="/contact"
-      className="animal__link"
+      className="animal__link  animal__link-contact"
     >Contactez nous
     </Link>
   </div>
