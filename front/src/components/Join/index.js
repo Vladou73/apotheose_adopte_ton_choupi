@@ -9,8 +9,8 @@ import './styles.scss';
 // == Composant
 const Join = () => (
   <div className="join">
-    <h1 className="joinTitle">Join the association !</h1>
     <main className="main">
+      <h1 className="joinTitle">Rejoindre l'association</h1>
       <img src={joinPicture} className="main__joinPicture" alt=" join us" />
       <div className="blocJoin">
         <h2 className="blocJoin__subtitle"> Sous-titre </h2>
