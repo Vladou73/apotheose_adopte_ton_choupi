@@ -10,6 +10,7 @@ import Adoption from '../Adoption';
 import Donate from '../Donate';
 import Contact from '../Contact';
 import Blog from '../Blog';
+import Article from '../Article';
 import Footer from '../Footer';
 import Error404 from '../Error404';
 
@@ -32,6 +33,9 @@ const App = () => (
       </Route>
       <Route path="/articles" exact>
         <Blog />
+      </Route>
+      <Route path="/articles/article" exact>
+        <Article />
       </Route>
       <Error404 />
     </Switch>
