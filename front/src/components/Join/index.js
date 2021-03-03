@@ -20,9 +20,10 @@ const Join = () => (
           Ideo urbs venerabilis post superbas efferatarum gentium cervices oppressas latasque leges fundamenta libertatis et retinacula sempiterna velut frugi parens et prudens et dives Caesaribus tamquam liberis suis regenda patrimonii iura permisit.
         </p>
       </div>
-      <p className="main__redirectionToContact">
-        Redirection vers la page contact
-      </p>
+      <p className="main__redirection" />
+      <a href="/contact" className="main__redirection__ToContact">
+        <p> Redirection vers la page contact</p>
+      </a>
     </main>
   </div>
 );
