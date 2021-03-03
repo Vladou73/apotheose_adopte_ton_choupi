@@ -5,9 +5,9 @@ import FacebookLogo from './fb.png';
 
 const Footer = () => (
   <div className="footer">
-    <div className="title">
-      <img className="title__logo" src={Logo} alt="Logo Adope ton choupi" />
-      <p className="title__text">Adopte ton choupi</p>
+    <div className="titleFooter">
+      <img className="titleFooter__logo" src={Logo} alt="Logo Adope ton choupi" />
+      <p className="titleFooter__text">Adopte ton choupi</p>
     </div>
     <div className="adress">
       <p className="adress__street">123 rue,</p>
