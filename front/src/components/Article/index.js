@@ -7,7 +7,7 @@ const Article = () => (
   <div className="article">
     <h2 className="article__title">Titre de l'article</h2>
     <span className="article__category">Catégorie</span>
-    <span className="article__author">Autheur</span>
+    <span className="article__author">Auteur</span>
     <span className="article__date">Date de publication</span>
     <img src={imageArticle} alt="article" />
     <div className="article__content">
