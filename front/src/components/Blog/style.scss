@@ -1,0 +1,58 @@
+.blog {
+  margin: 4em;
+  &__title {
+    text-align: center;
+    margin: 1em;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  &__categories {
+    border: 1px solid black;
+    text-align: center;
+    width: 50%;
+    margin: 2em auto;
+    padding: 2em;
+    &__title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    &__category {
+      margin: .5em;
+      background-color: rgb(223, 101, 101);
+      color: white;
+      padding: .5em;
+    }
+  }
+  &__articles {
+    display: flex;
+  }
+  &__article {
+    width: 45%;
+    margin: auto;
+    border: 1px solid black;
+    padding: 1em;
+    &__title {
+      margin: 1em 0;
+      font-weight: bold;
+      display: inline-block;
+    }
+    & img {
+      max-width: 100%;
+    }
+    &__category {
+      float: right;
+      background-color: rgb(223, 101, 101);
+      color: white;
+      padding: .5em;
+    }
+    &__content {
+      margin: 1em 0;
+      width: 80%;
+    }
+    &__more {
+      float: right;
+      text-decoration: underline;
+    }
+  }
+}
