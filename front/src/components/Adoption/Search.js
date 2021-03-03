@@ -114,7 +114,7 @@ const Search = () => (
 
     <button
       className="search-form--case"
-      type="button"
+      type="submit"
     > Rechercher
     </button>
   </form>
