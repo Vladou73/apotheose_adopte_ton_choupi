@@ -47,6 +47,8 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "emailjs": "^3.4.0",
+    "emailjs-com": "^2.6.4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
