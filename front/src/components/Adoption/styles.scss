@@ -75,14 +75,14 @@
   padding:1em;
   -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
   box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0);
-  &--name {
+  &__name {
     text-transform: uppercase;
     padding: 1em;
   }
-  &--picture {
+  &__picture {
     border-radius: 0.5em;
   }
-  &--span {
+  &__span {
     display: inline-block;
     background-color: antiquewhite;
     margin-top: 1em;
