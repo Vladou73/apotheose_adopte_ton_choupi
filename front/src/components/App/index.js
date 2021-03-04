@@ -19,6 +19,7 @@ import Join from '../Join';
 import Participate from '../Participate';
 
 // Fake data
+import Animals from './data/animals.json';
 import ArticlesData from './data/articles.json';
 
 // == Composant
@@ -33,7 +34,7 @@ const App = () => (
         <Adoption />
       </Route>
       <Route path="/animaux/nom_animal" exact>
-        <Animal />
+        <Animal animal={Animals[0]} />
       </Route>
       <Route path="/info_adoption" exact>
         <InfoAdoption />

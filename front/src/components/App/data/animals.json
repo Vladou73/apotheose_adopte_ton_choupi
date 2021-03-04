@@ -1,276 +1,90 @@
 [{
-  "id": 1,
-  "name": "Henryetta",
-  "species": "Tamiasciurus hudsonicus",
-  "birthdate": "07/06/2020",
-  "gender": "Female",
-  "breed": "American Indian and Alaska Native (AIAN)",
-  "sos": false,
-  "characteristics": "Dromaeus novaehollandiae",
-  "media": "http://dummyimage.com/179x146.png/cc0000/ffffff",
-  "content": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus."
-}, {
-  "id": 2,
-  "name": "Ruthanne",
-  "species": "Dendrohyrax brucel",
-  "birthdate": "12/24/2020",
+  "id": 82,
+  "name": "Common palm civet",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
   "gender": "Male",
-  "breed": "Paiute",
-  "sos": false,
-  "characteristics": "Snycerus caffer",
-  "media": "http://dummyimage.com/161x208.png/cc0000/ffffff",
-  "content": "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum."
-}, {
-  "id": 3,
-  "name": "Arie",
-  "species": "Ovibos moschatus",
-  "birthdate": "06/28/2017",
+  "breed": "Bustard, denham's",
+  "tag": [
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":82
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    }
+  ],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 84,
+  "name": "Common palm civet",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
   "gender": "Male",
-  "breed": "Honduran",
-  "sos": true,
-  "characteristics": "Anser anser",
-  "media": "http://dummyimage.com/123x245.bmp/dddddd/000000",
-  "content": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl."
-}, {
-  "id": 4,
-  "name": "Florrie",
-  "species": "Platalea leucordia",
-  "birthdate": "06/29/2017",
-  "gender": "Male",
-  "breed": "Korean",
-  "sos": false,
-  "characteristics": "Haliaetus leucogaster",
-  "media": "http://dummyimage.com/119x109.png/ff4444/ffffff",
-  "content": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus."
-}, {
-  "id": 5,
-  "name": "Codi",
-  "species": "Semnopithecus entellus",
-  "birthdate": "05/13/2019",
-  "gender": "Female",
-  "breed": "Cree",
-  "sos": false,
-  "characteristics": "Ctenophorus ornatus",
-  "media": "http://dummyimage.com/134x114.bmp/dddddd/000000",
-  "content": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat."
-}, {
-  "id": 6,
-  "name": "Flint",
-  "species": "Lama pacos",
-  "birthdate": "06/16/2014",
-  "gender": "Male",
-  "breed": "Asian",
-  "sos": true,
-  "characteristics": "Pterocles gutturalis",
-  "media": "http://dummyimage.com/114x211.png/dddddd/000000",
-  "content": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
-}, {
-  "id": 7,
-  "name": "Darryl",
-  "species": "Phaethon aethereus",
-  "birthdate": "05/06/2014",
-  "gender": "Male",
-  "breed": "Native Hawaiian",
-  "sos": false,
-  "characteristics": "Boa caninus",
-  "media": "http://dummyimage.com/233x220.png/5fa2dd/ffffff",
-  "content": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem."
-}, {
-  "id": 8,
-  "name": "Herminia",
-  "species": "Ateles paniscus",
-  "birthdate": "02/16/2020",
-  "gender": "Female",
-  "breed": "Iroquois",
-  "sos": true,
-  "characteristics": "Oryx gazella",
-  "media": "http://dummyimage.com/221x218.png/cc0000/ffffff",
-  "content": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris."
-}, {
-  "id": 9,
-  "name": "Nealy",
-  "species": "Fratercula corniculata",
-  "birthdate": "06/07/2015",
-  "gender": "Male",
-  "breed": "Yuman",
-  "sos": false,
-  "characteristics": "Macaca nemestrina",
-  "media": "http://dummyimage.com/169x151.jpg/cc0000/ffffff",
-  "content": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero."
-}, {
-  "id": 10,
-  "name": "Ray",
-  "species": "Cereopsis novaehollandiae",
-  "birthdate": "05/15/2019",
-  "gender": "Male",
-  "breed": "Choctaw",
-  "sos": true,
-  "characteristics": "Iguana iguana",
-  "media": "http://dummyimage.com/198x241.jpg/ff4444/ffffff",
-  "content": "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."
-}, {
-  "id": 11,
-  "name": "Susanne",
-  "species": "Connochaetus taurinus",
-  "birthdate": "01/14/2019",
-  "gender": "Male",
-  "breed": "Micronesian",
-  "sos": true,
-  "characteristics": "Balearica pavonina",
-  "media": "http://dummyimage.com/242x152.bmp/cc0000/ffffff",
-  "content": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
-}, {
-  "id": 12,
-  "name": "Adelina",
-  "species": "Tockus flavirostris",
-  "birthdate": "07/03/2020",
-  "gender": "Male",
-  "breed": "Comanche",
-  "sos": true,
-  "characteristics": "Terrapene carolina",
-  "media": "http://dummyimage.com/143x145.png/ff4444/ffffff",
-  "content": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio."
-}, {
-  "id": 13,
-  "name": "Aeriela",
-  "species": "Grus rubicundus",
-  "birthdate": "04/21/2015",
-  "gender": "Female",
-  "breed": "Seminole",
-  "sos": false,
-  "characteristics": "Corallus hortulanus cooki",
-  "media": "http://dummyimage.com/101x246.png/dddddd/000000",
-  "content": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti."
-}, {
-  "id": 14,
-  "name": "Traver",
-  "species": "Papilio canadensis",
-  "birthdate": "04/05/2016",
-  "gender": "Male",
-  "breed": "Fijian",
-  "sos": true,
-  "characteristics": "Sarcorhamphus papa",
-  "media": "http://dummyimage.com/129x150.png/5fa2dd/ffffff",
-  "content": "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque."
-}, {
-  "id": 15,
-  "name": "Dom",
-  "species": "Lycosa godeffroyi",
-  "birthdate": "04/26/2018",
-  "gender": "Female",
-  "breed": "Cuban",
-  "sos": false,
-  "characteristics": "Cracticus nigroagularis",
-  "media": "http://dummyimage.com/191x233.bmp/5fa2dd/ffffff",
-  "content": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum."
-}, {
-  "id": 16,
-  "name": "Pennie",
-  "species": "Mustela nigripes",
-  "birthdate": "07/20/2015",
-  "gender": "Female",
-  "breed": "Crow",
-  "sos": false,
-  "characteristics": "Gabianus pacificus",
-  "media": "http://dummyimage.com/155x116.png/cc0000/ffffff",
-  "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis."
-}, {
-  "id": 17,
-  "name": "Rozina",
-  "species": "Halcyon smyrnesis",
-  "birthdate": "05/18/2019",
-  "gender": "Female",
-  "breed": "Nicaraguan",
-  "sos": false,
-  "characteristics": "Epicrates cenchria maurus",
-  "media": "http://dummyimage.com/240x118.png/5fa2dd/ffffff",
-  "content": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros."
-}, {
-  "id": 18,
-  "name": "Templeton",
-  "species": "Castor fiber",
-  "birthdate": "03/06/2019",
-  "gender": "Female",
-  "breed": "Shoshone",
-  "sos": true,
-  "characteristics": "Dendrocitta vagabunda",
-  "media": "http://dummyimage.com/109x236.jpg/cc0000/ffffff",
-  "content": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem."
-}, {
-  "id": 19,
-  "name": "Arluene",
-  "species": "unavailable",
-  "birthdate": "12/25/2020",
-  "gender": "Female",
-  "breed": "Tlingit-Haida",
-  "sos": false,
-  "characteristics": "Cebus apella",
-  "media": "http://dummyimage.com/137x147.jpg/5fa2dd/ffffff",
-  "content": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl."
-}, {
-  "id": 20,
-  "name": "Lorrayne",
-  "species": "Larus fuliginosus",
-  "birthdate": "06/14/2017",
-  "gender": "Female",
-  "breed": "Apache",
-  "sos": true,
-  "characteristics": "Alectura lathami",
-  "media": "http://dummyimage.com/168x129.png/5fa2dd/ffffff",
-  "content": "Fusce consequat. Nulla nisl. Nunc nisl."
-}, {
-  "id": 21,
-  "name": "Milty",
-  "species": "Perameles nasuta",
-  "birthdate": "05/03/2015",
-  "gender": "Male",
-  "breed": "Blackfeet",
-  "sos": true,
-  "characteristics": "Bradypus tridactylus",
-  "media": "http://dummyimage.com/129x115.png/ff4444/ffffff",
-  "content": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh."
-}, {
-  "id": 22,
-  "name": "Desdemona",
-  "species": "Cervus duvauceli",
-  "birthdate": "04/01/2015",
-  "gender": "Female",
-  "breed": "Honduran",
-  "sos": false,
-  "characteristics": "Hippotragus niger",
-  "media": "http://dummyimage.com/118x129.jpg/5fa2dd/ffffff",
-  "content": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat."
-}, {
-  "id": 23,
-  "name": "Amabel",
-  "species": "Zalophus californicus",
-  "birthdate": "05/14/2017",
-  "gender": "Female",
-  "breed": "Osage",
-  "sos": false,
-  "characteristics": "Grus canadensis",
-  "media": "http://dummyimage.com/223x187.jpg/ff4444/ffffff",
-  "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus."
-}, {
-  "id": 24,
-  "name": "Wilt",
-  "species": "Felis serval",
-  "birthdate": "04/01/2015",
-  "gender": "Female",
-  "breed": "Asian",
-  "sos": true,
-  "characteristics": "Graspus graspus",
-  "media": "http://dummyimage.com/150x227.jpg/cc0000/ffffff",
-  "content": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus."
-}, {
-  "id": 25,
-  "name": "Byron",
-  "species": "Dacelo novaeguineae",
-  "birthdate": "01/09/2016",
-  "gender": "Male",
-  "breed": "Peruvian",
-  "sos": true,
-  "characteristics": "Semnopithecus entellus",
-  "media": "http://dummyimage.com/172x170.jpg/5fa2dd/ffffff",
-  "content": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
+  "breed": "Bustard, denham's",
+  "tag": [
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    },
+    {
+      "name":"foufou",
+      "color":"rouge",
+      "id":84
+    }
+  ],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
 }]
