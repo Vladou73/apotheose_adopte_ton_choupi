@@ -9,7 +9,7 @@ const Blog = ({ datas }) => (
     <h2 className="blog__title">Nos articles</h2>
     <div className="blog__categories">
       <p className="blog__categories__title">Les catégories</p>
-      {datas.map((data) => <Category key={data.id} {...data} />)}
+      <Category />
     </div>
     <div className="blog__articles">
       {datas.map((data) => <Article key={data.id} {...data} />)}
