@@ -64,7 +64,7 @@ CREATE TABLE animal (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" text NOT NULL,
     birthdate date NOT NULL,
-    description text NOT NULL,
+    "description" text NOT NULL,
     creator_id int NOT NULL REFERENCES "user"(id),
     gender_id int NOT NULL REFERENCES gender(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
