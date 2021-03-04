@@ -55,7 +55,7 @@ const App = () => (
         <Blog datas={ArticlesData} />
       </Route>
       <Route path="/articles/article" exact>
-        <Article />
+        <Article article={ArticlesData[0]} />
       </Route>
       <Error404 />
     </Switch>
