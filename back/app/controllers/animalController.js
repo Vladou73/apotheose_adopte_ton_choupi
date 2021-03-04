@@ -10,5 +10,14 @@ animalController.allAnimals = async (_, response) => {
     response.json(animals)
 }
 
+animalController.oneAnimal = async (request, response) => {
+    const animalId = request.params.id;
+    try {
+        const animal = await animalMapper.findOne(animalId);
+        response.json(animal);
+    } catch (err) { // Error thrown in data mapper gets here
+        response.status(404).json(err.message);
+    }
+}
 
 module.exports = animalController;
