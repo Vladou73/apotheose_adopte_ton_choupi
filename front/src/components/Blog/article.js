@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import imageArticle from './image-article.jpg';
 import './style.scss';
 
 const Article = (data) => {

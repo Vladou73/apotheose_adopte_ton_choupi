@@ -14,7 +14,9 @@ const Adoption = ({ animals }) => (
     <Search />
     <section className="section-animals">
       <h2 className="section-animals--title">8 animaux à l'adoption</h2>
-      {animals.map((animal) => <Cards key={animal.id} {...animal} />)}
+      <div className="cards-animals">
+        {animals.map((animal) => <Cards key={animal.id} {...animal} />)}
+      </div>
     </section>
   </div>
 );
