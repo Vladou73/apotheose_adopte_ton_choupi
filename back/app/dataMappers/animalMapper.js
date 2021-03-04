@@ -4,32 +4,46 @@ const db = require('../database');
 const animalMapper = {};
 
 // get all animals in DB
-animalMapper.findAll = async() => {
-    // const result = await db.query(`SELECT 'HELLO WORLD';`);
-    
+animalMapper.findAll = async() => {  
     const result = await db.query(`
         SELECT
             a.id,
             a.name,
             a.birthdate,
             a.description,
-            ab.breed_id,
-            b.name as breed_name,
-            b.species_id,
-            s.name as species_name,
-            at.tag_id,
-            t.name as tag_name,
-            t.color as tag_color,
-            am.media_id,
-            m.url as media_url
+            bs.species_id,
+            bs.species_name,
+            bs.breeds,
+            t.tags,
+            m.medias
         FROM animal a
-            JOIN animal_breed ab ON ab.animal_id = a.id
-            JOIN breed b ON b.id = ab.breed_id
-            JOIN species s ON s.id = b.species_id
-            LEFT JOIN animal_tag at ON at.animal_id = a.id
-            LEFT JOIN tag t ON t.id = at.tag_id
-            LEFT JOIN animal_media am ON am.animal_id = a.id
-            LEFT JOIN media m ON m.id = am.media_id;
+        JOIN (
+            SELECT
+                animal_breed.animal_id,
+                species.id as species_id,
+                species.name as species_name,
+                json_agg(json_build_object('id',breed.id, 'name',breed.name)) as breeds
+            FROM animal_breed
+            JOIN breed ON breed.id = animal_breed.breed_id
+            JOIN species ON species.id = breed.species_id
+            GROUP BY 1,2,3
+        ) bs on bs.animal_id = a.id
+        LEFT JOIN (
+            SELECT
+                animal_tag.animal_id,
+                json_agg(json_build_object('id',tag.id, 'name',tag.name,'color',tag.color)) as tags
+            FROM animal_tag
+            JOIN tag ON tag.id = animal_tag.tag_id
+            GROUP BY 1
+        ) t ON t.animal_id = a.id
+        LEFT JOIN (
+            SELECT
+                animal_media.animal_id,
+                json_agg(json_build_object('id',media.id, 'url',media.url)) as medias
+            FROM animal_media
+            JOIN media ON media.id = animal_media.media_id
+            GROUP BY 1
+        ) m ON m.animal_id = a.id
     `);
     // et les retourne, sous forme d'instances de Animal
     // return result.rows.map(animal => new Animal(animal));
