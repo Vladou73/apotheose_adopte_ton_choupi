@@ -31,9 +31,9 @@ const App = () => (
         <Home />
       </Route>
       <Route path="/animaux" exact>
-        <Adoption />
+        <Adoption animals={Animals} />
       </Route>
-      <Route path="/animaux/nom_animal" exact>
+      <Route path="/animaux/:slug" exact>
         <Animal animal={Animals[0]} />
       </Route>
       <Route path="/info_adoption" exact>
