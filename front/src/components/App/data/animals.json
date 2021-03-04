@@ -1,6 +1,6 @@
 [{
   "id": 82,
-  "name": "Common palm civet",
+  "name": "Rex",
   "species": "Paradoxurus hermaphroditus",
   "birthdate": "10/27/2020",
   "gender": "Male",
@@ -17,23 +17,23 @@
   "tag": [
     {
       "name":"foufou",
-      "color":"rouge",
+      "color":"#X7II2F",
       "id":82
     },
     {
       "name":"foufou",
-      "color":"rouge",
+      "color":"#F2F8R7",
+      "id":83
+    },
+    {
+      "name":"foufou",
+      "color":"violet",
       "id":84
     },
     {
       "name":"foufou",
-      "color":"rouge",
-      "id":84
-    },
-    {
-      "name":"foufou",
-      "color":"rouge",
-      "id":84
+      "color":"#2B7DE9",
+      "id":85
     }
   ],
   "media": [
@@ -50,10 +50,10 @@
 },
 {
   "id": 84,
-  "name": "Common palm civet",
-  "species": "Paradoxurus hermaphroditus",
-  "birthdate": "10/27/2020",
-  "gender": "Male",
+  "name": "Loulou",
+  "species": "Kraktopolus hermaphroditumus",
+  "birthdate": "05/15/2020",
+  "gender": "Female",
   "breed":[
     {
         "name":"xoxo",
@@ -64,22 +64,22 @@
     {
       "name":"foufou",
       "color":"rouge",
-      "id":84
+      "id":6
     },
     {
-      "name":"foufou",
-      "color":"rouge",
-      "id":84
+      "name":"calin",
+      "color":"#FFFFFF",
+      "id":7
     },
     {
-      "name":"foufou",
-      "color":"rouge",
-      "id":84
+      "name":"calme",
+      "color":"#2B1FR5",
+      "id":8
     },
     {
-      "name":"foufou",
-      "color":"rouge",
-      "id":84
+      "name":"joueur",
+      "color":"##677369",
+      "id":9
     }
   ],
   "media": [
@@ -92,8 +92,408 @@
       "id":28
     },
     {
+      "url":"xixi",
+      "id":22
+    },
+    {
+      "url":"xuxu",
+      "id":24
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 25,
+  "name": "Seraphine",
+  "species": "Paradoxurus Propulus",
+  "birthdate": "11/14/2021",
+  "gender": "Female",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+  "tag": [
+    {
+      "name":"foufou",
+      "color":"#X7II2F",
+      "id":11
+    },
+    {
+      "name":"calin",
+      "color":"#F2F8R7",
+      "id":15
+    },
+    {
+      "name":"joueur",
+      "color":"violet",
+      "id":20
+    },
+    {
+      "name":"calme",
+      "color":"#2B7DE9",
+      "id":34
+    }
+  ],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
       "url":"xoxo",
       "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 41,
+  "name": "Guizmo",
+  "species": "Paradoxurus Krodutus",
+  "birthdate": "03/27/2019",
+  "gender": "Male",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 53,
+  "name": "Hercule",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Male",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 50,
+  "name": "Snoopy",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Female",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 89,
+  "name": "Garfield",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Male",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 11,
+  "name": "Lili",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Female",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 74,
+  "name": "Milou",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Male",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
+    },
+    {
+      "url":"xoxo",
+      "id":28
+    }
+  ],
+  "content": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus."
+},
+{
+  "id": 65,
+  "name": "Cookie",
+  "species": "Paradoxurus hermaphroditus",
+  "birthdate": "10/27/2020",
+  "gender": "Female",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
+"tag": [
+  {
+    "name":"foufou",
+    "color":"#X7II2F",
+    "id":11
+  },
+  {
+    "name":"calin",
+    "color":"#F2F8R7",
+    "id":15
+  },
+  {
+    "name":"joueur",
+    "color":"violet",
+    "id":20
+  },
+  {
+    "name":"calme",
+    "color":"#2B7DE9",
+    "id":34
+  }
+],
+  "media": [
+    {
+      "url":"xxx",
+      "id":1
     },
     {
       "url":"xoxo",
