@@ -33,7 +33,7 @@ const App = () => (
       <Route path="/animaux" exact>
         <Adoption animals={Animals} />
       </Route>
-      <Route path="/animaux/:slug" exact>
+      <Route path="/animaux/:id" exact>
         <Animal animal={Animals[0]} />
       </Route>
       <Route path="/info_adoption" exact>
