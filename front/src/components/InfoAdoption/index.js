@@ -2,6 +2,7 @@
 import React from 'react';
 
 // == Import
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import animals from './cat_dog.jpg';
 
@@ -27,30 +28,35 @@ const InfoAdoption = () => (
       src={animals}
       alt="cats"
     />
-    <h2 className="info-adoption--subtitle">Quelques erreurs à ne pas commmettre</h2>
-    <ul className="info-adoption--ul">
-      <li className="info-adoption--li">Adopter sur un coup de tête</li>
-      <li className="info-adoption--li">Sous-estimer ses responsabilités</li>
-      <li className="info-adoption--li">Imposer un animal aux membres de la famille</li>
-      <li className="info-adoption--li">Se précipiter pour adopter</li>
-      <li className="info-adoption--li">Choisir un animal qui ne vous correspond pas</li>
-    </ul>
+    <div className="info-adoption__container">
+      <h2 className="info-adoption--subtitle">Quelques erreurs à ne pas commmettre</h2>
+      <ul className="info-adoption--ul">
+        <li className="info-adoption--li">Adopter sur un coup de tête</li>
+        <li className="info-adoption--li">Sous-estimer ses responsabilités</li>
+        <li className="info-adoption--li">Imposer un animal aux membres de la famille</li>
+        <li className="info-adoption--li">Se précipiter pour adopter</li>
+        <li className="info-adoption--li">Choisir un animal qui ne vous correspond pas</li>
+      </ul>
 
-    <h2 className="info-adoption--subtitle">Les conditions d'adoption</h2>
-    <p className="info-adoption--text">En adoptant, vous acceptez de participer aux frais engendrés par la prise en charge
-      de l’animal dans le cadre d’une adoption responsable dont les soins, l’hébergement,
-      la nourriture, la vaccination, la stérilisation, l'éducation...
-      Vous trouverez aussi auprès de nos équipes des professionnels capables de
-      vous donner les meilleurs conseils pour accueillir votre nouveau compagnon.
-      Par votre participation financière, vous continuerez à faire grandir notre
-      mouvement de solidarité envers les animaux abandonnés et maltraités.
-    </p>
-    <h2 className="info-adoption--subtitle">Documents néccesaire</h2>
-    <ul className="info-adoption--ul">
-      <li className="info-adoption--li">Pièce d’identité</li>
-      <li className="info-adoption--li">Justificatif de domicile</li>
-      <li className="info-adoption--li">Justificatif de revenus</li>
-    </ul>
+      <h2 className="info-adoption--subtitle">Les conditions d'adoption</h2>
+      <p className="info-adoption--text">En adoptant, vous acceptez de participer aux frais engendrés par la prise en charge
+        de l’animal dans le cadre d’une adoption responsable dont les soins, l’hébergement,
+        la nourriture, la vaccination, la stérilisation, l'éducation...
+        Vous trouverez aussi auprès de nos équipes des professionnels capables de
+        vous donner les meilleurs conseils pour accueillir votre nouveau compagnon.
+        Par votre participation financière, vous continuerez à faire grandir notre
+        mouvement de solidarité envers les animaux abandonnés et maltraités.
+      </p>
+      <h2 className="info-adoption--subtitle">Documents néccesaire</h2>
+      <ul className="info-adoption--ul">
+        <li className="info-adoption--li">Pièce d’identité</li>
+        <li className="info-adoption--li">Justificatif de domicile</li>
+        <li className="info-adoption--li">Justificatif de revenus</li>
+      </ul>
+      <div className="info-adoption__contact">
+        <Link to="/contact" className="contactButton">Nous contacter</Link>
+      </div>
+    </div>
   </div>
 );
 

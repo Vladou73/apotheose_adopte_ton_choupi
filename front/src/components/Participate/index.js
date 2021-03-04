@@ -5,14 +5,15 @@ import React from 'react';
 // == Import
 // import sponsorPicture from './sponsor.png';
 // import walkingPicture from './walking.jpg';
+import { Link } from 'react-router-dom';
 import participatePicture from './participate.webp';
 import './styles.scss';
 
 // == Composant
 const Participate = () => (
   <div className="participate">
-    <h1 className="participateTitle"> Participer occasionnellement </h1>
     <main className="mainParticipate">
+      <h2 className="participateTitle"> Participer occasionnellement </h2>
       <p className="introText">
         Haec dum oriens diu perferret, caeli reserato tepore Constantius consulatu suo septies et Caesaris ter egressus Arelate Valentiam petit, in Gundomadum et Vadomarium fratres Alamannorum reges arma moturus, quorum crebris excursibus vastabantur confines limitibus terrae Gallorum.
       </p>
@@ -31,6 +32,7 @@ const Participate = () => (
           Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Ptolomaeo enim rege foederato nobis et socio ob aerarii nostri angustias iusso sine ulla culpa proscribi ideoque hausto veneno voluntaria morte deleto et tributaria facta est et velut hostiles eius exuviae classi inpositae in urbem advectae sunt per Catonem, nunc repetetur ordo gestorum.
         </p>
       </div>
+      <Link to="/contact" className="contactButton">Nous contacter</Link>
     </main>
   </div>
 );
