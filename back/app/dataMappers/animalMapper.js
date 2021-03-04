@@ -21,7 +21,7 @@ animalMapper.findAll = async() => {
             t.name as tag_name,
             t.color as tag_color,
             am.media_id,
-            m.media_url
+            m.url as media_url
         FROM animal a
             JOIN animal_breed ab ON ab.animal_id = a.id
             JOIN breed b ON b.id = ab.breed_id
