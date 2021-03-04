@@ -1,7 +1,7 @@
 // ADOPTION PAGE
 .adoption-page {
   text-align: center;
-  &--title {
+  &__title {
     font-size: 1.5em;
     margin: 2em auto;
   }
@@ -20,34 +20,34 @@
   flex-wrap: wrap;
   margin: auto;
   width:80%;
-  &--name,
-  &--species,
-  &--breed,
-  &--age,
-  &--gender,
-  &--category {
+  &__name,
+  &__species,
+  &__breed,
+  &__age,
+  &__gender,
+  &__category {
     display:flex;
     flex-direction: column;
     justify-content: center;
     margin: 1em;
   }
-  &--text {
+  &__text {
     font-weight: bold;
   }
-  &--label {
+  &__label {
     color: rgb(63, 63, 63);
     display: inline;
   }
-  &--case,
-  &--button {
+  &__case,
+  &__button {
     margin: 0.5em auto;
     width: 200px;
     padding: 1em;
   }
-  &--checkbox {
+  &__checkbox {
     margin: 0.5em;
   }
-  &--range {
+  &__range {
     margin:0;
   }
 }

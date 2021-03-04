@@ -9,19 +9,19 @@ const Search = () => (
   <div className="search-div">
     <form className="search-form">
 
-      <div className="search-form--name">
-        <p className="search-form--text">Rechercher ton choupi avec son nom</p>
+      <div className="search-form__name">
+        <p className="search-form__text">Rechercher ton choupi avec son nom</p>
         <input
-          className="search-form--case"
+          className="search-form__case"
           type="text"
           value=""
         />
       </div>
 
-      <div className="search-form--species">
-        <p className="search-form--text">Espèce</p>
+      <div className="search-form__species">
+        <p className="search-form__text">Espèce</p>
         <select
-          className="search-form--case"
+          className="search-form__case"
           name="species"
         >
           <option value="">Indifférent</option>
@@ -31,10 +31,10 @@ const Search = () => (
         </select>
       </div>
 
-      <div className="search-form--breed">
-        <p className="search-form--text">Race</p>
+      <div className="search-form__breed">
+        <p className="search-form__text">Race</p>
         <select
-          className="search-form--case"
+          className="search-form__case"
           name="breed"
         >
           <option value="">Indifférent</option>
@@ -47,10 +47,10 @@ const Search = () => (
         </select>
       </div>
 
-      <div className="search-form--category">
-        <p className="search-form--text">Caractère</p>
+      <div className="search-form__category">
+        <p className="search-form__text">Caractère</p>
         <select
-          className="search-form--case"
+          className="search-form__case"
           name="category"
         >
           <option value="">Indifférent</option>
@@ -61,16 +61,16 @@ const Search = () => (
         </select>
       </div>
 
-      <div className="search-form--gender">
-        <p className="search-form--text">Sexe :</p>
+      <div className="search-form__gender">
+        <p className="search-form__text">Sexe :</p>
         <div>
           <label
             htmlFor="checkbox-female"
-            className="search-form--label"
+            className="search-form__label"
           >
             Femelle
             <input
-              className="search-form--checkbox"
+              className="search-form__checkbox"
               id="checkbox-female"
               type="checkbox"
               name="female"
@@ -81,11 +81,11 @@ const Search = () => (
         <div>
           <label
             htmlFor="checkbox-male"
-            className="search-form--label"
+            className="search-form__label"
           >
             Male
             <input
-              className="search-form--checkbox"
+              className="search-form__checkbox"
               id="checkbox-male"
               type="checkbox"
               name="male"
@@ -94,12 +94,12 @@ const Search = () => (
         </div>
       </div>
 
-      <div className="search-form--age">
-        <p className="search-form--text">Age :</p>
+      <div className="search-form__age">
+        <p className="search-form__text">Age :</p>
         <div>
           <span> 3 mois </span>
           <input
-            className="search-form--range"
+            className="search-form__range"
             id="input-child"
             type="range"
             name="age"
@@ -107,7 +107,7 @@ const Search = () => (
             max="10 +"
           />
           <input
-            className="search-form--range"
+            className="search-form__range"
             id="input-senior"
             type="range"
             name="age"
@@ -118,14 +118,14 @@ const Search = () => (
         </div>
       </div>
 
-      <div className="search-form--sos">
+      <div className="search-form__sos">
         <label
           htmlFor="checkbox-sos"
-          className="search-form--label"
+          className="search-form__label"
         >
           SOS
           <input
-            className="search-form--checkbox"
+            className="search-form__checkbox"
             id="checkbox-sos"
             type="checkbox"
             name="sos"
@@ -134,7 +134,7 @@ const Search = () => (
       </div>
 
       <button
-        className="search-form--button"
+        className="search-form__button"
         type="submit"
       > Rechercher
       </button>
