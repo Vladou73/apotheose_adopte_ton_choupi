@@ -21,7 +21,7 @@ const Join = () => (
         </p>
       </div>
       <a href="/contact" className="main__redirection__ToContact">
-        <p> Redirection vers la page contact</p>
+        <p> Contactez-nous !</p>
       </a>
     </main>
   </div>
