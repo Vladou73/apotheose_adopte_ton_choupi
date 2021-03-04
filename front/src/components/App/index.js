@@ -19,8 +19,8 @@ import Join from '../Join';
 import Participate from '../Participate';
 
 // Fake data
-import Articles from './data/articles.json';
 import Animals from './data/animals.json';
+import ArticlesData from './data/articles.json';
 
 // == Composant
 const App = () => (
@@ -51,8 +51,8 @@ const App = () => (
       <Route path="/contact" exact>
         <Contact />
       </Route>
-      <Route path="/articles" articles={Articles} exact>
-        <Blog />
+      <Route path="/articles" exact>
+        <Blog datas={ArticlesData} />
       </Route>
       <Route path="/articles/article" exact>
         <Article />
