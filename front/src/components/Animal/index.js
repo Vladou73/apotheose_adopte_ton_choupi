@@ -17,8 +17,7 @@ const Animal = ({ animal }) => (
 
     </div>
     <div className="animal__content">
-      <p>Loulou a été retiré il y a quelques semaines il vivait dans de mauvaises conditions.{animal.content}</p>
-      <p>C'est un chien sportif qui aime le jeu. Ses ententes chiens et chats sont inconnu.{animal.content}</p>
+      <p>{animal.content}</p>
     </div>
     <Link
       to="/info_adoption"
