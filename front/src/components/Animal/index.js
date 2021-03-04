@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Animal = ({ animal }) => (
   <div className="animal">
     <h2 className="animal__name">{animal.name}</h2>
-    <img src={animal.media} alt="loulou" />
+    <img src={animal.media[0].url} alt="loulou" />
     <div className="animal__category">
       <p className="animal__category-text">Espèce : {animal.species}</p>
       <p className="animal__category-text">Race / Apparence : {animal.breed[0].name}</p>

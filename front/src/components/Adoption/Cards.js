@@ -13,7 +13,7 @@ const Cards = ({ id, name, media }) => (
       <p className="card-animal--name">{name}</p>
       <img
         className="card-animal--picture"
-        src={media}
+        src={media[0].url}
         alt="loulou"
       />
       <Link to={`/animaux/${id}`}>
