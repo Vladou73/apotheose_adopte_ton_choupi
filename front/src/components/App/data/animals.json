@@ -4,7 +4,16 @@
   "species": "Paradoxurus hermaphroditus",
   "birthdate": "10/27/2020",
   "gender": "Male",
-  "breed": "Bustard, denham's",
+  "breed" : [
+    {
+        "name":"xxx",
+        "id":1
+    },
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
   "tag": [
     {
       "name":"foufou",
@@ -45,7 +54,12 @@
   "species": "Paradoxurus hermaphroditus",
   "birthdate": "10/27/2020",
   "gender": "Male",
-  "breed": "Bustard, denham's",
+  "breed":[
+    {
+        "name":"xoxo",
+        "id":5
+    }
+],
   "tag": [
     {
       "name":"foufou",
