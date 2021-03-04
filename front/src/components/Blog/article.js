@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './style.scss';
 
 const Article = (data) => {
-  const excerpt = data.content.substring(0, 200);
+  const excerpt = `${data.content.substring(0, 200)}...`;
   return (
     <>
       <div className="blog__article">
