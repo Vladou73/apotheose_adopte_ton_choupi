@@ -11,7 +11,7 @@ const Animal = ({ animal }) => (
     <img src={animal.media} alt="loulou" />
     <div className="animal__category">
       <p className="animal__category-text">Espèce : {animal.species}</p>
-      <p className="animal__category-text">Race / Apparence : {animal.breed}</p>
+      <p className="animal__category-text">Race / Apparence : {animal.breed[0].name}</p>
       <p className="animal__category-text">Sexe : {animal.gender}</p>
       <p className="animal__category-text">Date de naissance : {animal.birthdate}</p>
 
