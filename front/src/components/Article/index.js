@@ -1,23 +1,38 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+import Error404 from '../Error404';
 import './style.scss';
 
-const Article = ({ article }) => (
-  <div className="article">
-    <h2 className="article__title">{article.title}</h2>
-    <span className="article__category">{article.category}</span>
-    <span className="article__author">{article.author}</span>
-    <span className="article__date">date</span>
-    <img src={article.img} alt="article" />
-    <div className="article__content">
-      <p>{article.content}</p>
+const Article = ({ article }) => {
+  const { id } = useParams();
+  console.log(id);
+
+  const data = article.find((articleObject) => articleObject.id === parseInt(id, 10));
+  console.log(data);
+
+  if (!data) return <Error404 />;
+  const {
+    title, category, author, img, content,
+  } = data;
+
+  return (
+    <div className="article">
+      <h2 className="article__title">{title}</h2>
+      <span className="article__category">{category}</span>
+      <span className="article__author">{author}</span>
+      <span className="article__date">date</span>
+      <img src={img} alt="article" />
+      <div className="article__content">
+        <p>{content}</p>
+      </div>
+      <div className="article__similar">
+        Bonus
+      </div>
     </div>
-    <div className="article__similar">
-      Bonus
-    </div>
-  </div>
-);
+  );
+};
 
 Article.propTypes = {
   article: PropTypes.objectOf(
