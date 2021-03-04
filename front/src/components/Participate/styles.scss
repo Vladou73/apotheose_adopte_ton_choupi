@@ -16,7 +16,7 @@
 };
 
 .introText{
-  padding-top: 2.5em;
+  padding-top: 1em;
   padding-bottom: 1em;
   font-size: 100%;
   border: 1px solid #000;
@@ -33,7 +33,9 @@
 };
 
 .sponsorElements{
-  margin: 2em;
+  width: 60%;
+  margin: 2em auto;
+  padding: 2em;
   background-color: rgb(250, 237, 214);
   border: 1px solid #677369;
   border-radius: 5px;
@@ -47,22 +49,21 @@
   padding: 15px 32px;
   border-radius: 5px;
   text-align: center;
-  width: 40%;
-  margin-left: 2.5em;
+  width: 100%;
   margin-top: 2.5em;
 };
 
 .sponsorText{
   text-align: left;
   margin-top: 2em;
-  margin-left: 2em;
-  margin-bottom: 2em;
-  padding-bottom: 2em;
 };
 
 
 .walkingElements{
-  margin: 2em;
+  margin: auto;
+  padding: 2em;
+  width: 60%;
+  text-align: center;
   background-color: rgb(250, 237, 214);
   border: 1px solid #677369;
   border-radius: 5px;
@@ -73,21 +74,30 @@
   background-color: #677369;
   border: none;
   color: #fff;
+  width: 100%;
   padding: 15px 32px;
   border-radius: 5px;
   text-align: center;
-  width: 40%;
-  margin-left: 2.5em;
   margin-top: 2.5em;
 };
 
 .walkingText{
   text-align: left;
   margin-top: 2em;
-  margin-left: 2em;
-  margin-bottom: 2em;
-  padding-bottom: 2em;
 };
+
+.contactButton {
+  display: inline-block;
+  margin: 2em auto;
+  background-color: #677369;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
 
 /* &__sponsorPicture{
   width: 10%;

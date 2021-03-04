@@ -14,7 +14,7 @@ const Article = ({ article }) => {
 
   if (!data) return <Error404 />;
   const {
-    title, category, author, img, content,
+    title, category, author, img, content, date,
   } = data;
 
   return (
@@ -22,7 +22,7 @@ const Article = ({ article }) => {
       <h2 className="article__title">{title}</h2>
       <span className="article__category">{category}</span>
       <span className="article__author">{author}</span>
-      <span className="article__date">date</span>
+      <span className="article__date">{date}</span>
       <img src={img} alt="article" />
       <div className="article__content">
         <p>{content}</p>

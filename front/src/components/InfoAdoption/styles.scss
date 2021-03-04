@@ -1,5 +1,5 @@
 .info-adoption {
-  width: 80%;
+  width: 50%;
   margin: 2.5em auto;
   &--title,
   &--subtitle {
@@ -25,8 +25,11 @@
   }
   &--picture {
     display: block;
-    max-width: 100%;
+    width: 100%;
     margin: 1.5em auto;
     border-radius: 1em;
+  }
+  &__contact {
+    text-align: center;
   }
 }
