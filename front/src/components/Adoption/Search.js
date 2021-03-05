@@ -74,7 +74,6 @@ const Search = () => (
               id="checkbox-female"
               type="checkbox"
               name="female"
-              checked
             />
           </label>
         </div>
@@ -132,12 +131,6 @@ const Search = () => (
           />
         </label>
       </div>
-
-      <button
-        className="search-form__button"
-        type="submit"
-      > Rechercher
-      </button>
     </form>
   </div>
 );

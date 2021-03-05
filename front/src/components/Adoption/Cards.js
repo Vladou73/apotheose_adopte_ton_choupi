@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 // == Composant
-const Cards = ({ id, name, medias }) => (
+const Cards = ({ id, name, birthdate }) => (
   <Link to={`/animaux/${id}`}>
     <div className="card-animal">
       <p className="card-animal__name">{name}</p>
@@ -16,6 +16,8 @@ const Cards = ({ id, name, medias }) => (
         src="xxx"
         alt={name}
       />
+      <span className="card-animal__span">{birthdate}</span>
+      <span className="card-animal__span">Genre</span>
       <span className="card-animal__span">Voir la fiche</span>
     </div>
   </Link>

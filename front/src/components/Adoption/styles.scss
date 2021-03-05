@@ -38,8 +38,7 @@
     color: rgb(63, 63, 63);
     display: inline;
   }
-  &__case,
-  &__button {
+  &__case {
     margin: 0.5em auto;
     width: 200px;
     padding: 1em;
@@ -52,9 +51,9 @@
   }
 }
 
-// CARDS ANIMALS
+// CARDS ANIMALS - cards is responsive
 .section-animals{
-  width:80%;
+  min-width: 100%;
   display:block;
   margin: auto;
   &--title {
@@ -64,7 +63,11 @@
 .cards-animals {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: auto;
+}
+a {
+  max-width: 100%;
 }
 .card-animal {
   display: flex;
@@ -79,7 +82,7 @@
   }
   &__picture {
     border-radius: 0.5em;
-    padding: 150px;
+    padding: 100px;
     background-color:#677369;
   }
   &__span {
