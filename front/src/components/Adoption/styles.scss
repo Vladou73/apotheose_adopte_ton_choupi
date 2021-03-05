@@ -9,35 +9,32 @@
 
 // SEARCH FORM
 .search-div {
-  width: 80%;
-  padding: 1em;
-  margin: 2em auto;
-  background-color: #e4ebe4;
+  border-radius: 0.3em;
+  -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+  box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0);
 }
 .search-form {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   margin: auto;
+  padding: 2em;
   width:80%;
   &__name,
   &__species,
   &__breed,
   &__age,
   &__gender,
-  &__category {
-    display:flex;
-    // flex-direction: column;
-    justify-content: center;
+  &__tag {
     margin: 1em;
   }
   &__text {
     font-weight: bold;
   }
-  &__label {
-    color: rgb(63, 63, 63);
-    display: inline;
-  }
+  // &__label {
+  // for checkbox style / not use for the moment
+  // }
   &__case {
     margin: 0.5em auto;
     width: 200px;
@@ -46,9 +43,6 @@
   &__checkbox {
     margin: 0.5em;
   }
-  &__range {
-    margin:0;
-  }
 }
 
 // CARDS ANIMALS - cards is responsive
@@ -56,8 +50,9 @@
   min-width: 100%;
   display:block;
   margin: auto;
-  &--title {
+  &__title {
     font-size: 1.3em;
+    margin: 2em auto;
   }
 }
 .cards-animals {

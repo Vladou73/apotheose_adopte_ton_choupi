@@ -8,10 +8,17 @@ import Search from './Search';
 import Cards from './Cards';
 
 // == Composant
-const Adoption = ({ animals }) => (
+const Adoption = ({
+  inputTextAnimals, filterName, animals,
+}) => (
   <div className="adoption-page">
-    <h1 className="adoption-page__title">Disponible à l'adoption</h1>
-    <Search />
+    <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
+    <h2 className="section-animals__title">A toi de le trouver !</h2>
+    <Search
+      animals={animals}
+      inputTextAnimals={inputTextAnimals}
+      filterName={filterName}
+    />
     <section className="section-animals">
       <h2 className="section-animals__title">{animals.length} animaux à l'adoption</h2>
       <div className="cards-animals">
@@ -27,6 +34,8 @@ Adoption.propTypes = {
       id: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  inputTextAnimals: PropTypes.string.isRequired,
+  filterName: PropTypes.func.isRequired,
 };
 
 // == Export

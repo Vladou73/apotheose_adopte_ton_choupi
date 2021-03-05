@@ -28,8 +28,11 @@ const baseUrl = 'https://spa-apotheose.herokuapp.com';
 
 // == Composant
 const App = () => {
+  // States hooks
   const [animals, setAnimals] = useState([]);
+  const [inputTextAnimals, setInputTextAnimals] = useState('');
 
+  // Call API with axios
   const getAnimals = () => {
     axios({
       method: 'get',
@@ -43,9 +46,18 @@ const App = () => {
       });
   };
 
+  // Hooks effects
   useEffect(() => {
     getAnimals();
   }, []);
+
+  // Method for filter the search with name of animals
+  const filterName = (event) => {
+    setInputTextAnimals(event);
+  };
+  const filterNameAnimals = animals.filter(
+    (animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLowerCase()),
+  );
 
   return (
     <div className="app">
@@ -55,7 +67,11 @@ const App = () => {
           <Home />
         </Route>
         <Route path="/animaux" exact>
-          <Adoption animals={animals} />
+          <Adoption
+            animals={filterNameAnimals}
+            inputTextAnimals={inputTextAnimals}
+            filterName={filterName}
+          />
         </Route>
         <Route path="/animaux/:id" exact>
           <Animal animal={animals} />
