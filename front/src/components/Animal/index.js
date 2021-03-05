@@ -8,58 +8,54 @@ import Error404 from '../Error404';
 
 const Animal = ({ animal }) => {
   const { id } = useParams();
-  console.log(id);
-  console.log(animal[0].id);
 
   const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
-  console.log(data);
 
   if (!data) return <Error404 />;
   const {
-    name, media, species, breed, gender, birthdate, content,
+    name, species_name, media, breeds, gender, birthdate, description,
   } = data;
 
   return (
     <div className="animal">
       <h2 className="animal__name">{name}</h2>
-      <img src={media[0].url} alt="loulou" />
+      <img src="" alt="loulou" />
       <div className="animal__category">
-        <p className="animal__category-text">Espèce : {species}</p>
-        <p className="animal__category-text">Race / Apparence : {breed[0].name}</p>
-        <p className="animal__category-text">Sexe : {gender}</p>
+        <p className="animal__category-text">Espèce : {species_name}</p>
+        <p className="animal__category-text">Race / Apparence : {breeds[0].name}</p>
+        <p className="animal__category-text">Sexe : ""</p>
         <p className="animal__category-text">Date de naissance : {birthdate}</p>
 
       </div>
       <div className="animal__content">
-        <p>{content}</p>
+        <p>{description}</p>
       </div>
       <Link
         to="/info_adoption"
         className="animal__link animal__link-adoption"
       >En savoir plus sur l'adoption
       </Link>
-      <p className="animal__span">Vous souhaitez en savoir plus sur Loulou ?{content}</p>
+      <p className="animal__span">Vous souhaitez en savoir plus sur {name} ?</p>
       <Link
         to="/contact"
         className="animal__link  animal__link-contact"
-      >Contactez nous
+      >Contactez-nous !
       </Link>
     </div>
   );
 };
 
 Animal.propTypes = {
-  animal: PropTypes.objectOf(
+  animal: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      species: PropTypes.string.isRequired,
+      species_name: PropTypes.string.isRequired,
       birthdate: PropTypes.string.isRequired,
-      gender: PropTypes.string.isRequired,
-      breed: PropTypes.string.isRequired,
-      tag: PropTypes.array.isRequired,
-      media: PropTypes.array.isRequired,
-      content: PropTypes.string.isRequired,
+      // gender: PropTypes.string.isRequired,
+      breeds: PropTypes.array.isRequired,
+      // tag: PropTypes.array.isRequired,
+      description: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };

@@ -20,7 +20,7 @@ import Join from '../Join';
 import Participate from '../Participate';
 
 // Fake data
-import Animals from './data/animals.json';
+// import Animals from './data/animals.json';
 import ArticlesData from './data/articles.json';
 
 // Function to get the animals from the back api
@@ -36,7 +36,6 @@ const App = () => {
       url: `${baseUrl}/animals`,
     })
       .then((response) => {
-        console.log(response);
         setAnimals(response.data);
       })
       .catch((error) => {
@@ -56,10 +55,10 @@ const App = () => {
           <Home />
         </Route>
         <Route path="/animaux" exact>
-          <Adoption animals={Animals} />
+          <Adoption animals={animals} />
         </Route>
         <Route path="/animaux/:id" exact>
-          <Animal animal={Animals} />
+          <Animal animal={animals} />
         </Route>
         <Route path="/info_adoption" exact>
           <InfoAdoption />
