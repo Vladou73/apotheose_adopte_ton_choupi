@@ -9,14 +9,14 @@ import './styles.scss';
 // == Composant
 const Cards = ({ id, name, medias }) => (
   <div className="card-animal">
-    <p className="card-animal--name">{name}</p>
+    <p className="card-animal__name">{name}</p>
     <img
       className="card-animal--picture"
       src="xxx"
       alt="loulou"
     />
     <Link to={`/animaux/${id}`}>
-      <span className="card-animal--span">Voir la fiche</span>
+      <span className="card-animal__span">Voir la fiche</span>
     </Link>
   </div>
 );
