@@ -11,7 +11,7 @@ const router = Router();
 // app.use(jwt());
 
 router.post('/admin', userController.signIn);
-router.post('/admin/manageAnimals', userController.authenticate);
+router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
 
 
 router.get('/animals', animalController.allAnimals);

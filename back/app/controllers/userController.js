@@ -14,7 +14,8 @@ userController = {
         console.log('request.headers ',request.headers);
         console.log('request.body ',request.body);
         userService.authenticate(request.headers)
-            .then(decoded => response.json(decoded))
+            .then(next())
+            // .then(decoded => response.json(decoded))
             .catch(next);
         // next();
     }
