@@ -69,7 +69,6 @@
 .card-animal {
   display: flex;
   flex-direction: column;
-  width: 40%;
   margin: 1em;
   padding:1em;
   -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
@@ -80,10 +79,10 @@
   }
   &__picture {
     border-radius: 0.5em;
+    padding: 150px;
+    background-color:#677369;
   }
   &__span {
-    display: inline-block;
-    background-color: antiquewhite;
     margin-top: 1em;
   }
 }

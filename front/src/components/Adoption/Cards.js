@@ -8,17 +8,17 @@ import './styles.scss';
 
 // == Composant
 const Cards = ({ id, name, medias }) => (
-  <div className="card-animal">
-    <p className="card-animal__name">{name}</p>
-    <img
-      className="card-animal--picture"
-      src="xxx"
-      alt="loulou"
-    />
-    <Link to={`/animaux/${id}`}>
+  <Link to={`/animaux/${id}`}>
+    <div className="card-animal">
+      <p className="card-animal__name">{name}</p>
+      <img
+        className="card-animal__picture"
+        src="xxx"
+        alt={name}
+      />
       <span className="card-animal__span">Voir la fiche</span>
-    </Link>
-  </div>
+    </div>
+  </Link>
 );
 
 Cards.propTypes = {
