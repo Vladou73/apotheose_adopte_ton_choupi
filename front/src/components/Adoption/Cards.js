@@ -7,12 +7,12 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 // == Composant
-const Cards = ({ id, name, media }) => (
+const Cards = ({ id, name, medias }) => (
   <div className="card-animal">
     <p className="card-animal__name">{name}</p>
     <img
-      className="card-animal__picture"
-      src={media[0].url}
+      className="card-animal--picture"
+      src="xxx"
       alt="loulou"
     />
     <Link to={`/animaux/${id}`}>
@@ -24,7 +24,6 @@ const Cards = ({ id, name, media }) => (
 Cards.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  media: PropTypes.array.isRequired,
 };
 // == Export
 export default Cards;

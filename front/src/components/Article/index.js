@@ -35,14 +35,14 @@ const Article = ({ article }) => {
 };
 
 Article.propTypes = {
-  article: PropTypes.objectOf(
+  article: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       author: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       img: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      category: PropTypes.array.isRequired,
+      category: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
