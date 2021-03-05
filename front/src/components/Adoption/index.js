@@ -11,7 +11,7 @@ import Cards from './Cards';
 const Adoption = ({ animals }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Disponible à l'adoption</h1>
-    <Search />
+    <Search animals={animals} />
     <section className="section-animals">
       <h2 className="section-animals__title">{animals.length} animaux à l'adoption</h2>
       <div className="cards-animals">

@@ -25,7 +25,7 @@
   &__breed,
   &__age,
   &__gender,
-  &__category {
+  &__tag {
     display:flex;
     // flex-direction: column;
     justify-content: center;
@@ -45,9 +45,6 @@
   }
   &__checkbox {
     margin: 0.5em;
-  }
-  &__range {
-    margin:0;
   }
 }
 

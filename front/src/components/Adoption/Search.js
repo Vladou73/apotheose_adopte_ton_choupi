@@ -13,24 +13,53 @@ const Search = () => (
         <p className="search-form__text">Rechercher ton choupi avec son nom</p>
         <input
           className="search-form__case"
+          aria-describedby="animal_name"
           type="text"
-          value=""
         />
       </div>
 
+      {/* CHECKBOX FOR SPECIES */}
       <div className="search-form__species">
         <p className="search-form__text">Espèce</p>
-        <select
-          className="search-form__case"
-          name="species"
+        <label
+          htmlFor="species__name"
+          className="search-form__label"
         >
-          <option value="">Indifférent</option>
-          <option value="dog">Chien</option>
-          <option value="cat">Chat</option>
-          <option value="hamster">Nac</option>
-        </select>
+          Chien
+          <input
+            className="search-form__checkbox"
+            aria-describedby="species__name"
+            type="checkbox"
+            name="species__name"
+          />
+        </label>
+        <label
+          htmlFor="species__name"
+          className="search-form__label"
+        >
+          Chat
+          <input
+            className="search-form__checkbox"
+            aria-describedby="species__name"
+            type="checkbox"
+            name="species__name"
+          />
+        </label>
+        <label
+          htmlFor="species__name"
+          className="search-form__label"
+        >
+          Nac
+          <input
+            className="search-form__checkbox"
+            aria-describedby="species__name"
+            type="checkbox"
+            name="nac"
+          />
+        </label>
       </div>
 
+      {/* SELECT FOR BREED */}
       <div className="search-form__breed">
         <p className="search-form__text">Race</p>
         <select
@@ -38,40 +67,55 @@ const Search = () => (
           name="breed"
         >
           <option value="">Indifférent</option>
-          <option value="dog">Labrador</option>
-          <option value="dog">Berger allemand</option>
-          <option value="dog">Border collie</option>
-          <option value="dog">Beagle</option>
-          <option value="dog">Teckel</option>
-          <option value="dog">Bouledogue</option>
+          <option value="species_id">Labrador</option>
+          <option value="species_id">Berger allemand</option>
+          <option value="species_id">Border collie</option>
+          <option value="species_id">Beagle</option>
+          <option value="species_id">Teckel</option>
+          <option value="species_id">Bouledogue</option>
         </select>
       </div>
 
-      <div className="search-form__category">
+      {/* SELECT FOR TAG */}
+      <div className="search-form__tag">
         <p className="search-form__text">Caractère</p>
         <select
           className="search-form__case"
-          name="category"
+          name="tag"
         >
-          <option value="">Indifférent</option>
-          <option value="dog">Gardien</option>
-          <option value="dog">Calme</option>
-          <option value="dog">Joueur</option>
-          <option value="dog">Sportif</option>
+          <option value="null">Indifférent</option>
+          <option value="tag_id">Gardien</option>
+          <option value="tag_id">Calme</option>
+          <option value="tag_id">Joueur</option>
+          <option value="tag_id">Sportif</option>
         </select>
       </div>
 
+      {/* CHECKBOX FOR TAG SOS */}
+      <div className="search-form__sos">
+        <p className="search-form__text">SOS</p>
+        <input
+          className="search-form__checkbox"
+          id="checkbox-sos"
+          aria-describedby="SOS"
+          type="checkbox"
+          name="sos"
+        />
+      </div>
+
+      {/* CHECKBOX FOR GENDER */}
       <div className="search-form__gender">
         <p className="search-form__text">Sexe :</p>
         <div>
           <label
-            htmlFor="checkbox-female"
+            htmlFor="gender"
             className="search-form__label"
           >
             Femelle
             <input
               className="search-form__checkbox"
               id="checkbox-female"
+              aria-describedby="gender"
               type="checkbox"
               name="female"
             />
@@ -79,13 +123,14 @@ const Search = () => (
         </div>
         <div>
           <label
-            htmlFor="checkbox-male"
+            htmlFor="gender"
             className="search-form__label"
           >
             Male
             <input
               className="search-form__checkbox"
               id="checkbox-male"
+              aria-describedby="gender"
               type="checkbox"
               name="male"
             />
@@ -93,44 +138,52 @@ const Search = () => (
         </div>
       </div>
 
+      {/* CHECKBOX FOR AGE */}
       <div className="search-form__age">
         <p className="search-form__text">Age :</p>
         <div>
-          <span> 3 mois </span>
-          <input
-            className="search-form__range"
-            id="input-child"
-            type="range"
-            name="age"
-            min="Entre 2 mois"
-            max="10 +"
-          />
-          <input
-            className="search-form__range"
-            id="input-senior"
-            type="range"
-            name="age"
-            min="Entre 2 mois"
-            max="10 +"
-          />
-          <span> 10 ans et + </span>
+          <label
+            htmlFor="junior"
+            className="search-form__label"
+          >
+            Junior
+            <input
+              className="search-form__checkbox"
+              id="checkbox-junior"
+              aria-describedby="junior"
+              type="checkbox"
+              name="junior"
+            />
+          </label>
+          <label
+            htmlFor="adulte"
+            className="search-form__label"
+          >
+            Adulte
+            <input
+              className="search-form__checkbox"
+              id="checkbox-adulte"
+              aria-describedby="adulte"
+              type="checkbox"
+              name="adulte"
+            />
+          </label>
+          <label
+            htmlFor="senoir"
+            className="search-form__label"
+          >
+            Senoir
+            <input
+              className="search-form__checkbox"
+              id="checkbox-senoir"
+              aria-describedby="senior"
+              type="checkbox"
+              name="senoir"
+            />
+          </label>
         </div>
       </div>
 
-      <div className="search-form__sos">
-        <label
-          htmlFor="checkbox-sos"
-          className="search-form__label"
-        >
-          SOS
-          <input
-            className="search-form__checkbox"
-            id="checkbox-sos"
-            type="checkbox"
-            name="sos"
-          />
-        </label>
-      </div>
     </form>
   </div>
 );
