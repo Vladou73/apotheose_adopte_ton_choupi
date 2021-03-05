@@ -27,7 +27,7 @@
   &--gender,
   &--category {
     display:flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
     margin: 1em;
   }
@@ -52,7 +52,6 @@
   }
 }
 
-
 // CARDS ANIMALS
 .section-animals{
   width:80%;
@@ -70,7 +69,7 @@
 .card-animal {
   display: flex;
   flex-direction: column;
-  height: 300px;
+  width: 40%;
   margin: 1em;
   padding:1em;
   -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
