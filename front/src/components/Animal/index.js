@@ -22,7 +22,7 @@ const Animal = ({ animal }) => {
   return (
     <div className="animal">
       <h2 className="animal__name">{name}</h2>
-      <img src={media[0].url} alt="loulou" />
+      <img className="card-animal--picture" src={media[0].url} alt="loulou" />
       <div className="animal__category">
         <p className="animal__category-text">Espèce : {species}</p>
         <p className="animal__category-text">Race / Apparence : {breed[0].name}</p>
