@@ -9,14 +9,17 @@ animalMapper.findAll = async() => {
         SELECT
             a.id,
             a.name,
-            a.birthdate,
+            TO_CHAR(a.birthdate, 'YYYY-MM-DD') birthdate,
             a.description,
+            a.gender_id,
+            g.name as gender_name,
             bs.species_id,
             bs.species_name,
             bs.breeds,
             t.tags,
             m.medias
         FROM animal a
+        JOIN gender g ON g.id = a.gender_id
         JOIN (
             SELECT
                 animal_breed.animal_id,
@@ -56,14 +59,17 @@ animalMapper.findOne = async(id) => {
         SELECT
             a.id,
             a.name,
-            a.birthdate,
+            TO_CHAR(a.birthdate, 'YYYY-MM-DD') birthdate,
             a.description,
+            a.gender_id,
+            g.name as gender_name,
             bs.species_id,
             bs.species_name,
             bs.breeds,
             t.tags,
             m.medias
         FROM animal a
+        JOIN gender g ON g.id = a.gender_id
         JOIN (
             SELECT
                 animal_breed.animal_id,
