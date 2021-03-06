@@ -37,7 +37,7 @@ const Search = ({ inputTextAnimals, filterName }) => (
         <input
           className="search-form__checkbox"
           aria-describedby="species__name"
-          type="checkbox"
+          type="radio"
           name="species__name"
         />
       </label>
@@ -49,7 +49,7 @@ const Search = ({ inputTextAnimals, filterName }) => (
         <input
           className="search-form__checkbox"
           aria-describedby="species__name"
-          type="checkbox"
+          type="radio"
           name="species__name"
         />
       </label>
@@ -61,8 +61,8 @@ const Search = ({ inputTextAnimals, filterName }) => (
         <input
           className="search-form__checkbox"
           aria-describedby="species__name"
-          type="checkbox"
-          name="nac"
+          type="radio"
+          name="species__name"
         />
       </label>
     </div>
@@ -122,10 +122,10 @@ const Search = ({ inputTextAnimals, filterName }) => (
           Femelle
           <input
             className="search-form__checkbox"
-            id="checkbox-female"
+            id="gender-female"
             aria-describedby="gender"
-            type="checkbox"
-            name="female"
+            type="radio"
+            name="gender"
           />
         </label>
       </div>
@@ -137,10 +137,10 @@ const Search = ({ inputTextAnimals, filterName }) => (
           Male
           <input
             className="search-form__checkbox"
-            id="checkbox-male"
+            id="gender-male"
             aria-describedby="gender"
-            type="checkbox"
-            name="male"
+            type="radio"
+            name="gender"
           />
         </label>
       </div>
@@ -159,8 +159,8 @@ const Search = ({ inputTextAnimals, filterName }) => (
             className="search-form__checkbox"
             id="checkbox-junior"
             aria-describedby="junior"
-            type="checkbox"
-            name="junior"
+            type="radio"
+            name="age"
           />
         </label>
         <label
@@ -172,8 +172,8 @@ const Search = ({ inputTextAnimals, filterName }) => (
             className="search-form__checkbox"
             id="checkbox-adulte"
             aria-describedby="adulte"
-            type="checkbox"
-            name="adulte"
+            type="radio"
+            name="age"
           />
         </label>
         <label
@@ -185,8 +185,8 @@ const Search = ({ inputTextAnimals, filterName }) => (
             className="search-form__checkbox"
             id="checkbox-senoir"
             aria-describedby="senior"
-            type="checkbox"
-            name="senoir"
+            type="radio"
+            name="age"
           />
         </label>
       </div>
