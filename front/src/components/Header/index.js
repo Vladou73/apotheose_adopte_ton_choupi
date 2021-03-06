@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Logo from './logo.png';
 import AdopterSubmenu from './AdopterSubmenu';
 import AgirSubmenu from './AgirSubmenu';
@@ -50,7 +50,7 @@ const Header = () => (
         </li>
       </ul>
     </nav>
-    <a href="/don"><span className="donate">Faire un don</span></a>
+    <Link to="/don"><span className="donate">Faire un don</span></Link>
   </div>
 );
 
