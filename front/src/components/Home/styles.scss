@@ -1,43 +1,40 @@
-.home {
-};
-
-.homePicture {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-};
-
-.newsTitle{
-  padding-top: 2.5em;
-  font-size: 200%;
-}
-
-.main{
-  text-align: center;
-  //padding: 5em;
+.home{
+  &__picture {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  &__contain, 
+  &__section {
+    max-width: 80%;;
+  }
+  &__contain {
+    margin: auto;
+    text-align: center;
+  }
   &__title{
-    font-size: 35px;
-    padding-bottom: 7px;
+    font-size:2em;
     margin-top: 2em;
-  };
+  }
   &__subtitle{
-    font-size: 15px;
-    padding-bottom: 3em;
-  };
+    font-size: 1.3em;
+    padding:2em;
+  }
   &__paragraph{
     text-align: left;
   }
-};
+  &__section {
+    display:block;
+    margin: auto;
+    margin-bottom: 2.5em;
+  }
+  &__news {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: auto;
+  }
+};  
 
-.box {
-  margin: auto;
-}
-
-.containerHome {
-  width: 80%;
-  margin: auto;
-}
-
-.newsTitle {
-  margin-bottom: 2em;
-}
+// SECTION ARTICLES IS RESPONSIVE
+// DESKTOP DESIGN NEEDS IMPROVEMENT BUT MOBILE OK
