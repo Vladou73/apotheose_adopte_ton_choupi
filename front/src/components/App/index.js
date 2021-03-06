@@ -18,6 +18,7 @@ import Footer from '../Footer';
 import Error404 from '../Error404';
 import Join from '../Join';
 import Participate from '../Participate';
+import Loading from '../Loading';
 
 // Fake data
 // import Animals from './data/animals.json';
@@ -29,11 +30,13 @@ const baseUrl = 'https://spa-apotheose.herokuapp.com';
 // == Composant
 const App = () => {
   // States hooks
+  const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
   const [inputTextAnimals, setInputTextAnimals] = useState('');
 
   // Call API with axios
   const getAnimals = () => {
+    setLoading(true);
     axios({
       method: 'get',
       url: `${baseUrl}/animals`,
@@ -43,6 +46,9 @@ const App = () => {
       })
       .catch((error) => {
         console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -62,43 +68,50 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
-        <Route path="/animaux" exact>
-          <Adoption
-            animals={filterNameAnimals}
-            inputTextAnimals={inputTextAnimals}
-            filterName={filterName}
-          />
-        </Route>
-        <Route path="/animaux/:id" exact>
-          <Animal animal={animals} />
-        </Route>
-        <Route path="/info_adoption" exact>
-          <InfoAdoption />
-        </Route>
-        <Route path="/rejoindre" exact>
-          <Join />
-        </Route>
-        <Route path="/participer" exact>
-          <Participate />
-        </Route>
-        <Route path="/don" exact>
-          <Donate />
-        </Route>
-        <Route path="/contact" exact>
-          <Contact />
-        </Route>
-        <Route path="/articles" exact>
-          <Blog datas={ArticlesData} />
-        </Route>
-        <Route path="/articles/:id" exact>
-          <Article article={ArticlesData} />
-        </Route>
-        <Error404 />
-      </Switch>
+      {
+        loading && <Loading />
+      }
+      {
+        !loading && (
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/animaux" exact>
+            <Adoption
+              animals={filterNameAnimals}
+              inputTextAnimals={inputTextAnimals}
+              filterName={filterName}
+            />
+          </Route>
+          <Route path="/animaux/:id" exact>
+            <Animal animal={animals} />
+          </Route>
+          <Route path="/info_adoption" exact>
+            <InfoAdoption />
+          </Route>
+          <Route path="/rejoindre" exact>
+            <Join />
+          </Route>
+          <Route path="/participer" exact>
+            <Participate />
+          </Route>
+          <Route path="/don" exact>
+            <Donate />
+          </Route>
+          <Route path="/contact" exact>
+            <Contact />
+          </Route>
+          <Route path="/articles" exact>
+            <Blog datas={ArticlesData} />
+          </Route>
+          <Route path="/articles/:id" exact>
+            <Article article={ArticlesData} />
+          </Route>
+          <Error404 />
+        </Switch>
+        )
+      }
       <Footer />
     </div>
   );
