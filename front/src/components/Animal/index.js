@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable max-len */
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -13,23 +14,40 @@ const Animal = ({ animal }) => {
 
   if (!data) return <Error404 />;
   const {
-    name, species_name, media, breeds, gender, birthdate, description,
+    name,
+    species_name,
+    breeds,
+    birthdate,
+    description,
+    tags,
+    gender_name,
   } = data;
 
   return (
     <div className="animal">
       <h2 className="animal__name">{name}</h2>
-      <img src="" alt="loulou" />
-      <div className="animal__category">
-        <p className="animal__category-text">Espèce : {species_name}</p>
-        <p className="animal__category-text">Race / Apparence : {breeds[0].name}</p>
-        <p className="animal__category-text">Sexe : ""</p>
-        <p className="animal__category-text">Date de naissance : {birthdate}</p>
-
+      <img
+        className="animal__picture"
+        src=""
+        alt={name}
+      />
+      <div className="animal__contain">
+        {/* DESCRIPTION OF CARACTERISTICS ANIMALS */}
+        <div className="animal__category">
+          {/* !! PROBLEM SPACE BETWEEN VALUES && ALL ANIMALS REQUIERE MIN ONE TAG!! */}
+          <p className="animal__category-tags">{tags.map((tag) => tag.name)}</p>
+          <p className="animal__category-text">Espèce : {species_name}</p>
+          {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
+          <p className="animal__category-text">Race / Apparence :{breeds.map((breed) => breed.name)}</p>
+          <p className="animal__category-text">Sexe :{gender_name === 'female' ? ' femelle' : ' mâle'}</p>
+          <p className="animal__category-text">Date de naissance : {birthdate}</p>
+        </div>
+        {/* DESCRIPTION PARAGRAPH ANIMALS */}
+        <div className="animal__content">
+          <p>{description}</p>
+        </div>
       </div>
-      <div className="animal__content">
-        <p>{description}</p>
-      </div>
+      {/* REDIRECTION */}
       <Link
         to="/info_adoption"
         className="animal__link animal__link-adoption"
@@ -52,9 +70,9 @@ Animal.propTypes = {
       name: PropTypes.string.isRequired,
       species_name: PropTypes.string.isRequired,
       birthdate: PropTypes.string.isRequired,
-      // gender: PropTypes.string.isRequired,
+      gender_name: PropTypes.string.isRequired,
       breeds: PropTypes.array.isRequired,
-      // tag: PropTypes.array.isRequired,
+      // tags: PropTypes.array.isRequired,
       description: PropTypes.string.isRequired,
     }),
   ).isRequired,
