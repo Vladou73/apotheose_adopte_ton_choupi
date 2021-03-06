@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // == Import npm
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,9 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 // == Composant
-const Cards = ({ id, name, birthdate }) => (
+const Cards = ({
+  id, name, birthdate, gender_name,
+}) => (
   <Link to={`/animaux/${id}`}>
     <div className="card-animal">
       <p className="card-animal__name">{name}</p>
@@ -17,7 +20,11 @@ const Cards = ({ id, name, birthdate }) => (
         alt={name}
       />
       <span className="card-animal__span">{birthdate}</span>
-      <span className="card-animal__span">Genre</span>
+      <span className="card-animal__span">
+        {
+        gender_name === 'female' ? 'Femelle' : 'Mâle'
+        }
+      </span>
       <span className="card-animal__span">Voir la fiche</span>
     </div>
   </Link>
@@ -26,6 +33,8 @@ const Cards = ({ id, name, birthdate }) => (
 Cards.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  birthdate: PropTypes.string.isRequired,
+  gender_name: PropTypes.string.isRequired,
 };
 // == Export
 export default Cards;
