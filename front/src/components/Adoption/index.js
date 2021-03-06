@@ -20,7 +20,11 @@ const Adoption = ({
       filterName={filterName}
     />
     <section className="section-animals">
-      <h2 className="section-animals__title">{animals.length} animaux à l'adoption</h2>
+      <h2 className="section-animals__title">{animals.length}
+        {
+        animals.length === 1 ? " animal à l'adoption" : " animaux à l'adoption"
+      }
+      </h2>
       <div className="cards-animals">
         {animals.map((animal) => <Cards key={animal.id} {...animal} />)}
       </div>
