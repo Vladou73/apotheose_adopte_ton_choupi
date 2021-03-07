@@ -1,29 +1,29 @@
 .info-adoption {
   width: 50%;
   margin: 2.5em auto;
-  &--title,
-  &--subtitle {
+  &__title,
+  &__subtitle {
     margin-bottom: 1.5em;
   }
-  &--title {
+  &__title {
     text-align: center;
     font-size: 2em;
   }
-  &--subtitle {
+  &__subtitle {
     font-size: 1.5em;
   }
-  &--text {
+  &__text {
    padding: 1em;
    margin-bottom: 1.5em;
   }
-  &--ul {
+  &__ul {
     padding: 0.5em;
     margin-bottom: 1.5em;
   }
-  &--li {
+  &__li {
     list-style-type: square;
   }
-  &--picture {
+  &__picture {
     display: block;
     width: 100%;
     margin: 1.5em auto;

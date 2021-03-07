@@ -6,6 +6,7 @@ const animalMapper = require('../dataMappers/animalMapper');
 const animalController = {}
 
 animalController.allAnimals = async (_, response) => {
+    console.log('enter animalController.allAnimals')
     const animals = await animalMapper.findAll();
     response.json(animals)
 }

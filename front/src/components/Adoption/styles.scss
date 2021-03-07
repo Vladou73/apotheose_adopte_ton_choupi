@@ -9,37 +9,33 @@
 
 // SEARCH FORM
 .search-div {
-  width: 80%;
-  padding: 1em;
-  margin: 2em auto;
-  background-color: #e4ebe4;
+  border-radius: 0.3em;
+  -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+  box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
 }
 .search-form {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
   margin: auto;
+  padding: 2em;
   width:80%;
   &__name,
   &__species,
   &__breed,
   &__age,
   &__gender,
-  &__category {
-    display:flex;
-    // flex-direction: column;
-    justify-content: center;
+  &__tag {
     margin: 1em;
   }
   &__text {
     font-weight: bold;
   }
-  &__label {
-    color: rgb(63, 63, 63);
-    display: inline;
-  }
-  &__case,
-  &__button {
+  // &__label {
+  // for checkbox style / not use for the moment
+  // }
+  &__case {
     margin: 0.5em auto;
     width: 200px;
     padding: 1em;
@@ -47,43 +43,45 @@
   &__checkbox {
     margin: 0.5em;
   }
-  &__range {
-    margin:0;
-  }
 }
 
-// CARDS ANIMALS
+// CARDS ANIMALS - cards is responsive
 .section-animals{
-  width:80%;
+  min-width: 100%;
   display:block;
   margin: auto;
-  &--title {
+  margin-bottom: 2em;
+  &__title {
     font-size: 1.3em;
+    margin: 2em auto;
   }
 }
 .cards-animals {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin: auto;
+}
+a {
+  max-width: 100%;
 }
 .card-animal {
   display: flex;
   flex-direction: column;
-  width: 40%;
   margin: 1em;
   padding:1em;
-  -webkit-box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
-  box-shadow: 5px 5px 5px 0px #cfcfcf, inset 4px 4px 15px 0px #cfcfcf, 5px 5px 5px -9px rgba(236, 236, 236, 0);
+  -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+  box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
   &__name {
     text-transform: uppercase;
     padding: 1em;
   }
   &__picture {
     border-radius: 0.5em;
+    padding: 100px;
+    background-color:#67736921;
   }
   &__span {
-    display: inline-block;
-    background-color: antiquewhite;
     margin-top: 1em;
   }
 }

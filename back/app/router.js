@@ -1,9 +1,33 @@
 const { Router } = require('express');
+
 const animalController = require('./controllers/animalController');
+const speciesController = require('./controllers/speciesController');
+const breedController = require('./controllers/breedController');
+const tagController = require('./controllers/tagController');
+const userController = require('./controllers/userController');
+const articleController = require('./controllers/articleController');
+const categoryController = require('./controllers/categoryController');
+
 const router = Router();
+// const routerPublic = Router();
+// const routerAdmin = Router();
 
 
+//authentification with JWT
+router.post('/admin', userController.signIn);
+router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
+
+//animal infos
 router.get('/animals', animalController.allAnimals);
+router.get('/species', speciesController.allSpecies);
+router.get('/breeds', breedController.allBreeds);
+router.get('/tags', tagController.allTags);
+
+//blog infos
+router.get('/categories', categoryController.allCategories);
+router.get('/articles', articleController.allArticles);
+
+
 
 //regex data validation : id has to be a digit
 router.get('/animals/:id(\\d+)', animalController.oneAnimal);
@@ -14,28 +38,5 @@ router.use((request, response) => {
     response.status(404).json('No such endpoint');
 });
 
-
-
-// const db = require('./database');
-
-// const findAll = async () => {
-//     const result = await db.query(`
-//         SELECT
-//             gender.*
-//         FROM gender;
-//     `);
-//     return result.rows;
-// }
-
-// const testController = async (request, response) => {
-//     // console.log('Hello World');
-//     // response.send('hello world');
-    
-//     const posts = await findAll();
-
-//     response.json(posts);
-// }
-
-// router.get('/', testController);
 
 module.exports = router;

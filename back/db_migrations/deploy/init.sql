@@ -82,9 +82,10 @@ CREATE TABLE article (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title text NOT NULL UNIQUE,
     content text NOT NULL,
-    creator_id int NOT NULL REFERENCES "user"(id),
+    pin boolean NOT NULL DEFAULT false,
+    author_id int NOT NULL REFERENCES "user"(id),
     category_id int NOT NULL REFERENCES category(id),
-    image_id int REFERENCES media(id),
+    media_id int REFERENCES media(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
