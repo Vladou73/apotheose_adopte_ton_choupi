@@ -17,6 +17,7 @@ import Article from '../Article';
 import Footer from '../Footer';
 import Error404 from '../Error404';
 import Join from '../Join';
+import Admin from '../Admin';
 import Participate from '../Participate';
 
 // Fake data
@@ -96,6 +97,9 @@ const App = () => {
         </Route>
         <Route path="/articles/:id" exact>
           <Article article={ArticlesData} />
+        </Route>
+        <Route path="/admin" exact>
+          <Admin />
         </Route>
         <Error404 />
       </Switch>
