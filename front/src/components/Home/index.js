@@ -3,7 +3,7 @@
 import React from 'react';
 
 // == Import
-import News from './News/news';
+import News from './news';
 import homepicture from './homepicture.jpg';
 import './styles.scss';
 
