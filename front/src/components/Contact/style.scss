@@ -1,5 +1,11 @@
+.containerContact {
+  display: flex;
+  padding: 0em 8em;
+}
+
 .contact {
   margin: 2em;
+  width: 40vw;
   &__title {
     font-weight: bold;
     font-size: 1.5em;
@@ -7,7 +13,7 @@
   }
   & form {
     border: 1px solid black;
-    width: 50%;
+    width: 100%;
     margin: auto;
     padding-bottom: 1em;
     text-align: center;
@@ -21,6 +27,7 @@
   }
   &__contentField {
     margin-bottom: 2em;
+    width: 90%;
   }
   &__submitButton {
     display: block;
@@ -41,5 +48,35 @@
     margin: 2em;
     color: green;
     font-size: 1.2em;
+  }
+}
+
+.maps {
+  width: 40vw;
+  height: 60vh;
+  margin: 5em auto;
+  &__title {
+    margin-bottom: 2em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  &__info {
+    &__title {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: .5em;
+    }
+    &__subtitle {
+      font-size: 1.2em;
+      margin-bottom: .5em;
+    }
+    &__open {
+      margin-bottom: .1em;
+    }
+    &__closed {
+      display: inline-block;
+      color: red;
+    }
   }
 }
