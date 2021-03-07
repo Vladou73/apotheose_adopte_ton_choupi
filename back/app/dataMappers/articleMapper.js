@@ -15,12 +15,12 @@ articleMapper.findAll = async() => {
             m.url as media_url,
             a.category_id,
             c.name as category_name,
-            c.color as category_color
-            a.creator_id as author_id,
+            c.color as category_color,
+            a.author_id,
             u.firstname as author_firstname,
-            u.lastname as author_lastname,
+            u.lastname as author_lastname
         FROM article a
-        JOIN "user" u ON u.id = a.creator_id
+        JOIN "user" u ON u.id = a.author_id
         LEFT JOIN media m ON m.id = a.media_id
         LEFT JOIN category c ON c.id = a.category_id
     `
