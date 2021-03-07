@@ -8,3 +8,9 @@ BDD
 - authentification
   - JWT 
   - library jsonwebtoken : https://www.npmjs.com/package/jsonwebtoken
+
+
+- False data used for images (stored on external server). Available for 1 month
+  - https://ibb.co/KwbM9CR
+  - https://ibb.co/g6nrwjW
+  - https://ibb.co/Nybv6W6
