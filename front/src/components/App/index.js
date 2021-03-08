@@ -37,7 +37,6 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [buttonCategories, setButtonCategories] = useState('');
 
-
   // Call API with axios
   const getAnimals = () => {
     setLoading(true);
@@ -107,39 +106,39 @@ const App = () => {
       });
   };
 
-const getArticles = () => {
-  setLoading(true);
-  axios({
-    method: 'get',
-    url: `${baseUrl}/articles`,
-  })
-    .then((response) => {
-      setArticles(response.data);
+  const getArticles = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/articles`,
     })
-    .catch((error) => {
-      console.trace(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-};
+      .then((response) => {
+        setArticles(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-const getCategories = () => {
-  setLoading(true);
-  axios({
-    method: 'get',
-    url: `${baseUrl}/categories`,
-  })
-    .then((response) => {
-      setCategories(response.data);
+  const getCategories = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/categories`,
     })
-    .catch((error) => {
-      console.trace(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-};
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   // Hooks effects
   useEffect(() => {
@@ -159,12 +158,13 @@ const getCategories = () => {
     (animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLowerCase()),
   );
 
-  //Method for filter articles with categories
+  // Method for filter articles with categories
   const filterCategories = (event) => {
-    setButtonCategories(event.target.value)
+    setButtonCategories(event.target.value);
   };
 
   const filterCategoriesArticles = articles.filter(
+    // eslint-disable-next-line max-len
     (articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()),
   );
 
@@ -209,10 +209,11 @@ const getCategories = () => {
             <Contact />
           </Route>
           <Route path="/articles" exact>
-            <Blog 
-            datas={buttonCategories === "allCategories" ? articles : filterCategoriesArticles} 
-            categories={categories} 
-            filterCategories={filterCategories} />
+            <Blog
+              datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
+              categories={categories}
+              filterCategories={filterCategories}
+            />
           </Route>
           <Route path="/articles/:id" exact>
             <Article article={articles} />

@@ -43,6 +43,9 @@ Adoption.propTypes = {
   ).isRequired,
   inputTextAnimals: PropTypes.string.isRequired,
   filterName: PropTypes.func.isRequired,
+  breeds: PropTypes.array.isRequired,
+  tags: PropTypes.array.isRequired,
+  species: PropTypes.array.isRequired,
 };
 
 // == Export
