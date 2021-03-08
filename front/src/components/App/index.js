@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // == Import npm
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -29,13 +30,19 @@ const App = () => {
   // States hooks
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
-  const [inputTextAnimals, setInputTextAnimals] = useState('');
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
+  // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [buttonCategories, setButtonCategories] = useState('');
+  // filter animals
+  const [filterAnimalsReset, setFilterAnimalsReset] = useState('');
+  const [inputTextAnimals, setInputTextAnimals] = useState('');
+  const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
+  const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
+  const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
 
   // Call API with axios
   const getAnimals = () => {
@@ -150,22 +157,50 @@ const App = () => {
     getCategories();
   }, []);
 
-  // Method for filter the search with name of animals
+  // Method filter of animals list
+  // INPUT TEXT
   const filterName = (event) => {
     setInputTextAnimals(event);
+    setFilterAnimalsReset(false);
   };
-  const filterNameAnimals = animals.filter(
-    (animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLowerCase()),
-  );
+  const filterNameAnimals = (
+    animals.filter((animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase())));
+
+  // CHECKBOX SPECIES
+  const filterSpecies = (event) => {
+    setCheckboxSpeciesAnimals(event.target.value);
+    setFilterAnimalsReset(false);
+  };
+  // const filterSpeciesAnimals = (
+  //   animals.filter((animalsObject) => animalsObject.species_name.includes(checkboxSpeciesAnimals)));
+
+  // CHECKBOX BREEDS ! bug
+  const filterBreeds = (event) => {
+    setCheckboxBreedsAnimals(event.value);
+    setFilterAnimalsReset(false);
+  };
+  // // const filterBreedsAnimals = (
+  // //   animals.filter((animalsObject) => animalsObject.species_id.includes(checkboxBreedsAnimals)));
+
+  // SELECT BREEDS ! bug
+  const filterTags = (event) => {
+    setSelectTagsAnimals(event.value);
+    setFilterAnimalsReset(false);
+  };
+  // // const filterTagsAnimals = (
+  // //   tags.filter((articlesObject) => articlesObject.name.toLowerCase().includes(selectTagsAnimals.toLowerCase(), animals)));
+
+  const resetFilterAnimals = (event) => {
+    setFilterAnimalsReset(event.target.value);
+    setInputTextAnimals('');
+  };
 
   // Method for filter articles with categories
   const filterCategories = (event) => {
     setButtonCategories(event.target.value);
   };
-
-  const filterCategoriesArticles = articles.filter(
-    // eslint-disable-next-line max-len
-    (articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()),
+  const filterCategoriesArticles = () => (
+    articles.filter((articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()))
   );
 
   return (
@@ -182,12 +217,16 @@ const App = () => {
           </Route>
           <Route path="/animaux" exact>
             <Adoption
-              animals={filterNameAnimals}
+              animals={filterAnimalsReset ? animals : filterNameAnimals}
               breeds={breeds}
               tags={tags}
               species={species}
               inputTextAnimals={inputTextAnimals}
               filterName={filterName}
+              filterTags={filterTags}
+              filterSpecies={filterSpecies}
+              filterBreeds={filterBreeds}
+              resetFilterAnimals={resetFilterAnimals}
             />
           </Route>
           <Route path="/animaux/:id" exact>

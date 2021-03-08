@@ -35,7 +35,11 @@ const Animal = ({ animal }) => {
         {/* DESCRIPTION OF CARACTERISTICS ANIMALS */}
         <div className="animal__category">
           {/* !! PROBLEM SPACE BETWEEN VALUES && ALL ANIMALS REQUIERE MIN ONE TAG!! */}
-          {tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)}
+          {
+            tags === null
+              ? <p>Nouveau pensionnaires, nous évaluons son comportement pour le moment.</p>
+              : tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)
+            }
           <p className="animal__category-text">Espèce : {species_name}</p>
           {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
           <p className="animal__category-text">Race / Apparence :{

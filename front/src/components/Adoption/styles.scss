@@ -26,8 +26,10 @@
   &__breed,
   &__age,
   &__gender,
-  &__tag {
+  &__tag,
+  &__button {
     margin: 1em;
+    padding: 1em;
   }
   &__text {
     font-weight: bold;
