@@ -16,12 +16,17 @@ const router = Router();
 //authentification with JWT
 router.post('/admin', userController.signIn);
 router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
+router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
+// router.get('/admin/addAnimal', validateBody(postSchema), postController.newPost);
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
 router.get('/species', speciesController.allSpecies);
 router.get('/breeds', breedController.allBreeds);
 router.get('/tags', tagController.allTags);
+
+
+
 
 //blog infos
 router.get('/categories', categoryController.allCategories);
