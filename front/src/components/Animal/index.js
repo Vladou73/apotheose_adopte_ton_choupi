@@ -39,7 +39,7 @@ const Animal = ({ animal }) => {
           {tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)}
           <p className="animal__category-text">Espèce : {species_name}</p>
           {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
-          <p className="animal__category-text">Race / Apparence :{
+          <p className="animal__category-text">Race / Apparence : {
             breeds.map((breed) => <span className="animal__category-span" key={breed.id}>{breed.name}</span>)
 }
           </p>
