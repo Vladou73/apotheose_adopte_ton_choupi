@@ -212,8 +212,9 @@ const App = () => {
   const filterCategories = (event) => {
     setButtonCategories(event.target.value);
   };
-  const filterCategoriesArticles = () => (
-    articles.filter((articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()))
+  const filterCategoriesArticles = articles.filter(
+    // eslint-disable-next-line max-len
+    (articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()),
   );
 
   return (
