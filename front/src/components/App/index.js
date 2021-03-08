@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // == Import npm
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -36,7 +37,6 @@ const App = () => {
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [buttonCategories, setButtonCategories] = useState('');
-
 
   // Call API with axios
   const getAnimals = () => {
@@ -107,39 +107,39 @@ const App = () => {
       });
   };
 
-const getArticles = () => {
-  setLoading(true);
-  axios({
-    method: 'get',
-    url: `${baseUrl}/articles`,
-  })
-    .then((response) => {
-      setArticles(response.data);
+  const getArticles = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/articles`,
     })
-    .catch((error) => {
-      console.trace(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-};
+      .then((response) => {
+        setArticles(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-const getCategories = () => {
-  setLoading(true);
-  axios({
-    method: 'get',
-    url: `${baseUrl}/categories`,
-  })
-    .then((response) => {
-      setCategories(response.data);
+  const getCategories = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/categories`,
     })
-    .catch((error) => {
-      console.trace(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-};
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   // Hooks effects
   useEffect(() => {
@@ -159,9 +159,9 @@ const getCategories = () => {
     (animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLowerCase()),
   );
 
-  //Method for filter articles with categories
+  // Method for filter articles with categories
   const filterCategories = (event) => {
-    setButtonCategories(event.target.value)
+    setButtonCategories(event.target.value);
   };
 
   const filterCategoriesArticles = articles.filter(
@@ -209,10 +209,11 @@ const getCategories = () => {
             <Contact />
           </Route>
           <Route path="/articles" exact>
-            <Blog 
-            datas={buttonCategories === "allCategories" ? articles : filterCategoriesArticles} 
-            categories={categories} 
-            filterCategories={filterCategories} />
+            <Blog
+              datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
+              categories={categories}
+              filterCategories={filterCategories}
+            />
           </Route>
           <Route path="/articles/:id" exact>
             <Article article={articles} />
