@@ -9,13 +9,16 @@ import Cards from './Cards';
 
 // == Composant
 const Adoption = ({
-  inputTextAnimals, filterName, animals,
+  inputTextAnimals, filterName, animals, breeds, tags, species,
 }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
     <h2 className="section-animals__title">A toi de le trouver !</h2>
     <Search
+      breeds={breeds}
       animals={animals}
+      tags={tags}
+      species={species}
       inputTextAnimals={inputTextAnimals}
       filterName={filterName}
     />

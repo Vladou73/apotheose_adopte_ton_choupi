@@ -8,9 +8,8 @@ import './styles.scss';
 // METTRE EN PLACE LES PROPTYPE !
 
 // == Composant
-const Search = ({ inputTextAnimals, filterName }) => (
+const Search = ({ inputTextAnimals, filterName, breeds, tags, species }) => (
   <div className="search-div search-form">
-
     {/* INPUT TEXT FOR SEARCH NAME */}
     <div className="search-form__name">
       <p className="search-form__text">Rechercher ton choupi avec son nom</p>
@@ -29,42 +28,23 @@ const Search = ({ inputTextAnimals, filterName }) => (
     {/* CHECKBOX FOR SPECIES */}
     <div className="search-form__species">
       <p className="search-form__text">Espèce</p>
-      <label
+    
+        {species.map((specie) => <label
         htmlFor="species__name"
         className="search-form__label"
+        key={specie.id}
       >
-        Chien
+         {specie.name}
         <input
           className="search-form__checkbox"
           aria-describedby="species__name"
           type="radio"
           name="species__name"
-        />
-      </label>
-      <label
-        htmlFor="species__name"
-        className="search-form__label"
-      >
-        Chat
-        <input
-          className="search-form__checkbox"
-          aria-describedby="species__name"
-          type="radio"
-          name="species__name"
-        />
-      </label>
-      <label
-        htmlFor="species__name"
-        className="search-form__label"
-      >
-        Nac
-        <input
-          className="search-form__checkbox"
-          aria-describedby="species__name"
-          type="radio"
-          name="species__name"
-        />
-      </label>
+          key={specie.id}
+          />
+    
+        </label>
+        )}
     </div>
 
     {/* SELECT FOR BREED */}
@@ -75,12 +55,7 @@ const Search = ({ inputTextAnimals, filterName }) => (
         name="breed"
       >
         <option value="">Indifférent</option>
-        <option value="species_id">Labrador</option>
-        <option value="species_id">Berger allemand</option>
-        <option value="species_id">Border collie</option>
-        <option value="species_id">Beagle</option>
-        <option value="species_id">Teckel</option>
-        <option value="species_id">Bouledogue</option>
+        {breeds.map((breed) => <option key={breed.id} value={breed.name}>{breed.name}</option>)}
       </select>
     </div>
 
@@ -92,10 +67,7 @@ const Search = ({ inputTextAnimals, filterName }) => (
         name="tag"
       >
         <option value="null">Indifférent</option>
-        <option value="tag_id">Gardien</option>
-        <option value="tag_id">Calme</option>
-        <option value="tag_id">Joueur</option>
-        <option value="tag_id">Sportif</option>
+        {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
       </select>
     </div>
 
@@ -180,7 +152,7 @@ const Search = ({ inputTextAnimals, filterName }) => (
           htmlFor="senoir"
           className="search-form__label"
         >
-          Senoir
+          Senior
           <input
             className="search-form__checkbox"
             id="checkbox-senoir"
@@ -198,6 +170,24 @@ const Search = ({ inputTextAnimals, filterName }) => (
 Search.propTypes = {
   inputTextAnimals: PropTypes.string.isRequired,
   filterName: PropTypes.func.isRequired,
+  breeds: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  species: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 // == Export

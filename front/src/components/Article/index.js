@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -14,16 +13,16 @@ const Article = ({ article }) => {
 
   if (!data) return <Error404 />;
   const {
-    title, category, author, img, content, date,
+    title, category_name, author_firstname, author_lastname, media_url, content, created_at,
   } = data;
 
   return (
     <div className="article">
       <h2 className="article__title">{title}</h2>
-      <span className="article__category">{category}</span>
-      <span className="article__author">{author}</span>
-      <span className="article__date">{date}</span>
-      <img src={img} alt="article" />
+      <span className="article__category">{category_name}</span>
+      <span className="article__author">{author_firstname} {author_lastname}</span>
+      <span className="article__date">{created_at}</span>
+      <img src={media_url} alt={title} />
       <div className="article__content">
         <p>{content}</p>
       </div>
@@ -38,11 +37,12 @@ Article.propTypes = {
   article: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      author: PropTypes.string.isRequired,
+      author_firstname: PropTypes.string.isRequired,
+      author_lastname: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      img: PropTypes.string.isRequired,
+      media_url: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
+      category_name: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
