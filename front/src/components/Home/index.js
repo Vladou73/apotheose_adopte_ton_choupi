@@ -4,7 +4,7 @@ import React from 'react';
 
 // == Import
 import News from './news';
-import homepicture from './homepicture.jpg';
+import home from './home.jpg';
 import './styles.scss';
 
 const Header = () => (
@@ -14,7 +14,7 @@ const Header = () => (
 // == Composant
 const Home = () => (
   <main className="home">
-    <img src={homepicture} className="home__picture" alt="home logo" />
+    <img src={home} className="home__picture" alt="home logo" />
     <div className="home__contain">
       <h1 className="home__title">Association reconnue d'utilité publique</h1>
       <h2 className="home__subtitle"> Société protectrice des animaux</h2>
