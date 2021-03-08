@@ -10,8 +10,9 @@ const Blog = ({ datas, categories, filterCategories }) => (
     <div className="blog__categories">
       <p className="blog__categories__title">Les catégories</p>
       <Category
-      filterCategories={filterCategories}
-      categories={categories}/>
+        filterCategories={filterCategories}
+        categories={categories}
+      />
     </div>
     <div className="blog__articles">
       {datas.map((data) => <Article key={data.id} {...data} />)}
