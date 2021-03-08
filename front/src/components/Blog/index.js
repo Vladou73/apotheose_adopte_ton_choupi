@@ -26,6 +26,8 @@ Blog.propTypes = {
       id: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  categories: PropTypes.array.isRequired,
+  filterCategories: PropTypes.func.isRequired,
 };
 
 export default Blog;
