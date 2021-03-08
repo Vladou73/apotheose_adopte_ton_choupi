@@ -21,6 +21,7 @@ const Animal = ({ animal }) => {
     description,
     tags,
     gender_name,
+    medias,
   } = data;
 
   return (
@@ -28,7 +29,7 @@ const Animal = ({ animal }) => {
       <h2 className="animal__name">{name}</h2>
       <img
         className="animal__picture"
-        src=""
+        src={medias[0].url}
         alt={name}
       />
       <div className="animal__contain">
@@ -38,7 +39,7 @@ const Animal = ({ animal }) => {
           {tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)}
           <p className="animal__category-text">Espèce : {species_name}</p>
           {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
-          <p className="animal__category-text">Race / Apparence :{
+          <p className="animal__category-text">Race / Apparence : {
             breeds.map((breed) => <span className="animal__category-span" key={breed.id}>{breed.name}</span>)
 }
           </p>
