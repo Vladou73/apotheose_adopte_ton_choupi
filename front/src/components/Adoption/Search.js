@@ -5,11 +5,17 @@ import PropTypes from 'prop-types';
 // == Import
 import './styles.scss';
 
-// METTRE EN PLACE LES PROPTYPE !
-
 // == Composant
 const Search = ({
-  inputTextAnimals, filterName, breeds, tags, species,
+  breeds,
+  tags,
+  species,
+  inputTextAnimals,
+  filterName,
+  filterTags,
+  filterSpecies,
+  filterBreeds,
+  resetFilterAnimals,
 }) => (
   <div className="search-div search-form">
     {/* INPUT TEXT FOR SEARCH NAME */}
@@ -39,11 +45,13 @@ const Search = ({
         >
           {specie.name}
           <input
+            type="checkbox"
             className="search-form__checkbox"
-            aria-describedby="species__name"
-            type="radio"
-            name="species__name"
+            aria-describedby={specie.name}
+            name={specie.id}
             key={specie.id}
+            value={specie.name}
+            onChange={filterSpecies}
           />
 
         </label>
@@ -58,7 +66,15 @@ const Search = ({
         name="breed"
       >
         <option value="">Indifférent</option>
-        {breeds.map((breed) => <option key={breed.id} value={breed.name}>{breed.name}</option>)}
+        {breeds.map((breed) => (
+          <option
+            key={breed.id}
+            value={breed.species_id}
+            onChange={filterBreeds}
+          >
+            {breed.name}
+          </option>
+        ))}
       </select>
     </div>
 
@@ -67,10 +83,18 @@ const Search = ({
       <p className="search-form__text">Caractère</p>
       <select
         className="search-form__case"
-        name="tag"
+        name="tags"
       >
         <option value="null">Indifférent</option>
-        {tags.map((tag) => <option key={tag.id} value={tag.name}>{tag.name}</option>)}
+        {tags.map((tag) => (
+          <option
+            key={tag.id}
+            value={tag.name}
+            onChange={filterTags}
+          >
+            {tag.name}
+          </option>
+        ))}
       </select>
     </div>
 
@@ -167,12 +191,24 @@ const Search = ({
       </div>
     </div>
 
+    <button
+      type="button"
+      onClick={resetFilterAnimals}
+      className="search-form__button"
+      value="reset"
+    >
+      Je veux tous les voirs ! ❤️
+    </button>
   </div>
 );
 
 Search.propTypes = {
   inputTextAnimals: PropTypes.string.isRequired,
   filterName: PropTypes.func.isRequired,
+  filterBreeds: PropTypes.func.isRequired,
+  filterTags: PropTypes.func.isRequired,
+  filterSpecies: PropTypes.func.isRequired,
+  resetFilterAnimals: PropTypes.func.isRequired,
   breeds: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

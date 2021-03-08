@@ -9,7 +9,16 @@ import Cards from './Cards';
 
 // == Composant
 const Adoption = ({
-  inputTextAnimals, filterName, animals, breeds, tags, species,
+  inputTextAnimals,
+  filterName,
+  animals,
+  breeds,
+  tags,
+  species,
+  filterTags,
+  filterSpecies,
+  filterBreeds,
+  resetFilterAnimals,
 }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
@@ -21,6 +30,10 @@ const Adoption = ({
       species={species}
       inputTextAnimals={inputTextAnimals}
       filterName={filterName}
+      filterTags={filterTags}
+      filterSpecies={filterSpecies}
+      filterBreeds={filterBreeds}
+      resetFilterAnimals={resetFilterAnimals}
     />
     <section className="section-animals">
       <h2 className="section-animals__title">{animals.length}
@@ -41,11 +54,12 @@ Adoption.propTypes = {
       id: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  inputTextAnimals: PropTypes.string.isRequired,
-  filterName: PropTypes.func.isRequired,
   breeds: PropTypes.array.isRequired,
   tags: PropTypes.array.isRequired,
   species: PropTypes.array.isRequired,
+  inputTextAnimals: PropTypes.string.isRequired,
+  filterName: PropTypes.func.isRequired,
+  filterTags: PropTypes.func.isRequired,
 };
 
 // == Export
