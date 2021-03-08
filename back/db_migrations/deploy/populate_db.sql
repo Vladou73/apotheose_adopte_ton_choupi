@@ -28,9 +28,9 @@ INSERT INTO "user" (firstname, lastname, username, email, "password", role_id) V
     ('Pika','Chu', 'Pikapika', 'pika@gmail.com', 'Sacha',1);
 
 INSERT INTO media ("type", "url") VALUES 
-    ('image', 'https://ibb.co/KwbM9CR'),
-    ('image', 'https://ibb.co/g6nrwjW'),
-    ('image', 'https://ibb.co/Nybv6W6');
+    ('image', 'https://images.pexels.com/photos/4587971/pexels-photo-4587971.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+    ('image', 'https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+    ('image', 'https://images.pexels.com/photos/3658120/pexels-photo-3658120.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 
 INSERT INTO animal ("name", birthdate, "description", creator_id, gender_id) VALUES 
     ('Choupi','2018-01-01', 'il est trop trop choupi', 1, 2),
