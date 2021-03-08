@@ -31,12 +31,24 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
   const [inputTextAnimals, setInputTextAnimals] = useState('');
+  const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
+  const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [buttonCategories, setButtonCategories] = useState('');
+
+  // Control input admin page connection
+
+  const handleChangeUsername = (event) => {
+    setInputUsernameAdmin(event.target.value);
+  };
+
+  const handleChangePassword = (event) => {
+    setInputPasswordAdmin(event.target.value);
+  };
 
   // Call API with axios
   const getAnimals = () => {
@@ -220,7 +232,12 @@ const App = () => {
             <Article article={articles} />
           </Route>
           <Route path="/admin" exact>
-            <Admin />
+            <Admin
+              inputUsernameAdmin={inputUsernameAdmin}
+              handleChangeUsername={handleChangeUsername}
+              inputPasswordAdmin={inputPasswordAdmin}
+              handleChangePassword={handleChangePassword}
+            />
           </Route>
           <Error404 />
         </Switch>

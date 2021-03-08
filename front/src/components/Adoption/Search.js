@@ -8,7 +8,9 @@ import './styles.scss';
 // METTRE EN PLACE LES PROPTYPE !
 
 // == Composant
-const Search = ({ inputTextAnimals, filterName, breeds, tags, species }) => (
+const Search = ({
+  inputTextAnimals, filterName, breeds, tags, species,
+}) => (
   <div className="search-div search-form">
     {/* INPUT TEXT FOR SEARCH NAME */}
     <div className="search-form__name">
@@ -28,23 +30,24 @@ const Search = ({ inputTextAnimals, filterName, breeds, tags, species }) => (
     {/* CHECKBOX FOR SPECIES */}
     <div className="search-form__species">
       <p className="search-form__text">Espèce</p>
-    
-        {species.map((specie) => <label
-        htmlFor="species__name"
-        className="search-form__label"
-        key={specie.id}
-      >
-         {specie.name}
-        <input
-          className="search-form__checkbox"
-          aria-describedby="species__name"
-          type="radio"
-          name="species__name"
+
+      {species.map((specie) => (
+        <label
+          htmlFor="species__name"
+          className="search-form__label"
           key={specie.id}
+        >
+          {specie.name}
+          <input
+            className="search-form__checkbox"
+            aria-describedby="species__name"
+            type="radio"
+            name="species__name"
+            key={specie.id}
           />
-    
+
         </label>
-        )}
+      ))}
     </div>
 
     {/* SELECT FOR BREED */}
