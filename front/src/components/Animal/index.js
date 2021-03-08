@@ -21,6 +21,7 @@ const Animal = ({ animal }) => {
     description,
     tags,
     gender_name,
+    medias,
   } = data;
 
   return (
@@ -28,7 +29,7 @@ const Animal = ({ animal }) => {
       <h2 className="animal__name">{name}</h2>
       <img
         className="animal__picture"
-        src=""
+        src={medias[0].url}
         alt={name}
       />
       <div className="animal__contain">
