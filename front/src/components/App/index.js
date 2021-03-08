@@ -33,6 +33,9 @@ const App = () => {
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
+  // Admin
+  const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
+  const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -43,6 +46,16 @@ const App = () => {
   const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
+
+  // Control input admin page connection
+
+  const handleChangeUsername = (event) => {
+    setInputUsernameAdmin(event.target.value);
+  };
+
+  const handleChangePassword = (event) => {
+    setInputPasswordAdmin(event.target.value);
+  };
 
   // Call API with axios
   const getAnimals = () => {
@@ -258,7 +271,12 @@ const App = () => {
             <Article article={articles} />
           </Route>
           <Route path="/admin" exact>
-            <Admin />
+            <Admin
+              inputUsernameAdmin={inputUsernameAdmin}
+              handleChangeUsername={handleChangeUsername}
+              inputPasswordAdmin={inputPasswordAdmin}
+              handleChangePassword={handleChangePassword}
+            />
           </Route>
           <Error404 />
         </Switch>
