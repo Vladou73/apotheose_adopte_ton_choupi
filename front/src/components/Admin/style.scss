@@ -1,0 +1,32 @@
+.admin {
+  width: 60%;
+  height: 400px;
+  margin: 3em auto;
+  text-align: center;
+  &__title {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 2em;
+  }
+  &__username {
+    &__input {
+      display: block;
+      margin: 1em auto;
+    }
+  }
+  &__password {
+    &__input {
+      display: block;
+      margin: 1em auto;
+    }
+  }
+  &__submit {
+    margin-top: 2em;
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #49554b;
+    color: white;
+    padding: 1em;
+    border-radius: 5px;
+  }
+}

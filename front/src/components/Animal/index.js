@@ -35,10 +35,13 @@ const Animal = ({ animal }) => {
         {/* DESCRIPTION OF CARACTERISTICS ANIMALS */}
         <div className="animal__category">
           {/* !! PROBLEM SPACE BETWEEN VALUES && ALL ANIMALS REQUIERE MIN ONE TAG!! */}
-          <p className="animal__category-tags">{tags.map((tag) => tag.name)}</p>
+          {tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)}
           <p className="animal__category-text">Espèce : {species_name}</p>
           {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
-          <p className="animal__category-text">Race / Apparence :{breeds.map((breed) => breed.name)}</p>
+          <p className="animal__category-text">Race / Apparence :{
+            breeds.map((breed) => <span className="animal__category-span" key={breed.id}>{breed.name}</span>)
+}
+          </p>
           <p className="animal__category-text">Sexe :{gender_name === 'female' ? ' femelle' : ' mâle'}</p>
           <p className="animal__category-text">Date de naissance : {birthdate}</p>
         </div>
