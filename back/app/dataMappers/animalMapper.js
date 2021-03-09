@@ -118,9 +118,7 @@ animalMapper.findOne = async(id) => {
 //  * @param {Animal} theAnimal 
 //  */
 animalMapper.save = async (theAnimal) => {
-    console.log('enter animalMapper.save');
-    // console.log('theAnimal',theAnimal);
-    
+    console.log('enter animalMapper.save');  
     
     //-----------------TABLE animal-----------------//
 
@@ -132,8 +130,6 @@ animalMapper.save = async (theAnimal) => {
         theAnimal.creator_id,
         theAnimal.gender_id
     ];
-
-    // console.log('dataAnimal',dataAnimal);
 
     //insert animal data in DB
     let queryAnimal = `
