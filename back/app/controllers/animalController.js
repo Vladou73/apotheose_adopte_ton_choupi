@@ -1,6 +1,7 @@
 const { response } = require('express');
 const animalMapper = require('../dataMappers/animalMapper');
 const Animal = require('../models/animal');
+const animalService = require('../services/animalService');
 
 // const Animal = require('../models/animal');
 
@@ -9,7 +10,10 @@ const animalController = {}
 animalController.allAnimals = async (_, response) => {
     console.log('enter animalController.allAnimals')
     const animals = await animalMapper.findAll();
-    response.json(animals)
+
+    //add animal age and age category
+    animalsResult = animalService.addAgeLabels(animals);
+    response.json(animalsResult);
 }
 
 animalController.oneAnimal = async (request, response) => {
