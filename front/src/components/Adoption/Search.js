@@ -176,13 +176,13 @@ const Search = ({
           />
         </label>
         <label
-          htmlFor="senoir"
+          htmlFor="senior"
           className="search-form__label"
         >
           Senior
           <input
             className="search-form__checkbox"
-            id="checkbox-senoir"
+            id="checkbox-senior"
             aria-describedby="senior"
             type="radio"
             name="age"
