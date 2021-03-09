@@ -16,7 +16,7 @@ const router = Router();
 //authentification with JWT
 router.post('/admin', userController.signIn);
 router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
-router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
+router.post('/admin/addAnimal', animalController.newAnimal);
 // router.get('/admin/addAnimal', validateBody(postSchema), postController.newPost);
 
 //animal infos

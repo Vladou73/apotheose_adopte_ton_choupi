@@ -1,5 +1,6 @@
 const { response } = require('express');
 const animalMapper = require('../dataMappers/animalMapper');
+const Animal = require('../models/animal');
 
 // const Animal = require('../models/animal');
 
@@ -24,13 +25,17 @@ animalController.oneAnimal = async (request, response) => {
 animalController.newAnimal = async (request, response) => {
     // on crée directement notre model à partir des données envoyées dans le payload
     const newAnimal = new Animal(request.body);
+    console.log('request.body',request.body);
+    console.log('newAnimal',newAnimal);
 
-    try {
-        await animalMapper.save(newAnimal);
-        response.json(newAnimal);
-    } catch (err) {
-        response.status(403).json(err.message);
-    }
+    response.json(newAnimal)
+    
+    // try {
+    //     await animalMapper.save(newAnimal);
+    //     response.json(newAnimal);
+    // } catch (err) {
+    //     response.status(403).json(err.message);
+    // }
 }
 
 module.exports = animalController;

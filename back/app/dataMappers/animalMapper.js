@@ -119,6 +119,10 @@ animalMapper.findOne = async(id) => {
 //  * @param {Animal} theAnimal 
 //  */
 animalMapper.save = async (theAnimal) => {
+    console.log('enter animalMapper.save');
+    console.log('theAnimal',theAnimal);
+    
+    
     //-----------------TABLE animal-----------------//
 
     //all this data must be retrieved from frontend
@@ -130,6 +134,7 @@ animalMapper.save = async (theAnimal) => {
         theAnimal.gender_id
     ];
 
+    console.log('dataAnimal',dataAnimal);
 
     //insert animal data in DB
     let queryAnimal = `
@@ -148,8 +153,9 @@ animalMapper.save = async (theAnimal) => {
     //Check if tags have been added
     //Créer 1 liste par tag ajouté à l'animal => faire une boucle et une requête par tag pour l'ajouté (version dirty rapide)
     if(theAnimal.tags) {
+        console.log('enter tags processing')
         //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        theAnimal.tags.forEach(tag => {
+        for (let tag of theAnimal.tags) {
             let dataTag = [theAnimal.id, tag.id];
             //insert row in animal_tag    
             let query = `INSERT INTO animal_tag (animal_id, tag_id) VALUES ($1, $2) RETURNING id;`;
@@ -157,7 +163,9 @@ animalMapper.save = async (theAnimal) => {
             let { rows } = await db.query(query, dataTag);
             //retrieve id of tag inserted ==> is it useful ?
             // theAnimal.id = rows[0].id;
-        })
+        }
+    } else {
+        console.log('no tags')
     }
    
 
@@ -165,7 +173,7 @@ animalMapper.save = async (theAnimal) => {
 
     if(theAnimal.breeds) {
         //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        theAnimal.breeds.forEach(breed => {
+        for (let breed of theAnimal.breeds) {
             let data = [theAnimal.id, breed.id];
             //insert row in animal_tag    
             let query = `INSERT INTO animal_breed (animal_id, breed_id) VALUES ($1, $2) RETURNING id;`;
@@ -173,7 +181,9 @@ animalMapper.save = async (theAnimal) => {
             let { rows } = await db.query(query, data);
             //retrieve id of tag inserted ==> is it useful ?
             // theAnimal.id = rows[0].id;
-        })
+        }
+    } else {
+        console.log('no breeds')
     }
 
 
@@ -181,7 +191,7 @@ animalMapper.save = async (theAnimal) => {
 
     if(theAnimal.medias) {
         //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        theAnimal.medias.forEach(media => {
+        for (let media of theAnimal.medias) {
             let data = [theAnimal.id, media.id];
             //insert row in animal_media    
             let query = `INSERT INTO animal_media (animal_id, media_id) VALUES ($1, $2) RETURNING id;`;
@@ -189,7 +199,9 @@ animalMapper.save = async (theAnimal) => {
             let { rows } = await db.query(query, data);
             //retrieve id of tag inserted ==> is it useful ?
             // theAnimal.id = rows[0].id;
-        })
+        }
+    } else {
+        console.log('no medias')
     }
 
 }
