@@ -84,6 +84,7 @@ const App = () => {
         })
         .catch((error) => {
           console.trace(error);
+          alert('une erreur est survenue');
         });
     };
     postUser();
