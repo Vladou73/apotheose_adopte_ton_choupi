@@ -1,4 +1,10 @@
-Commandes Heroku
+1. DASHBOARD PRIVE HEROKU
+https://dashboard.heroku.com/apps/spa-apotheose
+
+2. APP PUBLIC HEROKU
+https://spa-apotheose.herokuapp.com/animals
+
+3. COMMANDES HEROKU
 
 LOGIN HEROKU
 dans le terminal : /snap/bin/heroku login
