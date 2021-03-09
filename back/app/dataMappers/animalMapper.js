@@ -120,7 +120,7 @@ animalMapper.findOne = async(id) => {
 //  */
 animalMapper.save = async (theAnimal) => {
     console.log('enter animalMapper.save');
-    console.log('theAnimal',theAnimal);
+    // console.log('theAnimal',theAnimal);
     
     
     //-----------------TABLE animal-----------------//
@@ -134,74 +134,93 @@ animalMapper.save = async (theAnimal) => {
         theAnimal.gender_id
     ];
 
-    console.log('dataAnimal',dataAnimal);
+    // console.log('dataAnimal',dataAnimal);
 
     //insert animal data in DB
     let queryAnimal = `
         INSERT INTO animal (name, birthdate, description, creator_id, gender_id)
-        VALUES ($1, $2, $3, $4, $5);
+        VALUES ($1, $2::date, $3, $4, $5)
         RETURNING animal.id;
     `;
 
-    //trigger query
-    let { rows } = await db.query(queryAnimal, dataAnimal);
-    //retrieve id of animal inserted and assign to the animal instance 
-    theAnimal.id = rows[0].id;
+    try {
+        //trigger query
+        let { rows } = await db.query(queryAnimal, dataAnimal);
+        //retrieve id of animal inserted and assign to the animal instance 
+        theAnimal.id = rows[0].id;
+    } catch(error) {
+        console.log(error);
+    }
+
 
     //-----------------TABLE animal_tag-----------------//
 
-    //Check if tags have been added
-    //Créer 1 liste par tag ajouté à l'animal => faire une boucle et une requête par tag pour l'ajouté (version dirty rapide)
-    if(theAnimal.tags) {
-        console.log('enter tags processing')
-        //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        for (let tag of theAnimal.tags) {
-            let dataTag = [theAnimal.id, tag.id];
-            //insert row in animal_tag    
-            let query = `INSERT INTO animal_tag (animal_id, tag_id) VALUES ($1, $2) RETURNING id;`;
-            //trigger query
-            let { rows } = await db.query(query, dataTag);
-            //retrieve id of tag inserted ==> is it useful ?
-            // theAnimal.id = rows[0].id;
+    try {
+        //Check if tags have been added
+        //Créer 1 liste par tag ajouté à l'animal => faire une boucle et une requête par tag pour l'ajouté (version dirty rapide)
+        if(theAnimal.tags) {
+            console.log('enter tags processing')
+            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
+            for (let tag of theAnimal.tags) {
+                let dataTag = [theAnimal.id, tag.id];
+                //insert row in animal_tag    
+                let query = `INSERT INTO animal_tag (animal_id, tag_id) VALUES ($1, $2) RETURNING id;`;
+                //trigger query
+                let { rows } = await db.query(query, dataTag);
+                //retrieve id of tag inserted ==> is it useful ?
+                // theAnimal.id = rows[0].id;
+            }
+        } else {
+            console.log('no tags')
         }
-    } else {
-        console.log('no tags')
+    } catch(error) {
+        console.log(error);
     }
-   
 
     //-----------------TABLE animal_breed-----------------//
 
-    if(theAnimal.breeds) {
-        //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        for (let breed of theAnimal.breeds) {
-            let data = [theAnimal.id, breed.id];
-            //insert row in animal_tag    
-            let query = `INSERT INTO animal_breed (animal_id, breed_id) VALUES ($1, $2) RETURNING id;`;
-            //trigger query
-            let { rows } = await db.query(query, data);
-            //retrieve id of tag inserted ==> is it useful ?
-            // theAnimal.id = rows[0].id;
+    try {
+        if(theAnimal.breeds) {
+            console.log('enter breeds processing')
+            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
+            for (let breed of theAnimal.breeds) {
+                let data = [theAnimal.id, breed.id];
+                //insert row in animal_tag    
+                let query = `INSERT INTO animal_breed (animal_id, breed_id) VALUES ($1, $2) RETURNING id;`;
+                //trigger query
+                let { rows } = await db.query(query, data);
+                //retrieve id of tag inserted ==> is it useful ?
+                // theAnimal.id = rows[0].id;
+            }
+        } else {
+            console.log('no breeds')
         }
-    } else {
-        console.log('no breeds')
+    
+    } catch(error) {
+        console.log(error);
     }
-
 
     //-----------------TABLE animal_media-----------------//
 
-    if(theAnimal.medias) {
-        //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-        for (let media of theAnimal.medias) {
-            let data = [theAnimal.id, media.id];
-            //insert row in animal_media    
-            let query = `INSERT INTO animal_media (animal_id, media_id) VALUES ($1, $2) RETURNING id;`;
-            //trigger query
-            let { rows } = await db.query(query, data);
-            //retrieve id of tag inserted ==> is it useful ?
-            // theAnimal.id = rows[0].id;
+    try {
+        if(theAnimal.medias) {
+            console.log('enter medias processing')
+            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
+            for (let media of theAnimal.medias) {
+                let data = [theAnimal.id, media.id];
+                //insert row in animal_media    
+                let query = `INSERT INTO animal_media (animal_id, media_id) VALUES ($1, $2) RETURNING id;`;
+                //trigger query
+                let { rows } = await db.query(query, data);
+                //retrieve id of tag inserted ==> is it useful ?
+                // theAnimal.id = rows[0].id;
+            }
+        } else {
+            console.log('no medias')
         }
-    } else {
-        console.log('no medias')
+
+    } catch(error) {
+        console.log(error);
     }
 
 }
