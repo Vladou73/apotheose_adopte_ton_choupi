@@ -15,7 +15,7 @@ const Admin = ({
         <label htmlFor="username" className="admin__username">Nom d'utilisateur :</label>
         <input id="username" name="username" onChange={handleChangeUsername} className="admin__username__input" />
         <label htmlFor="password" className="admin__password">Mot de passe :</label>
-        <input id="password" name="password" onChange={handleChangePassword} className="admin__password__input" />
+        <input id="password" name="password" type="password" onChange={handleChangePassword} className="admin__password__input" />
         <button type="submit" className="admin__submit">Connexion</button>
       </form>
     </div>
