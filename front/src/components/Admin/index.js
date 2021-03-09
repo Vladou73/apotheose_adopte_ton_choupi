@@ -6,9 +6,15 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Admin = ({
-  handleChangeUsername, handleChangePassword, handleSubmitAdmin,
+  handleChangeUsername, handleChangePassword, handleSubmitAdmin, isLogged,
 }) => (
   <>
+    {
+    isLogged && <h1>Bienvenue sur l'espace Admin</h1>
+    }
+    {
+    !isLogged
+    && (
     <div className="admin">
       <h1 className="admin__title">Espace Administration</h1>
       <form onSubmit={handleSubmitAdmin}>
@@ -19,6 +25,8 @@ const Admin = ({
         <button type="submit" className="admin__submit">Connexion</button>
       </form>
     </div>
+    )
+  }
   </>
 );
 
@@ -26,6 +34,7 @@ Admin.propTypes = {
   handleSubmitAdmin: PropTypes.func.isRequired,
   handleChangeUsername: PropTypes.func.isRequired,
   handleChangePassword: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default Admin;
