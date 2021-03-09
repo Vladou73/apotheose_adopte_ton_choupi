@@ -33,6 +33,7 @@ const App = () => {
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
+  const [isLogged, setIsLogged] = useState(false);
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
@@ -55,6 +56,37 @@ const App = () => {
 
   const handleChangePassword = (event) => {
     setInputPasswordAdmin(event.target.value);
+  };
+
+  // method to disconnect admin
+
+  const adminDisconnect = () => {
+    setIsLogged(false);
+  };
+
+  // handle submit connection admin
+
+  const handleSubmitAdmin = (evt) => {
+    evt.preventDefault();
+    const postUser = () => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/admin`,
+        data: {
+          username: inputUsernameAdmin,
+          password: inputPasswordAdmin,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          setIsLogged(true);
+          evt.target.reset();
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    postUser();
   };
 
   // Call API with axios
@@ -192,16 +224,16 @@ const App = () => {
     setCheckboxBreedsAnimals(event.value);
     setFilterAnimalsReset(false);
   };
-  // // const filterBreedsAnimals = (
-  // //   animals.filter((animalsObject) => animalsObject.species_id.includes(checkboxBreedsAnimals)));
+  //  const filterBreedsAnimals = (
+  //    animals.filter((animalsObject) => animalsObject.species_id.includes(checkboxBreedsAnimals)));
 
   // SELECT BREEDS ! bug
   const filterTags = (event) => {
     setSelectTagsAnimals(event.value);
     setFilterAnimalsReset(false);
   };
-  // // const filterTagsAnimals = (
-  // //   tags.filter((articlesObject) => articlesObject.name.toLowerCase().includes(selectTagsAnimals.toLowerCase(), animals)));
+  //  const filterTagsAnimals = (
+  //    tags.filter((articlesObject) => articlesObject.name.toLowerCase().includes(selectTagsAnimals.toLowerCase(), animals)));
 
   const resetFilterAnimals = (event) => {
     setFilterAnimalsReset(event.target.value);
@@ -219,7 +251,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header />
+      <Header isLogged={isLogged} adminDisconnect={adminDisconnect} />
       {
         loading && <Loading />
       }
@@ -261,6 +293,16 @@ const App = () => {
           <Route path="/contact" exact>
             <Contact />
           </Route>
+          <Route path="/admin" exact>
+            <Admin
+              inputUsernameAdmin={inputUsernameAdmin}
+              handleChangeUsername={handleChangeUsername}
+              inputPasswordAdmin={inputPasswordAdmin}
+              handleChangePassword={handleChangePassword}
+              handleSubmitAdmin={handleSubmitAdmin}
+              isLogged={isLogged}
+            />
+          </Route>
           <Route path="/articles" exact>
             <Blog
               datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
@@ -270,14 +312,6 @@ const App = () => {
           </Route>
           <Route path="/articles/:id" exact>
             <Article article={articles} />
-          </Route>
-          <Route path="/admin" exact>
-            <Admin
-              inputUsernameAdmin={inputUsernameAdmin}
-              handleChangeUsername={handleChangeUsername}
-              inputPasswordAdmin={inputPasswordAdmin}
-              handleChangePassword={handleChangePassword}
-            />
           </Route>
           <Error404 />
         </Switch>
