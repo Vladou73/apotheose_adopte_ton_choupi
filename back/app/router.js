@@ -17,6 +17,10 @@ const router = Router();
 router.post('/admin', userController.signIn);
 router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
 router.post('/admin/addAnimal', animalController.newAnimal);
+router.route('/admin/animals/:id(\\d+)')
+    .get(animalController.oneAnimal)
+    .delete(animalController.deleteAnimal);
+
 // router.get('/admin/addAnimal', validateBody(postSchema), postController.newPost);
 
 //animal infos
@@ -33,7 +37,7 @@ router.get('/categories', categoryController.allCategories);
 router.get('/articles', articleController.allArticles);
 
 
-
+//ROUTE INUTILE, A SUPPRIMER
 //regex data validation : id has to be a digit
 router.get('/animals/:id(\\d+)', animalController.oneAnimal);
 

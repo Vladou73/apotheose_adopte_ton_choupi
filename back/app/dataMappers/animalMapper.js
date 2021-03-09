@@ -113,7 +113,6 @@ animalMapper.findOne = async(id) => {
     return result.rows[0];
 }
 
-
 // /**
 //  * sauvegarde un post et le retourne avec son id
 //  * @param {Animal} theAnimal 
@@ -219,6 +218,22 @@ animalMapper.save = async (theAnimal) => {
             console.log('no medias')
         }
 
+    } catch(error) {
+        console.log(error);
+    }
+
+}
+
+animalMapper.deleteOne = async(id)=>{
+    console.log('enter animalMapper.deleteOne')
+    const query = `
+        DELETE FROM animal
+        WHERE id = $1
+        RETURNING *
+    `
+    try {
+        const result = await db.query(query, [id]);
+        return result.rows[0];
     } catch(error) {
         console.log(error);
     }

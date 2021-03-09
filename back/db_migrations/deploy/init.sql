@@ -55,7 +55,7 @@ CREATE TABLE "user" (
     email text NOT NULL UNIQUE,
     "password" text NOT NULL,
     role_id int NOT NULL REFERENCES role(id),
-    image_id int REFERENCES media(id),
+    image_id int REFERENCES media(id) ON DELETE SET NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ
 );
@@ -65,7 +65,7 @@ CREATE TABLE animal (
     "name" text NOT NULL,
     birthdate date NOT NULL,
     "description" text NOT NULL,
-    creator_id int NOT NULL REFERENCES "user"(id),
+    creator_id int NOT NULL REFERENCES "user"(id) ON DELETE SET NULL,
     gender_id int NOT NULL REFERENCES gender(id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -83,44 +83,44 @@ CREATE TABLE article (
     title text NOT NULL UNIQUE,
     content text NOT NULL,
     pin boolean NOT NULL DEFAULT false,
-    author_id int NOT NULL REFERENCES "user"(id),
-    category_id int NOT NULL REFERENCES category(id),
-    media_id int REFERENCES media(id),
+    author_id int NOT NULL REFERENCES "user"(id) ON DELETE SET NULL,
+    category_id int NOT NULL REFERENCES category(id) ON DELETE SET NULL,
+    media_id int REFERENCES media(id) ON DELETE SET NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE animal_edition (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    animal_id int NOT NULL REFERENCES animal(id),
-    user_id int NOT NULL REFERENCES "user"(id),
+    animal_id int NOT NULL REFERENCES animal(id) ON DELETE CASCADE,
+    user_id int NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE article_edition (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    article_id int NOT NULL REFERENCES article(id),
-    user_id int NOT NULL REFERENCES "user"(id),
+    article_id int NOT NULL REFERENCES article(id) ON DELETE CASCADE,
+    user_id int NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE animal_tag (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    animal_id int NOT NULL REFERENCES animal(id),
-    tag_id int NOT NULL REFERENCES tag(id),
+    animal_id int NOT NULL REFERENCES animal(id) ON DELETE CASCADE,
+    tag_id int NOT NULL REFERENCES tag(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE animal_breed (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    animal_id int NOT NULL REFERENCES animal(id),
-    breed_id int NOT NULL REFERENCES breed(id),
+    animal_id int NOT NULL REFERENCES animal(id) ON DELETE CASCADE,
+    breed_id int NOT NULL REFERENCES breed(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE animal_media (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    animal_id int NOT NULL REFERENCES animal(id),
-    media_id int NOT NULL REFERENCES media(id),
+    animal_id int NOT NULL REFERENCES animal(id) ON DELETE CASCADE,
+    media_id int NOT NULL REFERENCES media(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -1,5 +1,8 @@
 
-species = [
+species :
+
+```json
+[
     {
         "id":1,
         "name":"chien"
@@ -13,8 +16,12 @@ species = [
         "name":"lapin"
     },
 ]
+```
 
-breeds = [
+breeds : 
+
+```json
+[
     {
         "id":1,
         "name":"persan",
@@ -36,18 +43,20 @@ breeds = [
         "species_id":3
     },
 ]
-
+```
 
 
 ROUTE POST /addAnimal, format data à envoyer : 
-{
-	"name":"ffffff",
-	"birthdate":"01-01-1992",
-	"description":"un ptit choupi d'amour",
-	"creator_id":1,
-	"gender_id":2,
-	"tags":[{"id":1},{"id":2}],
-	"breeds":[{"id":1},{"id":2}],
-	"medias":[{"id":1},{"id":2}]
-}
 
+```json
+{
+"name":"ffffff",
+"birthdate":"01-01-1992",
+"description":"un ptit choupi d'amour",
+"creator_id":1,
+"gender_id":2,
+"tags":[{"id":1},{"id":2}],
+"breeds":[{"id":1},{"id":2}],
+"medias":[{"id":1},{"id":2}]
+}
+```
