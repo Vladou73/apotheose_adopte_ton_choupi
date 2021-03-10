@@ -311,7 +311,7 @@ const App = () => {
           {isLogged && (
             <>
               <Route path="/admin/gestion-animaux" exact>
-                <ManageAnimals />
+                <ManageAnimals animals={animals} />
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles />
