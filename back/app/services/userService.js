@@ -1,13 +1,17 @@
 const config = require('../authentification/config.json');
 const jwt = require('jsonwebtoken');
+const userMapper = require('../dataMappers/userMapper');
 
 // users hardcoded for simplicity, store in a db for production applications
-const users = [
-    { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }
-];
+// const users = [
+//     { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }
+// ];
 
 userService = {
     signIn : async function ({ username, password }) {
+        const users = await userMapper.findAll()
+        console.log(users)
+
         const user = users.find(u => u.username === username && u.password === password);
     
         if (!user) throw 'Username or password is incorrect';
@@ -39,7 +43,6 @@ userService = {
             throw err
         }
     }
-
 }
 
 // helper functions
