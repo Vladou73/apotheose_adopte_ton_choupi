@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 // == Import npm
 import React, { useState, useEffect } from 'react';
@@ -41,6 +42,7 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  const [deleteAnimals, setDeleteAnimals] = useState([]);
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -207,6 +209,22 @@ const App = () => {
     getCategories();
   }, []);
 
+  // ** Method for Admin ** //
+  // CHECKBOX ANIMALS LIST
+  // ( TODO : only keep in the state just that are checked )
+  const checkAdminAnimalsList = (event) => {
+    setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
+  };
+  // BUTTON ADD ANIMAL LIST
+  const buttonAddAnimals = () => {
+    console.log('ajout animal');
+  };
+  // BUTTON DELETE ANIMAL LIST
+  const buttonDeleteAnimals = () => {
+    console.log('supprimer animal');
+  };
+
+  // ** Methode for Visitors ** //
   // Method filter of animals list
   // INPUT TEXT
   const filterName = (event) => {
@@ -311,7 +329,12 @@ const App = () => {
           {isLogged && (
             <>
               <Route path="/admin/gestion-animaux" exact>
-                <ManageAnimals />
+                <ManageAnimals
+                  animals={animals}
+                  checkAdminAnimalsList={checkAdminAnimalsList}
+                  buttonAddAnimals={buttonAddAnimals}
+                  buttonDeleteAnimals={buttonDeleteAnimals}
+                />
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles articles={articles} />
