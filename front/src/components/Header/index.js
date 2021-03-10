@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from './logo.png';
 import AdopterSubmenu from './AdopterSubmenu';
@@ -17,13 +18,18 @@ const Header = ({ isLogged, adminDisconnect }) => (
               <li
                 className="nav__menu-item"
               >
-                <a>Gestion animaux</a>
+                <NavLink
+                  to="/admin/gestion-animaux"
+                  exact
+                >
+                  Gestion animaux
+                </NavLink>
               </li>
               <li
                 className="nav__menu-item"
               >
                 <NavLink
-                  to="#"
+                  to="/admin/gestion-articles"
                   exact
                 >
                   Gestion articles
@@ -84,5 +90,10 @@ const Header = ({ isLogged, adminDisconnect }) => (
       )}
   </div>
 );
+
+Header.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  adminDisconnect: PropTypes.func.isRequired,
+};
 
 export default Header;
