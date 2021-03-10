@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // == Import
 import './styles.scss';
 
-const ManagedAnimals = ({ animals }) => (
+const ManagedAnimals = ({ animals, checkAdminAnimalsList }) => (
   <div className="manageArticles">
 
     <Link to="/admin/gestion-animaux/1" className="manageArticles__link"> animal 1 </Link>
@@ -17,9 +17,9 @@ const ManagedAnimals = ({ animals }) => (
         <tr>
           <td />
           <td>Nom</td>
-          <td>espèce</td>
-          <td>race</td>
-          <td>date de naissance</td>
+          <td>Espèce</td>
+          <td>Race</td>
+          <td>Date de naissance</td>
           <td>Tags</td>
         </tr>
       </thead>
@@ -28,7 +28,13 @@ const ManagedAnimals = ({ animals }) => (
 
           <tr key={animalObject.id}>
             <td>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                aria-describedby={animalObject.name}
+                name={animalObject.id}
+                value={animalObject.id}
+                onChange={checkAdminAnimalsList}
+              />
             </td>
             <td>{animalObject.name}</td>
             <td>{animalObject.species_name} </td>
@@ -49,6 +55,7 @@ const ManagedAnimals = ({ animals }) => (
 
 ManagedAnimals.propTypes = {
   animals: PropTypes.array.isRequired,
+  checkAdminAnimalsList: PropTypes.func.isRequired,
 };
 
 export default ManagedAnimals;

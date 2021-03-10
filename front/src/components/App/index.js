@@ -41,6 +41,7 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  const [deleteAnimals, setDeleteAnimals] = useState([]);
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -207,6 +208,13 @@ const App = () => {
     getCategories();
   }, []);
 
+  // Method for Admin
+  // CHECKBOX ANIMALS LIST ( TODO : only keep in the state just that are checked )
+  const checkAdminAnimalsList = (event) => {
+    setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
+  };
+
+  // Methode for Visitors
   // Method filter of animals list
   // INPUT TEXT
   const filterName = (event) => {
@@ -288,6 +296,10 @@ const App = () => {
           </Route>
           <Route path="/rejoindre" exact>
             <Join />
+            <ManageAnimals
+              animals={animals}
+              checkAdminAnimalsList={checkAdminAnimalsList}
+            />
           </Route>
           <Route path="/participer" exact>
             <Participate />
@@ -311,7 +323,10 @@ const App = () => {
           {isLogged && (
             <>
               <Route path="/admin/gestion-animaux" exact>
-                <ManageAnimals animals={animals} />
+                <ManageAnimals
+                  animals={animals}
+                  deleteAnimals={checkAdminAnimalsList}
+                />
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles />
