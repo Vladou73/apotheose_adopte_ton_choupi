@@ -55,6 +55,7 @@ animalMapper.findAll = async() => {
 }
 
 animalMapper.findOne = async(id) => {  
+    console.log('enter animalMapper.findOne');
     const query = `
         SELECT
             a.id,
@@ -102,7 +103,6 @@ animalMapper.findOne = async(id) => {
         ) m ON m.animal_id = a.id`
     
     const result = await db.query(query, [id]);
-
     // if no results throw error
     if (!result.rows[0]) {
         throw new Error("No animal found with id " + id);
@@ -233,6 +233,38 @@ animalMapper.deleteOne = async(id)=>{
     } catch(error) {
         console.log(error);
     }
+
+}
+
+animalMapper.edit = async (theAnimal) => {
+    console.log('enter animalMapper.edit');
+
+    //-----------------TABLE animal-----------------//
+
+    //store data from the animal in an array
+    const dataAnimal = [
+        theAnimal.name, //optional
+        theAnimal.birthdate, //optional
+        theAnimal.description, //optional
+        theAnimal.gender_id,  //optional
+        theAnimal.id // for the WHERE close
+    ];
+
+    //update animal data in DB
+    let queryAnimal = `
+        UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
+        WHERE id = $5
+        RETURNING *;
+    `;
+
+    try {
+        //trigger query
+        let { rows } = await db.query(queryAnimal, dataAnimal);
+        return rows[0]
+    } catch(error) {
+        console.log(error);
+    }
+
 
 }
 

@@ -19,7 +19,8 @@ router.post('/admin/manageAnimals', userController.authenticate, animalControlle
 router.post('/admin/addAnimal', animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
     .get(animalController.oneAnimal)
-    .delete(animalController.deleteAnimal);
+    .delete(animalController.deleteAnimal)
+    .put(animalController.editAnimal);
 
 // router.get('/admin/addAnimal', validateBody(postSchema), postController.newPost);
 

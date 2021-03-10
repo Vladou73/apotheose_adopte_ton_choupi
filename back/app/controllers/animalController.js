@@ -60,4 +60,48 @@ animalController.deleteAnimal = async (request, response)=>{
     }
 }
 
+animalController.editAnimal = async (request, response)=>{
+    console.log('enter animalController.editAnimal')
+    const animalId = Number(request.params.id);
+    if (isNaN(animalId)) {
+        return response.status(400).json({
+            error: `the provided id must be a number`
+        });
+    }
+
+    //get the animal data from DB
+    let animal = {}
+    try {
+        animal = await animalMapper.findOne(animalId);
+    } catch (err) { // Error thrown in data mapper gets here
+        response.status(404).json(err.message);
+    }
+
+    //Check to keep only properties accepted from client side
+    //change to animal properties the updated values
+    const acceptedProperties = ['name','birthdate','description','gender_id','breeds','tags','medias']
+    for (prop in request.body){
+        if (acceptedProperties.includes(prop)){
+            animal[prop] = request.body[prop];
+        } else {
+            console.log('animal prop ' + prop + ' does not exist');
+        }
+    }
+
+    // update DB with animal edited properties
+    try {
+        const editedAnimal = await animalMapper.edit(animal);
+        response.json(editedAnimal);
+    } catch (err) { // Error thrown in data mapper gets here
+        response.status(404).json(err.message);
+    }
+
+
+    //WIP  ==> TO DO LATER
+    //create new animal instance with all the data
+    // const editedAnimal = new Animal(animal);
+
+
+}
+
 module.exports = animalController;
