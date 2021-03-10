@@ -320,7 +320,9 @@ const App = () => {
                 <ManageAnimal />
               </Route>
               <Route path="/admin/gestion-articles/1" exact>
-                <ManageArticle />
+                <ManageArticle 
+                articles={articles[0]}
+                />
               </Route>
             </>
           )}
