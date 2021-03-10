@@ -10,11 +10,4 @@ BDD
 Authentification
   - JWT 
   - library jsonwebtoken : https://www.npmjs.com/package/jsonwebtoken
-
-
-traitement à faire en JS pour calculer
-animals = [{}, {}, {}]
-animals.forEach( animal => {
-    animal.age = retrieveAgeFromBirthdate(animal.birthdate)
-    animal.age_label = attributeAgeLabel(animal.age)
-});
+  - Chiffrage pwd : bcrypt
