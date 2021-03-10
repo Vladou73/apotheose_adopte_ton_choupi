@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 // == Import npm
 import React, { useState, useEffect } from 'react';
