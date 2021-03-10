@@ -41,9 +41,26 @@ breeds :
         "id":4,
         "name":"choupachoups",
         "species_id":3
-    },
+    }
 ]
 ```
+
+TAGS
+```json
+[
+    {
+        "id":1,
+        "name":"SOS",
+        "color":"#FF00FF"
+    },
+    {
+        "id":1,
+        "name":"câlin",
+        "color":"#FFF0FF"
+    }
+]
+```
+
 
 
 ROUTE POST /addAnimal, format data à envoyer : 
