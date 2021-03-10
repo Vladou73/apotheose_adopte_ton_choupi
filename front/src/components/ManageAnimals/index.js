@@ -31,26 +31,29 @@ const ManagedAnimals = ({
       <tbody>
         {animals.map((animalObject) => (
 
-          <tr key={animalObject.id}>
-            <td>
-              <input
-                type="checkbox"
-                aria-describedby={animalObject.name}
-                name={animalObject.id}
-                value={animalObject.id}
-                onChange={checkAdminAnimalsList}
-              />
-            </td>
-            <td>{animalObject.name}</td>
-            <td>{animalObject.species_name} </td>
-            <td>{animalObject.breeds.map((breed) => <tr key={breed.id}>{breed.name}</tr>)}</td>
-            <td>{animalObject.birthdate}</td>
-            {
+          <Link to={`/admin/gestion-animaux/${animalObject.id}`}>
+            <tr key={animalObject.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  aria-describedby={animalObject.name}
+                  name={animalObject.id}
+                  value={animalObject.id}
+                  onChange={checkAdminAnimalsList}
+                />
+              </td>
+              <td>{animalObject.name}</td>
+              <td>{animalObject.species_name} </td>
+              <td>{animalObject.breeds.map((breed) => <tr key={breed.id}>{breed.name}</tr>)}</td>
+              <td>{animalObject.birthdate}</td>
+              {
             animalObject.tags === null
               ? <td>En évaluation</td>
               : <td>{animalObject.tags.map((tags) => <tr key={tags.id}>{tags.name}</tr>)}</td>
             }
-          </tr>
+            </tr>
+          </Link>
+
         ))}
       </tbody>
     </table>
