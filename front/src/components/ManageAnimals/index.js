@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const ManagedAnimals = ({ animals }) => (
-  <div>
+  <div className="manageArticles">
 
     <Link to="/admin/gestion-animaux/1" className="manageArticles__link"> animal 1 </Link>
     <button type="button" className="manageArticles__link__add">Ajout</button>
