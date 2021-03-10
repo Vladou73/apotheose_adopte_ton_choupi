@@ -5,12 +5,17 @@ import PropTypes from 'prop-types';
 // == Import
 import './styles.scss';
 
-const ManagedAnimals = ({ animals, checkAdminAnimalsList }) => (
+const ManagedAnimals = ({
+  animals,
+  buttonAddAnimals,
+  buttonDeleteAnimals,
+  checkAdminAnimalsList,
+}) => (
   <div className="manageArticles">
 
     <Link to="/admin/gestion-animaux/1" className="manageArticles__link"> animal 1 </Link>
-    <button type="button" className="manageArticles__link__add">Ajout</button>
-    <button type="button" className="manageArticles__link__delete">Supprimer</button>
+    <button onClick={buttonAddAnimals} type="button" className="manageArticles__link__add">Ajout</button>
+    <button onClick={buttonDeleteAnimals} type="button" className="manageArticles__link__delete">Supprimer</button>
 
     <table className="manageArticles__table">
       <thead>
@@ -55,6 +60,8 @@ const ManagedAnimals = ({ animals, checkAdminAnimalsList }) => (
 
 ManagedAnimals.propTypes = {
   animals: PropTypes.array.isRequired,
+  buttonAddAnimals: PropTypes.func.isRequired,
+  buttonDeleteAnimals: PropTypes.func.isRequired,
   checkAdminAnimalsList: PropTypes.func.isRequired,
 };
 

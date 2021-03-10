@@ -209,13 +209,22 @@ const App = () => {
     getCategories();
   }, []);
 
-  // Method for Admin
-  // CHECKBOX ANIMALS LIST ( TODO : only keep in the state just that are checked )
+  // ** Method for Admin ** //
+  // CHECKBOX ANIMALS LIST
+  // ( TODO : only keep in the state just that are checked )
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
   };
+  // BUTTON ADD ANIMAL LIST
+  const buttonAddAnimals = () => {
+    console.log('ajout animal');
+  };
+  // BUTTON DELETE ANIMAL LIST
+  const buttonDeleteAnimals = () => {
+    console.log('supprimer animal');
+  };
 
-  // Methode for Visitors
+  // ** Methode for Visitors ** //
   // Method filter of animals list
   // INPUT TEXT
   const filterName = (event) => {
@@ -297,10 +306,6 @@ const App = () => {
           </Route>
           <Route path="/rejoindre" exact>
             <Join />
-            <ManageAnimals
-              animals={animals}
-              checkAdminAnimalsList={checkAdminAnimalsList}
-            />
           </Route>
           <Route path="/participer" exact>
             <Participate />
@@ -326,7 +331,9 @@ const App = () => {
               <Route path="/admin/gestion-animaux" exact>
                 <ManageAnimals
                   animals={animals}
-                  deleteAnimals={checkAdminAnimalsList}
+                  checkAdminAnimalsList={checkAdminAnimalsList}
+                  buttonAddAnimals={buttonAddAnimals}
+                  buttonDeleteAnimals={buttonDeleteAnimals}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
