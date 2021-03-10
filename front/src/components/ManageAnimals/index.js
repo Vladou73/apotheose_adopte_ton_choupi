@@ -8,14 +8,14 @@ import './styles.scss';
 const ManagedAnimals = ({ animals }) => (
   <div>
 
-    <Link to="/admin/gestion-animaux/1"> animal 1 </Link>
-    <button type="button">Ajout</button>
-    <button type="button">Supprimer</button>
+    <Link to="/admin/gestion-animaux/1" className="manageArticles__link"> animal 1 </Link>
+    <button type="button" className="manageArticles__link__add">Ajout</button>
+    <button type="button" className="manageArticles__link__delete">Supprimer</button>
 
-    <table>
+    <table className="manageArticles__table">
       <thead>
         <tr>
-          <td cosplan={6} />
+          <td />
           <td>Nom</td>
           <td>espèce</td>
           <td>race</td>
