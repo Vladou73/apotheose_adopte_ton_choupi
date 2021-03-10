@@ -314,7 +314,7 @@ const App = () => {
                 <ManageAnimals />
               </Route>
               <Route path="/admin/gestion-articles" exact>
-                <ManageArticles />
+                <ManageArticles articles={articles} />
               </Route>
               <Route path="/admin/gestion-animaux/1" exact>
                 <ManageAnimal />
