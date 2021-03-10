@@ -199,6 +199,25 @@ const App = () => {
       });
   };
 
+  const deleteAnimalsList = (animal) => {
+    const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
+    setLoading(true);
+    axios({
+      method: 'delete',
+      url: `${baseUrl}/admin/animals/${animal.id}`,
+    })
+      .then(() => {
+        setAnimals(newList);
+        alert('Le choupi a trouvé une famille ! Youpi love love');
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -218,10 +237,6 @@ const App = () => {
   // BUTTON ADD ANIMAL LIST
   const buttonAddAnimals = () => {
     console.log('ajout animal');
-  };
-  // BUTTON DELETE ANIMAL LIST
-  const buttonDeleteAnimals = () => {
-    console.log('supprimer animal');
   };
 
   // ** Methode for Visitors ** //
@@ -333,7 +348,7 @@ const App = () => {
                   animals={animals}
                   checkAdminAnimalsList={checkAdminAnimalsList}
                   buttonAddAnimals={buttonAddAnimals}
-                  buttonDeleteAnimals={buttonDeleteAnimals}
+                  buttonDeleteAnimals={deleteAnimalsList}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>

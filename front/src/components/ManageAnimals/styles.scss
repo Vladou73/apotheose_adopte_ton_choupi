@@ -1,4 +1,4 @@
-.manageArticles {
+.manageAnimals {
   width: 80%;
   text-align: center;
   margin: auto;
@@ -13,6 +13,9 @@
     color: white;
     padding: 1em;
     border-radius: 5px;
+    &__redirect {
+      //
+    }
     &__add {
       float: right;
       margin-top: 2em;
