@@ -55,7 +55,7 @@ CREATE TABLE "user" (
     email text NOT NULL UNIQUE,
     "password" text NOT NULL,
     role_id int NOT NULL REFERENCES role(id),
-    image_id int REFERENCES media(id) ON DELETE SET NULL,
+    media_id int REFERENCES media(id) ON DELETE SET NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ
 );
