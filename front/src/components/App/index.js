@@ -301,7 +301,6 @@ const App = () => {
               inputPasswordAdmin={inputPasswordAdmin}
               handleChangePassword={handleChangePassword}
               handleSubmitAdmin={handleSubmitAdmin}
-              isLogged={isLogged}
             />
           </Route>
           <Route path="/articles" exact>
