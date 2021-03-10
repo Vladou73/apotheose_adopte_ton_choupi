@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // == Import
 import './styles.scss';
 
-const ManageAnimals = () => (
+const ManagedAnimals = () => (
   <table>
     <tr>
       <td />
@@ -85,6 +84,6 @@ const ManageAnimals = () => (
 
 );
 
-ManageAnimals.propTypes = {};
+ManagedAnimals.propTypes = {};
 
-export default ManageAnimals;
+export default ManagedAnimals;

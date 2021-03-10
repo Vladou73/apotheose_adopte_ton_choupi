@@ -21,6 +21,10 @@ import Join from '../Join';
 import Admin from '../Admin';
 import Participate from '../Participate';
 import Loading from '../Loading';
+import ManageAnimals from '../ManageAnimals';
+import ManageArticles from '../ManageArticles';
+import ManageAnimal from '../ManageAnimal';
+import ManageArticle from '../ManageArticle';
 
 // Function to get the animals from the back api
 const baseUrl = 'https://spa-apotheose.herokuapp.com';
@@ -301,8 +305,25 @@ const App = () => {
               inputPasswordAdmin={inputPasswordAdmin}
               handleChangePassword={handleChangePassword}
               handleSubmitAdmin={handleSubmitAdmin}
+              isLogged={isLogged}
             />
           </Route>
+          {isLogged && (
+            <>
+              <Route path="/admin/gestion-animaux" exact>
+                <ManageAnimals />
+              </Route>
+              <Route path="/admin/gestion-articles" exact>
+                <ManageArticles />
+              </Route>
+              <Route path="/admin/gestion-animaux/1" exact>
+                <ManageAnimal />
+              </Route>
+              <Route path="/admin/gestion-articles/1" exact>
+                <ManageArticle />
+              </Route>
+            </>
+          )}
           <Route path="/articles" exact>
             <Blog
               datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
