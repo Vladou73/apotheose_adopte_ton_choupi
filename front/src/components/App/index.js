@@ -33,6 +33,7 @@ const baseUrl = 'https://spa-apotheose.herokuapp.com';
 
 // == Composant
 const App = () => {
+  
   // States hooks
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
