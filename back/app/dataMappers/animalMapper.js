@@ -1,7 +1,20 @@
 // const Animal = require('../models/animal');
 const db = require('../database');
-
 const animalMapper = {};
+const table_infos = {
+    'tags': {
+        'table':'animal_tag',
+        'field':'tag_id'
+    },
+    'medias':{
+        'table':'animal_media',
+        'field':'media_id'
+    },
+    'breeds':{
+        'table':'animal_breed',
+        'field':'breed_id'
+    }
+}
 
 // get all animals in DB
 animalMapper.findAll = async() => {  
@@ -55,6 +68,7 @@ animalMapper.findAll = async() => {
 }
 
 animalMapper.findOne = async(id) => {  
+    console.log('enter animalMapper.findOne');
     const query = `
         SELECT
             a.id,
@@ -102,7 +116,6 @@ animalMapper.findOne = async(id) => {
         ) m ON m.animal_id = a.id`
     
     const result = await db.query(query, [id]);
-
     // if no results throw error
     if (!result.rows[0]) {
         throw new Error("No animal found with id " + id);
@@ -147,77 +160,35 @@ animalMapper.save = async (theAnimal) => {
         console.log(error);
     }
 
-
-    //-----------------TABLE animal_tag-----------------//
-
-    try {
-        //Check if tags have been added
-        //Créer 1 liste par tag ajouté à l'animal => faire une boucle et une requête par tag pour l'ajouté (version dirty rapide)
-        if(theAnimal.tags) {
-            console.log('enter tags processing')
-            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-            for (let tag of theAnimal.tags) {
-                let dataTag = [theAnimal.id, tag.id];
-                //insert row in animal_tag    
-                let query = `INSERT INTO animal_tag (animal_id, tag_id) VALUES ($1, $2) RETURNING id;`;
-                //trigger query
-                let { rows } = await db.query(query, dataTag);
-                //retrieve id of tag inserted ==> is it useful ?
-                // theAnimal.id = rows[0].id;
-            }
-        } else {
-            console.log('no tags')
-        }
-    } catch(error) {
-        console.log(error);
-    }
-
-    //-----------------TABLE animal_breed-----------------//
-
-    try {
-        if(theAnimal.breeds) {
-            console.log('enter breeds processing')
-            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-            for (let breed of theAnimal.breeds) {
-                let data = [theAnimal.id, breed.id];
-                //insert row in animal_tag    
-                let query = `INSERT INTO animal_breed (animal_id, breed_id) VALUES ($1, $2) RETURNING id;`;
-                //trigger query
-                let { rows } = await db.query(query, data);
-                //retrieve id of tag inserted ==> is it useful ?
-                // theAnimal.id = rows[0].id;
-            }
-        } else {
-            console.log('no breeds')
-        }
+    //-----------------BINDING TABLES-----------------//
+    //check changes in other tables
     
-    } catch(error) {
-        console.log(error);
-    }
+    for (elements in table_infos) {
+        try {
+            //Check if elements have been added
+            //Créer 1 liste par element ajouté à l'animal => faire une boucle et une requête par element pour l'ajouté (version dirty rapide)
+            if(theAnimal[elements]) {
+                console.log(`enter ${elements} processing`)
+                
+                //retrieve right table and field for elements treated
+                let table = table_infos[elements]['table']
+                let field = table_infos[elements]['field']
 
-    //-----------------TABLE animal_media-----------------//
-
-    try {
-        if(theAnimal.medias) {
-            console.log('enter medias processing')
-            //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
-            for (let media of theAnimal.medias) {
-                let data = [theAnimal.id, media.id];
-                //insert row in animal_media    
-                let query = `INSERT INTO animal_media (animal_id, media_id) VALUES ($1, $2) RETURNING id;`;
-                //trigger query
-                let { rows } = await db.query(query, data);
-                //retrieve id of tag inserted ==> is it useful ?
-                // theAnimal.id = rows[0].id;
+                //A VERIFIER : est-ce qu'il faut renvoyer les ids des liens créés dans la table ? je vois pas bien à quoi ils serviraient
+                for (let element of theAnimal[elements]) {
+                    let data = [theAnimal.id, element.id];
+                    //insert row in animal_tag    
+                    let query = `INSERT INTO ${table} (animal_id, ${field}) VALUES ($1, $2) RETURNING id;`;
+                    //trigger query
+                    await db.query(query, data);
+                    //retrieve id of tag inserted ==> is it useful ?
+                    // theAnimal.id = rows[0].id;
+                }
             }
-        } else {
-            console.log('no medias')
+        } catch(error) {
+            console.log(error);
         }
-
-    } catch(error) {
-        console.log(error);
     }
-
 }
 
 animalMapper.deleteOne = async(id)=>{
@@ -236,5 +207,60 @@ animalMapper.deleteOne = async(id)=>{
 
 }
 
+animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
+    console.log('enter animalMapper.edit');
+
+    //-----------------TABLE animal-----------------//
+
+    //store data from the animal in an array
+    const dataAnimal = [
+        theAnimal.name, //optional
+        theAnimal.birthdate, //optional
+        theAnimal.description, //optional
+        theAnimal.gender_id,  //optional
+        theAnimal.id // for the WHERE close
+    ];
+    //update animal data in DB
+    let queryAnimal = `
+        UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
+        WHERE id = $5
+        RETURNING *;
+    `;
+    try {
+        //trigger query
+        await db.query(queryAnimal, dataAnimal);
+        // let { rows } =
+        // return rows[0]
+    } catch(error) {
+        console.log(error);
+    }
+
+    //-----------------BINDING TABLES-----------------//
+
+    // Check changes in other tables
+    for (elements in otherTablesImpacted) {
+        try {
+            console.log('enter '+elements+' processing')
+            
+            //delete rows from corresponding binding table with the animal id
+            //check in const table_infos which table and which field is impacted in function of elemnts
+            let table = table_infos[elements]['table']
+            let field = table_infos[elements]['field']
+
+            await db.query(`DELETE FROM ${table} WHERE animal_id = $1`, [theAnimal.id]);
+            
+            //Créer 1 liste par element ajouté à l'animal => faire une boucle et une requête par element pour l'ajouter (version dirty rapide)
+            for (let element of theAnimal[elements]) {
+                let data = [theAnimal.id, element.id];
+                //insert row in table    
+                let query = `INSERT INTO ${table} (animal_id, ${field}) VALUES ($1, $2) RETURNING id;`;
+                //trigger query
+                await db.query(query, data);
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+}
 
 module.exports = animalMapper;
