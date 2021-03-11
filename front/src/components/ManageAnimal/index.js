@@ -1,48 +1,69 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Error404 from '../Error404';
 
 const ManageAnimal = ({ animal }) => {
-    console.log(animal);
+  console.log(animal);
+  const { id } = useParams();
+
+  const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
+
+  if (!data) return <Error404 />;
+  const {
+    name,
+    species_name,
+    breeds,
+    birthdate,
+    description,
+    tags,
+    gender_name,
+    medias,
+  } = data;
 
     return (
 
       <div className="animal">
         <div className="article__title">
-          <input type="text" id="title" name="Titre" value={animal.name}/>
+          <input type="text" id="title" name="Titre" value={name}/>
           <button>ok</button>
         </div>
 
-        <img src={animal.medias[0].url}/>
+        <img src={medias[0].url}/>
 
         <div className="animal__contain">
         <div className="animal__category">
         {
-            animal.tags === null
-              ? <input type="text" id={animal.tag.id} name="Nouveau pensionnaires, nous évaluons son comportement pour le moment." value={animal.tag.name}/>
-              : animal.tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)
+            tags === null
+              ? 
+              <>
+              <p>Ajouter un tag</p>
+              <input type="text" name="tag"/>
+              </>
+              : tags.map((tag) => <input key={tag.id} className="animal__category-tags" value={tag.name} />)
         }
             <button>ok</button>
             </div>
 
         <div className="animal__category-text">
-          <input type="text" id="espèce" name="Espèce :" value={animal.species_name}/>
+          <input type="text" id="espèce" name="Espèce :" value={species_name}/>
           <button>ok</button>
 
-          {animal.breeds.map((breed) => 
-          <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " value={breed.name}/>
+          {breeds.map((breed) => 
+          <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " value={name}/>
           )} 
           <button>ok</button>
 
 
-          <input type="text" id="genre" name="Sexe :" value={animal.gender_name === 'female' ? ' femelle' : ' mâle'}/>
+          <input type="text" id="genre" name="Sexe :" value={gender_name === 'female' ? ' femelle' : ' mâle'}/>
           <button>ok</button>
 
-          <input type="text" id="birthdate" name="Date de naissance :" value={animal.birthdate}/>
+          <input type="text" id="birthdate" name="Date de naissance :" value={birthdate}/>
           <button>ok</button>
         </div>
 
         <div className="animal__content">
-          <input type="text" id="description" name="Description" value={animal.description}/>
+          <input type="text" id="description" name="Description" value={description}/>
           <button>ok</button>
         </div>
         </div>
