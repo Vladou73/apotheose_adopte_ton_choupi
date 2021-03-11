@@ -51,7 +51,7 @@ const App = () => {
   const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
   const [addCreatorAnimal, setAddCreatorAnimal] = useState();
-  
+
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -228,7 +228,6 @@ const App = () => {
       });
   };
 
-  
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
     const postAnimal = () => {
@@ -247,16 +246,16 @@ const App = () => {
         },
       })
         .then((response) => {
-          setAnimals((animals => [...animals, response.data]  ))
+          setAnimals(((animals) => [...animals, response.data]));
           console.log(response.data);
-          alert('le choupi est ajouté')
+          alert('le choupi est ajouté');
         })
         .catch((error) => {
           console.trace(error);
           alert('une erreur est survenue');
         });
     };
-   postAnimal();
+    postAnimal();
   };
 
   // Hooks effects
@@ -285,7 +284,7 @@ const App = () => {
     setAddNameAnimal(event.target.value);
     console.log(' change : ajout name animal');
   };
-  
+
   // BIRTHDATE ONCHANGE ADD ANIMAL LIST
   const addChangeBirthdateAnimal = (event) => {
     setAddBirthdateAnimal(event.target.value);
@@ -447,24 +446,24 @@ const App = () => {
                   articles={articles[0]}
                 />
               </Route>
-              <Route path="/admin/ajout" exact >
-              <ManageAddAnimal
-            addAnimalSubmit={addAnimalSubmit}
-            addNameAnimal={addNameAnimal}
-            addChangeNameAnimal={addChangeNameAnimal}
-            addBirthdateAnimal={addBirthdateAnimal}
-            addChangeBirthdateAnimal={addChangeBirthdateAnimal}
-            addDescriptionAnimal={addDescriptionAnimal}
-            addChangeDescriptionAnimal={addChangeDescriptionAnimal}
-            addCreatorAnimal={addCreatorAnimal}
-            addChangeCreatorAnimal={addChangeCreatorAnimal}
-            addGenderAnimal={addGenderAnimal}
-            addChangeGenderAnimal={addChangeGenderAnimal}
-            addTagsAnimal={addTagsAnimal}
-            addChangeTagsAnimal={addChangeTagsAnimal}
-            addBreedsAnimal={addBreedsAnimal}
-            addChangeBreedsAnimal={addChangeBreedsAnimal}
-             />
+              <Route path="/admin/ajout" exact>
+                <ManageAddAnimal
+                  addAnimalSubmit={addAnimalSubmit}
+                  addNameAnimal={addNameAnimal}
+                  addChangeNameAnimal={addChangeNameAnimal}
+                  addBirthdateAnimal={addBirthdateAnimal}
+                  addChangeBirthdateAnimal={addChangeBirthdateAnimal}
+                  addDescriptionAnimal={addDescriptionAnimal}
+                  addChangeDescriptionAnimal={addChangeDescriptionAnimal}
+                  addCreatorAnimal={addCreatorAnimal}
+                  addChangeCreatorAnimal={addChangeCreatorAnimal}
+                  addGenderAnimal={addGenderAnimal}
+                  addChangeGenderAnimal={addChangeGenderAnimal}
+                  addTagsAnimal={addTagsAnimal}
+                  addChangeTagsAnimal={addChangeTagsAnimal}
+                  addBreedsAnimal={addBreedsAnimal}
+                  addChangeBreedsAnimal={addChangeBreedsAnimal}
+                />
               </Route>
             </>
           )}
