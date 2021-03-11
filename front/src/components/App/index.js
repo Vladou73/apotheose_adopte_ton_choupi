@@ -360,9 +360,9 @@ const App = () => {
                   animal={animals}
                 />
               </Route>
-              <Route path="/admin/gestion-articles/1" exact>
+              <Route path="/admin/gestion-articles/:id" exact>
                 <ManageArticle
-                  articles={articles[0]}
+                  articles={articles}
                 />
               </Route>
             </>
