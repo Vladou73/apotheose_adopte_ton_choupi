@@ -6,11 +6,7 @@ import TrashIcon from './trash.png';
 // == Import
 import './styles.scss';
 
-const deleteArticle = () => {
-  console.log('delete article');
-};
-
-const ManageArticles = ({ articles }) => (
+const ManageArticles = ({ articles, deleteArticle }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
     <table className="manageArticles__table">
@@ -29,7 +25,15 @@ const ManageArticles = ({ articles }) => (
             <td>{article.created_at}</td>
             <td>{article.category_name}</td>
             <td>
-              <img src={TrashIcon} alt="supprimer" className="manageArticles__trashIcon" onClick={deleteArticle} />
+              <img
+                src={TrashIcon}
+                alt="supprimer"
+                className="manageArticles__trashIcon"
+                onClick={(event) => {
+                  event.preventDefault();
+                  deleteArticle(article.id);
+                }}
+              />
             </td>
           </tr>
         ))}
@@ -40,6 +44,7 @@ const ManageArticles = ({ articles }) => (
 
 ManageArticles.propTypes = {
   articles: PropTypes.array.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default ManageArticles;

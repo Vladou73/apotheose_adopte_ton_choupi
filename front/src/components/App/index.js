@@ -219,6 +219,25 @@ const App = () => {
       });
   };
 
+  const deleteArticle = (id) => {
+    const findId = articles.filter((articlesObject) => articlesObject.id !== id);
+    setLoading(true);
+    axios({
+      method: 'delete',
+      url: `${baseUrl}/admin/articles/${id}`,
+    })
+      .then(() => {
+        setArticles(findId);
+        alert('Article supprimé !');
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -353,7 +372,7 @@ const App = () => {
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
-                <ManageArticles articles={articles} />
+                <ManageArticles articles={articles} deleteArticle={deleteArticle} />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
