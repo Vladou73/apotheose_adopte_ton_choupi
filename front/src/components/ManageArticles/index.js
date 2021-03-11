@@ -9,6 +9,7 @@ import './styles.scss';
 const ManageArticles = ({ articles, deleteArticle }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
+    <button type="button" className="manageArticles__link__add">Ajouter</button>
     <table className="manageArticles__table">
       <tbody>
         <tr>
