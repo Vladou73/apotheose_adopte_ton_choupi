@@ -7,13 +7,15 @@ import './styles.scss';
 
 const ManagedAnimals = ({
   animals,
-  buttonAddAnimals,
+  // buttonAddAnimals,
   buttonDeleteAnimals,
   checkAdminAnimalsList,
 }) => (
   <div className="manageArticles">
 
-    <button onClick={buttonAddAnimals} type="button" className="manageAnimals__link__add">Ajout</button>
+    <Link to="/admin/gestion-animaux/1" className="manageAnimals__link"> animal 1 </Link>
+    <Link to="/admin/ajout" className="manageAnimals__link"> Ajout </Link>
+    {/* <button onClick={buttonAddAnimals} type="button" className="manageAnimals__link__add">Ajout</button> */}
 
     <table className="manageAnimals__table">
       <thead>
@@ -83,3 +85,5 @@ ManagedAnimals.propTypes = {
 };
 
 export default ManagedAnimals;
+
+// 

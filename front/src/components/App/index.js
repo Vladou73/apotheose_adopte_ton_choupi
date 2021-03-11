@@ -26,6 +26,7 @@ import ManageAnimals from '../ManageAnimals';
 import ManageArticles from '../ManageArticles';
 import ManageAnimal from '../ManageAnimal';
 import ManageArticle from '../ManageArticle';
+import ManageAddAnimal from '../ManageAddAnimal';
 
 // Function to get the animals from the back api
 const baseUrl = 'https://spa-apotheose.herokuapp.com';
@@ -43,6 +44,14 @@ const App = () => {
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   const [deleteAnimals, setDeleteAnimals] = useState([]);
+  const [addNameAnimal, setAddNameAnimal] = useState('');
+  const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('00-00-0000');
+  const [addGenderAnimal, setAddGenderAnimal] = useState();
+  const [addTagsAnimal, setAddTagsAnimal] = useState([]);
+  const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
+  const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
+  const [addCreatorAnimal, setAddCreatorAnimal] = useState();
+  
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -219,6 +228,37 @@ const App = () => {
       });
   };
 
+  
+  const addAnimalSubmit = (evt) => {
+    evt.preventDefault();
+    const postAnimal = () => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/admin/addAnimal`,
+        data: {
+          name: addNameAnimal,
+          birthdate: addBirthdateAnimal,
+          description: addDescriptionAnimal,
+          creator_id: addCreatorAnimal,
+          gender_id: addGenderAnimal,
+          tags: addTagsAnimal,
+          breeds: addBreedsAnimal,
+          medias: 1,
+        },
+      })
+        .then((response) => {
+          setAnimals((animals => [...animals, response.data]  ))
+          console.log(response.data);
+          alert('le choupi est ajouté')
+        })
+        .catch((error) => {
+          console.trace(error);
+          alert('une erreur est survenue');
+        });
+    };
+   postAnimal();
+  };
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -235,9 +275,51 @@ const App = () => {
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
   };
-  // BUTTON ADD ANIMAL LIST
-  const buttonAddAnimals = () => {
-    console.log('ajout animal');
+  // // // BUTTON ADD ANIMAL LIST
+  // // const buttonAddAnimals = () => {
+  // //   console.log(' button : ajout animal');
+  // // };
+
+  // NAME ONCHANGE ADD ANIMAL LIST
+  const addChangeNameAnimal = (event) => {
+    setAddNameAnimal(event.target.value);
+    console.log(' change : ajout name animal');
+  };
+  
+  // BIRTHDATE ONCHANGE ADD ANIMAL LIST
+  const addChangeBirthdateAnimal = (event) => {
+    setAddBirthdateAnimal(event.target.value);
+    console.log(' change : ajout date de naisance animal');
+  };
+
+  // DESCRIPTION ONCHANGE ADD ANIMAL LIST
+  const addChangeDescriptionAnimal = (event) => {
+    setAddDescriptionAnimal(event.target.value);
+    console.log(' change : ajout description animal');
+  };
+
+  // CREATOR ID ONCHANGE ADD ANIMAL LIST
+  const addChangeCreatorAnimal = (event) => {
+    setAddCreatorAnimal(event.target.value);
+    console.log(' change : ajout createur animal');
+  };
+
+  // GENDER ONCHANGE ADD ANIMAL LIST
+  const addChangeGenderAnimal = (event) => {
+    setAddGenderAnimal(event.target.value);
+    console.log(" change : ajout du genre de l'animal");
+  };
+
+  // TAGS ONCHANGE ADD ANIMAL LIST
+  const addChangeTagsAnimal = (event) => {
+    setAddTagsAnimal(event.target.value);
+    console.log(" change : ajout du tag de l'animal");
+  };
+
+  // BREEDS ONCHANGE ADD ANIMAL LIST
+  const addChangeBreedsAnimal = (event) => {
+    setAddBreedsAnimal(event.target.value);
+    console.log(" change : ajout de la race de l'animal");
   };
 
   // ** Methode for Visitors ** //
@@ -348,7 +430,7 @@ const App = () => {
                 <ManageAnimals
                   animals={animals}
                   checkAdminAnimalsList={checkAdminAnimalsList}
-                  buttonAddAnimals={buttonAddAnimals}
+                  // buttonAddAnimals={buttonAddAnimals}
                   buttonDeleteAnimals={deleteAnimalsList}
                 />
               </Route>
@@ -364,6 +446,25 @@ const App = () => {
                 <ManageArticle
                   articles={articles[0]}
                 />
+              </Route>
+              <Route path="/admin/ajout" exact >
+              <ManageAddAnimal
+            addAnimalSubmit={addAnimalSubmit}
+            addNameAnimal={addNameAnimal}
+            addChangeNameAnimal={addChangeNameAnimal}
+            addBirthdateAnimal={addBirthdateAnimal}
+            addChangeBirthdateAnimal={addChangeBirthdateAnimal}
+            addDescriptionAnimal={addDescriptionAnimal}
+            addChangeDescriptionAnimal={addChangeDescriptionAnimal}
+            addCreatorAnimal={addCreatorAnimal}
+            addChangeCreatorAnimal={addChangeCreatorAnimal}
+            addGenderAnimal={addGenderAnimal}
+            addChangeGenderAnimal={addChangeGenderAnimal}
+            addTagsAnimal={addTagsAnimal}
+            addChangeTagsAnimal={addChangeTagsAnimal}
+            addBreedsAnimal={addBreedsAnimal}
+            addChangeBreedsAnimal={addChangeBreedsAnimal}
+             />
               </Route>
             </>
           )}
