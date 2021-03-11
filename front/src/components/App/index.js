@@ -67,6 +67,7 @@ const App = () => {
   // method to disconnect admin
 
   const adminDisconnect = () => {
+    window.location = '/admin';
     setIsLogged(false);
   };
 
@@ -355,7 +356,9 @@ const App = () => {
                 <ManageArticles articles={articles} />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
-                <ManageAnimal />
+              <ManageAnimal 
+                  animal={animals}
+                />
               </Route>
               <Route path="/admin/gestion-articles/1" exact>
                 <ManageArticle
