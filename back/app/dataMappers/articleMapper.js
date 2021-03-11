@@ -30,5 +30,39 @@ articleMapper.findAll = async() => {
     return result.rows;
 }
 
+articleMapper.save = async (theArticle) => {
+    console.log('enter articleMapper.save');  
+
+    //all this data must be retrieved from frontend
+    const data = [
+        theArticle.title,
+        theArticle.content,
+        theArticle.pin,
+        theArticle.author_id,
+        theArticle.category_id,
+        theArticle.media_id
+    ];
+
+    //insert article data in DB
+    let query = `
+        INSERT INTO article (title, content, pin, author_id, category_id, media_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING article.id;
+    `;
+
+    try {
+        //trigger query
+        let { rows } = await db.query(query, data);
+        //retrieve id of article inserted and assign to the article instance 
+        theArticle.id = rows[0].id;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
 
 module.exports = articleMapper;
