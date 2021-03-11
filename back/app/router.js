@@ -15,23 +15,28 @@ const router = Router();
 
 //authentification with JWT
 router.post('/admin', userController.signIn);
+
+//Pas sûr que cette route soit utile
 router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
+
 router.post('/admin/addAnimal', animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
     .get(animalController.oneAnimal)
     .delete(animalController.deleteAnimal)
     .put(animalController.editAnimal);
 
-// router.get('/admin/addAnimal', validateBody(postSchema), postController.newPost);
+router.post('/admin/addArticle', articleController.newArticle);
+router.route('/admin/articles/:id(\\d+)')
+    .get(articleController.oneArticle)
+    .delete(articleController.deleteArticle)
+    .put(articleController.editArticle);
+
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
 router.get('/species', speciesController.allSpecies);
 router.get('/breeds', breedController.allBreeds);
 router.get('/tags', tagController.allTags);
-
-
-
 
 //blog infos
 router.get('/categories', categoryController.allCategories);
