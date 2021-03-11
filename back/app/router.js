@@ -26,6 +26,11 @@ router.route('/admin/animals/:id(\\d+)')
     .put(animalController.editAnimal);
 
 router.post('/admin/addArticle', articleController.newArticle);
+router.route('/admin/articles/:id(\\d+)')
+    .get(articleController.oneArticle)
+    .delete(articleController.deleteArticle)
+    .put(articleController.editArticle);
+
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
