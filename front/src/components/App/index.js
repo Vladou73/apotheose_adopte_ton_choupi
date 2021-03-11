@@ -33,7 +33,6 @@ const baseUrl = 'https://spa-apotheose.herokuapp.com';
 
 // == Composant
 const App = () => {
-  
   // States hooks
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
@@ -44,12 +43,13 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  // hook delete is checkbox in manage animals list.
   const [deleteAnimals, setDeleteAnimals] = useState([]);
   const [addNameAnimal, setAddNameAnimal] = useState('');
   const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('00-00-0000');
   const [addGenderAnimal, setAddGenderAnimal] = useState();
-  const [addTagsAnimal, setAddTagsAnimal] = useState([]);
-  const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
+  const [addTagsAnimal, setAddTagsAnimal] = useState();
+  const [addBreedsAnimal, setAddBreedsAnimal] = useState();
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
   const [addCreatorAnimal, setAddCreatorAnimal] = useState();
 
@@ -60,6 +60,7 @@ const App = () => {
   // filter animals
   const [filterAnimalsReset, setFilterAnimalsReset] = useState('');
   const [inputTextAnimals, setInputTextAnimals] = useState('');
+  // * Not use for the moment * //
   const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
@@ -212,21 +213,18 @@ const App = () => {
 
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
-    setLoading(true);
-    axios({
-      method: 'delete',
-      url: `${baseUrl}/admin/animals/${animal.id}`,
-    })
-      .then(() => {
-        setAnimals(newList);
-        alert('Le choupi a trouvé une famille ! Youpi love love');
+    if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
+      axios({
+        method: 'delete',
+        url: `${baseUrl}/admin/animals/${animal.id}`,
       })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then(() => {
+          setAnimals(newList);
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    }
   };
 
   const addAnimalSubmit = (evt) => {
@@ -241,9 +239,9 @@ const App = () => {
           description: addDescriptionAnimal,
           creator_id: addCreatorAnimal,
           gender_id: addGenderAnimal,
-          tags: addTagsAnimal,
-          breeds: addBreedsAnimal,
-          medias: 1,
+          tags: [{ id: addTagsAnimal }],
+          breeds: [{ id: addBreedsAnimal }],
+          medias: [{ id: 2 }],
         },
       })
         .then((response) => {
@@ -275,51 +273,40 @@ const App = () => {
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
   };
-  // // // BUTTON ADD ANIMAL LIST
-  // // const buttonAddAnimals = () => {
-  // //   console.log(' button : ajout animal');
-  // // };
 
   // NAME ONCHANGE ADD ANIMAL LIST
   const addChangeNameAnimal = (event) => {
     setAddNameAnimal(event.target.value);
-    console.log(' change : ajout name animal');
   };
 
   // BIRTHDATE ONCHANGE ADD ANIMAL LIST
   const addChangeBirthdateAnimal = (event) => {
     setAddBirthdateAnimal(event.target.value);
-    console.log(' change : ajout date de naisance animal');
   };
 
   // DESCRIPTION ONCHANGE ADD ANIMAL LIST
   const addChangeDescriptionAnimal = (event) => {
     setAddDescriptionAnimal(event.target.value);
-    console.log(' change : ajout description animal');
   };
 
   // CREATOR ID ONCHANGE ADD ANIMAL LIST
   const addChangeCreatorAnimal = (event) => {
     setAddCreatorAnimal(event.target.value);
-    console.log(' change : ajout createur animal');
   };
 
   // GENDER ONCHANGE ADD ANIMAL LIST
   const addChangeGenderAnimal = (event) => {
     setAddGenderAnimal(event.target.value);
-    console.log(" change : ajout du genre de l'animal");
   };
 
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
     setAddTagsAnimal(event.target.value);
-    console.log(" change : ajout du tag de l'animal");
   };
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
   const addChangeBreedsAnimal = (event) => {
     setAddBreedsAnimal(event.target.value);
-    console.log(" change : ajout de la race de l'animal");
   };
 
   // ** Methode for Visitors ** //
@@ -430,7 +417,6 @@ const App = () => {
                 <ManageAnimals
                   animals={animals}
                   checkAdminAnimalsList={checkAdminAnimalsList}
-                  // buttonAddAnimals={buttonAddAnimals}
                   buttonDeleteAnimals={deleteAnimalsList}
                 />
               </Route>

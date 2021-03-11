@@ -7,7 +7,6 @@ import './styles.scss';
 
 const ManagedAnimals = ({
   animals,
-  // buttonAddAnimals,
   buttonDeleteAnimals,
   checkAdminAnimalsList,
 }) => (
@@ -15,7 +14,6 @@ const ManagedAnimals = ({
 
     <Link to="/admin/gestion-animaux/1" className="manageAnimals__link"> animal 1 </Link>
     <Link to="/admin/ajout" className="manageAnimals__link"> Ajout </Link>
-    {/* <button onClick={buttonAddAnimals} type="button" className="manageAnimals__link__add">Ajout</button> */}
 
     <table className="manageAnimals__table">
       <thead>
@@ -79,11 +77,10 @@ const ManagedAnimals = ({
 
 ManagedAnimals.propTypes = {
   animals: PropTypes.array.isRequired,
-  buttonAddAnimals: PropTypes.func.isRequired,
   buttonDeleteAnimals: PropTypes.func.isRequired,
   checkAdminAnimalsList: PropTypes.func.isRequired,
 };
 
 export default ManagedAnimals;
 
-// 
+//
