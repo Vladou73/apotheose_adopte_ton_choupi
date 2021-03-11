@@ -26,6 +26,7 @@ import ManageAnimals from '../ManageAnimals';
 import ManageArticles from '../ManageArticles';
 import ManageAnimal from '../ManageAnimal';
 import ManageArticle from '../ManageArticle';
+import ManageAddAnimal from '../ManageAddAnimal';
 
 // Function to get the animals from the back api
 const baseUrl = 'https://spa-apotheose.herokuapp.com';
@@ -42,7 +43,16 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  // hook delete is checkbox in manage animals list.
   const [deleteAnimals, setDeleteAnimals] = useState([]);
+  const [addNameAnimal, setAddNameAnimal] = useState('');
+  const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('00-00-0000');
+  const [addGenderAnimal, setAddGenderAnimal] = useState();
+  const [addTagsAnimal, setAddTagsAnimal] = useState();
+  const [addBreedsAnimal, setAddBreedsAnimal] = useState();
+  const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
+  const [addCreatorAnimal, setAddCreatorAnimal] = useState();
+
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -50,6 +60,7 @@ const App = () => {
   // filter animals
   const [filterAnimalsReset, setFilterAnimalsReset] = useState('');
   const [inputTextAnimals, setInputTextAnimals] = useState('');
+  // * Not use for the moment * //
   const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
@@ -202,21 +213,48 @@ const App = () => {
 
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
-    setLoading(true);
-    axios({
-      method: 'delete',
-      url: `${baseUrl}/admin/animals/${animal.id}`,
-    })
-      .then(() => {
-        setAnimals(newList);
-        alert('Le choupi a trouvé une famille ! Youpi love love');
+    if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
+      axios({
+        method: 'delete',
+        url: `${baseUrl}/admin/animals/${animal.id}`,
       })
-      .catch((error) => {
-        console.trace(error);
+        .then(() => {
+          setAnimals(newList);
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    }
+  };
+
+  const addAnimalSubmit = (evt) => {
+    evt.preventDefault();
+    const postAnimal = () => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/admin/addAnimal`,
+        data: {
+          name: addNameAnimal,
+          birthdate: addBirthdateAnimal,
+          description: addDescriptionAnimal,
+          creator_id: addCreatorAnimal,
+          gender_id: addGenderAnimal,
+          tags: [{ id: addTagsAnimal }],
+          breeds: [{ id: addBreedsAnimal }],
+          medias: [{ id: 2 }],
+        },
       })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then((response) => {
+          setAnimals(((animals) => [...animals, response.data]));
+          console.log(response.data);
+          alert('le choupi est ajouté');
+        })
+        .catch((error) => {
+          console.trace(error);
+          alert('une erreur est survenue');
+        });
+    };
+    postAnimal();
   };
 
   const deleteArticle = (id) => {
@@ -254,9 +292,40 @@ const App = () => {
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
   };
-  // BUTTON ADD ANIMAL LIST
-  const buttonAddAnimals = () => {
-    console.log('ajout animal');
+
+  // NAME ONCHANGE ADD ANIMAL LIST
+  const addChangeNameAnimal = (event) => {
+    setAddNameAnimal(event.target.value);
+  };
+
+  // BIRTHDATE ONCHANGE ADD ANIMAL LIST
+  const addChangeBirthdateAnimal = (event) => {
+    setAddBirthdateAnimal(event.target.value);
+  };
+
+  // DESCRIPTION ONCHANGE ADD ANIMAL LIST
+  const addChangeDescriptionAnimal = (event) => {
+    setAddDescriptionAnimal(event.target.value);
+  };
+
+  // CREATOR ID ONCHANGE ADD ANIMAL LIST
+  const addChangeCreatorAnimal = (event) => {
+    setAddCreatorAnimal(event.target.value);
+  };
+
+  // GENDER ONCHANGE ADD ANIMAL LIST
+  const addChangeGenderAnimal = (event) => {
+    setAddGenderAnimal(event.target.value);
+  };
+
+  // TAGS ONCHANGE ADD ANIMAL LIST
+  const addChangeTagsAnimal = (event) => {
+    setAddTagsAnimal(event.target.value);
+  };
+
+  // BREEDS ONCHANGE ADD ANIMAL LIST
+  const addChangeBreedsAnimal = (event) => {
+    setAddBreedsAnimal(event.target.value);
   };
 
   // ** Methode for Visitors ** //
@@ -367,7 +436,6 @@ const App = () => {
                 <ManageAnimals
                   animals={animals}
                   checkAdminAnimalsList={checkAdminAnimalsList}
-                  buttonAddAnimals={buttonAddAnimals}
                   buttonDeleteAnimals={deleteAnimalsList}
                 />
               </Route>
@@ -382,6 +450,25 @@ const App = () => {
               <Route path="/admin/gestion-articles/:id" exact>
                 <ManageArticle
                   articles={articles}
+                />
+              </Route>
+              <Route path="/admin/ajout" exact>
+                <ManageAddAnimal
+                  addAnimalSubmit={addAnimalSubmit}
+                  addNameAnimal={addNameAnimal}
+                  addChangeNameAnimal={addChangeNameAnimal}
+                  addBirthdateAnimal={addBirthdateAnimal}
+                  addChangeBirthdateAnimal={addChangeBirthdateAnimal}
+                  addDescriptionAnimal={addDescriptionAnimal}
+                  addChangeDescriptionAnimal={addChangeDescriptionAnimal}
+                  addCreatorAnimal={addCreatorAnimal}
+                  addChangeCreatorAnimal={addChangeCreatorAnimal}
+                  addGenderAnimal={addGenderAnimal}
+                  addChangeGenderAnimal={addChangeGenderAnimal}
+                  addTagsAnimal={addTagsAnimal}
+                  addChangeTagsAnimal={addChangeTagsAnimal}
+                  addBreedsAnimal={addBreedsAnimal}
+                  addChangeBreedsAnimal={addChangeBreedsAnimal}
                 />
               </Route>
             </>
