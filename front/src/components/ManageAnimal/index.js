@@ -26,10 +26,10 @@ const ManageAnimal = ({ animal }) => {
       <div className="animal">
         <div className="article__title">
           <input type="text" id="title" name="Titre" value={name}/>
-          <button>ok</button>
+          <button type="button">edit</button>
         </div>
 
-        <img src={medias[0].url}/>
+        <img src={medias[0].url} alt={name}/>
 
         <div className="animal__contain">
         <div className="animal__category">
@@ -42,29 +42,29 @@ const ManageAnimal = ({ animal }) => {
               </>
               : tags.map((tag) => <input key={tag.id} className="animal__category-tags" value={tag.name} />)
         }
-            <button>ok</button>
+        <button type="button">edit</button>
             </div>
 
         <div className="animal__category-text">
           <input type="text" id="espèce" name="Espèce :" value={species_name}/>
-          <button>ok</button>
+          <button type="button">edit</button>
 
           {breeds.map((breed) => 
           <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " value={name}/>
           )} 
-          <button>ok</button>
+          <button type="button">edit</button>
 
 
           <input type="text" id="genre" name="Sexe :" value={gender_name === 'female' ? ' femelle' : ' mâle'}/>
-          <button>ok</button>
+          <button type="button">edit</button>
 
           <input type="text" id="birthdate" name="Date de naissance :" value={birthdate}/>
-          <button>ok</button>
+          <button type="button">edit</button>
         </div>
 
         <div className="animal__content">
           <input type="text" id="description" name="Description" value={description}/>
-          <button>ok</button>
+          <button type="button">edit</button>
         </div>
         </div>
       </div>
