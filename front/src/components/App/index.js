@@ -65,25 +65,109 @@ const App = () => {
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
 
-  // Control input admin page connection
-
-  const handleChangeUsername = (event) => {
-    setInputUsernameAdmin(event.target.value);
+  // Animals get list
+  const getAnimals = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/animals`,
+    })
+      .then((response) => {
+        setAnimals(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
-
-  const handleChangePassword = (event) => {
-    setInputPasswordAdmin(event.target.value);
+  // Breeds get list
+  const getBreeds = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/breeds`,
+    })
+      .then((response) => {
+        setBreeds(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
-
-  // method to disconnect admin
-
-  const adminDisconnect = () => {
-    window.location = '/admin';
-    setIsLogged(false);
+  // Tags get list
+  const getTags = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/tags`,
+    })
+      .then((response) => {
+        setTags(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
-
-  // handle submit connection admin
-
+  // Species get list
+  const getSpecies = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/species`,
+    })
+      .then((response) => {
+        setSpecies(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  // Articles get list
+  const getArticles = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/articles`,
+    })
+      .then((response) => {
+        setArticles(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  // Categories get list
+  const getCategories = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/categories`,
+    })
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
     const postUser = () => {
@@ -107,110 +191,7 @@ const App = () => {
     };
     postUser();
   };
-
-  // Call API with axios
-  const getAnimals = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/animals`,
-    })
-      .then((response) => {
-        setAnimals(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getBreeds = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/breeds`,
-    })
-      .then((response) => {
-        setBreeds(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getTags = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/tags`,
-    })
-      .then((response) => {
-        setTags(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getSpecies = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/species`,
-    })
-      .then((response) => {
-        setSpecies(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getArticles = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/articles`,
-    })
-      .then((response) => {
-        setArticles(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const getCategories = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/categories`,
-    })
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
+  // Animal delete list
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
     if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
@@ -226,7 +207,7 @@ const App = () => {
         });
     }
   };
-
+  // Animal add list
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
     const postAnimal = () => {
@@ -256,7 +237,7 @@ const App = () => {
     };
     postAnimal();
   };
-
+  // Article delete list
   const deleteArticle = (id) => {
     const findId = articles.filter((articlesObject) => articlesObject.id !== id);
     setLoading(true);
@@ -275,7 +256,6 @@ const App = () => {
         setLoading(false);
       });
   };
-
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -287,7 +267,20 @@ const App = () => {
   }, []);
 
   // ** Method for Admin ** //
-  // CHECKBOX ANIMALS LIST
+  // Control input admin page connection
+  const handleChangeUsername = (event) => {
+    setInputUsernameAdmin(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setInputPasswordAdmin(event.target.value);
+  };
+    // method to disconnect admin
+  const adminDisconnect = () => {
+    window.location = '/admin';
+    setIsLogged(false);
+  };
+
+  // ChHECKBOX ANIMALS LIST
   // ( TODO : only keep in the state just that are checked )
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
@@ -329,8 +322,7 @@ const App = () => {
   };
 
   // ** Methode for Visitors ** //
-  // Method filter of animals list
-  // INPUT TEXT
+  // Method filter of animals list by name
   const filterName = (event) => {
     setInputTextAnimals(event);
     setFilterAnimalsReset(false);
@@ -338,6 +330,7 @@ const App = () => {
   const filterNameAnimals = (
     animals.filter((animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase())));
 
+  // ** Not use for the moment ** //
   // CHECKBOX SPECIES
   const filterSpecies = (event) => {
     setCheckboxSpeciesAnimals(event.target.value);
@@ -361,7 +354,9 @@ const App = () => {
   };
   //  const filterTagsAnimals = (
   //    tags.filter((articlesObject) => articlesObject.name.toLowerCase().includes(selectTagsAnimals.toLowerCase(), animals)));
+  // ** //
 
+  // reset filters of animals list
   const resetFilterAnimals = (event) => {
     setFilterAnimalsReset(event.target.value);
     setInputTextAnimals('');

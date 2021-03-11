@@ -12,7 +12,6 @@ const ManagedAnimals = ({
 }) => (
   <div className="manageArticles">
 
-    <Link to="/admin/gestion-animaux/1" className="manageAnimals__link"> animal 1 </Link>
     <Link to="/admin/ajout" className="manageAnimals__link"> Ajout </Link>
 
     <table className="manageAnimals__table">
