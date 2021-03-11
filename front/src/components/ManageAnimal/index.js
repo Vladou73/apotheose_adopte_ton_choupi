@@ -26,7 +26,7 @@ const ManageAnimal = ({ animal }) => {
       <div className="animal">
         <div className="article__title">
           <input type="text" id="title" name="Titre" value={name}/>
-          <button type="button">editt</button>
+          <button type="button">edit</button>
         </div>
 
         <img src={medias[0].url} alt={name}/>
