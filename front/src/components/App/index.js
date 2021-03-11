@@ -65,6 +65,7 @@ const App = () => {
   // method to disconnect admin
 
   const adminDisconnect = () => {
+    window.location = '/admin';
     setIsLogged(false);
   };
 
