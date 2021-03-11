@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable max-len */
 // == Import npm
 import React, { useState, useEffect } from 'react';
@@ -41,6 +42,7 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  const [deleteAnimals, setDeleteAnimals] = useState([]);
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -198,6 +200,25 @@ const App = () => {
       });
   };
 
+  const deleteAnimalsList = (animal) => {
+    const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
+    setLoading(true);
+    axios({
+      method: 'delete',
+      url: `${baseUrl}/admin/animals/${animal.id}`,
+    })
+      .then(() => {
+        setAnimals(newList);
+        alert('Le choupi a trouvé une famille ! Youpi love love');
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -208,6 +229,18 @@ const App = () => {
     getCategories();
   }, []);
 
+  // ** Method for Admin ** //
+  // CHECKBOX ANIMALS LIST
+  // ( TODO : only keep in the state just that are checked )
+  const checkAdminAnimalsList = (event) => {
+    setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
+  };
+  // BUTTON ADD ANIMAL LIST
+  const buttonAddAnimals = () => {
+    console.log('ajout animal');
+  };
+
+  // ** Methode for Visitors ** //
   // Method filter of animals list
   // INPUT TEXT
   const filterName = (event) => {
@@ -312,19 +345,24 @@ const App = () => {
           {isLogged && (
             <>
               <Route path="/admin/gestion-animaux" exact>
-                <ManageAnimals />
+                <ManageAnimals
+                  animals={animals}
+                  checkAdminAnimalsList={checkAdminAnimalsList}
+                  buttonAddAnimals={buttonAddAnimals}
+                  buttonDeleteAnimals={deleteAnimalsList}
+                />
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles articles={articles} />
               </Route>
-              <Route path="/admin/gestion-animaux/1" exact>
+              <Route path="/admin/gestion-animaux/:id" exact>
               <ManageAnimal 
-                  animal={animals[0]}
+                  animal={animals}
                 />
               </Route>
               <Route path="/admin/gestion-articles/1" exact>
-                <ManageArticle 
-                articles={articles[0]}
+                <ManageArticle
+                  articles={articles[0]}
                 />
               </Route>
             </>
