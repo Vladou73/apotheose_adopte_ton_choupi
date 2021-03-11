@@ -13,7 +13,6 @@ const ManagedAnimals = ({
 }) => (
   <div className="manageArticles">
 
-    <Link to="/admin/gestion-animaux/1" className="manageAnimals__link"> animal 1 </Link>
     <button onClick={buttonAddAnimals} type="button" className="manageAnimals__link__add">Ajout</button>
 
     <table className="manageAnimals__table">
