@@ -24,7 +24,7 @@ const ManageArticle = ({ articles }) => {
 
         <div className="article__date">
           <input type="text" id="date" name="19/01/2021" value={articles.created_at}/>
-          <button type="button">editt</button>
+          <button type="button">edit</button>
         </div>
 
         <img src={articles.media_url} alt={articles.title}/>
