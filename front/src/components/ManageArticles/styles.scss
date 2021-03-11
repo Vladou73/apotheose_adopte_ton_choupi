@@ -2,6 +2,11 @@
   width: 80%;
   text-align: center;
   margin: auto;
+  &__trashIcon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
   &__table {
     margin: 3em auto;
     width: 100%;
