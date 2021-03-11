@@ -78,20 +78,25 @@ animalController.editAnimal = async (request, response)=>{
     }
 
     //Check to keep only properties accepted from client side
-    //change to animal properties the updated values
     const acceptedProperties = ['name','birthdate','description','gender_id','breeds','tags','medias']
+    //Check if other tables are impacted too (binding tables)
+    let otherTablesImpacted = {};
+    const otherTables = ['tags','breeds','medias']
     for (prop in request.body){
+            //change to animal properties the updated values
         if (acceptedProperties.includes(prop)){
             animal[prop] = request.body[prop];
-        } else {
-            console.log('animal prop ' + prop + ' does not exist');
-        }
+        };
+        if (otherTables.includes(prop)){
+            otherTablesImpacted[prop] = true;
+        };
     }
-
+       
+    console.log('otherTablesImpacted',otherTablesImpacted)
     // update DB with animal edited properties
     try {
-        const editedAnimal = await animalMapper.edit(animal);
-        response.json(editedAnimal);
+        await animalMapper.edit(animal, otherTablesImpacted);
+        response.json(animal);
     } catch (err) { // Error thrown in data mapper gets here
         response.status(404).json(err.message);
     }
