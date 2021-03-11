@@ -1,4 +1,4 @@
-// const Animal = require('../models/animal');
+// const Article = require('../models/article');
 const db = require('../database');
 
 const articleMapper = {};
@@ -16,6 +16,7 @@ articleMapper.findAll = async() => {
             a.category_id,
             c.name as category_name,
             c.color as category_color,
+            a.pin,
             a.author_id,
             u.firstname as author_firstname,
             u.lastname as author_lastname
@@ -25,8 +26,8 @@ articleMapper.findAll = async() => {
         LEFT JOIN category c ON c.id = a.category_id
     `
     const result = await db.query(query);
-    // et les retourne, sous forme d'instances de Animal
-    // return result.rows.map(animal => new Animal(animal));
+    // et les retourne, sous forme d'instances de Article
+    // return result.rows.map(article => new Article(article));
     return result.rows;
 }
 
@@ -43,6 +44,7 @@ articleMapper.findOne = async(id) => {
             c.name as category_name,
             c.color as category_color,
             a.author_id,
+            a.pin,
             u.firstname as author_firstname,
             u.lastname as author_lastname
         FROM article a
@@ -60,9 +62,6 @@ articleMapper.findOne = async(id) => {
     }
 
 }
-
-
-
 
 articleMapper.save = async (theArticle) => {
     console.log('enter articleMapper.save');  
@@ -94,7 +93,46 @@ articleMapper.save = async (theArticle) => {
     }
 }
 
+articleMapper.deleteOne = async(id)=>{
+    console.log('enter articleMapper.deleteOne')
+    const query = `DELETE FROM article WHERE id = $1 RETURNING *`
+    try {
+        const result = await db.query(query, [id]);
+        return result.rows[0];
+    } catch(error) {
+        console.log(error);
+    }
+}
 
+articleMapper.edit = async (theArticle) => {
+    console.log('enter articleMapper.edit');
+
+    //store data from the article in an array
+    const data = [
+        theArticle.title, //optional
+        theArticle.content, //optional
+        theArticle.pin, //optional
+        theArticle.author_id, //NOT EDITABLE
+        theArticle.category_id, //optional
+        theArticle.media_id, //optional
+        theArticle.id // for the WHERE close, NOT EDITABLE
+    ];
+
+    //update article data in DB
+    let query = `
+        UPDATE article SET (title, content, pin, author_id, category_id, media_id) = ($1, $2, $3, $4, $5, $6)
+        WHERE id = $7
+        RETURNING *;
+    `;
+    try {
+        //trigger query
+        await db.query(query, data);
+        // let { rows } =
+        // return rows[0]
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 
 
