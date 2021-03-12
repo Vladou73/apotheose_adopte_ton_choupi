@@ -16,6 +16,20 @@ const router = Router();
 //authentification with JWT
 router.post('/admin', userController.signIn);
 
+
+
+const jwt = require('express-jwt');
+const config = require('./authentification/config.json');
+
+// router.use(jwt({ secret: config.secret, algorithms: ['HS256'] }));
+router.use(
+    jwt(
+        {secret: config.secret, algorithms: ['HS256'], getToken: (request, _) => {
+                return request.cookies.token
+        }})
+);
+
+
 //Pas sûr que cette route soit utile
 router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
 
