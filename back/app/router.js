@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const csrf = require('csurf');
+const csrfProtection = csrf({cookie: true});
 
 const animalController = require('./controllers/animalController');
 const speciesController = require('./controllers/speciesController');
@@ -12,33 +14,28 @@ const router = Router();
 // const routerPublic = Router();
 // const routerAdmin = Router();
 
-
 //authentification with JWT
-router.post('/admin/signIn', userController.signIn);
-router.post('/admin/authenticate', userController.authenticate);
-router.get('/admin/logout', userController.logout);
+router.post('/admin/signIn', userController.signIn); // sign in with JWT stored in cookie
+router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
+router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
+router.use(csrfProtection);
+router.get('/csrf-token', (req, res) => {
+    console.log('send csrf-token');
+    res.json({ csrfToken: req.csrfToken() });
+});
 
-// const csrf = require('csurf');
-// const csrfProtection = csrf({cookie: true});
-// router.use(csrfProtection);
-
-// router.get('/csrf-token', (req, res) => {
-//     console.log('send csrf-token');
-//     res.json({ csrfToken: req.csrfToken() });
-// });
-
-router.post('/admin/addAnimal', animalController.newAnimal);
+router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
-    .get(animalController.oneAnimal)
-    .delete(animalController.deleteAnimal)
-    .put(animalController.editAnimal);
+    .get(userController.authenticate, animalController.oneAnimal)
+    .delete(userController.authenticate, animalController.deleteAnimal)
+    .put(userController.authenticate, animalController.editAnimal);
 
-router.post('/admin/addArticle', articleController.newArticle);
+router.post('/admin/addArticle',userController.authenticate, articleController.newArticle);
 router.route('/admin/articles/:id(\\d+)')
-    .get(articleController.oneArticle)
-    .delete(articleController.deleteArticle)
-    .put(articleController.editArticle);
+    .get(userController.authenticate, articleController.oneArticle)
+    .delete(userController.authenticate, articleController.deleteArticle)
+    .put(userController.authenticate, articleController.editArticle);
 
 
 //animal infos

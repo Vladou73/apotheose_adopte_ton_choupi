@@ -1,5 +1,8 @@
 const { response } = require('express');
 const userService = require('../services/userService');
+const csrf = require('csurf');
+// const csrfProtection = csrf({cookie: true});
+
 
 userController = {
     signIn: (request, response, next) => {
@@ -26,6 +29,11 @@ userController = {
         console.log('entered userController.logout');
         response.clearCookie("jsonWebToken");
         response.json('cookie JWT cleared !');
+    },
+    getCsrfToken : (req, res, next) => {
+        console.log('entered userController.getCsrfToken');
+        console.log({ csrfToken: req.csrfToken() });
+        res.json({ csrfToken: req.csrfToken() });
     }
 }
 
