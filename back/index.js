@@ -6,7 +6,7 @@ const app = express();
 const router = require('./app/router');
 
 const bodyParser = require('body-parser');
-
+const cookieParser = require('cookie-parser');
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //parser JSON 
 // app.use(express.json());
+
+//parse cookies sent via http requests
+app.use(cookieParser()) 
 
 //use cors to accept other non domain websites to access api
 app.use(cors());

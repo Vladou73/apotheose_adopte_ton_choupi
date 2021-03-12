@@ -6,7 +6,10 @@ userController = {
         console.log('entered userController.signIn');
         console.log('request.body ',request.body)
         userService.signIn(request.body)
-            .then(user => response.json(user))
+            .then((user) => {
+                response.cookie('token', user.token, { httpOnly: true });
+                response.json(user);
+            })
             .catch(next);
     },
     authenticate : (request, response, next) => {
