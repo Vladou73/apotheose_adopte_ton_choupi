@@ -43,6 +43,14 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  const [animalData, setAnimalData] = useState({
+    name: animals.name,
+    birthdate: animals.birthdate,
+    description: animals.description,
+    gender_id: animals.gender_id,
+    // tags: [{ id: animals.tags.id }],
+    // breeds: [{ id: animals.breeds.id }],
+  });
   // hook delete is checkbox in manage animals list.
   const [deleteAnimals, setDeleteAnimals] = useState([]);
   const [addNameAnimal, setAddNameAnimal] = useState('');
@@ -75,13 +83,15 @@ const App = () => {
       .then((response) => {
         setAnimals(response.data);
       })
-      .catch((error) => {
+      .catch
+      ((error) => {
         console.trace(error);
       })
       .finally(() => {
         setLoading(false);
       });
   };
+  
   // Breeds get list
   const getBreeds = () => {
     setLoading(true);
@@ -99,6 +109,7 @@ const App = () => {
         setLoading(false);
       });
   };
+  
   // Tags get list
   const getTags = () => {
     setLoading(true);
@@ -116,6 +127,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   // Species get list
   const getSpecies = () => {
     setLoading(true);
@@ -133,6 +145,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   // Articles get list
   const getArticles = () => {
     setLoading(true);
@@ -150,6 +163,7 @@ const App = () => {
         setLoading(false);
       });
   };
+  
   // Categories get list
   const getCategories = () => {
     setLoading(true);
@@ -167,6 +181,7 @@ const App = () => {
         setLoading(false);
       });
   };
+  
   // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
@@ -191,6 +206,7 @@ const App = () => {
     };
     postUser();
   };
+
   // Animal delete list
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
@@ -207,6 +223,7 @@ const App = () => {
         });
     }
   };
+
   // Animal add list
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
@@ -237,6 +254,7 @@ const App = () => {
     };
     postAnimal();
   };
+
   // Article delete list
   const deleteArticle = (id) => {
     const findId = articles.filter((articlesObject) => articlesObject.id !== id);
@@ -256,6 +274,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -278,6 +297,43 @@ const App = () => {
   const adminDisconnect = () => {
     window.location = '/admin';
     setIsLogged(false);
+  };
+
+  // Method onChange to edit an animal
+  const handleChangeEditAnimal = (e) => {
+    const newData = { ...animalData };
+    newData[e.target.id] = e.target.value;
+    setAnimalData(newData);
+    console.log(newData);
+    // setAnimals( animals.filter((animalObject) => animalObject.id === animalData.id));
+  };
+
+  // Method onSubmit to edit an animal
+  const handleSubmitEditAnimal = (id) => {
+    console.log(id);
+    const editAnimal = () => {
+      axios({
+        method: 'PUT',
+        url: `${baseUrl}/admin/animals/${id}`,
+        data: {
+          name: animalData.name,
+          birthdate: animalData.birthdate,
+          description: animalData.description,
+          gender_id: animalData.gender_id,
+          tags: [{ id: 2 }],
+          breeds: [{ id: 2 }],
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          getAnimals();
+          alert('Animal modifié !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    editAnimal();
   };
 
   // CHECKBOX ANIMALS LIST
@@ -320,11 +376,6 @@ const App = () => {
   const addChangeBreedsAnimal = (event) => {
     setAddBreedsAnimal(event.target.value);
   };
-
-const animalSubmit = (event) => {
-  console.log('submit');
-}
-
 
   // ** Methode for Visitors ** //
   // Method filter of animals list by name
@@ -444,15 +495,10 @@ const animalSubmit = (event) => {
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
-                  animalSubmit={animalSubmit}
-                  changeNameAnimal={changeNameAnimal}
-                  changeBirthdateAnimal={changeBirthdateAnimal}
-                  changeDescriptionAnimal={changeDescriptionAnimal}
-                  changeGenderAnimal={changeGenderAnimal}
-                  changeTagAnimal={changeTagAnimal}
-                  changeBreedsAnimal={changeBreedsAnimal}
-                  changeSpeciesAnimal={changeSpeciesAnimal}
+                  handleSubmitEditAnimal={handleSubmitEditAnimal}
+                  handleChangeEditAnimal={handleChangeEditAnimal}
                   animal={animals}
+                  animalData={animalData}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>

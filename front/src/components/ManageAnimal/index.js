@@ -6,15 +6,9 @@ import Error404 from '../Error404';
 
 const ManageAnimal = ({ 
   animal, 
-  changeNameAnimal, 
-  changeSpeciesAnimal, 
-  changeBreedsAnimal, 
-  changeBirthdateAnimal, 
-  changeDescriptionAnimal, 
-  changeTagAnimal, 
-  changeGenderAnimal
+  handleChangeEditAnimal,
+  handleSubmitEditAnimal,
 }) => {
-  console.log(animal);
 
   const { id } = useParams();
   const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
@@ -34,10 +28,11 @@ const ManageAnimal = ({
   return (
 
     <div className="animal">
-    <form onSubmit={animalSubmit}>
-      <div className="article__title">
-        <input type="text" id="title" name="Titre" value={name} onChange={changeNameAnimal}/>
-        <button type="button">edit</button>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      handleSubmitEditAnimal(id)}}>
+      <div className="animal__name">
+        <input type="text" id="name" name="name" placeholder={name} onChange={(e) => handleChangeEditAnimal(e)}/>
       </div>
       <img src={medias[0].url} alt={name} />
       <div className="animal__contain">
@@ -50,25 +45,20 @@ const ManageAnimal = ({
                   <input type="text" name="tag" />
                 </>
               )
-              : tags.map((tag) => <input key={tag.id} className="animal__category-tags" value={tag.name} onChange={changeTagAnimal}/>)
+              : tags.map((tag) => <input key={tag.id} className="animal__category-tags" placeholder={tag.name} onChange={(e) => handleChangeEditAnimal(e)}/>)
         }
-          <button type="button">edit</button>
         </div>
         <div className="animal__category-text">
-          <input type="text" id="espèce" name="Espèce :" value={species_name} onChange={changeSpeciesAnimal}/>
-          <button type="button">edit</button>
-          {breeds.map((breed) => <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " value={name} onChange={changeBreedsAnimal}/>)}
-          <button type="button">edit</button>
-          <input type="text" id="genre" name="Sexe :" value={gender_name === 'female' ? ' femelle' : ' mâle'} onChange={changeGenderAnimal}/>
-          <button type="button">edit</button>
-          <input type="text" id="birthdate" name="Date de naissance :" value={birthdate} onChange={changeBirthdateAnimal}/>
-          <button type="button">edit</button>
+          <input type="text" id="espèce" name="Espèce :" placeholder={species_name} onChange={(e) => handleChangeEditAnimal(e)}/>
+          {breeds.map((breed) => <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " placeholder={breed.name} onChange={(e) => handleChangeEditAnimal(e)}/>)}
+          <input type="text" id="genre" name="Sexe :" placeholder={gender_name === 'female' ? ' femelle' : ' mâle'} onChange={(e) => handleChangeEditAnimal(e)}/>
+          <input type="text" id="birthdate" name="birthdate" placeholder={birthdate} onChange={(e) => handleChangeEditAnimal(e)}/>
         </div>
         <div className="animal__content">
-          <input type="text" id="description" name="Description" value={description} onChange={changeDescriptionAnimal}/>
-          <button type="button">edit</button>
+          <input type="text" id="description" name="description" placeholder={description} onChange={(e) => handleChangeEditAnimal(e)}/>
         </div>
       </div>
+      <button type="submit">Sauvegarder</button>
       </form>
     </div>
   );
@@ -77,6 +67,7 @@ const ManageAnimal = ({
 ManageAnimal.propTypes = {
   animal: PropTypes.arrayOf(
     PropTypes.shape({
+      /*
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       changeNameAnimal: PropTypes.string.isRequired,
@@ -92,7 +83,7 @@ ManageAnimal.propTypes = {
       changeTagAnimal: PropTypes.array.isRequired,
       description: PropTypes.string.isRequired,
       changeDescriptionAnimal: PropTypes.string.isRequired,
-      animalSubmit: PropTypes.string.isRequired,
+      animalSubmit: PropTypes.string.isRequired, */
     }),
   ).isRequired,
 };
