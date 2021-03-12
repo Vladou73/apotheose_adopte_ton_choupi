@@ -53,6 +53,11 @@ const App = () => {
   });
   // hook delete is checkbox in manage animals list.
   const [deleteAnimals, setDeleteAnimals] = useState([]);
+  const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
+  const [articleData, setArticleData] = useState({
+    title: '',
+    content: '',
+  });
   const [addNameAnimal, setAddNameAnimal] = useState('');
   const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('00-00-0000');
   const [addGenderAnimal, setAddGenderAnimal] = useState();
@@ -60,6 +65,7 @@ const App = () => {
   const [addBreedsAnimal, setAddBreedsAnimal] = useState();
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
   const [addCreatorAnimal, setAddCreatorAnimal] = useState();
+
 
   // filter articles
   const [articles, setArticles] = useState([]);
@@ -73,6 +79,13 @@ const App = () => {
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
 
+
+  // Method to change the modal state to add an article (true/false)
+  const changeModalStateAddArticle = () => {
+    setModalAddArticleIsOpen(!modalAddArticleIsOpen);
+  };
+
+  
   // Animals get list
   const getAnimals = () => {
     setLoading(true);
@@ -182,7 +195,43 @@ const App = () => {
       });
   };
   
-  // Connection admin
+  // handle change & submit to add an article
+
+  const handleChangeAddArticle = (e) => {
+    const newData = { ...articleData };
+    newData[e.target.id] = e.target.value;
+    setArticleData(newData);
+    console.log(newData);
+  };
+const handleSubmitAddArticle = (e) => {
+    e.preventDefault();
+    const addArticle = () => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/admin/addArticle`,
+        data: {
+          title: articleData.title,
+          content: articleData.content,
+          pin: false,
+          author_id: 1,
+          category_id: 1,
+          media_id: 3,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          getArticles();
+          setModalAddArticleIsOpen(false);
+          alert('Article ajouté !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    addArticle();
+  };
+
+   // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
     const postUser = () => {
@@ -255,24 +304,24 @@ const App = () => {
     postAnimal();
   };
 
-  // Article delete list
-  const deleteArticle = (id) => {
-    const findId = articles.filter((articlesObject) => articlesObject.id !== id);
-    setLoading(true);
-    axios({
-      method: 'delete',
-      url: `${baseUrl}/admin/articles/${id}`,
-    })
-      .then(() => {
-        setArticles(findId);
-        alert('Article supprimé !');
+  const deleteArticle = (article) => {
+    if (window.confirm(`Etes vous sur de vouloir supprimer l'article : ${article.title} ?`)) {
+      setLoading(true);
+      axios({
+        method: 'delete',
+        url: `${baseUrl}/admin/articles/${article.id}`,
       })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then(() => {
+          getArticles();
+          alert('Article supprimé !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   // Hooks effects
@@ -491,7 +540,7 @@ const App = () => {
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
-                <ManageArticles articles={articles} deleteArticle={deleteArticle} />
+                <ManageArticles articles={articles} deleteArticle={deleteArticle} modalAddArticleIsOpen={modalAddArticleIsOpen} handleSubmitAddArticle={handleSubmitAddArticle} handleChangeAddArticle={handleChangeAddArticle} changeModalStateAddArticle={changeModalStateAddArticle} />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
