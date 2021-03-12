@@ -1,6 +1,7 @@
 const config = require('../authentification/config.json');
 const jwt = require('jsonwebtoken');
 const userMapper = require('../dataMappers/userMapper');
+// const jwt = require('express-jwt');
 
 // users hardcoded for simplicity, store in a db for production applications
 // const users = [
@@ -10,29 +11,23 @@ const userMapper = require('../dataMappers/userMapper');
 userService = {
     signIn : async function ({ username, password }) {
         const users = await userMapper.findAll()
-        console.log(users)
-
+        // ICI insérer le module de déchiffrage de pwd quand il y en aura besoin
         const user = users.find(u => u.username === username && u.password === password);
     
         if (!user) throw 'Username or password is incorrect';
     
         // create a jwt token that is valid for 1 day
         const token = jwt.sign({ sub: user.id }, config.secret, { expiresIn: '1d' });
-        console.log(token);
         
         return {
             ...omitPassword(user),
             token
         };
     },
-    authenticate : async function (headers) {
-        const authHeader = headers.authorization;
-
-        if (!authHeader) throw 'Username or password is incorrect';
-
-        // get token from authHeader
-        const token = authHeader.split(' ')[1];
-        console.log('token', token);
+    authenticate : async function (request) {
+        //get jwt token
+        const token = request.cookies.jsonWebToken;
+        if (!token) throw 'User not allowed, sign in first please';
 
         //check token is valid
         try {

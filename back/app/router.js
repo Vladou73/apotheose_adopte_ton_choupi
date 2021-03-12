@@ -14,24 +14,28 @@ const router = Router();
 
 
 //authentification with JWT
-router.post('/admin', userController.signIn);
+router.post('/admin/signIn', userController.signIn);
+router.post('/admin/authenticate', userController.authenticate);
+
+// const csrf = require('csurf');
+// const csrfProtection = csrf({cookie: true});
+// router.use(csrfProtection);
+
+// router.get('/csrf-token', (req, res) => {
+//     console.log('send csrf-token');
+//     res.json({ csrfToken: req.csrfToken() });
+// });
 
 
-
-const jwt = require('express-jwt');
-const config = require('./authentification/config.json');
-
-// router.use(jwt({ secret: config.secret, algorithms: ['HS256'] }));
-router.use(
-    jwt(
-        {secret: config.secret, algorithms: ['HS256'], getToken: (request, _) => {
-                return request.cookies.token
-        }})
-);
-
-
-//Pas sûr que cette route soit utile
-router.post('/admin/manageAnimals', userController.authenticate, animalController.allAnimals);
+// const jwt = require('express-jwt');
+// const config = require('./authentification/config.json');
+// // router.use(jwt({ secret: config.secret, algorithms: ['HS256'] }));
+// router.use(
+//     jwt(
+//         {secret: config.secret, algorithms: ['HS256'], getToken: (request, _) => {
+//                 return request.cookies.token
+//         }})
+// );
 
 router.post('/admin/addAnimal', animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
@@ -63,8 +67,8 @@ router.get('/animals/:id(\\d+)', animalController.oneAnimal);
 
 
 // ici, une 404 pour l'API
-router.use((request, response) => {
-    response.status(404).json('No such endpoint');
+router.use((_, response) => {
+    response.status(404).json('404 error : endpoint not found');
 });
 
 
