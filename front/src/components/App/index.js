@@ -280,7 +280,7 @@ const App = () => {
     setIsLogged(false);
   };
 
-  // ChHECKBOX ANIMALS LIST
+  // CHECKBOX ANIMALS LIST
   // ( TODO : only keep in the state just that are checked )
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
@@ -320,6 +320,11 @@ const App = () => {
   const addChangeBreedsAnimal = (event) => {
     setAddBreedsAnimal(event.target.value);
   };
+
+const animalSubmit = (event) => {
+  console.log('submit');
+}
+
 
   // ** Methode for Visitors ** //
   // Method filter of animals list by name
@@ -439,6 +444,14 @@ const App = () => {
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
+                  animalSubmit={animalSubmit}
+                  changeNameAnimal={changeNameAnimal}
+                  changeBirthdateAnimal={changeBirthdateAnimal}
+                  changeDescriptionAnimal={changeDescriptionAnimal}
+                  changeGenderAnimal={changeGenderAnimal}
+                  changeTagAnimal={changeTagAnimal}
+                  changeBreedsAnimal={changeBreedsAnimal}
+                  changeSpeciesAnimal={changeSpeciesAnimal}
                   animal={animals}
                 />
               </Route>
