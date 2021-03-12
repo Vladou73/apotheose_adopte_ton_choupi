@@ -1,15 +1,33 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable max-len */
 import React from 'react';
+import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TrashIcon from './trash.png';
-
 // == Import
+
 import './styles.scss';
 
-const ManageArticles = ({ articles, deleteArticle }) => (
+const ManageArticles = ({
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle,
+}) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
-    <button type="button" className="manageArticles__link__add">Ajouter</button>
+    <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
+    <Modal isOpen={modalAddArticleIsOpen}>
+      <button type="button" onClick={changeModalStateAddArticle} className="manageArticles__closeModal">Fermer</button>
+      <h3>Ajouter un article</h3>
+      <div className="formAddArticle">
+        <form onSubmit={handleSubmitAddArticle}>
+          <label htmlFor="title">Titre de l'article : </label>
+          <input onChange={(e) => handleChangeAddArticle(e)} id="title" name="title" type="text" />
+          <label htmlFor="content">Contenu : </label>
+          <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" />
+          <button type="submit">Ajouter</button>
+        </form>
+      </div>
+    </Modal>
     <table className="manageArticles__table">
       <tbody>
         <tr>
@@ -32,7 +50,7 @@ const ManageArticles = ({ articles, deleteArticle }) => (
                 className="manageArticles__trashIcon"
                 onClick={(event) => {
                   event.preventDefault();
-                  deleteArticle(article.id);
+                  deleteArticle(article);
                 }}
               />
             </td>
@@ -46,6 +64,10 @@ const ManageArticles = ({ articles, deleteArticle }) => (
 ManageArticles.propTypes = {
   articles: PropTypes.array.isRequired,
   deleteArticle: PropTypes.func.isRequired,
+  modalAddArticleIsOpen: PropTypes.bool.isRequired,
+  handleSubmitAddArticle: PropTypes.func.isRequired,
+  handleChangeAddArticle: PropTypes.func.isRequired,
+  changeModalStateAddArticle: PropTypes.func.isRequired,
 };
 
 export default ManageArticles;

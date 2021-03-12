@@ -43,6 +43,11 @@ const App = () => {
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   const [deleteAnimals, setDeleteAnimals] = useState([]);
+  const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
+  const [articleData, setArticleData] = useState({
+    title: '',
+    content: '',
+  });
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -69,6 +74,12 @@ const App = () => {
   const adminDisconnect = () => {
     window.location = '/admin';
     setIsLogged(false);
+  };
+
+  // Method to change the modal state to add an article (true/false)
+
+  const changeModalStateAddArticle = () => {
+    setModalAddArticleIsOpen(!modalAddArticleIsOpen);
   };
 
   // handle submit connection admin
@@ -200,6 +211,42 @@ const App = () => {
       });
   };
 
+  // handle change & submit to add an article
+
+  const handleChangeAddArticle = (e) => {
+    const newData = { ...articleData };
+    newData[e.target.id] = e.target.value;
+    setArticleData(newData);
+    console.log(newData);
+  };
+  const handleSubmitAddArticle = (e) => {
+    e.preventDefault();
+    const addArticle = () => {
+      axios({
+        method: 'POST',
+        url: `${baseUrl}/admin/addArticle`,
+        data: {
+          title: articleData.title,
+          content: articleData.content,
+          pin: false,
+          author_id: 1,
+          category_id: 1,
+          media_id: 3,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          getArticles();
+          setModalAddArticleIsOpen(false);
+          alert('Article ajouté !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    addArticle();
+  };
+
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
     setLoading(true);
@@ -219,23 +266,24 @@ const App = () => {
       });
   };
 
-  const deleteArticle = (id) => {
-    const findId = articles.filter((articlesObject) => articlesObject.id !== id);
-    setLoading(true);
-    axios({
-      method: 'delete',
-      url: `${baseUrl}/admin/articles/${id}`,
-    })
-      .then(() => {
-        setArticles(findId);
-        alert('Article supprimé !');
+  const deleteArticle = (article) => {
+    if (window.confirm(`Etes vous sur de vouloir supprimer l'article : ${article.title} ?`)) {
+      setLoading(true);
+      axios({
+        method: 'delete',
+        url: `${baseUrl}/admin/articles/${article.id}`,
       })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+        .then(() => {
+          getArticles();
+          alert('Article supprimé !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   // Hooks effects
@@ -372,7 +420,7 @@ const App = () => {
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
-                <ManageArticles articles={articles} deleteArticle={deleteArticle} />
+                <ManageArticles articles={articles} deleteArticle={deleteArticle} modalAddArticleIsOpen={modalAddArticleIsOpen} handleSubmitAddArticle={handleSubmitAddArticle} handleChangeAddArticle={handleChangeAddArticle} changeModalStateAddArticle={changeModalStateAddArticle} />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
