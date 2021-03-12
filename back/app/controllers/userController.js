@@ -21,6 +21,11 @@ userController = {
                 return response.json(err);
             });
         // next();
+    },
+    logout : (_, response, next) => {
+        console.log('entered userController.logout');
+        response.clearCookie("jsonWebToken");
+        response.json('cookie JWT cleared !');
     }
 }
 

@@ -16,6 +16,8 @@ const router = Router();
 //authentification with JWT
 router.post('/admin/signIn', userController.signIn);
 router.post('/admin/authenticate', userController.authenticate);
+router.get('/admin/logout', userController.logout);
+
 
 // const csrf = require('csurf');
 // const csrfProtection = csrf({cookie: true});
@@ -25,17 +27,6 @@ router.post('/admin/authenticate', userController.authenticate);
 //     console.log('send csrf-token');
 //     res.json({ csrfToken: req.csrfToken() });
 // });
-
-
-// const jwt = require('express-jwt');
-// const config = require('./authentification/config.json');
-// // router.use(jwt({ secret: config.secret, algorithms: ['HS256'] }));
-// router.use(
-//     jwt(
-//         {secret: config.secret, algorithms: ['HS256'], getToken: (request, _) => {
-//                 return request.cookies.token
-//         }})
-// );
 
 router.post('/admin/addAnimal', animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
