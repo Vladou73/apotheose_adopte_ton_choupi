@@ -43,6 +43,14 @@ const App = () => {
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
+  const [animalData, setAnimalData] = useState({
+    name: animals.name,
+    birthdate: animals.birthdate,
+    description: animals.description,
+    gender_id: animals.gender_id,
+    // tags: [{ id: animals.tags.id }],
+    // breeds: [{ id: animals.breeds.id }],
+  });
   // hook delete is checkbox in manage animals list.
   const [deleteAnimals, setDeleteAnimals] = useState([]);
   const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
@@ -88,13 +96,15 @@ const App = () => {
       .then((response) => {
         setAnimals(response.data);
       })
-      .catch((error) => {
+      .catch
+      ((error) => {
         console.trace(error);
       })
       .finally(() => {
         setLoading(false);
       });
   };
+  
   // Breeds get list
   const getBreeds = () => {
     setLoading(true);
@@ -112,6 +122,7 @@ const App = () => {
         setLoading(false);
       });
   };
+  
   // Tags get list
   const getTags = () => {
     setLoading(true);
@@ -129,6 +140,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   // Species get list
   const getSpecies = () => {
     setLoading(true);
@@ -146,6 +158,7 @@ const App = () => {
         setLoading(false);
       });
   };
+
   // Articles get list
   const getArticles = () => {
     setLoading(true);
@@ -163,6 +176,7 @@ const App = () => {
         setLoading(false);
       });
   };
+  
   // Categories get list
   const getCategories = () => {
     setLoading(true);
@@ -180,8 +194,7 @@ const App = () => {
         setLoading(false);
       });
   };
-
-
+  
   // handle change & submit to add an article
 
   const handleChangeAddArticle = (e) => {
@@ -242,6 +255,7 @@ const handleSubmitAddArticle = (e) => {
     };
     postUser();
   };
+
   // Animal delete list
   const deleteAnimalsList = (animal) => {
     const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
@@ -258,6 +272,7 @@ const handleSubmitAddArticle = (e) => {
         });
     }
   };
+
   // Animal add list
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
@@ -288,6 +303,7 @@ const handleSubmitAddArticle = (e) => {
     };
     postAnimal();
   };
+
   const deleteArticle = (article) => {
     if (window.confirm(`Etes vous sur de vouloir supprimer l'article : ${article.title} ?`)) {
       setLoading(true);
@@ -307,7 +323,7 @@ const handleSubmitAddArticle = (e) => {
         });
     }
   };
-  
+
   // Hooks effects
   useEffect(() => {
     getAnimals();
@@ -332,7 +348,44 @@ const handleSubmitAddArticle = (e) => {
     setIsLogged(false);
   };
 
-  // ChHECKBOX ANIMALS LIST
+  // Method onChange to edit an animal
+  const handleChangeEditAnimal = (e) => {
+    const newData = { ...animalData };
+    newData[e.target.id] = e.target.value;
+    setAnimalData(newData);
+    console.log(newData);
+    // setAnimals( animals.filter((animalObject) => animalObject.id === animalData.id));
+  };
+
+  // Method onSubmit to edit an animal
+  const handleSubmitEditAnimal = (id) => {
+    console.log(id);
+    const editAnimal = () => {
+      axios({
+        method: 'PUT',
+        url: `${baseUrl}/admin/animals/${id}`,
+        data: {
+          name: animalData.name,
+          birthdate: animalData.birthdate,
+          description: animalData.description,
+          gender_id: animalData.gender_id,
+          tags: [{ id: 2 }],
+          breeds: [{ id: 2 }],
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          getAnimals();
+          alert('Animal modifié !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    editAnimal();
+  };
+
+  // CHECKBOX ANIMALS LIST
   // ( TODO : only keep in the state just that are checked )
   const checkAdminAnimalsList = (event) => {
     setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
@@ -491,7 +544,10 @@ const handleSubmitAddArticle = (e) => {
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
+                  handleSubmitEditAnimal={handleSubmitEditAnimal}
+                  handleChangeEditAnimal={handleChangeEditAnimal}
                   animal={animals}
+                  animalData={animalData}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
