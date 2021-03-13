@@ -250,14 +250,13 @@ const App = () => {
 
   // Animal delete list
   const deleteAnimalsList = (animal) => {
-    const newList = animals.filter((animalsObject) => animalsObject.id !== animal.id);
     if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
       axios({
         method: 'delete',
         url: `${baseUrl}/admin/animals/${animal.id}`,
       })
         .then(() => {
-          setAnimals(newList);
+          getAnimals();
         })
         .catch((error) => {
           console.trace(error);
