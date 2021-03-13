@@ -28,6 +28,9 @@
     width: 100%;
     margin: 1.5em auto;
     border-radius: 1em;
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+    box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
   }
   &__contact {
     text-align: center;
