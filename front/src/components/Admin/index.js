@@ -6,17 +6,27 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Admin = ({
-  handleChangeUsername, handleChangePassword, handleSubmitAdmin, isLogged,
+  handleChangeUsername, handleChangePassword, handleSubmitAdmin, isLogged, adminUsername, articlesNumber, animalsNumber,
 }) => (
   <>
     {
-    isLogged && <h1>Bienvenue sur l'espace Admin</h1>
+    isLogged && (
+    <div className="admin">
+      <h2 className="admin__title">Bienvenue sur l'espace Admin : {adminUsername}</h2>
+      <img src="https://media.giphy.com/media/xUPGcyi4YxcZp8dWZq/source.gif" alt="cat welcome" />
+      <p>Vous avez actuellement : </p>
+      <ul>
+        <li>{animalsNumber} Animaux à l'adoption</li>
+        <li>{articlesNumber} Articles dans votre blog</li>
+      </ul>
+    </div>
+    )
     }
     {
     !isLogged
     && (
     <div className="admin">
-      <h1 className="admin__title">Espace Administration</h1>
+      <h2 className="admin__title">Espace Administration</h2>
       <form onSubmit={handleSubmitAdmin}>
         <label htmlFor="username" className="admin__username">Nom d'utilisateur :</label>
         <input id="username" name="username" onChange={handleChangeUsername} className="admin__username__input" />
@@ -35,6 +45,9 @@ Admin.propTypes = {
   handleChangeUsername: PropTypes.func.isRequired,
   handleChangePassword: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  adminUsername: PropTypes.string.isRequired,
+  articlesNumber: PropTypes.number.isRequired,
+  animalsNumber: PropTypes.number.isRequired,
 };
 
 export default Admin;
