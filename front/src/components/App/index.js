@@ -50,6 +50,7 @@ const App = () => {
     // tags: [{ id: animals.tags.id }],
     // breeds: [{ id: animals.breeds.id }],
   });
+  const [adminUsername, setAdminUsername] = useState('');
   const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
   const [articleData, setArticleData] = useState({
     title: '',
@@ -237,6 +238,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
+          setAdminUsername(response.data.username);
           setIsLogged(true);
           evt.target.reset();
         })
@@ -513,6 +515,9 @@ const App = () => {
               handleChangePassword={handleChangePassword}
               handleSubmitAdmin={handleSubmitAdmin}
               isLogged={isLogged}
+              articlesNumber={articles.length}
+              animalsNumber={animals.length}
+              adminUsername={adminUsername}
             />
           </Route>
           {isLogged && (

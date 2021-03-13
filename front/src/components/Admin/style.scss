@@ -1,6 +1,5 @@
 .admin {
   width: 60%;
-  height: 400px;
   margin: 3em auto;
   text-align: center;
   &__title {
@@ -28,5 +27,17 @@
     color: white;
     padding: 1em;
     border-radius: 5px;
+  }
+  & p {
+    font-size: 1.5em;
+    margin: 1em 0;
+  }
+  & li {
+    margin: .5em;
+    &:first-letter {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-right: .2em;
+    }
   }
 }
