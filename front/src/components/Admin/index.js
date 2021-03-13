@@ -45,6 +45,9 @@ Admin.propTypes = {
   handleChangeUsername: PropTypes.func.isRequired,
   handleChangePassword: PropTypes.func.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  adminUsername: PropTypes.string.isRequired,
+  articlesNumber: PropTypes.number.isRequired,
+  animalsNumber: PropTypes.number.isRequired,
 };
 
 export default Admin;
