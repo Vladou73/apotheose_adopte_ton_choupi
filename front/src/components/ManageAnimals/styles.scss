@@ -49,7 +49,11 @@
 .formAddArticle {
   width: 80%;
   margin: auto;
-  text-align: center;
+  &__block {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+  }
   & label {
     display: block;
     margin: 2em 0;

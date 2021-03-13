@@ -56,12 +56,11 @@ const App = () => {
     content: '',
   });
   const [addNameAnimal, setAddNameAnimal] = useState('');
-  const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('00-00-0000');
+  const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('');
   const [addGenderAnimal, setAddGenderAnimal] = useState();
   const [addTagsAnimal, setAddTagsAnimal] = useState();
   const [addBreedsAnimal, setAddBreedsAnimal] = useState();
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
-  const [addCreatorAnimal, setAddCreatorAnimal] = useState();
 
   // filter articles
   const [articles, setArticles] = useState([]);
@@ -388,19 +387,14 @@ const App = () => {
     setAddBirthdateAnimal(event.target.value);
   };
 
-  // DESCRIPTION ONCHANGE ADD ANIMAL LIST
-  const addChangeDescriptionAnimal = (event) => {
-    setAddDescriptionAnimal(event.target.value);
-  };
-
-  // CREATOR ID ONCHANGE ADD ANIMAL LIST
-  const addChangeCreatorAnimal = (event) => {
-    setAddCreatorAnimal(event.target.value);
-  };
-
   // GENDER ONCHANGE ADD ANIMAL LIST
   const addChangeGenderAnimal = (event) => {
     setAddGenderAnimal(event.target.value);
+  };
+
+  // DESCRIPTION ONCHANGE ADD ANIMAL LIST
+  const addChangeDescriptionAnimal = (event) => {
+    setAddDescriptionAnimal(event.target.value);
   };
 
   // TAGS ONCHANGE ADD ANIMAL LIST
@@ -522,24 +516,17 @@ const App = () => {
               <Route path="/admin/gestion-animaux" exact>
                 <ManageAnimals
                   animals={animals}
+                  tags={tags}
+                  breeds={breeds}
                   buttonDeleteAnimals={deleteAnimalsList}
-                  // props for modal & add new animal in database
                   changeModalStateAddArticle={changeModalStateAddArticle}
                   modalAddArticleIsOpen={modalAddArticleIsOpen}
                   addAnimalSubmit={addAnimalSubmit}
-                  addNameAnimal={addNameAnimal}
                   addChangeNameAnimal={addChangeNameAnimal}
-                  addBirthdateAnimal={addBirthdateAnimal}
                   addChangeBirthdateAnimal={addChangeBirthdateAnimal}
-                  addDescriptionAnimal={addDescriptionAnimal}
                   addChangeDescriptionAnimal={addChangeDescriptionAnimal}
-                  addCreatorAnimal={addCreatorAnimal}
-                  addChangeCreatorAnimal={addChangeCreatorAnimal}
-                  addGenderAnimal={addGenderAnimal}
                   addChangeGenderAnimal={addChangeGenderAnimal}
-                  addTagsAnimal={addTagsAnimal}
                   addChangeTagsAnimal={addChangeTagsAnimal}
-                  addBreedsAnimal={addBreedsAnimal}
                   addChangeBreedsAnimal={addChangeBreedsAnimal}
                 />
               </Route>

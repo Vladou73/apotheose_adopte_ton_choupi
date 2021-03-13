@@ -9,23 +9,19 @@ import TrashIcon from './trash.png';
 
 const ManagedAnimals = ({
   animals,
+  tags,
+  breeds,
   buttonDeleteAnimals,
   // modal
   modalAddArticleIsOpen,
   changeModalStateAddArticle,
   // props for add new animal
-  addNameAnimal,
-  addChangeNameAnimal,
   addAnimalSubmit,
-  addBirthdateAnimal,
+  addChangeNameAnimal,
   addChangeBirthdateAnimal,
-  addDescriptionAnimal,
   addChangeDescriptionAnimal,
-  addGenderAnimal,
   addChangeGenderAnimal,
-  addTagsAnimal,
   addChangeTagsAnimal,
-  addBreedsAnimal,
   addChangeBreedsAnimal,
 }) => (
   <div className="manageArticles">
@@ -37,19 +33,71 @@ const ManagedAnimals = ({
       <h3>Ajouter un animal</h3>
       <div className="formAddArticle">
         <form onSubmit={addAnimalSubmit}>
-          <p>Nom de l'animal :</p>
-          <input type="text" name="" value={addNameAnimal} onChange={addChangeNameAnimal} />
-          <p>Date de naissance : </p>
-          <input type="date" name="birthdate" value={addBirthdateAnimal} onChange={addChangeBirthdateAnimal} />
-          <p>Description :</p>
-          <textarea type="text" ows="20" cols="100" name="description" value={addDescriptionAnimal} onChange={addChangeDescriptionAnimal} />
-          <p>Genre :</p>
-          <input type="number" name="gender" value={addGenderAnimal} onChange={addChangeGenderAnimal} />
-          <p>Tags :</p>
-          <input type="number" name="tags" value={addTagsAnimal} onChange={addChangeTagsAnimal} />
-          <p>Race :</p>
-          <input type="number" name="breeds" value={addBreedsAnimal} onChange={addChangeBreedsAnimal} />
-          <p>Médias :</p>
+          <div>
+            <p>Nom de l'animal :</p>
+            <input type="text" name="name" onChange={(e) => addChangeNameAnimal(e)} />
+            <p>Date de naissance : </p>
+            <input type="date" name="birthdate" onChange={(e) => addChangeBirthdateAnimal(e)} />
+            <p>Description :</p>
+            <textarea type="text" ows="20" cols="100" name="description" onChange={(e) => addChangeDescriptionAnimal(e)} />
+          </div>
+          <div className="formAddArticle__block">
+            <p>Genre :</p>
+            <label htmlFor="gender_male">
+              Mâle
+              <input
+                type="checkbox"
+                name="gender"
+                value={1}
+                onChange={(e) => addChangeGenderAnimal(e)}
+              />
+            </label>
+            <label htmlFor="gender_female">
+              Femelle
+              <input
+                type="checkbox"
+                name="gender"
+                value={2}
+                onChange={(e) => addChangeGenderAnimal(e)}
+              />
+            </label>
+          </div>
+          <div className="formAddArticle__block">
+            <p>Tags :</p>
+            {
+            tags.map((tag) => (
+              <label htmlFor="tag">
+                {tag.name}
+                <input
+                  type="checkbox"
+                  name="tag"
+                  value={tag.id}
+                  onChange={(e) => addChangeTagsAnimal(e)}
+                />
+              </label>
+            ))
+          }
+          </div>
+          <div className="formAddArticle__block">
+            <p>Race :</p>
+            {
+            breeds.map((breed) => (
+              <label htmlFor="breed">
+                {breed.name}
+                <input
+                  type="checkbox"
+                  name="breed"
+                  value={breed.id}
+                  onChange={(e) => addChangeBreedsAnimal(e)}
+                />
+              </label>
+            ))
+          }
+          </div>
+          <div>
+            <p>Médias :</p>
+            <input type="file" />
+          </div>
           <button type="submit">Envoyer</button>
         </form>
       </div>
@@ -82,7 +130,7 @@ const ManagedAnimals = ({
             {
             animalObject.tags === null
               ? <td>En évaluation</td>
-              : <td>{animalObject.tags.map((tags) => <tr key={tags.id}>{tags.name}</tr>)}</td>
+              : <td>{animalObject.tags.map((tag) => <tr key={tag.id}>{tag.name}</tr>)}</td>
             }
             <td>
 
@@ -109,21 +157,17 @@ const ManagedAnimals = ({
 
 ManagedAnimals.propTypes = {
   animals: PropTypes.array.isRequired,
+  tags: PropTypes.array.isRequired,
+  breeds: PropTypes.array.isRequired,
   buttonDeleteAnimals: PropTypes.func.isRequired,
   modalAddArticleIsOpen: PropTypes.bool.isRequired,
   changeModalStateAddArticle: PropTypes.func.isRequired,
-  addNameAnimal: PropTypes.string.isRequired,
   addChangeNameAnimal: PropTypes.func.isRequired,
   addAnimalSubmit: PropTypes.string.isRequired,
-  addBirthdateAnimal: PropTypes.string.isRequired,
   addChangeBirthdateAnimal: PropTypes.func.isRequired,
-  addDescriptionAnimal: PropTypes.string.isRequired,
   addChangeDescriptionAnimal: PropTypes.func.isRequired,
-  addGenderAnimal: PropTypes.number.isRequired,
   addChangeGenderAnimal: PropTypes.func.isRequired,
-  addTagsAnimal: PropTypes.array.isRequired,
   addChangeTagsAnimal: PropTypes.func.isRequired,
-  addBreedsAnimal: PropTypes.array.isRequired,
   addChangeBreedsAnimal: PropTypes.func.isRequired,
 };
 
