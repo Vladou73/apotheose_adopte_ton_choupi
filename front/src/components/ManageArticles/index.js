@@ -10,10 +10,11 @@ import TrashIcon from './trash.png';
 import './styles.scss';
 
 const ManageArticles = ({
-  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle,
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmation,
 }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
+    <p className={confirmation}>Votre article a été ajouté !</p>
     <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
     <Modal isOpen={modalAddArticleIsOpen}>
       <button type="button" onClick={changeModalStateAddArticle} className="manageArticles__closeModal">Fermer</button>
@@ -68,6 +69,7 @@ ManageArticles.propTypes = {
   handleSubmitAddArticle: PropTypes.func.isRequired,
   handleChangeAddArticle: PropTypes.func.isRequired,
   changeModalStateAddArticle: PropTypes.func.isRequired,
+  confirmation: PropTypes.string.isRequired,
 };
 
 export default ManageArticles;

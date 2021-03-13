@@ -5,7 +5,7 @@ import Maps from './maps';
 import './style.scss';
 
 const Contact = () => {
-  const [sent, setSent] = useState('contact__hidden');
+  const [sent, setSent] = useState('hidden');
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -13,7 +13,7 @@ const Contact = () => {
     emailjs.sendForm('service_7bte7pa', 'template_99pe6lg', e.target, 'user_cSO2WlUe84NqrUR3pJH05')
       .then((result) => {
         console.log(result.text);
-        if (result.status === 200) setSent('contact__active');
+        if (result.status === 200) setSent('visible');
       }, (error) => {
         console.log(error.text);
       });

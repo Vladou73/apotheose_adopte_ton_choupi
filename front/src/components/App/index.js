@@ -51,6 +51,7 @@ const App = () => {
     // breeds: [{ id: animals.breeds.id }],
   });
   const [adminUsername, setAdminUsername] = useState('');
+  const [confirmation, setConfirmation] = useState('hidden');
   const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
   const [articleData, setArticleData] = useState({
     title: '',
@@ -196,6 +197,14 @@ const App = () => {
     setArticleData(newData);
     console.log(newData);
   };
+
+  const showConfirmation = () => {
+    setConfirmation('visible');
+    setTimeout(() => {
+      setConfirmation('hidden');
+    }, 3000);
+  };
+
   const handleSubmitAddArticle = (e) => {
     e.preventDefault();
     const addArticle = () => {
@@ -215,7 +224,7 @@ const App = () => {
           console.log(response.data);
           getArticles();
           setModalAddArticleIsOpen(false);
-          alert('Article ajouté !');
+          showConfirmation();
         })
         .catch((error) => {
           console.trace(error);
@@ -540,7 +549,15 @@ const App = () => {
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
-                <ManageArticles articles={articles} deleteArticle={deleteArticle} modalAddArticleIsOpen={modalAddArticleIsOpen} handleSubmitAddArticle={handleSubmitAddArticle} handleChangeAddArticle={handleChangeAddArticle} changeModalStateAddArticle={changeModalStateAddArticle} />
+                <ManageArticles
+                  articles={articles}
+                  deleteArticle={deleteArticle}
+                  modalAddArticleIsOpen={modalAddArticleIsOpen}
+                  handleSubmitAddArticle={handleSubmitAddArticle}
+                  handleChangeAddArticle={handleChangeAddArticle}
+                  changeModalStateAddArticle={changeModalStateAddArticle}
+                  confirmation={confirmation}
+                />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal

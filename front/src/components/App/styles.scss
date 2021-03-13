@@ -5,3 +5,17 @@
 button {
   border: none;
 }
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+  padding: 1em;
+  width: 40%;
+  margin: 1em auto;
+  border: 2px solid rgb(1, 122, 1);
+  background-color: rgb(181, 248, 181);
+  border-radius: 10px;
+}
