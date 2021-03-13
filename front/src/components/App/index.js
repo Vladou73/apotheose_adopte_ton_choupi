@@ -26,7 +26,6 @@ import ManageAnimals from '../ManageAnimals';
 import ManageArticles from '../ManageArticles';
 import ManageAnimal from '../ManageAnimal';
 import ManageArticle from '../ManageArticle';
-import ManageAddAnimal from '../ManageAddAnimal';
 
 // Function to get the animals from the back api
 const baseUrl = 'https://spa-apotheose.herokuapp.com';
@@ -51,8 +50,6 @@ const App = () => {
     // tags: [{ id: animals.tags.id }],
     // breeds: [{ id: animals.breeds.id }],
   });
-  // hook delete is checkbox in manage animals list.
-  const [deleteAnimals, setDeleteAnimals] = useState([]);
   const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
   const [articleData, setArticleData] = useState({
     title: '',
@@ -66,7 +63,6 @@ const App = () => {
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
   const [addCreatorAnimal, setAddCreatorAnimal] = useState();
 
-
   // filter articles
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -79,13 +75,11 @@ const App = () => {
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
 
-
   // Method to change the modal state to add an article (true/false)
   const changeModalStateAddArticle = () => {
     setModalAddArticleIsOpen(!modalAddArticleIsOpen);
   };
 
-  
   // Animals get list
   const getAnimals = () => {
     setLoading(true);
@@ -96,15 +90,14 @@ const App = () => {
       .then((response) => {
         setAnimals(response.data);
       })
-      .catch
-      ((error) => {
+      .catch((error) => {
         console.trace(error);
       })
       .finally(() => {
         setLoading(false);
       });
   };
-  
+
   // Breeds get list
   const getBreeds = () => {
     setLoading(true);
@@ -122,7 +115,7 @@ const App = () => {
         setLoading(false);
       });
   };
-  
+
   // Tags get list
   const getTags = () => {
     setLoading(true);
@@ -176,7 +169,7 @@ const App = () => {
         setLoading(false);
       });
   };
-  
+
   // Categories get list
   const getCategories = () => {
     setLoading(true);
@@ -194,7 +187,7 @@ const App = () => {
         setLoading(false);
       });
   };
-  
+
   // handle change & submit to add an article
 
   const handleChangeAddArticle = (e) => {
@@ -203,7 +196,7 @@ const App = () => {
     setArticleData(newData);
     console.log(newData);
   };
-const handleSubmitAddArticle = (e) => {
+  const handleSubmitAddArticle = (e) => {
     e.preventDefault();
     const addArticle = () => {
       axios({
@@ -231,7 +224,7 @@ const handleSubmitAddArticle = (e) => {
     addArticle();
   };
 
-   // Connection admin
+  // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
     const postUser = () => {
@@ -284,7 +277,7 @@ const handleSubmitAddArticle = (e) => {
           name: addNameAnimal,
           birthdate: addBirthdateAnimal,
           description: addDescriptionAnimal,
-          creator_id: addCreatorAnimal,
+          creator_id: 1,
           gender_id: addGenderAnimal,
           tags: [{ id: addTagsAnimal }],
           breeds: [{ id: addBreedsAnimal }],
@@ -383,12 +376,6 @@ const handleSubmitAddArticle = (e) => {
         });
     };
     editAnimal();
-  };
-
-  // CHECKBOX ANIMALS LIST
-  // ( TODO : only keep in the state just that are checked )
-  const checkAdminAnimalsList = (event) => {
-    setDeleteAnimals((deleteAnimals) => [...deleteAnimals, { id: event.target.value }]);
   };
 
   // NAME ONCHANGE ADD ANIMAL LIST
@@ -535,8 +522,25 @@ const handleSubmitAddArticle = (e) => {
               <Route path="/admin/gestion-animaux" exact>
                 <ManageAnimals
                   animals={animals}
-                  checkAdminAnimalsList={checkAdminAnimalsList}
                   buttonDeleteAnimals={deleteAnimalsList}
+                  // props for modal & add new animal in database
+                  changeModalStateAddArticle={changeModalStateAddArticle}
+                  modalAddArticleIsOpen={modalAddArticleIsOpen}
+                  addAnimalSubmit={addAnimalSubmit}
+                  addNameAnimal={addNameAnimal}
+                  addChangeNameAnimal={addChangeNameAnimal}
+                  addBirthdateAnimal={addBirthdateAnimal}
+                  addChangeBirthdateAnimal={addChangeBirthdateAnimal}
+                  addDescriptionAnimal={addDescriptionAnimal}
+                  addChangeDescriptionAnimal={addChangeDescriptionAnimal}
+                  addCreatorAnimal={addCreatorAnimal}
+                  addChangeCreatorAnimal={addChangeCreatorAnimal}
+                  addGenderAnimal={addGenderAnimal}
+                  addChangeGenderAnimal={addChangeGenderAnimal}
+                  addTagsAnimal={addTagsAnimal}
+                  addChangeTagsAnimal={addChangeTagsAnimal}
+                  addBreedsAnimal={addBreedsAnimal}
+                  addChangeBreedsAnimal={addChangeBreedsAnimal}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -553,25 +557,6 @@ const handleSubmitAddArticle = (e) => {
               <Route path="/admin/gestion-articles/:id" exact>
                 <ManageArticle
                   articles={articles}
-                />
-              </Route>
-              <Route path="/admin/ajout" exact>
-                <ManageAddAnimal
-                  addAnimalSubmit={addAnimalSubmit}
-                  addNameAnimal={addNameAnimal}
-                  addChangeNameAnimal={addChangeNameAnimal}
-                  addBirthdateAnimal={addBirthdateAnimal}
-                  addChangeBirthdateAnimal={addChangeBirthdateAnimal}
-                  addDescriptionAnimal={addDescriptionAnimal}
-                  addChangeDescriptionAnimal={addChangeDescriptionAnimal}
-                  addCreatorAnimal={addCreatorAnimal}
-                  addChangeCreatorAnimal={addChangeCreatorAnimal}
-                  addGenderAnimal={addGenderAnimal}
-                  addChangeGenderAnimal={addChangeGenderAnimal}
-                  addTagsAnimal={addTagsAnimal}
-                  addChangeTagsAnimal={addChangeTagsAnimal}
-                  addBreedsAnimal={addBreedsAnimal}
-                  addChangeBreedsAnimal={addChangeBreedsAnimal}
                 />
               </Route>
             </>
