@@ -21,6 +21,8 @@
     padding:2em;
   }
   &__paragraph{
+    line-height: 1.7;
+    margin: auto;
     text-align: left;
   }
   &__section {
@@ -74,7 +76,11 @@
 }
 
 @media (min-width: 1200px) {
-
+  .home {
+    &__paragraph {
+      max-width: 75%;
+    }
+  }
   .home__news {
     flex-direction: row;
     flex-wrap: nowrap;
