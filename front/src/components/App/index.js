@@ -58,8 +58,8 @@ const App = () => {
   const [addNameAnimal, setAddNameAnimal] = useState('');
   const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('');
   const [addGenderAnimal, setAddGenderAnimal] = useState();
-  const [addTagsAnimal, setAddTagsAnimal] = useState();
-  const [addBreedsAnimal, setAddBreedsAnimal] = useState();
+  const [addTagsAnimal, setAddTagsAnimal] = useState([]);
+  const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
 
   // filter articles
@@ -278,14 +278,15 @@ const App = () => {
           description: addDescriptionAnimal,
           creator_id: 1,
           gender_id: addGenderAnimal,
-          tags: [{ id: addTagsAnimal }],
-          breeds: [{ id: addBreedsAnimal }],
+          tags: addTagsAnimal,
+          breeds: addBreedsAnimal,
           medias: [{ id: 2 }],
         },
       })
         .then((response) => {
-          setAnimals(((animals) => [...animals, response.data]));
+          getAnimals();
           console.log(response.data);
+          setModalAddArticleIsOpen(false);
           alert('le choupi est ajouté');
         })
         .catch((error) => {
@@ -399,12 +400,13 @@ const App = () => {
 
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
-    setAddTagsAnimal(event.target.value);
+    setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
   };
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
   const addChangeBreedsAnimal = (event) => {
-    setAddBreedsAnimal(event.target.value);
+    // setAddBreedsAnimal(event.target.value);
+    setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
   };
 
   // ** Methode for Visitors ** //
