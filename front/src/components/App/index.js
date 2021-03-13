@@ -279,7 +279,10 @@ const App = () => {
           gender_id: addGenderAnimal,
           tags: addTagsAnimal,
           breeds: addBreedsAnimal,
-          medias: [{ id: 2 }],
+          medias: [{
+            id: 4,
+            url: 'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+          }],
         },
       })
         .then((response) => {
