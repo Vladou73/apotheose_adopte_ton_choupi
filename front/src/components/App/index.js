@@ -56,6 +56,8 @@ const App = () => {
   const [articleData, setArticleData] = useState({
     title: '',
     content: '',
+    pin: false,
+    category_id: '',
   });
   const [addNameAnimal, setAddNameAnimal] = useState('');
   const [addBirthdateAnimal, setAddBirthdateAnimal] = useState('');
