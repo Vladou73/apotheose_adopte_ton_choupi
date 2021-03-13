@@ -51,8 +51,9 @@
   margin: 2em;
 }
   &__picture {
+    min-width: 350px;
+    max-width: 100%;
     border-radius: 0.5em;
-    padding: 100px;
     background-color:#67736921;
   }
   &__title {
@@ -72,6 +73,7 @@
 }
 
 @media (min-width: 1200px) {
+
   .home__news {
     flex-direction: row;
     flex-wrap: nowrap;

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
+import cat from './cat.jpg';
 
 // == Composant
 const News = () => (
@@ -14,7 +15,7 @@ const News = () => (
     <div className="home-news__box">
       <img
         className="home-news__picture"
-        src="xxx"
+        src={cat}
         alt="article"
       />
       <div className="home-news__contain">
