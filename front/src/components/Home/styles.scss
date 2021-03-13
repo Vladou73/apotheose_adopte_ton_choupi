@@ -24,7 +24,7 @@
     text-align: left;
   }
   &__section {
-    display:block;
+    display:flex;
     margin: auto;
     margin-bottom: 2.5em;
   }
@@ -69,4 +69,11 @@
     text-align: right;
     font-size: 0.8em;
   }
+}
+
+@media (min-width: 1200px) {
+  .home__news {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
 }
