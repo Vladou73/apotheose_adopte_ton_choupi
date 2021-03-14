@@ -226,7 +226,7 @@ const App = () => {
           content: articleData.content,
           pin: false,
           author_id: 1,
-          category_id: 1,
+          category_id: articleData.category_id,
           media_id: 3,
         },
       })
