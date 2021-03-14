@@ -24,7 +24,7 @@ const ManageArticles = ({
           <label className="formAddArticle__label__title" htmlFor="title">Titre de l'article : </label>
           <input onChange={(e) => handleChangeAddArticle(e)} id="title" name="title" type="text" />
           <label className="formAddArticle__label__category" htmlFor="category-select">Catégorie :</label>
-          <select name="category" id="category-select">
+          <select className="formAddArticle__select" name="category" id="category-select">
             <option value="">-- Choisissez une catégorie --</option>
             <option value="1">Adoption</option>
             <option value="2">Maltraitance</option>
@@ -34,7 +34,7 @@ const ManageArticles = ({
           <label className="formAddArticle__label__favoris" htmlFor="pin">Favoris</label>
           <input type="checkbox" id="pin" name="pin" />
           <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
-          <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" />
+          <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" className="formAddArticle__content" />
           <button type="submit" className="manageArticles__add">Ajouter</button>
         </form>
       </div>
