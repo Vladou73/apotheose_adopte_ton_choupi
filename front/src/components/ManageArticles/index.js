@@ -11,11 +11,12 @@ import './styles.scss';
 // == Import
 
 const ManageArticles = ({
-  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmation,
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete,
 }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
-    <p className={confirmation}>Votre article a été ajouté !</p>
+    <p className={confirmationAdd}>Votre article a été ajouté !</p>
+    <p className={confirmationDelete}>L'article a été supprimé !</p>
     <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
     <Modal isOpen={modalAddArticleIsOpen}>
       <button type="button" onClick={changeModalStateAddArticle} className="manageArticles__closeModal">X</button>
@@ -46,7 +47,7 @@ const ManageArticles = ({
           <td className="manageArticles__table__head">Auteur</td>
           <td className="manageArticles__table__head">Titre</td>
           <td className="manageArticles__table__head">Date</td>
-          <td className="manageArticles__table__head">Tag</td>
+          <td className="manageArticles__table__head">Catégorie</td>
           <td className="manageArticles__table__head">Options</td>
         </tr>
         {articles.map((article) => (
@@ -87,7 +88,8 @@ ManageArticles.propTypes = {
   handleSubmitAddArticle: PropTypes.func.isRequired,
   handleChangeAddArticle: PropTypes.func.isRequired,
   changeModalStateAddArticle: PropTypes.func.isRequired,
-  confirmation: PropTypes.string.isRequired,
+  confirmationAdd: PropTypes.string.isRequired,
+  confirmationDelete: PropTypes.string.isRequired,
 };
 
 export default ManageArticles;

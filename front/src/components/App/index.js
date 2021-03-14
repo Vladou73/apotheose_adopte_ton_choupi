@@ -51,7 +51,8 @@ const App = () => {
     // breeds: [{ id: animals.breeds.id }],
   });
   const [adminUsername, setAdminUsername] = useState('');
-  const [confirmation, setConfirmation] = useState('hidden');
+  const [confirmationAdd, setConfirmationAdd] = useState('hidden');
+  const [confirmationDelete, setConfirmationDelete] = useState('hidden');
   const [modalAddArticleIsOpen, setModalAddArticleIsOpen] = useState(false);
   const [articleData, setArticleData] = useState({
     title: '',
@@ -200,10 +201,17 @@ const App = () => {
     console.log(newData);
   };
 
-  const showConfirmation = () => {
-    setConfirmation('visible');
+  const showConfirmationDelete = () => {
+    setConfirmationDelete('visible');
     setTimeout(() => {
-      setConfirmation('hidden');
+      setConfirmationDelete('hidden');
+    }, 3000);
+  };
+
+  const showConfirmationAdd = () => {
+    setConfirmationAdd('visible');
+    setTimeout(() => {
+      setConfirmationAdd('hidden');
     }, 3000);
   };
 
@@ -226,7 +234,7 @@ const App = () => {
           console.log(response.data);
           getArticles();
           setModalAddArticleIsOpen(false);
-          showConfirmation();
+          showConfirmationAdd();
         })
         .catch((error) => {
           console.trace(error);
@@ -321,7 +329,7 @@ const App = () => {
       })
         .then(() => {
           getArticles();
-          alert('Article supprimé !');
+          showConfirmationDelete();
         })
         .catch((error) => {
           console.trace(error);
@@ -558,7 +566,8 @@ const App = () => {
                   handleSubmitAddArticle={handleSubmitAddArticle}
                   handleChangeAddArticle={handleChangeAddArticle}
                   changeModalStateAddArticle={changeModalStateAddArticle}
-                  confirmation={confirmation}
+                  confirmationAdd={confirmationAdd}
+                  confirmationDelete={confirmationDelete}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
