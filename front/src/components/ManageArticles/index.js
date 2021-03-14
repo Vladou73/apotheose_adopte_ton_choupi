@@ -37,9 +37,9 @@ const ManageArticles = ({
           <div>
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
-            <button type="button" onClick={handleUpload} className="manageArticles__upluad">Aperçu de ma photo </button>
+            <button type="button" onClick={handleUpload} className="formAddArticles__upluad">Aperçu de ma photo </button>
             <p>{url}</p>
-            <img src={url} alt="" className="manageArticles__image" />
+            <img src={url} alt="" className="formAddArticle__image" />
           </div>
           <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
           <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" className="formAddArticle__content" />

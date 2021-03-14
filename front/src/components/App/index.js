@@ -291,6 +291,7 @@ const App = () => {
       })
         .then(() => {
           getAnimals();
+          showConfirmationDelete();
         })
         .catch((error) => {
           console.trace(error);
@@ -321,9 +322,9 @@ const App = () => {
         .then((response) => {
           getAnimals();
           setModalAddArticleIsOpen(false);
+          showConfirmationAdd();
           setImage(null);
           setUrl('');
-          alert('le choupi est ajouté');
           console.log(response.data);
         })
         .catch((error) => {
@@ -629,6 +630,8 @@ const App = () => {
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  confirmationAdd={confirmationAdd}
+                  confirmationDelete={confirmationDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
