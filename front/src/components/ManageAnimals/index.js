@@ -24,14 +24,14 @@ const ManagedAnimals = ({
   addChangeTagsAnimal,
   addChangeBreedsAnimal,
 }) => (
-  <div className="manageArticles">
-    <h2 className="manageArticles__title">Liste des animaux à l'adoption :</h2>
-    <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
+  <div className="manageAnimals">
+    <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
+    <button type="button" className="manageAnimals__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
 
     <Modal isOpen={modalAddArticleIsOpen}>
-      <button type="button" className="manageArticles__closeModal" onClick={changeModalStateAddArticle}>Fermer</button>
+      <button type="button" className="manageAnimals__closeModal" onClick={changeModalStateAddArticle}>Fermer</button>
       <h3>Ajouter un animal</h3>
-      <div className="formAddArticle">
+      <div className="formAddAnimal">
         <form onSubmit={addAnimalSubmit}>
           <div>
             <p>Nom de l'animal :</p>
@@ -41,7 +41,7 @@ const ManagedAnimals = ({
             <p>Description :</p>
             <textarea type="text" ows="20" cols="100" name="description" onChange={(e) => addChangeDescriptionAnimal(e)} />
           </div>
-          <div className="formAddArticle__block">
+          <div className="formAddAnimal__block">
             <p>Genre :</p>
             <label htmlFor="gender_male">
               Mâle
@@ -62,7 +62,7 @@ const ManagedAnimals = ({
               />
             </label>
           </div>
-          <div className="formAddArticle__block">
+          <div className="formAddAnimal__block">
             <p>Tags :</p>
             {
             tags.map((tag) => (
@@ -78,7 +78,7 @@ const ManagedAnimals = ({
             ))
           }
           </div>
-          <div className="formAddArticle__block">
+          <div className="formAddAnimal__block">
             <p>Race :</p>
             {
             breeds.map((breed) => (
@@ -106,11 +106,11 @@ const ManagedAnimals = ({
     <table className="manageAnimals__table">
       <thead>
         <tr>
-          <td className="manageArticles__table__head">Nom</td>
-          <td className="manageArticles__table__head">Espèce</td>
-          <td className="manageArticles__table__head">Race</td>
-          <td className="manageArticles__table__head">Date de naissance</td>
-          <td className="manageArticles__table__head">Tags</td>
+          <td className="manageAnimals__table__head">Nom</td>
+          <td className="manageAnimals__table__head">Espèce</td>
+          <td className="manageAnimals__table__head">Race</td>
+          <td className="manageAnimals__table__head">Date de naissance</td>
+          <td className="manageAnimals__table__head">Tags</td>
           <td />
         </tr>
       </thead>
@@ -137,7 +137,7 @@ const ManagedAnimals = ({
               <img
                 src={TrashIcon}
                 alt="supprimer"
-                className="manageArticles__trashIcon"
+                className="manageAnimals__trashIcon"
                 value={animalObject.id}
                 onClick={(event) => {
                   event.preventDefault();

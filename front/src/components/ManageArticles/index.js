@@ -21,9 +21,9 @@ const ManageArticles = ({
       <h3 className="manageArticles__titleModal">Ajouter un article</h3>
       <div className="formAddArticle">
         <form onSubmit={handleSubmitAddArticle}>
-          <label htmlFor="title">Titre de l'article : </label>
+          <label className="formAddArticle__label__title" htmlFor="title">Titre de l'article : </label>
           <input onChange={(e) => handleChangeAddArticle(e)} id="title" name="title" type="text" />
-          <label htmlFor="category-select">Catégorie :</label>
+          <label className="formAddArticle__label__category" htmlFor="category-select">Catégorie :</label>
           <select name="category" id="category-select">
             <option value="">-- Choisissez une catégorie --</option>
             <option value="1">Adoption</option>
@@ -31,9 +31,9 @@ const ManageArticles = ({
             <option value="3">Actu</option>
             <option value="4">Covid</option>
           </select>
-          <label htmlFor="pin" className="formAddArticle__checkbox">Favoris</label>
+          <label className="formAddArticle__label__favoris" htmlFor="pin">Favoris</label>
           <input type="checkbox" id="pin" name="pin" />
-          <label htmlFor="content">Contenu : </label>
+          <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
           <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" />
           <button type="submit" className="manageArticles__add">Ajouter</button>
         </form>
