@@ -44,12 +44,12 @@ const App = () => {
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   const [animalData, setAnimalData] = useState({
-    name: animals.name,
-    birthdate: animals.birthdate,
-    description: animals.description,
-    gender_id: animals.gender_id,
-    // tags: [{ id: animals.tags.id }],
-    // breeds: [{ id: animals.breeds.id }],
+    name: '',
+    birthdate: '',
+    description: '',
+    gender_id: '',
+    tags: '',
+    breeds: '',
   });
   const [adminUsername, setAdminUsername] = useState('');
   const [confirmationAdd, setConfirmationAdd] = useState('hidden');
@@ -378,36 +378,26 @@ const App = () => {
     // window.location = '/admin';
     setIsLogged(false);
   };
-
-  // Method onChange to edit an animal
-  const handleChangeEditAnimal = (e) => {
-    const newData = { ...animalData };
-    newData[e.target.id] = e.target.value;
-    setAnimalData(newData);
-    console.log(newData);
-    // setAnimals( animals.filter((animalObject) => animalObject.id === animalData.id));
-  };
-
   // Method onSubmit to edit an animal
-  const handleSubmitEditAnimal = (id) => {
+  const handleSubmitEditAnimal = (id, newAnimalData) => {
     console.log(id);
     const editAnimal = () => {
       axios({
         method: 'PUT',
         url: `${baseUrl}/admin/animals/${id}`,
         data: {
-          name: animalData.name,
-          birthdate: animalData.birthdate,
-          description: animalData.description,
-          gender_id: animalData.gender_id,
-          tags: [{ id: 2 }],
-          breeds: [{ id: 2 }],
+          name: newAnimalData.name,
+          birthdate: newAnimalData.birthdate,
+          description: newAnimalData.description,
+          gender_id: newAnimalData.gender_id,
+          // tags: [{ id: newAnimalData.tags }],
+          // breeds: [{ id: newAnimalData.breeds }],
         },
       })
         .then((response) => {
           console.log(response.data);
           getAnimals();
-          alert('Animal modifié !');
+          showConfirmationAdd();
         })
         .catch((error) => {
           console.trace(error);
@@ -653,12 +643,14 @@ const App = () => {
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
                   handleSubmitEditAnimal={handleSubmitEditAnimal}
-                  handleChangeEditAnimal={handleChangeEditAnimal}
                   animal={animals}
                   animalData={animalData}
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  allTags={tags}
+                  allBreeds={breeds}
+                  confirmation={confirmationAdd}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
