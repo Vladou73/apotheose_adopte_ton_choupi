@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const AdopterSubmenu = () => (
   <ul className="nav__submenu">
-    <li className="nav__submenu-item ">
+    <li className="nav__submenu-item">
       <NavLink
         to="/info_adoption"
         exact
@@ -12,7 +12,7 @@ const AdopterSubmenu = () => (
         Formalités
       </NavLink>
     </li>
-    <li className="nav__submenu-item ">
+    <li className="nav__submenu-item">
       <NavLink
         to="/animaux"
         exact

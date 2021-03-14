@@ -2,22 +2,30 @@
   text-align: center;
   width: 100%;
   background-color: #677369;
-  padding-bottom: 1em;
+  padding-bottom: 1.5em;
 }
 
 .titleHeader {
-  margin-bottom: 1em;
   margin-top: 0.5em;
   text-transform: uppercase;
   font-size: 1.5em;
   color: white;
+  letter-spacing: 3px;
 }
 
 .donate {
-  padding: 0.5em 1em;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  border-radius: 5px;
   color: white;
   background-color: #49554b;
+  letter-spacing: 1px;
+  transition: all 500ms ease;
+  &:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
 }
 
 .disconnect {
@@ -64,9 +72,10 @@ nav {
   
   a {
     display: block;
-    padding: 1em;
+    padding: .5em 1.5em;
     line-height: inherit;
     cursor: pointer;
+    letter-spacing: 2px;
   }
 }
   
@@ -77,16 +86,32 @@ nav {
 }
   
 .nav__menu-item {
-  margin-right: 3em;
+  margin-right: 5em;
   display: inline-block;
   position: relative;
-
+  border-radius: 10px;
   &:hover {
     background-color: $color;
 
     .nav__submenu {
       display: block;
     }
+  }
+}
+.nav__menu-items-withSubitems {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-right: 5em;
+  display: inline-block;
+  position: relative;
+  &:hover {
+    background-color: $color;
+    .nav__submenu {
+      display: block;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    } 
   }
 }
     
@@ -97,11 +122,14 @@ nav {
   position: absolute;
   width: $submenu-width;
   background-color: $color;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
     
 .nav__submenu-item {
   &:hover {
-    background: rgba(#000, 0.1);
+    background: rgba(#000, 0.3);
   }
   &--active {
     background-color: #49554b;

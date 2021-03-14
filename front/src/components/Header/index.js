@@ -56,7 +56,7 @@ const Header = ({ isLogged, adminDisconnect }) => (
                 </NavLink>
               </li>
               <li
-                className="nav__menu-item"
+                className="nav__menu-items-withSubitems"
               >
                 <a>Adopter</a>
                 <AdopterSubmenu />
@@ -71,7 +71,7 @@ const Header = ({ isLogged, adminDisconnect }) => (
                   Blog
                 </NavLink>
               </li>
-              <li className="nav__menu-item">
+              <li className="nav__menu-items-withSubitems">
                 <a>Agir</a>
                 <AgirSubmenu />
               </li>
