@@ -235,6 +235,12 @@ const App = () => {
           getArticles();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
+          setArticleData({
+            title: '',
+            content: '',
+            pin: false,
+            category_id: '',
+          });
         })
         .catch((error) => {
           console.trace(error);
@@ -393,6 +399,32 @@ const App = () => {
           console.log(response.data);
           getAnimals();
           alert('Animal modifié !');
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    };
+    editAnimal();
+  };
+  // Method onSubmit to edit an article
+  const handleSubmitEditArticle = (id, newArticleData) => {
+    console.log(id);
+    console.log(newArticleData);
+    const editAnimal = () => {
+      axios({
+        method: 'PUT',
+        url: `${baseUrl}/admin/articles/${id}`,
+        data: {
+          title: newArticleData.title,
+          content: newArticleData.content,
+          pin: false,
+          category_id: newArticleData.category_id,
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+          getArticles();
+          showConfirmationAdd();
         })
         .catch((error) => {
           console.trace(error);
@@ -568,6 +600,7 @@ const App = () => {
                   changeModalStateAddArticle={changeModalStateAddArticle}
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
+                  categories={categories}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
@@ -581,6 +614,9 @@ const App = () => {
               <Route path="/admin/gestion-articles/:id" exact>
                 <ManageArticle
                   articles={articles}
+                  categories={categories}
+                  handleSubmitEditArticle={handleSubmitEditArticle}
+                  confirmation={confirmationAdd}
                 />
               </Route>
             </>
