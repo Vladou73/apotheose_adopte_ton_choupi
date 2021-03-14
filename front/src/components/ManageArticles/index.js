@@ -11,7 +11,7 @@ import './styles.scss';
 // == Import
 
 const ManageArticles = ({
-  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete, categories,
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete, categories, handleChangeFirebase, handleUpload, url,
 }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
@@ -34,6 +34,13 @@ const ManageArticles = ({
           <label className="formAddArticle__label__favoris" htmlFor="pin">Favoris</label>
           <input onChange={(e) => handleChangeAddArticle(e)} type="checkbox" id="pin" name="pin" value="false" />
           */}
+          <div>
+            <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
+            <input type="file" onChange={handleChangeFirebase} />
+            <button type="button" onClick={handleUpload} className="formAddArticles__upluad">Aperçu de ma photo </button>
+            <p>{url}</p>
+            <img src={url} alt="" className="formAddArticle__image" />
+          </div>
           <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
           <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" className="formAddArticle__content" />
           <button type="submit" className="manageArticles__add">Ajouter</button>
@@ -95,6 +102,9 @@ ManageArticles.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  handleChangeFirebase: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default ManageArticles;

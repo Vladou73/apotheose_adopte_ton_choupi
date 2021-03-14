@@ -1,13 +1,20 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Error404 from '../Error404';
 
 const ManageAnimal = ({
   animal,
-  handleChangeEditAnimal,
+  allTags,
+  allBreeds,
   handleSubmitEditAnimal,
+  handleChangeFirebase,
+  handleUpload,
+  url,
+  confirmation,
+
 }) => {
   const { id } = useParams();
   const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
@@ -24,18 +31,45 @@ const ManageAnimal = ({
     medias,
   } = data;
 
+  const [animalData, setAnimalData] = useState({
+    name,
+    species_name,
+    breeds,
+    birthdate,
+    description,
+    tags,
+    gender_name,
+    medias,
+  });
+
+  // Method onChange to edit an animal
+  const handleChangeEditAnimal = (e) => {
+    const newData = { ...animalData };
+    newData[e.target.id] = e.target.value;
+    setAnimalData(newData);
+    console.log(newData);
+  };
+
   return (
 
     <div className="animal">
       <form onSubmit={(e) => {
         e.preventDefault();
-        handleSubmitEditAnimal(id);
+        handleSubmitEditAnimal(id, animalData);
       }}
       >
+        <p className={confirmation}>Votre article a été modifié !</p>
         <div className="animal__name">
-          <input type="text" id="name" name="name" placeholder={name} onChange={(e) => handleChangeEditAnimal(e)} />
+          <input type="text" id="name" name="name" value={animalData.name} onChange={(e) => handleChangeEditAnimal(e)} />
         </div>
         <img src={medias[0].url} alt={name} />
+        <div>
+          <label htmlFor="media" className=""> Modifier la photo :</label>
+          <input type="file" onChange={handleChangeFirebase} />
+          <button type="button" onClick={handleUpload} className="">Aperçu de ma photo </button>
+          <p>{url}</p>
+          <img src={url} alt="" className="" />
+        </div>
         <div className="animal__contain">
           <div className="animal__category">
             {
@@ -43,50 +77,72 @@ const ManageAnimal = ({
               ? (
                 <>
                   <p>Ajouter un tag</p>
-                  <input type="text" name="tag" />
+                  {
+            allTags.map((tag) => (
+              <label htmlFor="tag">
+                {tag.name}
+                <input
+                  type="checkbox"
+                  name="tag"
+                  value={tag.id}
+                  onChange={(e) => handleChangeEditAnimal(e)}
+                />
+              </label>
+            ))
+          }
                 </>
               )
-              : tags.map((tag) => <input key={tag.id} className="animal__category-tags" placeholder={tag.name} onChange={(e) => handleChangeEditAnimal(e)} />)
+              : allTags.map((tag) => (
+                <label htmlFor="tag">{tag.name}
+                  <input
+                    key={tag.id}
+                    className="animal__category__tags"
+                    type="checkbox"
+                    value={tag.id}
+                    onChange={(e) => handleChangeEditAnimal(e)}
+                    // checked={tag.filter((tagObject) => tagObject.id === tags.id)}
+                  />
+                </label>
+              ))
+
         }
           </div>
-          <div className="animal__category-text">
-            <input type="text" id="espèce" name="Espèce :" placeholder={species_name} onChange={(e) => handleChangeEditAnimal(e)} />
-            {breeds.map((breed) => <input type="text" id={breed.id} key={breed.id} className="animal__category-span" name="Race / Apparence : " placeholder={breed.name} onChange={(e) => handleChangeEditAnimal(e)} />)}
-            <input type="text" id="genre" name="Sexe :" placeholder={gender_name === 'female' ? ' femelle' : ' mâle'} onChange={(e) => handleChangeEditAnimal(e)} />
-            <input type="text" id="birthdate" name="birthdate" placeholder={birthdate} onChange={(e) => handleChangeEditAnimal(e)} />
+          <div className="animal__category__text">
+            <input type="text" id="espèce" name="Espèce :" value={animalData.species_name} onChange={(e) => handleChangeEditAnimal(e)} />
+            {allBreeds.map((breed) => (
+              <label htmlFor="breed">{breed.name}
+                <input
+                  key={breed.id}
+                  className="animal__category__breed"
+                  type="checkbox"
+                  value={breed.id}
+                  onChange={(e) => handleChangeEditAnimal(e)}
+                />
+              </label>
+            ))}
+            <input type="text" id="genre" name="Sexe :" value={animalData.gender_name === 'female' ? ' femelle' : ' mâle'} onChange={(e) => handleChangeEditAnimal(e)} />
+            <input type="text" id="birthdate" name="birthdate" value={animalData.birthdate} onChange={(e) => handleChangeEditAnimal(e)} />
           </div>
           <div className="animal__content">
-            <input type="text" id="description" name="description" placeholder={description} onChange={(e) => handleChangeEditAnimal(e)} />
+            <label className="animal__content__label" htmlFor="content">Contenu : </label>
+            <textarea id="description" name="description" rows="20" cols="100" className="animal__content__textarea" value={animalData.description} onChange={(e) => handleChangeEditAnimal(e)} />
           </div>
         </div>
-        <button type="submit">Sauvegarder</button>
+        <button className="animal__submit" type="submit">Sauvegarder</button>
       </form>
     </div>
   );
 };
 
 ManageAnimal.propTypes = {
-  animal: PropTypes.arrayOf(
-    PropTypes.shape({
-      /*
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      changeNameAnimal: PropTypes.string.isRequired,
-      species_name: PropTypes.string.isRequired,
-      changeSpeciesAnimal: PropTypes.string.isRequired,
-      birthdate: PropTypes.string.isRequired,
-      changeBirthdateAnimal: PropTypes.string.isRequired,
-      gender_name: PropTypes.string.isRequired,
-      changeGenderAnimal: PropTypes.string.isRequired,
-      breeds: PropTypes.array.isRequired,
-      changeBreedsAnimal: PropTypes.array.isRequired,
-      tags: PropTypes.array.isRequired,
-      changeTagAnimal: PropTypes.array.isRequired,
-      description: PropTypes.string.isRequired,
-      changeDescriptionAnimal: PropTypes.string.isRequired,
-      animalSubmit: PropTypes.string.isRequired, */
-    }),
-  ).isRequired,
+  animal: PropTypes.array.isRequired,
+  allTags: PropTypes.array.isRequired,
+  allBreeds: PropTypes.array.isRequired,
+  handleSubmitEditAnimal: PropTypes.func.isRequired,
+  handleChangeFirebase: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+  confirmation: PropTypes.string.isRequired,
 };
 
 export default ManageAnimal;

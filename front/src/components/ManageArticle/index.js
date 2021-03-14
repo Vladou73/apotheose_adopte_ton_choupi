@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -6,6 +7,7 @@ import Error404 from '../Error404';
 
 const ManageArticle = ({
   articles, categories, handleSubmitEditArticle, confirmation,
+  handleChangeFirebase, handleUpload, url,
 }) => {
   const { id } = useParams();
 
@@ -14,7 +16,6 @@ const ManageArticle = ({
   if (!data) return <Error404 />;
   const {
     title,
-    category_name,
     category_id,
     author_firstname,
     author_lastname,
@@ -68,7 +69,14 @@ const ManageArticle = ({
           <p>Date d'ajout : {created_at}</p>
         </div>
 
-        <img src={media_url} alt={title} />
+        <img src={media_url} alt="" className="" />
+        <div>
+          <label className="" htmlFor="media">Modifier la photo :</label>
+          <input type="file" onChange={handleChangeFirebase} />
+          <button type="button" onClick={handleUpload} className="">Aperçu de ma photo </button>
+          <p>{url}</p>
+          <img src={url} alt="" className="" />
+        </div>
 
         <div className="article__content">
           <label className="article__content__label" htmlFor="content">Contenu : </label>
@@ -99,6 +107,9 @@ ManageArticle.propTypes = {
   ).isRequired,
   handleSubmitEditArticle: PropTypes.func.isRequired,
   confirmation: PropTypes.string.isRequired,
+  handleChangeFirebase: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default ManageArticle;
