@@ -18,4 +18,10 @@ button {
   border: 2px solid rgb(1, 122, 1);
   background-color: rgb(181, 248, 181);
   border-radius: 10px;
+  animation: fadeIn ease 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }

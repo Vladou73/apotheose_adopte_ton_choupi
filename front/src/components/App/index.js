@@ -205,14 +205,14 @@ const App = () => {
     setConfirmationDelete('visible');
     setTimeout(() => {
       setConfirmationDelete('hidden');
-    }, 3000);
+    }, 5000);
   };
 
   const showConfirmationAdd = () => {
     setConfirmationAdd('visible');
     setTimeout(() => {
       setConfirmationAdd('hidden');
-    }, 3000);
+    }, 5000);
   };
 
   const handleSubmitAddArticle = (e) => {
