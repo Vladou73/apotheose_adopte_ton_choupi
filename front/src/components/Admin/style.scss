@@ -28,16 +28,17 @@
     padding: 1em;
     border-radius: 5px;
   }
-  & p {
+  &__subtitle {
     font-size: 1.5em;
     margin: 1em 0;
   }
   & li {
     margin: .5em;
-    &:first-letter {
-      font-size: 1.1em;
-      font-weight: bold;
-      margin-right: .2em;
-    }
+  }
+  &__number {
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-right: .2em;
   }
 }

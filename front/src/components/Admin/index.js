@@ -14,10 +14,10 @@ const Admin = ({
     <div className="admin">
       <h2 className="admin__title">Bienvenue sur l'espace Admin : {adminUsername}</h2>
       <img src="https://media.giphy.com/media/xUPGcyi4YxcZp8dWZq/source.gif" alt="cat welcome" />
-      <p>Vous avez actuellement : </p>
+      <p className="admin__subtitle">Vous avez actuellement : </p>
       <ul>
-        <li>{animalsNumber} Animaux à l'adoption</li>
-        <li>{articlesNumber} Articles dans votre blog</li>
+        <li><p className="admin__number">{animalsNumber}</p> Animaux à l'adoption</li>
+        <li><p className="admin__number">{articlesNumber}</p> Articles dans votre blog</li>
       </ul>
     </div>
     )
