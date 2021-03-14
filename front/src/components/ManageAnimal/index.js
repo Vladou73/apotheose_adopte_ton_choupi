@@ -8,6 +8,10 @@ const ManageAnimal = ({
   animal,
   handleChangeEditAnimal,
   handleSubmitEditAnimal,
+  handleChangeFirebase,
+  handleUpload,
+  url,
+
 }) => {
   const { id } = useParams();
   const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
@@ -36,6 +40,13 @@ const ManageAnimal = ({
           <input type="text" id="name" name="name" placeholder={name} onChange={(e) => handleChangeEditAnimal(e)} />
         </div>
         <img src={medias[0].url} alt={name} />
+        <div>
+          <label htmlFor="media" className=""> Modifier la photo :</label>
+          <input type="file" onChange={handleChangeFirebase} />
+          <button type="button" onClick={handleUpload} className="">Aperçu de ma photo </button>
+          <p>{url}</p>
+          <img src={url} alt="" className="" />
+        </div>
         <div className="animal__contain">
           <div className="animal__category">
             {
@@ -66,27 +77,12 @@ const ManageAnimal = ({
 };
 
 ManageAnimal.propTypes = {
-  animal: PropTypes.arrayOf(
-    PropTypes.shape({
-      /*
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      changeNameAnimal: PropTypes.string.isRequired,
-      species_name: PropTypes.string.isRequired,
-      changeSpeciesAnimal: PropTypes.string.isRequired,
-      birthdate: PropTypes.string.isRequired,
-      changeBirthdateAnimal: PropTypes.string.isRequired,
-      gender_name: PropTypes.string.isRequired,
-      changeGenderAnimal: PropTypes.string.isRequired,
-      breeds: PropTypes.array.isRequired,
-      changeBreedsAnimal: PropTypes.array.isRequired,
-      tags: PropTypes.array.isRequired,
-      changeTagAnimal: PropTypes.array.isRequired,
-      description: PropTypes.string.isRequired,
-      changeDescriptionAnimal: PropTypes.string.isRequired,
-      animalSubmit: PropTypes.string.isRequired, */
-    }),
-  ).isRequired,
+  animal: PropTypes.array.isRequired,
+  handleChangeEditAnimal: PropTypes.func.isRequired,
+  handleSubmitEditAnimal: PropTypes.func.isRequired,
+  handleChangeFirebase: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default ManageAnimal;

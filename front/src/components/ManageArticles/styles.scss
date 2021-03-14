@@ -84,6 +84,20 @@
       border-radius: 5px;
     }
   }
+  &__upluad {
+    margin-bottom: 2em;
+    background-color: #49554b;
+    color: white;
+    padding: 1em 1.5em;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+  &__image {
+    border-radius: 30px;
+    -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
+    box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
+    max-width: 600px;
+  }
 }
 
 .formAddArticle {

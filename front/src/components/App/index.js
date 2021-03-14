@@ -240,6 +240,8 @@ const App = () => {
           getArticles();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
+          setImage(null);
+          setUrl('');
           setArticleData({
             title: '',
             content: '',
@@ -318,9 +320,11 @@ const App = () => {
       })
         .then((response) => {
           getAnimals();
-          console.log(response.data);
           setModalAddArticleIsOpen(false);
+          setImage(null);
+          setUrl('');
           alert('le choupi est ajouté');
+          console.log(response.data);
         })
         .catch((error) => {
           console.trace(error);
@@ -638,6 +642,9 @@ const App = () => {
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
                   categories={categories}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
@@ -646,6 +653,9 @@ const App = () => {
                   handleChangeEditAnimal={handleChangeEditAnimal}
                   animal={animals}
                   animalData={animalData}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
@@ -654,6 +664,9 @@ const App = () => {
                   categories={categories}
                   handleSubmitEditArticle={handleSubmitEditArticle}
                   confirmation={confirmationAdd}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
             </>
