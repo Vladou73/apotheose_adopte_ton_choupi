@@ -11,7 +11,7 @@ import './styles.scss';
 // == Import
 
 const ManageArticles = ({
-  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete,
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete, categories,
 }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
@@ -28,10 +28,7 @@ const ManageArticles = ({
           <label className="formAddArticle__label__category" htmlFor="category-select">Catégorie :</label>
           <select onChange={(e) => handleChangeAddArticle(e)} className="formAddArticle__select" name="category_id" id="category_id">
             <option value="">-- Choisissez une catégorie --</option>
-            <option id="category_id" value="1">Adoption</option>
-            <option id="category_id" value="2">Maltraitance</option>
-            <option id="category_id" value="3">Actu</option>
-            <option id="category_id" value="4">Covid</option>
+            {categories.map((category) => <option id="category_id" value={category.id}>{category.name}</option>)}
           </select>
           {/*
           <label className="formAddArticle__label__favoris" htmlFor="pin">Favoris</label>
@@ -92,6 +89,12 @@ ManageArticles.propTypes = {
   changeModalStateAddArticle: PropTypes.func.isRequired,
   confirmationAdd: PropTypes.string.isRequired,
   confirmationDelete: PropTypes.string.isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default ManageArticles;
