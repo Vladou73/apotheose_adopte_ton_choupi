@@ -12,10 +12,8 @@ const ManagedAnimals = ({
   tags,
   breeds,
   buttonDeleteAnimals,
-  // modal
   modalAddArticleIsOpen,
   changeModalStateAddArticle,
-  // props for add new animal
   addAnimalSubmit,
   addChangeNameAnimal,
   addChangeBirthdateAnimal,
@@ -23,6 +21,9 @@ const ManagedAnimals = ({
   addChangeGenderAnimal,
   addChangeTagsAnimal,
   addChangeBreedsAnimal,
+  handleChangeFirebase,
+  handleUpload,
+  url,
 }) => (
   <div className="manageAnimals">
     <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
@@ -96,7 +97,10 @@ const ManagedAnimals = ({
           </div>
           <div>
             <p>Médias :</p>
-            <input type="file" />
+            <input type="file" onChange={handleChangeFirebase} />
+            <button type="button" onClick={handleUpload}>Aperçu de ma photo </button>
+            <p>Ce qu'il nous intéresse l'url visible: {url} </p>
+            <img src={url} alt="" className="formAddAnimal__image" />
           </div>
           <button type="submit">Envoyer</button>
         </form>
@@ -169,6 +173,9 @@ ManagedAnimals.propTypes = {
   addChangeGenderAnimal: PropTypes.func.isRequired,
   addChangeTagsAnimal: PropTypes.func.isRequired,
   addChangeBreedsAnimal: PropTypes.func.isRequired,
+  handleChangeFirebase: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default ManagedAnimals;

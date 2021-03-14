@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import { storage } from './firebase';
 
 // == Import
 import './styles.scss';
@@ -66,6 +67,10 @@ const App = () => {
   const [addTagsAnimal, setAddTagsAnimal] = useState([]);
   const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
+  // Firebase Upluad images
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState('');
+  const [progress, setProgress] = useState(0);
 
   // filter articles
   const [articles, setArticles] = useState([]);
@@ -307,8 +312,7 @@ const App = () => {
           tags: addTagsAnimal,
           breeds: addBreedsAnimal,
           medias: [{
-            id: 4,
-            url: 'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+            id: 1,
           }],
         },
       })
@@ -463,6 +467,36 @@ const App = () => {
     // setAddBreedsAnimal(event.target.value);
     setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
   };
+  // UPLUAD IMAGE METHOD WITH FIREBASE
+  const handleChangeFirebase = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+          });
+      },
+    );
+  };
 
   // ** Methode for Visitors ** //
   // Method filter of animals list by name
@@ -588,6 +622,9 @@ const App = () => {
                   addChangeGenderAnimal={addChangeGenderAnimal}
                   addChangeTagsAnimal={addChangeTagsAnimal}
                   addChangeBreedsAnimal={addChangeBreedsAnimal}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
