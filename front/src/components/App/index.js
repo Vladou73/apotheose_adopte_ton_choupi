@@ -410,7 +410,7 @@ const App = () => {
   const handleSubmitEditArticle = (id, newArticleData) => {
     console.log(id);
     console.log(newArticleData);
-    const editAnimal = () => {
+    const editArticle = () => {
       axios({
         method: 'PUT',
         url: `${baseUrl}/admin/articles/${id}`,
@@ -430,7 +430,7 @@ const App = () => {
           console.trace(error);
         });
     };
-    editAnimal();
+    editArticle();
   };
 
   // NAME ONCHANGE ADD ANIMAL LIST
