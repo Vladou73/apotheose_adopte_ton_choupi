@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
+import { storage } from './firebase';
 
 // == Import
 import './styles.scss';
@@ -43,12 +44,12 @@ const App = () => {
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
   const [animalData, setAnimalData] = useState({
-    name: animals.name,
-    birthdate: animals.birthdate,
-    description: animals.description,
-    gender_id: animals.gender_id,
-    // tags: [{ id: animals.tags.id }],
-    // breeds: [{ id: animals.breeds.id }],
+    name: '',
+    birthdate: '',
+    description: '',
+    gender_id: '',
+    tags: '',
+    breeds: '',
   });
   const [adminUsername, setAdminUsername] = useState('');
   const [confirmationAdd, setConfirmationAdd] = useState('hidden');
@@ -66,6 +67,10 @@ const App = () => {
   const [addTagsAnimal, setAddTagsAnimal] = useState([]);
   const [addBreedsAnimal, setAddBreedsAnimal] = useState([]);
   const [addDescriptionAnimal, setAddDescriptionAnimal] = useState('');
+  // Firebase Upluad images
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState('');
+  const [progress, setProgress] = useState(0);
 
   // filter articles
   const [articles, setArticles] = useState([]);
@@ -235,6 +240,8 @@ const App = () => {
           getArticles();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
+          setImage(null);
+          setUrl('');
           setArticleData({
             title: '',
             content: '',
@@ -284,6 +291,7 @@ const App = () => {
       })
         .then(() => {
           getAnimals();
+          showConfirmationDelete();
         })
         .catch((error) => {
           console.trace(error);
@@ -307,16 +315,17 @@ const App = () => {
           tags: addTagsAnimal,
           breeds: addBreedsAnimal,
           medias: [{
-            id: 4,
-            url: 'https://images.pexels.com/photos/1851164/pexels-photo-1851164.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+            id: 1,
           }],
         },
       })
         .then((response) => {
           getAnimals();
-          console.log(response.data);
           setModalAddArticleIsOpen(false);
-          alert('le choupi est ajouté');
+          showConfirmationAdd();
+          setImage(null);
+          setUrl('');
+          console.log(response.data);
         })
         .catch((error) => {
           console.trace(error);
@@ -369,36 +378,26 @@ const App = () => {
     // window.location = '/admin';
     setIsLogged(false);
   };
-
-  // Method onChange to edit an animal
-  const handleChangeEditAnimal = (e) => {
-    const newData = { ...animalData };
-    newData[e.target.id] = e.target.value;
-    setAnimalData(newData);
-    console.log(newData);
-    // setAnimals( animals.filter((animalObject) => animalObject.id === animalData.id));
-  };
-
   // Method onSubmit to edit an animal
-  const handleSubmitEditAnimal = (id) => {
+  const handleSubmitEditAnimal = (id, newAnimalData) => {
     console.log(id);
     const editAnimal = () => {
       axios({
         method: 'PUT',
         url: `${baseUrl}/admin/animals/${id}`,
         data: {
-          name: animalData.name,
-          birthdate: animalData.birthdate,
-          description: animalData.description,
-          gender_id: animalData.gender_id,
-          tags: [{ id: 2 }],
-          breeds: [{ id: 2 }],
+          name: newAnimalData.name,
+          birthdate: newAnimalData.birthdate,
+          description: newAnimalData.description,
+          gender_id: newAnimalData.gender_id,
+          // tags: [{ id: newAnimalData.tags }],
+          // breeds: [{ id: newAnimalData.breeds }],
         },
       })
         .then((response) => {
           console.log(response.data);
           getAnimals();
-          alert('Animal modifié !');
+          showConfirmationAdd();
         })
         .catch((error) => {
           console.trace(error);
@@ -462,6 +461,36 @@ const App = () => {
   const addChangeBreedsAnimal = (event) => {
     // setAddBreedsAnimal(event.target.value);
     setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
+  };
+  // UPLUAD IMAGE METHOD WITH FIREBASE
+  const handleChangeFirebase = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+  const handleUpload = () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref('images')
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+          });
+      },
+    );
   };
 
   // ** Methode for Visitors ** //
@@ -588,6 +617,11 @@ const App = () => {
                   addChangeGenderAnimal={addChangeGenderAnimal}
                   addChangeTagsAnimal={addChangeTagsAnimal}
                   addChangeBreedsAnimal={addChangeBreedsAnimal}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
+                  confirmationAdd={confirmationAdd}
+                  confirmationDelete={confirmationDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -601,14 +635,22 @@ const App = () => {
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
                   categories={categories}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
                   handleSubmitEditAnimal={handleSubmitEditAnimal}
-                  handleChangeEditAnimal={handleChangeEditAnimal}
                   animal={animals}
                   animalData={animalData}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
+                  allTags={tags}
+                  allBreeds={breeds}
+                  confirmation={confirmationAdd}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
@@ -617,6 +659,9 @@ const App = () => {
                   categories={categories}
                   handleSubmitEditArticle={handleSubmitEditArticle}
                   confirmation={confirmationAdd}
+                  handleChangeFirebase={handleChangeFirebase}
+                  handleUpload={handleUpload}
+                  url={url}
                 />
               </Route>
             </>
