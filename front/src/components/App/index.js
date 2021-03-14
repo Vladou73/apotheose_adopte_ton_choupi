@@ -366,7 +366,7 @@ const App = () => {
   };
     // method to disconnect admin
   const adminDisconnect = () => {
-    window.location = '/admin';
+    // window.location = '/admin';
     setIsLogged(false);
   };
 
@@ -621,16 +621,72 @@ const App = () => {
               </Route>
             </>
           )}
-          <Route path="/articles" exact>
-            <Blog
-              datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
-              categories={categories}
-              filterCategories={filterCategories}
-            />
-          </Route>
-          <Route path="/articles/:id" exact>
-            <Article article={articles} />
-          </Route>
+          {!isLogged && (
+            <>
+              <Route path="/admin/gestion-animaux" exact>
+                <Admin
+                  inputUsernameAdmin={inputUsernameAdmin}
+                  handleChangeUsername={handleChangeUsername}
+                  inputPasswordAdmin={inputPasswordAdmin}
+                  handleChangePassword={handleChangePassword}
+                  handleSubmitAdmin={handleSubmitAdmin}
+                  isLogged={isLogged}
+                  articlesNumber={articles.length}
+                  animalsNumber={animals.length}
+                  adminUsername={adminUsername}
+                />
+              </Route>
+              <Route path="/admin/gestion-articles" exact>
+                <Admin
+                  inputUsernameAdmin={inputUsernameAdmin}
+                  handleChangeUsername={handleChangeUsername}
+                  inputPasswordAdmin={inputPasswordAdmin}
+                  handleChangePassword={handleChangePassword}
+                  handleSubmitAdmin={handleSubmitAdmin}
+                  isLogged={isLogged}
+                  articlesNumber={articles.length}
+                  animalsNumber={animals.length}
+                  adminUsername={adminUsername}
+                />
+              </Route>
+              <Route path="/admin/gestion-animaux/:id" exact>
+                <Admin
+                  inputUsernameAdmin={inputUsernameAdmin}
+                  handleChangeUsername={handleChangeUsername}
+                  inputPasswordAdmin={inputPasswordAdmin}
+                  handleChangePassword={handleChangePassword}
+                  handleSubmitAdmin={handleSubmitAdmin}
+                  isLogged={isLogged}
+                  articlesNumber={articles.length}
+                  animalsNumber={animals.length}
+                  adminUsername={adminUsername}
+                />
+              </Route>
+              <Route path="/admin/gestion-articles/:id" exact>
+                <Admin
+                  inputUsernameAdmin={inputUsernameAdmin}
+                  handleChangeUsername={handleChangeUsername}
+                  inputPasswordAdmin={inputPasswordAdmin}
+                  handleChangePassword={handleChangePassword}
+                  handleSubmitAdmin={handleSubmitAdmin}
+                  isLogged={isLogged}
+                  articlesNumber={articles.length}
+                  animalsNumber={animals.length}
+                  adminUsername={adminUsername}
+                />
+              </Route>
+              <Route path="/articles" exact>
+                <Blog
+                  datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
+                  categories={categories}
+                  filterCategories={filterCategories}
+                />
+              </Route>
+              <Route path="/articles/:id" exact>
+                <Article article={articles} />
+              </Route>
+            </>
+          )}
           <Error404 />
         </Switch>
         )
