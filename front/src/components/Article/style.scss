@@ -13,6 +13,7 @@
     height: 500px;
     display: block;
     margin: 0 auto;
+    border-radius: 10px;
   }
   &__category {
     float: right;
@@ -34,5 +35,17 @@
     & p {
       margin: 1em 0;
     }
+    &__label {
+      display: block;
+      margin-bottom: 1em;
+    }
+  }
+  &__submit {
+    margin-bottom: 4em;
+    background-color: #49554b;
+    color: white;
+    padding: 1em 1.5em;
+    text-transform: uppercase;
+    border-radius: 5px;
   }
 }

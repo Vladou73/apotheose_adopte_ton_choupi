@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -25,31 +26,31 @@ const ManageArticle = ({ articles }) => {
 
     <div className="article">
       <div className="article__title">
-        <input type="text" id="title" name="ut ultrices vel augue vestibulum" value={title} />
-        <button type="button">edit</button>
+        <label htmlFor="title">Titre de l'article : </label>
+        <input type="text" id="title" name="title" placeholder={title} />
       </div>
 
       <div className="article__category">
-        <input type="text" id="category" name="Histoires" value={category_name} />
-        <button type="button">edit</button>
+        <label htmlFor="category">Catégorie : </label>
+        <input type="text" id="category" name="category" placeholder={category_name} />
       </div>
 
       <div className="article__author">
-        <input type="text" id="author" name="Léane" value={author} />
-        <button type="button">edit</button>
+        <label htmlFor="author">Auteur : </label>
+        <input type="text" id="author" name="author" placeholder={author} />
       </div>
 
       <div className="article__date">
-        <input type="text" id="date" name="19/01/2021" value={created_at} />
-        <button type="button">edit</button>
+        <p>Date d'ajout : {created_at}</p>
       </div>
 
       <img src={media_url} alt={title} />
 
       <div className="article__content">
-        <input type="text" id="content" name="Lorem ipsum" value={content} />
-        <button type="button">edit</button>
+        <label className="article__content__label" htmlFor="content">Contenu : </label>
+        <textarea className="article__content__textarea" id="content" name="content" rows="20" cols="100" placeholder={content} />
       </div>
+      <button className="article__submit" type="submit">Sauvegarder</button>
     </div>
   );
 };
