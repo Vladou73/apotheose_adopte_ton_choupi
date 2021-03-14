@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import TrashIcon from './trash.png';
+import EditIcon from './edit.png';
 
 import './styles.scss';
 // == Import
@@ -46,15 +47,22 @@ const ManageArticles = ({
           <td className="manageArticles__table__head">Titre</td>
           <td className="manageArticles__table__head">Date</td>
           <td className="manageArticles__table__head">Tag</td>
-          <td />
+          <td className="manageArticles__table__head">Options</td>
         </tr>
         {articles.map((article) => (
           <tr>
             <td>{article.author_firstname} {article.author_lastname}</td>
-            <td><Link to={`/admin/gestion-articles/${article.id}`} className="manageArticles__link">{article.title}</Link></td>
+            <td>{article.title}</td>
             <td>{article.created_at}</td>
             <td>{article.category_name}</td>
             <td>
+              <Link to={`/admin/gestion-articles/${article.id}`} className="manageArticles__link">
+                <img
+                  src={EditIcon}
+                  alt="editer"
+                  className="manageArticles__editIcon"
+                />
+              </Link>
               <img
                 src={TrashIcon}
                 alt="supprimer"
