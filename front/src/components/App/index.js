@@ -662,6 +662,7 @@ const App = () => {
                   allTags={tags}
                   allBreeds={breeds}
                   confirmation={confirmationAdd}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>

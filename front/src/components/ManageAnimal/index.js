@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Error404 from '../Error404';
+import './style.scss';
 
 const ManageAnimal = ({
   animal,
@@ -14,6 +15,7 @@ const ManageAnimal = ({
   handleUpload,
   url,
   confirmation,
+  handleUploadDelete,
 
 }) => {
   const { id } = useParams();
@@ -52,26 +54,29 @@ const ManageAnimal = ({
 
   return (
 
-    <div className="animal">
+    <div className="manage__animal">
       <form onSubmit={(e) => {
         e.preventDefault();
         handleSubmitEditAnimal(id, animalData);
       }}
       >
         <p className={confirmation}>Votre article a été modifié !</p>
-        <div className="animal__name">
-          <input type="text" id="name" name="name" value={animalData.name} onChange={(e) => handleChangeEditAnimal(e)} />
+        <div className="manage__animal__name">
+          <input className="manage__animal__input" type="text" id="name" name="name" value={animalData.name} onChange={(e) => handleChangeEditAnimal(e)} />
+          <p> Espèce : {animalData.species_name}</p>
+          <p>{animalData.gender_name === 'F=female' ? ' Femelle' : ' Mâle'}, née le {animalData.birthdate} </p>
         </div>
-        <img src={medias[0].url} alt={name} />
+        <img src={medias[0].url} alt={name} className="manage__animal__picture" />
         <div>
           <label htmlFor="media" className=""> Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
-          <button type="button" onClick={handleUpload} className="">Aperçu de ma photo </button>
+          <button type="button" onClick={handleUpload} className="manage__animal__upluad">Aperçu de ma photo </button>
+          <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
           <p>{url}</p>
           <img src={url} alt="" className="" />
         </div>
-        <div className="animal__contain">
-          <div className="animal__category">
+        <div className="manage__animal__contain">
+          <div className="manage__animal__category">
             {
             tags === null
               ? (
@@ -92,23 +97,27 @@ const ManageAnimal = ({
           }
                 </>
               )
-              : allTags.map((tag) => (
-                <label htmlFor="tag">{tag.name}
-                  <input
-                    key={tag.id}
-                    className="animal__category__tags"
-                    type="checkbox"
-                    value={tag.id}
-                    onChange={(e) => handleChangeEditAnimal(e)}
-                    // checked={tag.filter((tagObject) => tagObject.id === tags.id)}
-                  />
-                </label>
-              ))
-
+              : (
+                <>
+                  <p>Ajouter un tag</p>
+                  {
+            allTags.map((tag) => (
+              <label htmlFor="tag">
+                {tag.name}
+                <input
+                  type="checkbox"
+                  name="tag"
+                  value={tag.id}
+                  onChange={(e) => handleChangeEditAnimal(e)}
+                />
+              </label>
+            ))
+          }
+                </>
+              )
         }
           </div>
           <div className="animal__category__text">
-            <input type="text" id="espèce" name="Espèce :" value={animalData.species_name} onChange={(e) => handleChangeEditAnimal(e)} />
             {allBreeds.map((breed) => (
               <label htmlFor="breed">{breed.name}
                 <input
@@ -120,8 +129,6 @@ const ManageAnimal = ({
                 />
               </label>
             ))}
-            <input type="text" id="genre" name="Sexe :" value={animalData.gender_name === 'female' ? ' femelle' : ' mâle'} onChange={(e) => handleChangeEditAnimal(e)} />
-            <input type="text" id="birthdate" name="birthdate" value={animalData.birthdate} onChange={(e) => handleChangeEditAnimal(e)} />
           </div>
           <div className="animal__content">
             <label className="animal__content__label" htmlFor="content">Contenu : </label>
