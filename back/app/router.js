@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const csrf = require('csurf');
-const csrfProtection = csrf({cookie: true});
+// const csrf = require('csurf');
+// const csrfProtection = csrf({cookie: true});
 
 const animalController = require('./controllers/animalController');
 const speciesController = require('./controllers/speciesController');
@@ -17,22 +17,22 @@ const router = Router();
 // const routerAdmin = Router();
 
 
-router.use(csrfProtection);
+// router.use(csrfProtection);
 
-router.get('/csrf-token', (req, res) => {
-    console.log('send csrf-token');
-    res.json({ csrfToken: req.csrfToken() });
-});
+// router.get('/csrf-token', (req, res) => {
+//     console.log('send csrf-token');
+//     res.json({ csrfToken: req.csrfToken() });
+// });
 
-// error handler for csrf token
-router.use(function (err, req, res, next) {
-    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+// // error handler for csrf token
+// router.use(function (err, req, res, next) {
+//     if (err.code !== 'EBADCSRFTOKEN') return next(err)
   
-    console.log(err.code)
-  // handle CSRF token errors here
-  res.status(403)
-  res.json(err)
-})
+//     console.log(err.code)
+//   // handle CSRF token errors here
+//   res.status(403)
+//   res.json(err)
+// })
 
 
 
