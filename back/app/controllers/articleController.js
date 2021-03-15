@@ -1,6 +1,7 @@
 const { response } = require('express');
 const articleMapper = require('../dataMappers/articleMapper');
 const Article = require('../models/article');
+const mediaMapper = require('../dataMappers/mediaMapper');
 
 
 const articleController = {}
@@ -23,9 +24,26 @@ articleController.oneArticle = async (request, response) => {
 
 articleController.newArticle = async (request, response) => {
     console.log('enter articleController.newArticle')
+
+    //check if a new media has to be added to the DB ie check if client sends a new url rather than a media id
+    if (request.body.media_id && request.body.media_url){ //If properties media_id and media_url are both in req.body, throws error
+        return response.status(400).json({
+            error: `forbidden : you cannot provide media_id and media_url fields in the same query.
+             Choose either media_id to add already existing media or media_url to add new media to DB`
+        });
+    } else if (request.body.media_url){ //new media has to be added to DB
+        let media = {
+            'url':request.body.media_url,
+            'type':'image'
+        }
+        //call mapper to save new media.
+        await mediaMapper.save(media);
+        //Save/add the newly created media id in the request.body object
+        request.body.media_id = media.id;
+    }
+    
     // create instance of Article directly from data sent through payload
     const newArticle = new Article(request.body);
-    
     try {
         await articleMapper.save(newArticle);
         response.json(newArticle);
@@ -69,8 +87,25 @@ articleController.editArticle = async(request, response)=> {
         response.status(404).json(err.message);
     }
 
+    //check if a new media has to be added to the DB ie check if client sends a new url rather than a media id
+    if (request.body.media_id && request.body.media_url){ //If properties media_id and media_url are both in req.body, throws error
+        return response.status(400).json({
+            error: `forbidden : you cannot provide media_id and media_url fields in the same query.
+             Choose either media_id to add already existing media or media_url to add new media to DB`
+        });
+    } else if (request.body.media_url){ //new media has to be added to DB
+        let media = {
+            'url':request.body.media_url,
+            'type':'image'
+        }
+        //call mapper to save new media.
+        await mediaMapper.save(media);
+        //Save/add the newly created media id in the request.body object
+        request.body.media_id = media.id;
+    }
+
     //Check to keep only properties accepted from client side
-    const acceptedProperties = ['title','content','pin','category_id','media_id']
+    const acceptedProperties = ['title','content','pin','category_id','media_id','media_url']
     for (prop in request.body){
             //change to article properties the updated values
         if (acceptedProperties.includes(prop)){

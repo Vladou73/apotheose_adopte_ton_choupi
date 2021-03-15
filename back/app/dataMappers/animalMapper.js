@@ -60,6 +60,7 @@ animalMapper.findAll = async() => {
             JOIN media ON media.id = animal_media.media_id
             GROUP BY 1
         ) m ON m.animal_id = a.id
+        ORDER BY a.created_at DESC
     `
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de Animal
