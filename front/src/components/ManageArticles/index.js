@@ -38,7 +38,6 @@ const ManageArticles = ({
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
             <button type="button" onClick={handleUpload} className="formAddArticles__upluad">Aperçu de ma photo </button>
-            <p>{url}</p>
             <img src={url} alt="" className="formAddArticle__image" />
           </div>
           <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
