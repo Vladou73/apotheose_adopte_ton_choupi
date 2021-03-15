@@ -28,6 +28,7 @@ const ManagedAnimals = ({
   url,
   confirmationAdd,
   confirmationDelete,
+  handleUploadDelete,
 }) => (
   <div className="manageAnimals">
     <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
@@ -53,7 +54,7 @@ const ManagedAnimals = ({
             <label htmlFor="gender_male">
               Mâle
               <input
-                type="checkbox"
+                type="radio"
                 name="gender"
                 value={1}
                 onChange={(e) => addChangeGenderAnimal(e)}
@@ -62,7 +63,7 @@ const ManagedAnimals = ({
             <label htmlFor="gender_female">
               Femelle
               <input
-                type="checkbox"
+                type="radio"
                 name="gender"
                 value={2}
                 onChange={(e) => addChangeGenderAnimal(e)}
@@ -76,7 +77,7 @@ const ManagedAnimals = ({
               <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="tag"
                   value={tag.id}
                   onChange={(e) => addChangeTagsAnimal(e)}
@@ -92,7 +93,7 @@ const ManagedAnimals = ({
               <label htmlFor="breed" key={breed.id}>
                 {breed.name}
                 <input
-                  type="checkbox"
+                  type="radio"
                   name="breed"
                   value={breed.id}
                   onChange={(e) => addChangeBreedsAnimal(e)}
@@ -105,7 +106,7 @@ const ManagedAnimals = ({
             <label className="formAddAnimal__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
             <button type="button" className="formAddAnimal__upluad" onClick={handleUpload}>Aperçu de ma photo </button>
-            <p>{url}</p>
+            <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
             <img src={url} alt="" className="formAddAnimal__image" />
           </div>
           <button type="submit">Envoyer</button>
@@ -183,6 +184,7 @@ ManagedAnimals.propTypes = {
   url: PropTypes.string.isRequired,
   confirmationAdd: PropTypes.string.isRequired,
   confirmationDelete: PropTypes.string.isRequired,
+  handleUploadDelete: PropTypes.func.isRequired,
 };
 
 export default ManagedAnimals;

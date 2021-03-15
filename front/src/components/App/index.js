@@ -391,8 +391,8 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.tags }],
-          // breeds: [{ id: newAnimalData.breeds }],
+          // tags: [{ id: newAnimalData.id }],
+          // breeds: [{ id: newAnimalData.id }],
           medias: [{
             url,
             type: 'image',
@@ -472,6 +472,11 @@ const App = () => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+  };
+
+  const handleUploadDelete = () => {
+    setImage(null);
+    setUrl('');
   };
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -627,6 +632,7 @@ const App = () => {
                   url={url}
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -656,6 +662,7 @@ const App = () => {
                   allTags={tags}
                   allBreeds={breeds}
                   confirmation={confirmationAdd}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>

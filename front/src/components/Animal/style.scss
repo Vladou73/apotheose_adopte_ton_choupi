@@ -9,15 +9,20 @@
     font-size: 1.5em;
   }
   &__picture {
-    // max-width: 100%;
+    max-width: 50%;
     border-radius: 0.5em;
     background-color:#67736921;
   }
   &__category {
     padding: 2em auto;
     &-tags {
+      margin: 1em auto;
       text-transform: uppercase;
-      padding: 1em;
+      padding: 0.5em;     
+      background-color: #ef9999;
+      color: #fff;
+      border-radius: 5px;
+      width: 100px;
     }
     &-text {
       margin: 0.5em auto;
