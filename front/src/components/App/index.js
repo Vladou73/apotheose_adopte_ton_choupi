@@ -315,7 +315,8 @@ const App = () => {
           tags: addTagsAnimal,
           breeds: addBreedsAnimal,
           medias: [{
-            id: 1,
+            url,
+            type: 'image',
           }],
         },
       })
@@ -392,6 +393,10 @@ const App = () => {
           gender_id: newAnimalData.gender_id,
           // tags: [{ id: newAnimalData.tags }],
           // breeds: [{ id: newAnimalData.breeds }],
+          medias: [{
+            url,
+            type: 'image',
+          }],
         },
       })
         .then((response) => {
