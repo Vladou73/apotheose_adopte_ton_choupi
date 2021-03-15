@@ -149,6 +149,7 @@ ManageAnimal.propTypes = {
   handleUpload: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
   confirmation: PropTypes.string.isRequired,
+  handleUploadDelete: PropTypes.func.isRequired,
 };
 
 export default ManageAnimal;
