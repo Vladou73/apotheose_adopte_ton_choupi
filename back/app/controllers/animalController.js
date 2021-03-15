@@ -28,11 +28,19 @@ animalController.oneAnimal = async (request, response) => {
 
 animalController.newAnimal = async (request, response) => {
     console.log('enter animalController.newAnimal')
+    
+    //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
+    if (request.body['medias']) { // check if medias change have been asked
+        for (media of request.body['medias']) { 
+            if (media.url){//check for all media if it a new media (ie if an url is sent)
+                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+            }
+        }
+    }
+
     // on crée directement notre model à partir des données envoyées dans le payload
     const newAnimal = new Animal(request.body);
     // console.log('request.body',request.body);
-    
-    // response.json(newAnimal)
     
     try {
         await animalMapper.save(newAnimal);
@@ -75,9 +83,6 @@ animalController.editAnimal = async (request, response)=>{
     } catch (err) { // Error thrown in data mapper gets here
         response.status(404).json(err.message);
     }
-
-    console.log('animal was found: ',animal);
-
 
     //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
     if (request.body['medias']) { // check if medias change have been asked
