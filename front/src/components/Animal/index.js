@@ -32,17 +32,15 @@ const Animal = ({ animal }) => {
         src={medias[0].url}
         alt={name}
       />
+
       <div className="animal__contain">
-        {/* DESCRIPTION OF CARACTERISTICS ANIMALS */}
+        {
+        tags === null
+          ? <p>Nouveau pensionnaires, nous évaluons son comportement pour le moment.</p>
+          : tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)
+      }
         <div className="animal__category">
-          {/* !! PROBLEM SPACE BETWEEN VALUES && ALL ANIMALS REQUIERE MIN ONE TAG!! */}
-          {
-            tags === null
-              ? <p>Nouveau pensionnaires, nous évaluons son comportement pour le moment.</p>
-              : tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)
-            }
           <p className="animal__category-text">Espèce : {species_name}</p>
-          {/* !! PROBLEM SPACE BETWEEN VALUES !! */}
           <p className="animal__category-text">Race / Apparence : {
             breeds.map((breed) => <span className="animal__category-span" key={breed.id}>{breed.name}</span>)
 }
@@ -50,12 +48,10 @@ const Animal = ({ animal }) => {
           <p className="animal__category-text">Sexe :{gender_name === 'female' ? ' femelle' : ' mâle'}</p>
           <p className="animal__category-text">Date de naissance : {birthdate}</p>
         </div>
-        {/* DESCRIPTION PARAGRAPH ANIMALS */}
         <div className="animal__content">
           <p>{description}</p>
         </div>
       </div>
-      {/* REDIRECTION */}
       <Link
         to="/info_adoption"
         className="animal__link animal__link-adoption"

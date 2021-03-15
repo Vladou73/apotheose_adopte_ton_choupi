@@ -473,6 +473,11 @@ const App = () => {
       setImage(e.target.files[0]);
     }
   };
+
+  const handleUploadDelete = () => {
+    setImage(null);
+    setUrl('');
+  };
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     uploadTask.on(
@@ -627,6 +632,7 @@ const App = () => {
                   url={url}
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
