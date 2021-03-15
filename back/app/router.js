@@ -16,16 +16,33 @@ const router = Router();
 // const routerPublic = Router();
 // const routerAdmin = Router();
 
+
+router.use(csrfProtection);
+
+router.get('/csrf-token', (req, res) => {
+    console.log('send csrf-token');
+    res.json({ csrfToken: req.csrfToken() });
+});
+
+// error handler for csrf token
+router.use(function (err, req, res, next) {
+    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+  
+    console.log(err.code)
+  // handle CSRF token errors here
+  res.status(403)
+  res.json(err)
+})
+
+
+
 //authentification with JWT
 router.post('/admin/signIn', userController.signIn); // sign in with JWT stored in cookie
 // router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
-router.use(csrfProtection);
-router.get('/csrf-token', (req, res) => {
-    console.log('send csrf-token');
-    res.json({ csrfToken: req.csrfToken() });
-});
+
+
 
 router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
