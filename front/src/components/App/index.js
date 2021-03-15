@@ -391,8 +391,8 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.tags }],
-          // breeds: [{ id: newAnimalData.breeds }],
+          // tags: [{ id: newAnimalData.id }],
+          // breeds: [{ id: newAnimalData.id }],
           medias: [{
             url,
             type: 'image',
