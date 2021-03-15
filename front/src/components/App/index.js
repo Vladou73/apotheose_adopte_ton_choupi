@@ -462,13 +462,13 @@ const App = () => {
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
     setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
-    setAddTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
+    addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
   };
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
   const addChangeBreedsAnimal = (event) => {
     setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
-    setAddBreedsAnimal.filter((breeds, index) => addBreedsAnimal.indexOf(breeds) === index);
+    addBreedsAnimal.filter((breeds, index) => addBreedsAnimal.indexOf(breeds) === index);
   };
   // UPLUAD IMAGE METHOD WITH FIREBASE
   const handleChangeFirebase = (e) => {

@@ -77,7 +77,7 @@ const ManagedAnimals = ({
               <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="tag"
                   value={tag.id}
                   onChange={(e) => addChangeTagsAnimal(e)}
@@ -93,7 +93,7 @@ const ManagedAnimals = ({
               <label htmlFor="breed" key={breed.id}>
                 {breed.name}
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="breed"
                   value={breed.id}
                   onChange={(e) => addChangeBreedsAnimal(e)}
