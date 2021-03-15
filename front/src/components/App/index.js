@@ -232,7 +232,7 @@ const App = () => {
           pin: false,
           author_id: 1,
           category_id: articleData.category_id,
-          media_id: 3,
+          media_url: url,
         },
       })
         .then((response) => {
@@ -247,6 +247,7 @@ const App = () => {
             content: '',
             pin: false,
             category_id: '',
+            media_url: url,
           });
         })
         .catch((error) => {
@@ -423,6 +424,7 @@ const App = () => {
           content: newArticleData.content,
           pin: false,
           category_id: newArticleData.category_id,
+          media_url: url,
         },
       })
         .then((response) => {

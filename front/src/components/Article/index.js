@@ -21,14 +21,11 @@ const Article = ({ article }) => {
     <div className="article">
       <h2 className="article__title">{title}</h2>
       <span className="article__category">{category_name}</span>
-      <span className="article__author">{author_firstname} {author_lastname}</span>
-      <span className="article__date">{created_at}</span>
       <img src={media_url} alt={title} />
       <div className="article__content">
         <p>{content}</p>
-      </div>
-      <div className="article__similar">
-        Bonus
+        <span className="article__author">{author_firstname} {author_lastname}</span>
+        <span className="article__date">{created_at}</span>
       </div>
     </div>
   );
