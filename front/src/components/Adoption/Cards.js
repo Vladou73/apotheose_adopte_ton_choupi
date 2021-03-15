@@ -13,19 +13,19 @@ const Cards = ({
 }) => (
   <Link to={`/animaux/${id}`}>
     <div className="card-animal">
-      <p className="card-animal__name">{name}</p>
+      <h2 className="card-animal__name">{name}</h2>
       <img
         className="card-animal__picture"
         src={medias[0].url}
         alt={name}
       />
-      <span className="card-animal__span">{birthdate}</span>
-      <span className="card-animal__span">
+      <p className="card-animal__span">Née le {birthdate}</p>
+      <p className="card-animal__span">
         {
         gender_name === 'female' ? 'Femelle' : 'Mâle'
         }
-      </span>
-      <span className="card-animal__span">Voir la fiche</span>
+      </p>
+      <span className="card-animal__animal">Voir la fiche</span>
     </div>
   </Link>
 );
