@@ -18,8 +18,8 @@ userController = {
     authenticate : (request, response, next) => {
         console.log('entered userController.authenticate');
         userService.authenticate(request)
-            // .then(next())
-            .then(decoded => response.json(decoded))
+            .then(next())
+            // .then(decoded => response.json(decoded))
             .catch((err)=>{
                 return response.json(err);
             });

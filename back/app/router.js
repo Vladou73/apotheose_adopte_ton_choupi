@@ -16,7 +16,7 @@ const router = Router();
 
 //authentification with JWT
 router.post('/admin/signIn', userController.signIn); // sign in with JWT stored in cookie
-router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
+// router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
 router.use(csrfProtection);
