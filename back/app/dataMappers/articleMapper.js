@@ -24,6 +24,7 @@ articleMapper.findAll = async() => {
         JOIN "user" u ON u.id = a.author_id
         LEFT JOIN media m ON m.id = a.media_id
         LEFT JOIN category c ON c.id = a.category_id
+        ORDER BY a.created_at DESC
     `
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de Article
