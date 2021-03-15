@@ -676,6 +676,7 @@ const App = () => {
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
             </>

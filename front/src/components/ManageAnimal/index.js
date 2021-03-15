@@ -72,7 +72,6 @@ const ManageAnimal = ({
           <input type="file" onChange={handleChangeFirebase} />
           <button type="button" onClick={handleUpload} className="manage__animal__upluad">Aperçu de ma photo </button>
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
-          <p>{url}</p>
           <img src={url} alt="" className="" />
         </div>
         <div className="manage__animal__contain">
@@ -135,7 +134,7 @@ const ManageAnimal = ({
             <textarea id="description" name="description" rows="20" cols="100" className="animal__content__textarea" value={animalData.description} onChange={(e) => handleChangeEditAnimal(e)} />
           </div>
         </div>
-        <button className="animal__submit" type="submit">Sauvegarder</button>
+        <button className="manage__animal__submit" type="submit">Sauvegarder</button>
       </form>
     </div>
   );
