@@ -9,6 +9,8 @@ const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
 const articleController = require('./controllers/articleController');
 const categoryController = require('./controllers/categoryController');
+const mediaController = require('./controllers/mediaController');
+
 
 const router = Router();
 // const routerPublic = Router();
@@ -37,6 +39,8 @@ router.route('/admin/articles/:id(\\d+)')
     .delete(userController.authenticate, articleController.deleteArticle)
     .put(userController.authenticate, articleController.editArticle);
 
+router.post('/admin/addMedia', mediaController.newMedia);
+
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
@@ -48,6 +52,13 @@ router.get('/tags', tagController.allTags);
 router.get('/categories', categoryController.allCategories);
 router.get('/articles', articleController.allArticles);
 
+//other routes
+router.get('/medias', mediaController.allMedias);
+router.route('/medias/:id(\\d+)')
+    .get(mediaController.oneMedia)
+    .delete(mediaController.deleteMedia)
+    .put(mediaController.editMedia);
+    
 
 //ROUTE INUTILE, A SUPPRIMER
 //regex data validation : id has to be a digit
