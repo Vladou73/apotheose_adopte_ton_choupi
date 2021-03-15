@@ -56,7 +56,12 @@ router.route('/admin/articles/:id(\\d+)')
     .delete(userController.authenticate, articleController.deleteArticle)
     .put(userController.authenticate, articleController.editArticle);
 
+    
 router.post('/admin/addMedia', mediaController.newMedia);
+router.route('/admin/medias/:id(\\d+)')
+    .get(mediaController.oneMedia)
+    .delete(mediaController.deleteMedia)
+    .put(mediaController.editMedia);
 
 
 //animal infos
@@ -71,10 +76,6 @@ router.get('/articles', articleController.allArticles);
 
 //other routes
 router.get('/medias', mediaController.allMedias);
-router.route('/medias/:id(\\d+)')
-    .get(mediaController.oneMedia)
-    .delete(mediaController.deleteMedia)
-    .put(mediaController.editMedia);
     
 
 //ROUTE INUTILE, A SUPPRIMER
