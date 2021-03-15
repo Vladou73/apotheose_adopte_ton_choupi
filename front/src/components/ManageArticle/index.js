@@ -61,7 +61,7 @@ const ManageArticle = ({
           </select>
         </div>
         <div>
-          <img src={media_url || url} alt="" className="article__image" />
+          <img src={url || media_url} alt="" className="article__image" />
           <label className="" htmlFor="media">Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
           <button type="button" onClick={handleUpload} className="article__upluad">Aperçu de ma photo </button>

@@ -66,13 +66,12 @@ const ManageAnimal = ({
           <p> Espèce : {animalData.species_name}</p>
           <p>{animalData.gender_name === 'F=female' ? ' Femelle' : ' Mâle'}, née le {animalData.birthdate} </p>
         </div>
-        <img src={medias[0].url} alt={name} className="manage__animal__picture" />
+        <img src={url || medias[0].url} alt={name} className="manage__animal__picture" />
         <div>
           <label htmlFor="media" className=""> Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
           <button type="button" onClick={handleUpload} className="manage__animal__upluad">Aperçu de ma photo </button>
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
-          <img src={url} alt="" className="" />
         </div>
         <div className="manage__animal__contain">
           <div className="manage__animal__category">
