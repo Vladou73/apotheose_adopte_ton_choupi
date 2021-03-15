@@ -262,7 +262,7 @@ const App = () => {
     const postUser = () => {
       axios({
         method: 'POST',
-        url: `${baseUrl}/admin`,
+        url: `${baseUrl}/admin/signIn`,
         data: {
           username: inputUsernameAdmin,
           password: inputPasswordAdmin,
