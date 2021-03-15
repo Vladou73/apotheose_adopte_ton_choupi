@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const csrf = require('csurf');
-const csrfProtection = csrf({cookie: true});
+// const csrf = require('csurf');
+// const csrfProtection = csrf({cookie: true});
 
 const animalController = require('./controllers/animalController');
 const speciesController = require('./controllers/speciesController');
@@ -9,21 +9,40 @@ const tagController = require('./controllers/tagController');
 const userController = require('./controllers/userController');
 const articleController = require('./controllers/articleController');
 const categoryController = require('./controllers/categoryController');
+const mediaController = require('./controllers/mediaController');
+
 
 const router = Router();
 // const routerPublic = Router();
 // const routerAdmin = Router();
+
+
+// router.use(csrfProtection);
+
+// router.get('/csrf-token', (req, res) => {
+//     console.log('send csrf-token');
+//     res.json({ csrfToken: req.csrfToken() });
+// });
+
+// // error handler for csrf token
+// router.use(function (err, req, res, next) {
+//     if (err.code !== 'EBADCSRFTOKEN') return next(err)
+  
+//     console.log(err.code)
+//   // handle CSRF token errors here
+//   res.status(403)
+//   res.json(err)
+// })
+
+
 
 //authentification with JWT
 router.post('/admin/signIn', userController.signIn); // sign in with JWT stored in cookie
 // router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
-router.use(csrfProtection);
-router.get('/csrf-token', (req, res) => {
-    console.log('send csrf-token');
-    res.json({ csrfToken: req.csrfToken() });
-});
+
+
 
 router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
@@ -37,6 +56,8 @@ router.route('/admin/articles/:id(\\d+)')
     .delete(userController.authenticate, articleController.deleteArticle)
     .put(userController.authenticate, articleController.editArticle);
 
+router.post('/admin/addMedia', mediaController.newMedia);
+
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
@@ -48,6 +69,13 @@ router.get('/tags', tagController.allTags);
 router.get('/categories', categoryController.allCategories);
 router.get('/articles', articleController.allArticles);
 
+//other routes
+router.get('/medias', mediaController.allMedias);
+router.route('/medias/:id(\\d+)')
+    .get(mediaController.oneMedia)
+    .delete(mediaController.deleteMedia)
+    .put(mediaController.editMedia);
+    
 
 //ROUTE INUTILE, A SUPPRIMER
 //regex data validation : id has to be a digit
