@@ -10,9 +10,9 @@ const Footer = () => (
       <p className="titleFooter__text">Adopte ton choupi</p>
     </div>
     <div className="adress">
-      <p className="adress__street">123 rue,</p>
-      <p className="adress__country">12345 Ville, Pays</p>
-      <p className="adress__mail">bonjour@siteweb.com</p>
+      <p className="adress__street">10 rue Penthièvre</p>
+      <p className="adress__country">75008, Paris, France</p>
+      <p className="adress__mail">adoptetonchoupi@gmail.com</p>
     </div>
     <div className="copyright">
       <a href="#"><img className="copyright__fbLogo" src={FacebookLogo} alt="Facebook logo" /></a>
