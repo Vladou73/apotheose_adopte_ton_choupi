@@ -80,8 +80,10 @@ const App = () => {
   // filter animals
   const [filterAnimalsReset, setFilterAnimalsReset] = useState('');
   const [inputTextAnimals, setInputTextAnimals] = useState('');
-  // * Not use for the moment * //
   const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
+  const [checkboxGenderAnimals, setCheckboxGenderAnimals] = useState('');
+  const [checkboxAgeAnimals, setCheckboxAgeAnimals] = useState('');
+  // * Not use for the moment * //
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
 
@@ -525,34 +527,46 @@ const App = () => {
     setInputTextAnimals(event);
     setFilterAnimalsReset(false);
   };
-  const filterNameAnimals = (
-    animals.filter((animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase())));
+  // const filterNameAnimals = (
+  //   animals.filter((animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase())));
 
-  // ** Not use for the moment ** //
-  // CHECKBOX SPECIES
+  // SPECIES FILTER
   const filterSpecies = (event) => {
     setCheckboxSpeciesAnimals(event.target.value);
     setFilterAnimalsReset(false);
   };
-  // const filterSpeciesAnimals = (
-  //   animals.filter((animalsObject) => animalsObject.species_name.includes(checkboxSpeciesAnimals)));
-
+  // GENDER FILTER ! bug
+  const filterGender = (event) => {
+    setCheckboxGenderAnimals(event.target.value);
+    setFilterAnimalsReset(false);
+    console.log(event);
+  };
+  // AGE FILTER ! bug
+  const filterAge = (event) => {
+    setCheckboxAgeAnimals(event.target.value);
+    setFilterAnimalsReset(false);
+  };
   // CHECKBOX BREEDS ! bug
   const filterBreeds = (event) => {
     setCheckboxBreedsAnimals(event.value);
     setFilterAnimalsReset(false);
   };
-  //  const filterBreedsAnimals = (
-  //    animals.filter((animalsObject) => animalsObject.species_id.includes(checkboxBreedsAnimals)));
-
   // SELECT BREEDS ! bug
   const filterTags = (event) => {
     setSelectTagsAnimals(event.value);
     setFilterAnimalsReset(false);
   };
-  //  const filterTagsAnimals = (
-  //    tags.filter((articlesObject) => articlesObject.name.toLowerCase().includes(selectTagsAnimals.toLowerCase(), animals)));
-  // ** //
+
+  const newAnimalsList = animals.filter((animal) => {
+    // const breedsObject = { ...animal.breeds };
+    // const filterByBreeds = checkboxBreedsAnimals ? breedsObject.name === checkboxBreedsAnimals : true;
+    // const filterByGender = checkboxGenderAnimals ? animal.gender_id === checkboxGenderAnimals : true;
+
+    const filterByName = inputTextAnimals ? animal.name === inputTextAnimals : true;
+    const filterBySpecies = checkboxSpeciesAnimals ? animal.species_name === checkboxSpeciesAnimals : true;
+
+    return (filterByName && filterBySpecies);
+  });
 
   // reset filters of animals list
   const resetFilterAnimals = (event) => {
@@ -566,7 +580,6 @@ const App = () => {
     setPageArticles(1);
   };
   const filterCategoriesArticles = articles.filter(
-    // eslint-disable-next-line max-len
     (articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()),
   );
 
@@ -584,7 +597,7 @@ const App = () => {
           </Route>
           <Route path="/animaux" exact>
             <Adoption
-              animals={filterAnimalsReset ? animals : filterNameAnimals}
+              animals={filterAnimalsReset ? animals : newAnimalsList}
               breeds={breeds}
               tags={tags}
               species={species}
@@ -595,6 +608,8 @@ const App = () => {
               filterTags={filterTags}
               filterSpecies={filterSpecies}
               filterBreeds={filterBreeds}
+              filterGender={filterGender}
+              filterAge={filterAge}
               resetFilterAnimals={resetFilterAnimals}
             />
           </Route>

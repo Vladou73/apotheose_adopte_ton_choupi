@@ -15,6 +15,8 @@ const Search = ({
   filterTags,
   filterSpecies,
   filterBreeds,
+  filterAge,
+  filterGender,
   resetFilterAnimals,
 }) => (
   <div className="search-div search-form">
@@ -69,7 +71,7 @@ const Search = ({
         {breeds.map((breed) => (
           <option
             key={breed.id}
-            value={breed.species_id}
+            value={breed.name}
             onChange={filterBreeds}
           >
             {breed.name}
@@ -123,8 +125,10 @@ const Search = ({
             className="search-form__checkbox"
             id="gender-female"
             aria-describedby="gender"
-            type="radio"
-            name="gender"
+            type="checkbox"
+
+            value={2}
+            onChange={filterGender}
           />
         </label>
       </div>
@@ -138,8 +142,10 @@ const Search = ({
             className="search-form__checkbox"
             id="gender-male"
             aria-describedby="gender"
-            type="radio"
-            name="gender"
+            type="checkbox"
+
+            value={1}
+            onChange={filterGender}
           />
         </label>
       </div>
@@ -160,6 +166,7 @@ const Search = ({
             aria-describedby="junior"
             type="radio"
             name="age"
+            onChange={filterAge}
           />
         </label>
         <label
@@ -173,6 +180,7 @@ const Search = ({
             aria-describedby="adulte"
             type="radio"
             name="age"
+            onChange={filterAge}
           />
         </label>
         <label
@@ -186,6 +194,7 @@ const Search = ({
             aria-describedby="senior"
             type="radio"
             name="age"
+            onChange={filterAge}
           />
         </label>
       </div>
