@@ -4,7 +4,19 @@ const db = require('../database');
 const articleMapper = {};
 
 // get all articles in DB
-articleMapper.findAll = async() => {  
+articleMapper.findAll = async(request) => {  
+    
+    let pagination = ` `
+    if (request.query.page) {
+        let page = Number(request.query.page);
+        if (request.query.items){
+            let itemsPerPage = Number(request.query.items)
+            pagination = `LIMIT ${itemsPerPage} OFFSET ${(page - 1) * itemsPerPage}`
+        } else {
+            pagination = `LIMIT 10 OFFSET ${(page - 1) * 10}`
+        }
+    }
+    
     const query = `
         SELECT
             a.id,
@@ -25,6 +37,7 @@ articleMapper.findAll = async() => {
         LEFT JOIN media m ON m.id = a.media_id
         LEFT JOIN category c ON c.id = a.category_id
         ORDER BY a.created_at DESC
+        ${pagination}
     `
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de Article

@@ -17,7 +17,19 @@ const table_infos = {
 }
 
 // get all animals in DB
-animalMapper.findAll = async() => {  
+animalMapper.findAll = async(request) => {  
+    
+    let pagination = ` `
+    if (request.query.page) {
+        let page = Number(request.query.page);
+        if (request.query.items){
+            let itemsPerPage = Number(request.query.items)
+            pagination = `LIMIT ${itemsPerPage} OFFSET ${(page - 1) * itemsPerPage}`
+        } else {
+            pagination = `LIMIT 10 OFFSET ${(page - 1) * 10}`
+        }
+    }
+
     const query = `
         SELECT
             a.id,
@@ -61,6 +73,7 @@ animalMapper.findAll = async() => {
             GROUP BY 1
         ) m ON m.animal_id = a.id
         ORDER BY a.created_at DESC
+        ${pagination}
     `
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de Animal
