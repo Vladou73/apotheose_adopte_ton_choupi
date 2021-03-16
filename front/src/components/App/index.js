@@ -88,10 +88,23 @@ const App = () => {
     setModalAddArticleIsOpen(!modalAddArticleIsOpen);
   };
 
+  // Articles get list
+  const getArticles = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${baseUrl}/articles`);
+      setArticles(response.data);
+    }
+    catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
   // Animals get list
-  const getAnimals = () => {
+  const getAnimals = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/animals`,
     })
@@ -107,9 +120,9 @@ const App = () => {
   };
 
   // Breeds get list
-  const getBreeds = () => {
+  const getBreeds = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/breeds`,
     })
@@ -125,9 +138,9 @@ const App = () => {
   };
 
   // Tags get list
-  const getTags = () => {
+  const getTags = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/tags`,
     })
@@ -143,9 +156,9 @@ const App = () => {
   };
 
   // Species get list
-  const getSpecies = () => {
+  const getSpecies = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/species`,
     })
@@ -160,28 +173,10 @@ const App = () => {
       });
   };
 
-  // Articles get list
-  const getArticles = () => {
-    setLoading(true);
-    axios({
-      method: 'get',
-      url: `${baseUrl}/articles`,
-    })
-      .then((response) => {
-        setArticles(response.data);
-      })
-      .catch((error) => {
-        console.trace(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
   // Categories get list
-  const getCategories = () => {
+  const getCategories = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/categories`,
     })
@@ -195,6 +190,16 @@ const App = () => {
         setLoading(false);
       });
   };
+
+  // Hooks effects
+  useEffect(() => {
+    getArticles();
+    getAnimals();
+    getBreeds();
+    getTags();
+    getSpecies();
+    getCategories();
+  }, []);
 
   // handle change & submit to add an article
 
@@ -221,8 +226,8 @@ const App = () => {
 
   const handleSubmitAddArticle = (e) => {
     e.preventDefault();
-    const addArticle = () => {
-      axios({
+    const addArticle = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/addArticle`,
         data: {
@@ -259,8 +264,8 @@ const App = () => {
   // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
-    const postUser = () => {
-      axios({
+    const postUser = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/signIn`,
         data: {
@@ -283,9 +288,9 @@ const App = () => {
   };
 
   // Animal delete list
-  const deleteAnimalsList = (animal) => {
+  const deleteAnimalsList = async (animal) => {
     if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
-      axios({
+      await axios({
         method: 'delete',
         url: `${baseUrl}/admin/animals/${animal.id}`,
       })
@@ -302,8 +307,8 @@ const App = () => {
   // Animal add list
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
-    const postAnimal = () => {
-      axios({
+    const postAnimal = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/addAnimal`,
         data: {
@@ -336,10 +341,10 @@ const App = () => {
     postAnimal();
   };
 
-  const deleteArticle = (article) => {
+  const deleteArticle = async (article) => {
     if (window.confirm(`Etes vous sur de vouloir supprimer l'article : ${article.title} ?`)) {
       setLoading(true);
-      axios({
+      await axios({
         method: 'delete',
         url: `${baseUrl}/admin/articles/${article.id}`,
       })
@@ -355,16 +360,6 @@ const App = () => {
         });
     }
   };
-
-  // Hooks effects
-  useEffect(() => {
-    getAnimals();
-    getBreeds();
-    getTags();
-    getSpecies();
-    getArticles();
-    getCategories();
-  }, []);
 
   // ** Method for Admin ** //
   // Control input admin page connection
@@ -382,8 +377,8 @@ const App = () => {
   // Method onSubmit to edit an animal
   const handleSubmitEditAnimal = (id, newAnimalData) => {
     console.log(id);
-    const editAnimal = () => {
-      axios({
+    const editAnimal = async () => {
+      await axios({
         method: 'PUT',
         url: `${baseUrl}/admin/animals/${id}`,
         data: {
@@ -414,8 +409,8 @@ const App = () => {
   const handleSubmitEditArticle = (id, newArticleData) => {
     console.log(id);
     console.log(newArticleData);
-    const editArticle = () => {
-      axios({
+    const editArticle = async () => {
+      await axios({
         method: 'PUT',
         url: `${baseUrl}/admin/articles/${id}`,
         data: {
@@ -565,7 +560,7 @@ const App = () => {
         !loading && (
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Home articles={articles} />
           </Route>
           <Route path="/animaux" exact>
             <Adoption
