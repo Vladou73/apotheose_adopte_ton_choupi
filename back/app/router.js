@@ -75,6 +75,15 @@ router.route('/admin/categories/:id(\\d+)')
     .delete(categoryController.deleteCategory)
     .put(categoryController.editCategory);
 
+
+router.post('/admin/addSpecies', speciesController.newSpecies);
+router.route('/admin/species/:id(\\d+)')
+    .get(speciesController.oneSpecies)
+    .delete(speciesController.deleteSpecies)
+    .put(speciesController.editSpecies);
+
+
+
 //animal infos
 router.get('/animals', animalController.allAnimals); // route with processing of pagination parameters included
 router.get('/species', speciesController.allSpecies);
