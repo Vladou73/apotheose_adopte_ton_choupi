@@ -11,7 +11,7 @@ import './styles.scss';
 // == Import
 
 const ManageArticles = ({
-  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete, categories, handleChangeFirebase, handleUpload, url,
+  articles, deleteArticle, modalAddArticleIsOpen, handleSubmitAddArticle, handleChangeAddArticle, changeModalStateAddArticle, confirmationAdd, confirmationDelete, categories, handleChangeFirebase, handleUpload, url, progress,
 }) => (
   <div className="manageArticles">
     <h2 className="manageArticles__title">Liste des articles :</h2>
@@ -37,6 +37,7 @@ const ManageArticles = ({
           <div>
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
+            <progress value={progress} max="100" />
             <button type="button" onClick={handleUpload} className="formAddArticles__upluad">Aperçu de ma photo </button>
             <img src={url} alt="" className="formAddArticle__image" />
           </div>

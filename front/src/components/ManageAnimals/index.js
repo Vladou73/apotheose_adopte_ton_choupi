@@ -29,6 +29,7 @@ const ManagedAnimals = ({
   confirmationAdd,
   confirmationDelete,
   handleUploadDelete,
+  progress,
 }) => (
   <div className="manageAnimals">
     <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
@@ -107,6 +108,8 @@ const ManagedAnimals = ({
             <input type="file" onChange={handleChangeFirebase} />
             <button type="button" className="formAddAnimal__upluad" onClick={handleUpload}>Aperçu de ma photo </button>
             <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
+
+            <progress value={progress} max="100" />
             <img src={url} alt="" className="formAddAnimal__image" />
           </div>
           <button type="submit">Envoyer</button>

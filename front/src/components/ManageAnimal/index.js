@@ -16,6 +16,7 @@ const ManageAnimal = ({
   url,
   confirmation,
   handleUploadDelete,
+  progress,
 
 }) => {
   const { id } = useParams();
@@ -70,6 +71,7 @@ const ManageAnimal = ({
         <div>
           <label htmlFor="media" className=""> Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
+          <progress value={progress} max="100" />
           <button type="button" onClick={handleUpload} className="manage__animal__upluad">Aperçu de ma photo </button>
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
         </div>

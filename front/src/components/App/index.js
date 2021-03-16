@@ -251,6 +251,7 @@ const App = () => {
           showConfirmationAdd();
           setImage(null);
           setUrl('');
+          setProgress(0);
           setArticleData({
             title: '',
             content: '',
@@ -336,6 +337,7 @@ const App = () => {
           showConfirmationAdd();
           setImage(null);
           setUrl('');
+          setProgress(0);
           console.log(response.data);
         })
         .catch((error) => {
@@ -413,6 +415,7 @@ const App = () => {
           console.log(response.data);
           getAnimals();
           showConfirmationAdd();
+          setProgress(0);
         })
         .catch((error) => {
           console.trace(error);
@@ -440,6 +443,7 @@ const App = () => {
           console.log(response.data);
           getArticles();
           showConfirmationAdd();
+          setProgress(0);
         })
         .catch((error) => {
           console.trace(error);
@@ -645,6 +649,7 @@ const App = () => {
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -661,6 +666,7 @@ const App = () => {
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
@@ -675,6 +681,7 @@ const App = () => {
                   allBreeds={breeds}
                   confirmation={confirmationAdd}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
@@ -687,6 +694,7 @@ const App = () => {
                   handleUpload={handleUpload}
                   url={url}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
             </>
