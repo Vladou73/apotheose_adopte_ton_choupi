@@ -39,6 +39,8 @@ const App = () => {
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
+  const [pageAnimals, setPageAnimals] = useState(1);
+  const [pageArticles, setPageArticles] = useState(1);
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
@@ -88,17 +90,12 @@ const App = () => {
     setModalAddArticleIsOpen(!modalAddArticleIsOpen);
   };
 
-  // Articles get list
-  const getArticles = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(`${baseUrl}/articles`);
-      setArticles(response.data);
-    }
-    catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
+  const onClickPageAnimals = (event) => {
+    setPageAnimals(event);
+  };
+
+  const onClickPageArticles = (event) => {
+    setPageArticles(event);
   };
 
   // Animals get list
@@ -106,7 +103,7 @@ const App = () => {
     setLoading(true);
     await axios({
       method: 'get',
-      url: `${baseUrl}/animals`,
+      url: `${baseUrl}/animals?page=${pageAnimals}&items=8`,
     })
       .then((response) => {
         setAnimals(response.data);
@@ -164,6 +161,24 @@ const App = () => {
     })
       .then((response) => {
         setSpecies(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  // Articles get list
+  const getArticles = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/articles?page=${pageArticles}&items=8`,
+    })
+      .then((response) => {
+        setArticles(response.data);
       })
       .catch((error) => {
         console.trace(error);
@@ -246,6 +261,7 @@ const App = () => {
           showConfirmationAdd();
           setImage(null);
           setUrl('');
+          setProgress(0);
           setArticleData({
             title: '',
             content: '',
@@ -331,6 +347,7 @@ const App = () => {
           showConfirmationAdd();
           setImage(null);
           setUrl('');
+          setProgress(0);
           console.log(response.data);
         })
         .catch((error) => {
@@ -360,6 +377,16 @@ const App = () => {
         });
     }
   };
+
+  // Hooks effects
+  useEffect(() => {
+    getAnimals();
+    getBreeds();
+    getTags();
+    getSpecies();
+    getArticles();
+    getCategories();
+  }, [pageAnimals, pageArticles]);
 
   // ** Method for Admin ** //
   // Control input admin page connection
@@ -398,6 +425,7 @@ const App = () => {
           console.log(response.data);
           getAnimals();
           showConfirmationAdd();
+          setProgress(0);
         })
         .catch((error) => {
           console.trace(error);
@@ -425,6 +453,7 @@ const App = () => {
           console.log(response.data);
           getArticles();
           showConfirmationAdd();
+          setProgress(0);
         })
         .catch((error) => {
           console.trace(error);
@@ -544,6 +573,7 @@ const App = () => {
   // Method for filter articles with categories
   const filterCategories = (event) => {
     setButtonCategories(event.target.value);
+    setPageArticles(1);
   };
   const filterCategoriesArticles = articles.filter(
     // eslint-disable-next-line max-len
@@ -568,6 +598,8 @@ const App = () => {
               breeds={breeds}
               tags={tags}
               species={species}
+              onClickPageAnimals={onClickPageAnimals}
+              pageAnimals={pageAnimals}
               inputTextAnimals={inputTextAnimals}
               filterName={filterName}
               filterTags={filterTags}
@@ -627,6 +659,7 @@ const App = () => {
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -643,6 +676,7 @@ const App = () => {
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
@@ -657,6 +691,7 @@ const App = () => {
                   allBreeds={breeds}
                   confirmation={confirmationAdd}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
@@ -669,6 +704,7 @@ const App = () => {
                   handleUpload={handleUpload}
                   url={url}
                   handleUploadDelete={handleUploadDelete}
+                  progress={progress}
                 />
               </Route>
             </>
@@ -732,6 +768,8 @@ const App = () => {
                   datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
                   categories={categories}
                   filterCategories={filterCategories}
+                  onClickPageArticles={onClickPageArticles}
+                  pageArticles={pageArticles}
                 />
               </Route>
               <Route path="/articles/:id" exact>

@@ -8,7 +8,7 @@ import './style.scss';
 
 const ManageArticle = ({
   articles, categories, handleSubmitEditArticle, confirmation,
-  handleChangeFirebase, handleUpload, url, handleUploadDelete,
+  handleChangeFirebase, handleUpload, url, handleUploadDelete, progress,
 }) => {
   const { id } = useParams();
 
@@ -64,6 +64,7 @@ const ManageArticle = ({
           <img src={url || media_url} alt="" className="article__image" />
           <label className="" htmlFor="media">Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
+          <progress value={progress} max="100" />
           <button type="button" onClick={handleUpload} className="article__upluad">Aperçu de ma photo </button>
           <button type="button" className="article__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
           <label className="article__content__label" htmlFor="content">Contenu : </label>
@@ -104,6 +105,7 @@ ManageArticle.propTypes = {
   handleUpload: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
   handleUploadDelete: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default ManageArticle;
