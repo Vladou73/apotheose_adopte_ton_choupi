@@ -21,7 +21,6 @@ import Footer from '../Footer';
 import Error404 from '../Error404';
 import Join from '../Join';
 import Admin from '../Admin';
-import Participate from '../Participate';
 import Loading from '../Loading';
 import ManageAnimals from '../ManageAnimals';
 import ManageArticles from '../ManageArticles';
@@ -590,9 +589,6 @@ const App = () => {
           </Route>
           <Route path="/rejoindre" exact>
             <Join />
-          </Route>
-          <Route path="/participer" exact>
-            <Participate />
           </Route>
           <Route path="/don" exact>
             <Donate />

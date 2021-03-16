@@ -12,14 +12,6 @@ const AgirSubmenu = () => (
         Rejoindre l'association
       </NavLink>
     </li>
-    <li className="nav__submenu-item">
-      <NavLink
-        to="/participer"
-        exact
-      >
-        Participer occasionnellement
-      </NavLink>
-    </li>
   </ul>
 );
 
