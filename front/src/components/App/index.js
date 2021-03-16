@@ -39,6 +39,8 @@ const App = () => {
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
+  const [pageAnimals, setPageAnimals] = useState(1);
+  const [pageArticles, setPageArticles] = useState(1);
   // Admin
   const [inputUsernameAdmin, setInputUsernameAdmin] = useState('');
   const [inputPasswordAdmin, setInputPasswordAdmin] = useState('');
@@ -88,12 +90,20 @@ const App = () => {
     setModalAddArticleIsOpen(!modalAddArticleIsOpen);
   };
 
+  const onClickPageAnimals = (event) => {
+    setPageAnimals(event);
+  };
+
+  const onClickPageArticles = (event) => {
+    setPageArticles(event);
+  };
+
   // Animals get list
   const getAnimals = () => {
     setLoading(true);
     axios({
       method: 'get',
-      url: `${baseUrl}/animals`,
+      url: `${baseUrl}/animals?page=${pageAnimals}&items=8`,
     })
       .then((response) => {
         setAnimals(response.data);
@@ -165,7 +175,7 @@ const App = () => {
     setLoading(true);
     axios({
       method: 'get',
-      url: `${baseUrl}/articles`,
+      url: `${baseUrl}/articles?page=${pageArticles}&items=8`,
     })
       .then((response) => {
         setArticles(response.data);
@@ -364,7 +374,7 @@ const App = () => {
     getSpecies();
     getArticles();
     getCategories();
-  }, []);
+  }, [pageAnimals, pageArticles]);
 
   // ** Method for Admin ** //
   // Control input admin page connection
@@ -549,6 +559,7 @@ const App = () => {
   // Method for filter articles with categories
   const filterCategories = (event) => {
     setButtonCategories(event.target.value);
+    setPageArticles(1);
   };
   const filterCategoriesArticles = articles.filter(
     // eslint-disable-next-line max-len
@@ -573,6 +584,8 @@ const App = () => {
               breeds={breeds}
               tags={tags}
               species={species}
+              onClickPageAnimals={onClickPageAnimals}
+              pageAnimals={pageAnimals}
               inputTextAnimals={inputTextAnimals}
               filterName={filterName}
               filterTags={filterTags}
@@ -737,6 +750,8 @@ const App = () => {
                   datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
                   categories={categories}
                   filterCategories={filterCategories}
+                  onClickPageArticles={onClickPageArticles}
+                  pageArticles={pageArticles}
                 />
               </Route>
               <Route path="/articles/:id" exact>

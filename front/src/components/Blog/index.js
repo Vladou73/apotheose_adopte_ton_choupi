@@ -1,10 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pagination from 'react-js-pagination';
 import Category from './category';
 import Article from './article';
 import './style.scss';
 
-const Blog = ({ datas, categories, filterCategories }) => (
+const Blog = ({
+  datas, categories, filterCategories, onClickPageArticles,
+  pageArticles,
+}) => (
   <div className="blog">
     <h2 className="blog__title">Nos articles</h2>
     <div className="blog__categories">
@@ -17,6 +22,20 @@ const Blog = ({ datas, categories, filterCategories }) => (
     <div className="blog__articles">
       {datas.map((data) => <Article key={data.id} {...data} />)}
     </div>
+    <Pagination
+      activePage={pageArticles}
+      itemsCountPerPage={3}
+      pageRangeDisplayed={3}
+      totalItemsCount={100}
+      onChange={onClickPageArticles}
+      prevPageText="<"
+      firstPageText=".."
+      lastPageText=".."
+      nextPageText=">"
+      innerClass="pagination"
+      activeClass="pagination__active"
+      itemClass="pagination__li"
+    />
   </div>
 );
 
@@ -28,6 +47,8 @@ Blog.propTypes = {
   ).isRequired,
   categories: PropTypes.array.isRequired,
   filterCategories: PropTypes.func.isRequired,
+  onClickPageArticles: PropTypes.func.isRequired,
+  pageArticles: PropTypes.number.isRequired,
 };
 
 export default Blog;
