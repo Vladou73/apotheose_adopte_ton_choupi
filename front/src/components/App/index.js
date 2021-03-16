@@ -661,7 +661,7 @@ const App = () => {
             <>
               <Route path="/admin/gestion-animaux" exact>
                 <ManageAnimals
-                  animals={animals}
+                  animals={allAnimals}
                   tags={tags}
                   breeds={breeds}
                   buttonDeleteAnimals={deleteAnimalsList}
