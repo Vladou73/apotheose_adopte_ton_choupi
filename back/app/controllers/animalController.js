@@ -6,9 +6,10 @@ const mediaMapper = require('../dataMappers/mediaMapper');
 
 const animalController = {}
 
-animalController.allAnimals = async (_, response) => {
+animalController.allAnimals = async (request, response) => {
     console.log('enter animalController.allAnimals')
-    const animals = await animalMapper.findAll();
+
+    const animals = await animalMapper.findAll(request);
 
     //add animal age and age category
     animalsResult = animalService.addAgeLabels(animals);

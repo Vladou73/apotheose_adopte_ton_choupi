@@ -66,6 +66,7 @@ router.route('/admin/medias/:id(\\d+)')
 
 //animal infos
 router.get('/animals', animalController.allAnimals);
+router.get('/animals/page/:page', animalController.allAnimals);
 router.get('/species', speciesController.allSpecies);
 router.get('/breeds', breedController.allBreeds);
 router.get('/tags', tagController.allTags);
