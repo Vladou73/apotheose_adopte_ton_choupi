@@ -35,6 +35,7 @@ const App = () => {
   // States hooks
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
+  const [allAnimals, setAllAnimals] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
@@ -115,6 +116,24 @@ const App = () => {
         setLoading(false);
       });
   };
+
+  const getAllAnimals = async () => {
+    setLoading(true);
+    await axios({
+      method: 'get',
+      url: `${baseUrl}/animals`,
+    })
+      .then((response) => {
+        setAllAnimals(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
 
   // Breeds get list
   const getBreeds = async () => {
@@ -210,6 +229,7 @@ const App = () => {
   useEffect(() => {
     getArticles();
     getAnimals();
+    getAllAnimals();
     getBreeds();
     getTags();
     getSpecies();
@@ -595,6 +615,7 @@ const App = () => {
           <Route path="/animaux" exact>
             <Adoption
               animals={filterAnimalsReset ? animals : filterNameAnimals}
+              animalsCount={allAnimals.length}
               breeds={breeds}
               tags={tags}
               species={species}

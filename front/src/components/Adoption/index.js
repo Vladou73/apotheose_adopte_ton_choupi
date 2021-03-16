@@ -12,6 +12,7 @@ import Cards from './Cards';
 // == Composant
 const Adoption = ({
   inputTextAnimals,
+  animalsCount,
   filterName,
   animals,
   breeds,
@@ -40,9 +41,9 @@ const Adoption = ({
       resetFilterAnimals={resetFilterAnimals}
     />
     <section className="section-animals">
-      <h2 className="section-animals__title">{animals.length}
+      <h2 className="section-animals__title">{animalsCount}
         {
-        animals.length === 1 ? " animal à l'adoption" : " animaux à l'adoption"
+        animalsCount === 1 ? " animal à l'adoption" : " animaux à l'adoption"
       }
       </h2>
       <div className="cards-animals">
@@ -50,9 +51,9 @@ const Adoption = ({
       </div>
       <Pagination
         activePage={pageAnimals}
-        itemsCountPerPage={3}
+        itemsCountPerPage={8}
         pageRangeDisplayed={3}
-        totalItemsCount={100}
+        totalItemsCount={animalsCount}
         onChange={onClickPageAnimals}
         prevPageText="<"
         firstPageText=".."
@@ -80,6 +81,7 @@ Adoption.propTypes = {
   filterTags: PropTypes.func.isRequired,
   onClickPageAnimals: PropTypes.func.isRequired,
   pageAnimals: PropTypes.number.isRequired,
+  animalsCount: PropTypes.number.isRequired,
 };
 
 // == Export
