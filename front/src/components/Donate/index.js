@@ -25,7 +25,7 @@ const Donate = () => (
 
     <p>Nulla mollis massa lectus. Donec sed accumsan nunc. Vivamus in velit ut neque iaculis condimentum quis sit amet ex. Praesent vel luctus lorem, in pretium augue. Vestibulum nibh dui, tincidunt consectetur lacus eu, fermentum condimentum lectus. Ut in elit bibendum, pulvinar nunc eu, interdum sapien. Curabitur arcu turpis, lobortis at semper vitae, convallis a arcu.</p>
 
-    <form action="https://www.paypal.com/donate" method="post" target="_top">
+    <form action="https://www.paypal.com/donate" method="post" target="_top" target="_blank">
       <input type="hidden" name="hosted_button_id" value="E2TBRY6SRN7B6" />
       <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
       <img alt="" border="0" src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" width="1" height="1" />
