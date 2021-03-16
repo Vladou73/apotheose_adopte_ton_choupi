@@ -63,14 +63,17 @@ router.route('/admin/medias/:id(\\d+)')
     .delete(mediaController.deleteMedia)
     .put(mediaController.editMedia);
 
-
-
 router.post('/admin/addTag', tagController.newTag);
 router.route('/admin/tags/:id(\\d+)')
     .get(tagController.oneTag)
     .delete(tagController.deleteTag)
     .put(tagController.editTag);
 
+router.post('/admin/addCategory', categoryController.newCategory);
+router.route('/admin/categories/:id(\\d+)')
+    .get(categoryController.oneCategory)
+    .delete(categoryController.deleteCategory)
+    .put(categoryController.editCategory);
 
 //animal infos
 router.get('/animals', animalController.allAnimals); // route with processing of pagination parameters included
