@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // == Import npm
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pagination from 'react-js-pagination';
 
 // == Import
 import './styles.scss';
@@ -19,6 +21,8 @@ const Adoption = ({
   filterSpecies,
   filterBreeds,
   resetFilterAnimals,
+  onClickPageAnimals,
+  pageAnimals,
 }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
@@ -44,6 +48,20 @@ const Adoption = ({
       <div className="cards-animals">
         {animals.map((animal) => <Cards key={animal.id} {...animal} />)}
       </div>
+      <Pagination
+        activePage={pageAnimals}
+        itemsCountPerPage={3}
+        pageRangeDisplayed={3}
+        totalItemsCount={100}
+        onChange={onClickPageAnimals}
+        prevPageText="<"
+        firstPageText=".."
+        lastPageText=".."
+        nextPageText=">"
+        innerClass="pagination"
+        activeClass="pagination__active"
+        itemClass="pagination__li"
+      />
     </section>
   </div>
 );
@@ -60,6 +78,8 @@ Adoption.propTypes = {
   inputTextAnimals: PropTypes.string.isRequired,
   filterName: PropTypes.func.isRequired,
   filterTags: PropTypes.func.isRequired,
+  onClickPageAnimals: PropTypes.func.isRequired,
+  pageAnimals: PropTypes.number.isRequired,
 };
 
 // == Export
