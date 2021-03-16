@@ -105,6 +105,7 @@ ManageArticle.propTypes = {
   handleUpload: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
   handleUploadDelete: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default ManageArticle;

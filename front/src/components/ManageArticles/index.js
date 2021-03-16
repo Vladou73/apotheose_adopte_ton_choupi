@@ -105,6 +105,7 @@ ManageArticles.propTypes = {
   handleChangeFirebase: PropTypes.func.isRequired,
   handleUpload: PropTypes.func.isRequired,
   url: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default ManageArticles;

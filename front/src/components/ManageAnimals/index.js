@@ -188,6 +188,7 @@ ManagedAnimals.propTypes = {
   confirmationAdd: PropTypes.string.isRequired,
   confirmationDelete: PropTypes.string.isRequired,
   handleUploadDelete: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default ManagedAnimals;
