@@ -36,6 +36,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
   const [allAnimals, setAllAnimals] = useState([]);
+  const [allArticles, setAllArticles] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
@@ -207,6 +208,23 @@ const App = () => {
       });
   };
 
+  const getAllArticles = () => {
+    setLoading(true);
+    axios({
+      method: 'get',
+      url: `${baseUrl}/articles`,
+    })
+      .then((response) => {
+        setAllArticles(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Categories get list
   const getCategories = async () => {
     setLoading(true);
@@ -230,6 +248,7 @@ const App = () => {
     getArticles();
     getAnimals();
     getAllAnimals();
+    getAllArticles();
     getBreeds();
     getTags();
     getSpecies();
@@ -685,7 +704,7 @@ const App = () => {
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles
-                  articles={articles}
+                  articles={allArticles}
                   deleteArticle={deleteArticle}
                   modalAddArticleIsOpen={modalAddArticleIsOpen}
                   handleSubmitAddArticle={handleSubmitAddArticle}
@@ -791,6 +810,7 @@ const App = () => {
                   filterCategories={filterCategories}
                   onClickPageArticles={onClickPageArticles}
                   pageArticles={pageArticles}
+                  articlesCount={allArticles.length}
                 />
               </Route>
               <Route path="/articles/:id" exact>

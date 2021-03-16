@@ -8,7 +8,7 @@ import './style.scss';
 
 const Blog = ({
   datas, categories, filterCategories, onClickPageArticles,
-  pageArticles,
+  pageArticles, articleCount,
 }) => (
   <div className="blog">
     <h2 className="blog__title">Nos articles</h2>
@@ -24,9 +24,9 @@ const Blog = ({
     </div>
     <Pagination
       activePage={pageArticles}
-      itemsCountPerPage={3}
+      itemsCountPerPage={6}
       pageRangeDisplayed={3}
-      totalItemsCount={100}
+      totalItemsCount={articleCount}
       onChange={onClickPageArticles}
       prevPageText="<"
       firstPageText=".."
@@ -49,6 +49,7 @@ Blog.propTypes = {
   filterCategories: PropTypes.func.isRequired,
   onClickPageArticles: PropTypes.func.isRequired,
   pageArticles: PropTypes.number.isRequired,
+  articleCount: PropTypes.number.isRequired,
 };
 
 export default Blog;
