@@ -42,8 +42,6 @@ router.post('/admin/signIn', userController.signIn); // sign in with JWT stored 
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
 
-
-
 router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
     .get(userController.authenticate, animalController.oneAnimal)
@@ -56,7 +54,6 @@ router.route('/admin/articles/:id(\\d+)')
     .delete(userController.authenticate, articleController.deleteArticle)
     .put(userController.authenticate, articleController.editArticle);
 
-    
 router.post('/admin/addMedia', mediaController.newMedia);
 router.route('/admin/medias/:id(\\d+)')
     .get(mediaController.oneMedia)
@@ -75,13 +72,17 @@ router.route('/admin/categories/:id(\\d+)')
     .delete(categoryController.deleteCategory)
     .put(categoryController.editCategory);
 
-
 router.post('/admin/addSpecies', speciesController.newSpecies);
 router.route('/admin/species/:id(\\d+)')
     .get(speciesController.oneSpecies)
     .delete(speciesController.deleteSpecies)
     .put(speciesController.editSpecies);
 
+router.post('/admin/addBreed', breedController.newBreed);
+router.route('/admin/breeds/:id(\\d+)')
+    .get(breedController.oneBreed)
+    .delete(breedController.deleteBreed)
+    .put(breedController.editBreed);
 
 
 //animal infos

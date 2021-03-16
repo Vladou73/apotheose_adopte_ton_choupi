@@ -49,9 +49,7 @@ speciesMapper.save = async (theSpecies) => {
 
 speciesMapper.deleteOne = async(id)=>{
     console.log('enter speciesMapper.deleteOne')
-    
     const query = `DELETE FROM species WHERE id = $1 RETURNING *;`
-    console.log(query)
     try {
         const result = await db.query(query, [id]);
         return result.rows[0];

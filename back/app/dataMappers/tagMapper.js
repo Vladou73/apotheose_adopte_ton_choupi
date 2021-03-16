@@ -4,7 +4,7 @@ const db = require('../database');
 const tagMapper = {}
 
 tagMapper.findAll = async() => {
-        const query = `SELECT id, name, color FROM tag`
+        const query = `SELECT id, name, color FROM tag ORDER BY name;`
         const result = await db.query(query);
         // et les retourne, sous forme d'instances de Breed
         return result.rows.map(tag => new Tag(tag));
@@ -12,7 +12,7 @@ tagMapper.findAll = async() => {
 }    
 
 tagMapper.findOne = async(id) => {  
-    const query = `SELECT id, name, color, created_at FROM tag WHERE id = $1 ORDER BY created_at DESC`
+    const query = `SELECT id, name, color FROM tag WHERE id = $1;`
     try{
         const result = await db.query(query, [id]);
         return result.rows[0];

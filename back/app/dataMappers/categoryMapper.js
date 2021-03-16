@@ -4,7 +4,7 @@ const db = require('../database');
 const categoryMapper = {}
 
 categoryMapper.findAll = async() => {  
-    const query = `SELECT id, name, color FROM category;`
+    const query = `SELECT id, name, color FROM category ORDER BY name;`
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de Categories
     return result.rows.map(category => new Category(category));
@@ -12,7 +12,7 @@ categoryMapper.findAll = async() => {
 }
 
 categoryMapper.findOne = async(id) => {  
-    const query = `SELECT id, name, color, created_at FROM category WHERE id = $1 ORDER BY created_at DESC`
+    const query = `SELECT id, name, color FROM category WHERE id = $1;`
     try {
         const result = await db.query(query, [id]);
         return result.rows[0];
