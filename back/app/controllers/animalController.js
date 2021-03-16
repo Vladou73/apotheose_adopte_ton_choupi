@@ -8,7 +8,7 @@ const animalController = {}
 
 animalController.allAnimals = async (request, response) => {
     console.log('enter animalController.allAnimals')
-
+    // request paramter is used for pagination : limit & offset
     const animals = await animalMapper.findAll(request);
 
     //add animal age and age category

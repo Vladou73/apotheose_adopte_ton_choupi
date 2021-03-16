@@ -20,8 +20,8 @@ const table_infos = {
 animalMapper.findAll = async(request) => {  
     
     let pagination = ` `
-    if (request.params.page) {
-        let page = Number(request.params.page);
+    if (request.query.page) {
+        let page = Number(request.query.page);
         if (request.query.items){
             let itemsPerPage = Number(request.query.items)
             pagination = `LIMIT ${itemsPerPage} OFFSET ${(page - 1) * itemsPerPage}`
@@ -29,7 +29,7 @@ animalMapper.findAll = async(request) => {
             pagination = `LIMIT 10 OFFSET ${(page - 1) * 10}`
         }
     }
-    
+
     const query = `
         SELECT
             a.id,
