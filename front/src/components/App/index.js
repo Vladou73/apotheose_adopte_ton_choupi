@@ -390,7 +390,7 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.tags }],
+          // tags: [{ id: newAnimalData.tags} }],
           // breeds: [{ id: newAnimalData.breeds }],
         },
       })
