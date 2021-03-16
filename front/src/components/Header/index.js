@@ -11,8 +11,9 @@ const Header = ({ isLogged, adminDisconnect }) => (
     { isLogged
       ? (
         <>
-          <img className="logoHeader" src={Logo} alt="Logo adopte ton choupi" />
-          <h1 className="titleHeader">Adopte ton choupi</h1>
+          <Link to="/admin"><img className="logoHeader" src={Logo} alt="Logo adopte ton choupi" />
+            <h1 className="titleHeader">Adopte ton choupi</h1>
+          </Link>
           <nav className="nav">
             <ul className="nav__menu">
               <li
@@ -42,9 +43,9 @@ const Header = ({ isLogged, adminDisconnect }) => (
       )
       : (
         <>
-          <a href="/"><img className="logoHeader" src={Logo} alt="Logo adopte ton choupi" />
+          <Link to="/"><img className="logoHeader" src={Logo} alt="Logo adopte ton choupi" />
             <h1 className="titleHeader">Adopte ton choupi</h1>
-          </a>
+          </Link>
           <nav className="nav">
             <ul className="nav__menu">
               <li className="nav__menu-item">

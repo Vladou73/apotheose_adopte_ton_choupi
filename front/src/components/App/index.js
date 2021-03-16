@@ -232,7 +232,7 @@ const App = () => {
           pin: false,
           author_id: 1,
           category_id: articleData.category_id,
-          media_id: 3,
+          media_url: url,
         },
       })
         .then((response) => {
@@ -247,6 +247,7 @@ const App = () => {
             content: '',
             pin: false,
             category_id: '',
+            media_url: url,
           });
         })
         .catch((error) => {
@@ -262,7 +263,7 @@ const App = () => {
     const postUser = () => {
       axios({
         method: 'POST',
-        url: `${baseUrl}/admin`,
+        url: `${baseUrl}/admin/signIn`,
         data: {
           username: inputUsernameAdmin,
           password: inputPasswordAdmin,
@@ -315,7 +316,8 @@ const App = () => {
           tags: addTagsAnimal,
           breeds: addBreedsAnimal,
           medias: [{
-            id: 1,
+            url,
+            type: 'image',
           }],
         },
       })
@@ -418,6 +420,7 @@ const App = () => {
           content: newArticleData.content,
           pin: false,
           category_id: newArticleData.category_id,
+          media_url: url,
         },
       })
         .then((response) => {
@@ -455,18 +458,24 @@ const App = () => {
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
     setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
+    addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
   };
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
   const addChangeBreedsAnimal = (event) => {
-    // setAddBreedsAnimal(event.target.value);
     setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
+    addBreedsAnimal.filter((breeds, index) => addBreedsAnimal.indexOf(breeds) === index);
   };
   // UPLUAD IMAGE METHOD WITH FIREBASE
   const handleChangeFirebase = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+  };
+
+  const handleUploadDelete = () => {
+    setImage(null);
+    setUrl('');
   };
   const handleUpload = () => {
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -622,6 +631,7 @@ const App = () => {
                   url={url}
                   confirmationAdd={confirmationAdd}
                   confirmationDelete={confirmationDelete}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles" exact>
@@ -651,6 +661,7 @@ const App = () => {
                   allTags={tags}
                   allBreeds={breeds}
                   confirmation={confirmationAdd}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
@@ -662,6 +673,7 @@ const App = () => {
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
                   url={url}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
             </>

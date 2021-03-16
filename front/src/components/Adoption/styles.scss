@@ -62,7 +62,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: auto 10em;
+  margin: auto 15em;
   padding-bottom: 3em;
 }
 .card-animal {
@@ -70,21 +70,37 @@
   display: flex;
   flex-direction: column;
   margin: 1em;
-  padding:1em;
   -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
   box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
   &__name {
     text-transform: uppercase;
-    padding: 1em;
+    padding-top: 1em;
+    font-size: 1.2em;
   }
   &__picture {
     border-radius: 5px;
-    height: 200px;
-    width: 300px;
+    height: 150px;
+    width: 250px;
     background-color:#67736921;
+    margin: 1em;
   }
   &__span {
     margin-top: 1em;
+    color: #222222;
+  }
+  &__animal {
+    text-transform: uppercase;
+    color: #4c4e4c;
+    background-color: #f0f0f0;
+    padding:1em;
+    margin-top: 1em;
+    border-radius: 0px 0px 30px 30px;
+  }
+  &:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.5s;
   }
 }
 

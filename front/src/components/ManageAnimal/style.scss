@@ -1,0 +1,29 @@
+.manage__animal {
+  width: 80%;
+  text-align: center;
+  margin: 2em auto;
+  &__picture {
+    max-width: 50%;
+    border-radius: 0.5em;
+  }
+  &__input {
+  padding: 1em;
+  font-size: 1.3em;
+  cursor: pointer;
+  text-transform: uppercase;
+  }
+  &__upluad,
+  &__submit {
+    margin-bottom: 2em;
+    background-color: #49554b;
+    color: white;
+    padding: 1em 1.5em;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+  &__upluadDelete {
+    background-color: #49554b83;
+    padding : 1em;
+    margin: 1em;
+}
+}

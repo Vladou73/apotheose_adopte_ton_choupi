@@ -28,11 +28,12 @@ const ManagedAnimals = ({
   url,
   confirmationAdd,
   confirmationDelete,
+  handleUploadDelete,
 }) => (
   <div className="manageAnimals">
     <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
-    <p className={confirmationAdd}>Votre article a été ajouté !</p>
-    <p className={confirmationDelete}>L'article a été supprimé !</p>
+    <p className={confirmationAdd}>Votre carte animal a été ajouté !</p>
+    <p className={confirmationDelete}>La carte de animal a été supprimé !</p>
     <button type="button" className="manageAnimals__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
 
     <Modal isOpen={modalAddArticleIsOpen}>
@@ -53,7 +54,7 @@ const ManagedAnimals = ({
             <label htmlFor="gender_male">
               Mâle
               <input
-                type="checkbox"
+                type="radio"
                 name="gender"
                 value={1}
                 onChange={(e) => addChangeGenderAnimal(e)}
@@ -62,7 +63,7 @@ const ManagedAnimals = ({
             <label htmlFor="gender_female">
               Femelle
               <input
-                type="checkbox"
+                type="radio"
                 name="gender"
                 value={2}
                 onChange={(e) => addChangeGenderAnimal(e)}
@@ -73,7 +74,7 @@ const ManagedAnimals = ({
             <p>Tags :</p>
             {
             tags.map((tag) => (
-              <label htmlFor="tag">
+              <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
                   type="checkbox"
@@ -89,7 +90,7 @@ const ManagedAnimals = ({
             <p>Race :</p>
             {
             breeds.map((breed) => (
-              <label htmlFor="breed">
+              <label htmlFor="breed" key={breed.id}>
                 {breed.name}
                 <input
                   type="checkbox"
@@ -105,7 +106,7 @@ const ManagedAnimals = ({
             <label className="formAddAnimal__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
             <button type="button" className="formAddAnimal__upluad" onClick={handleUpload}>Aperçu de ma photo </button>
-            <p>{url}</p>
+            <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
             <img src={url} alt="" className="formAddAnimal__image" />
           </div>
           <button type="submit">Envoyer</button>
@@ -114,29 +115,26 @@ const ManagedAnimals = ({
     </Modal>
 
     <table className="manageAnimals__table">
-      <thead>
+      <tbody>
         <tr>
           <td className="manageAnimals__table__head">Nom</td>
           <td className="manageAnimals__table__head">Espèce</td>
           <td className="manageAnimals__table__head">Race</td>
           <td className="manageAnimals__table__head">Date de naissance</td>
           <td className="manageAnimals__table__head">Tags</td>
-          <td />
+          <td className="manageAnimals__table__head">Options</td>
         </tr>
-      </thead>
-      <tbody>
         {animals.map((animalObject) => (
 
           <tr key={animalObject.id}>
-
             <td>{animalObject.name}</td>
             <td> {animalObject.species_name} </td>
-            <td>{animalObject.breeds.map((breed) => <tr key={breed.id}>{breed.name}</tr>)}</td>
+            <td>{animalObject.breeds.map((breed) => <tr>{breed.name}</tr>)}</td>
             <td>{animalObject.birthdate}</td>
             {
             animalObject.tags === null
               ? <td>En évaluation</td>
-              : <td>{animalObject.tags.map((tag) => <tr key={tag.id}>{tag.name}</tr>)}</td>
+              : <td>{animalObject.tags.map((tag) => <tr>{tag.name}</tr>)}</td>
             }
             <td>
               <Link to={`/admin/gestion-animaux/${animalObject.id}`} className="manageAnimals__link">
@@ -175,7 +173,7 @@ ManagedAnimals.propTypes = {
   modalAddArticleIsOpen: PropTypes.bool.isRequired,
   changeModalStateAddArticle: PropTypes.func.isRequired,
   addChangeNameAnimal: PropTypes.func.isRequired,
-  addAnimalSubmit: PropTypes.string.isRequired,
+  addAnimalSubmit: PropTypes.func.isRequired,
   addChangeBirthdateAnimal: PropTypes.func.isRequired,
   addChangeDescriptionAnimal: PropTypes.func.isRequired,
   addChangeGenderAnimal: PropTypes.func.isRequired,
@@ -186,6 +184,7 @@ ManagedAnimals.propTypes = {
   url: PropTypes.string.isRequired,
   confirmationAdd: PropTypes.string.isRequired,
   confirmationDelete: PropTypes.string.isRequired,
+  handleUploadDelete: PropTypes.func.isRequired,
 };
 
 export default ManagedAnimals;

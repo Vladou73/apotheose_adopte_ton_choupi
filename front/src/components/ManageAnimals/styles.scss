@@ -103,6 +103,11 @@
     text-transform: uppercase;
     border-radius: 5px;
   }
+  &__upluadDelete {
+    background-color: #49554b83;
+    padding : 1em;
+    margin: 1em;
+  }
   &__image {
     border-radius: 30px;
     -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 

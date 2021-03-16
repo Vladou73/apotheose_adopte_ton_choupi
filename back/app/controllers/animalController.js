@@ -2,8 +2,7 @@ const { response } = require('express');
 const animalMapper = require('../dataMappers/animalMapper');
 const Animal = require('../models/animal');
 const animalService = require('../services/animalService');
-
-// const Animal = require('../models/animal');
+const mediaMapper = require('../dataMappers/mediaMapper');
 
 const animalController = {}
 
@@ -29,11 +28,19 @@ animalController.oneAnimal = async (request, response) => {
 
 animalController.newAnimal = async (request, response) => {
     console.log('enter animalController.newAnimal')
+    
+    //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
+    if (request.body['medias']) { // check if medias change have been asked
+        for (media of request.body['medias']) { 
+            if (media.url){//check for all media if it a new media (ie if an url is sent)
+                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+            }
+        }
+    }
+
     // on crée directement notre model à partir des données envoyées dans le payload
     const newAnimal = new Animal(request.body);
     // console.log('request.body',request.body);
-    
-    // response.json(newAnimal)
     
     try {
         await animalMapper.save(newAnimal);
@@ -77,6 +84,15 @@ animalController.editAnimal = async (request, response)=>{
         response.status(404).json(err.message);
     }
 
+    //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
+    if (request.body['medias']) { // check if medias change have been asked
+        for (media of request.body['medias']) { 
+            if (media.url){//check for all media if it a new media (ie if an url is sent)
+                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+            }
+        }
+    }
+
     //Check to keep only properties accepted from client side
     const acceptedProperties = ['name','birthdate','description','gender_id','breeds','tags','medias']
     //Check if other tables are impacted too (binding tables)
@@ -91,6 +107,7 @@ animalController.editAnimal = async (request, response)=>{
             otherTablesImpacted[prop] = true;
         };
     }
+
        
     console.log('otherTablesImpacted',otherTablesImpacted)
     // update DB with animal edited properties
