@@ -135,3 +135,52 @@ nav {
     background-color: #49554b;
   }
 }
+
+@media (max-width: 1080px) {
+  .donate {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 1em;
+  }
+}
+
+
+@media (max-width: 950px) {
+  .nav__menu-item {
+    margin-right: 0;
+  }
+  .nav__menu-items-withSubitems {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .nav__menu {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav__menu-item {
+    padding: 1em 5em;
+  }
+  .nav__menu-items-withSubitems {
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  .nav__submenu {
+    position: static;
+    width: 160px;
+  }
+  .titleHeader {
+    font-size: 2em;
+  }
+  .nav a {
+    font-size: 1.5em;
+  }
+  .nav__submenu-item {
+    width: 328px;
+  }
+}
+

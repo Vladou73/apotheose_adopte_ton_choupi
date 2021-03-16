@@ -72,9 +72,13 @@ const Header = ({ isLogged, adminDisconnect }) => (
                   Blog
                 </NavLink>
               </li>
-              <li className="nav__menu-items-withSubitems">
-                <a>Agir</a>
-                <AgirSubmenu />
+              <li className="nav__menu-item">
+                <NavLink
+                  to="/rejoindre"
+                  exact
+                >
+                  Agir
+                </NavLink>
               </li>
               <li className="nav__menu-item">
                 <NavLink
