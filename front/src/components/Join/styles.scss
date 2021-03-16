@@ -1,38 +1,108 @@
-.joinTitle{
+.participate{
+};
+
+.participateTitle{
   font-size: 200%;
   text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
 };
 
-.main{
+.mainParticipate{
+  padding-top: 2em;
   text-align: center;
-  padding-bottom: 5em;
-  &__joinPicture{
-  width: 50%;
-  height: auto;
-  border-radius: 30px;
-  -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
-  box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
-  };
-  &__redirection__ToContact{
-    text-align: right;
-    padding-top: 2em;
-    font-size: 125%;
-    color: rgb(73, 51, 9);
-    float: right;
-    padding-right: 2em;
-    text-decoration: underline;
-  };
+  padding-bottom: 2em;
 };
 
-.blocJoin{
-  padding-top: 2.5em;
-  text-align: center;
-  width: 60%;
+.introText{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 100%;
+  border: 1px solid #000;
+  width: 50%;
   margin: auto;
-  &__subtitle{
-    font-size: 1.5em;
-    padding-bottom: 1em;
-  };
+  background-color: #677369;
+  color: rgb(240, 236, 236);
 };
+
+.participatePicture{
+  padding-top: 2.5em;
+  width: 40%;
+  height: auto;
+};
+
+.sponsorElements{
+  width: 60%;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: rgb(250, 237, 214);
+  border: 1px solid #677369;
+  border-radius: 5px;
+  padding-top: 1em;
+};
+
+.subTitleSponsor{
+  background-color: #677369;
+  border: none;
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  margin-top: 2.5em;
+};
+
+.sponsorText{
+  text-align: left;
+  margin-top: 2em;
+};
+
+
+.walkingElements{
+  margin: auto;
+  padding: 2em;
+  width: 60%;
+  text-align: center;
+  background-color: rgb(250, 237, 214);
+  border: 1px solid #677369;
+  border-radius: 5px;
+  padding-top: 1em;
+};
+
+.subTitleWalking{
+  background-color: #677369;
+  border: none;
+  color: #fff;
+  width: 100%;
+  padding: 15px 32px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 2.5em;
+};
+
+.walkingText{
+  text-align: left;
+  margin-top: 2em;
+};
+
+.contactButton {
+  display: inline-block;
+  margin: 2em auto;
+  background-color: #677369;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* &__sponsorPicture{
+  width: 10%;
+}; */
+
+/*   &__walkingPicture{
+    width: 15%;
+    margin-left: auto;
+  }; */
