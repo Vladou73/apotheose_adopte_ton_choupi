@@ -72,7 +72,7 @@ router.get('/tags', tagController.allTags);
 
 //blog infos
 router.get('/categories', categoryController.allCategories);
-router.get('/articles', articleController.allArticles);
+router.get('/articles', articleController.allArticles); // route with processing of pagination parameters included
 
 //other routes
 router.get('/medias', mediaController.allMedias);

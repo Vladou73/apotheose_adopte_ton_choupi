@@ -6,9 +6,10 @@ const mediaMapper = require('../dataMappers/mediaMapper');
 
 const articleController = {}
 
-articleController.allArticles = async (_, response) => {
-    console.log('enter articleController.allArticles')
-    const articles = await articleMapper.findAll();
+articleController.allArticles = async (request, response) => {
+    console.log('enter articleController.allArticles');
+    // request paramter is used for pagination : limit & offset
+    const articles = await articleMapper.findAll(request);
     response.json(articles)
 }
 
