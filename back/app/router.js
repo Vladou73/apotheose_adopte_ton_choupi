@@ -65,14 +65,14 @@ router.route('/admin/medias/:id(\\d+)')
 
 
 //animal infos
-router.get('/animals', animalController.allAnimals);
+router.get('/animals', animalController.allAnimals); // route with processing of pagination parameters included
 router.get('/species', speciesController.allSpecies);
 router.get('/breeds', breedController.allBreeds);
 router.get('/tags', tagController.allTags);
 
 //blog infos
 router.get('/categories', categoryController.allCategories);
-router.get('/articles', articleController.allArticles);
+router.get('/articles', articleController.allArticles); // route with processing of pagination parameters included
 
 //other routes
 router.get('/medias', mediaController.allMedias);
