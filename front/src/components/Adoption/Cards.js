@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 // == Import
 import './styles.scss';
+import classname from 'classnames';
 
 // == Composant
 const Cards = ({
@@ -20,7 +21,13 @@ const Cards = ({
         alt={name}
       />
       <p className="card-animal__span">Née le {birthdate}</p>
-      <p className="card-animal__span">
+      <p
+        className={classname({
+          'card-animal__span': true,
+          female: gender_name === 'female',
+          male: gender_name === 'male',
+        })}
+      >
         {
         gender_name === 'female' ? 'Femelle' : 'Mâle'
         }
