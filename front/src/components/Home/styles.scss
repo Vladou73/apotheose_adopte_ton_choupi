@@ -50,9 +50,6 @@
   -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
   box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
 }
-&__contain {
-  margin: 2em;
-}
   &__picture {
     min-width: 350px;
     max-width: 100%;
@@ -62,17 +59,23 @@
   }
   &__title {
   font-size: 1.3em;
-   margin: 1em 0;
+   padding: 1em 0;
+   color: white;
+   background-color: #c5a99693;
+   text-align: center;
   }
   &__category {
     font-size: 1.1em;
+    margin:0.7em;
   }
   &__text {
     margin-top: 2em;
+    margin:0.7em;
   }
   &__more {
     text-align: right;
     font-size: 0.8em;
+    margin:0.7em;
   }
 }
 
