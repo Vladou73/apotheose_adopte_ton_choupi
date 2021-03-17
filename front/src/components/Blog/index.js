@@ -11,7 +11,7 @@ const Blog = ({
   pageArticles, articleCount,
 }) => (
   <div className="blog">
-    <h2 className="blog__title">L'ensemble de nos actualités</h2>
+    <h2 className="blog__title">L'ensemble de nos articles</h2>
     <div className="blog__categories">
       <Category
         filterCategories={filterCategories}
