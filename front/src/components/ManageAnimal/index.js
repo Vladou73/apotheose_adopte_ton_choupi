@@ -63,6 +63,7 @@ const ManageAnimal = ({
       >
         <p className={confirmation}>Votre article a été modifié !</p>
         <div className="manage__animal__name">
+          <p>Nom de l'animal : </p>
           <input className="manage__animal__input" type="text" id="name" name="name" value={animalData.name} onChange={(e) => handleChangeEditAnimal(e)} />
           <p> Espèce : {animalData.species_name}</p>
           <p>{animalData.gender_name === 'F=female' ? ' Femelle' : ' Mâle'}, née le {animalData.birthdate} </p>

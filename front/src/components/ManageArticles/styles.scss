@@ -146,9 +146,20 @@
   }
 }
 
+.article {
+  & textarea {
+    width: 90%;
+  }
+}
+
 @media (max-width: 746px) {
   .manageArticles__editIcon {
     margin: .2em 1em;
+  }
+  .article {
+    & input {
+      width: 90%;
+    }
   }
 }
 
