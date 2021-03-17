@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
+import classname from 'classnames';
 
 // == Composant
 const News = ({ article }) => {
@@ -22,7 +23,16 @@ const News = ({ article }) => {
         />
         <div className="home-news__contain">
           <p className="home-news__title">{article.title}</p>
-          <span className="home-news__category">{article.category_name}</span>
+          <span
+            className={classname({
+              'home-news__category': true,
+              covid: article.category_name === 'covid',
+              actu: article.category_name === 'actu',
+              adoption: article.category_name === 'adoption',
+              maltraitance: article.category_name === 'maltraitance',
+            })}
+          >{article.category_name}
+          </span>
           <p className="home-news__text">
             {content}
           </p>
