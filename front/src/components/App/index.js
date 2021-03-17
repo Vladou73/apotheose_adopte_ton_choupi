@@ -534,6 +534,7 @@ const App = () => {
   const filterSpecies = (event) => {
     setCheckboxSpeciesAnimals(event.target.value);
     setFilterAnimalsReset(false);
+    console.log(checkboxSpeciesAnimals);
   };
   // GENDER FILTER ! bug
   const filterGender = (event) => {
@@ -561,7 +562,7 @@ const App = () => {
     // const filterByBreeds = checkboxBreedsAnimals ? breedsObject.name === checkboxBreedsAnimals : true;
     // const filterByGender = checkboxGenderAnimals ? animal.gender_id === checkboxGenderAnimals : true;
 
-    const filterByName = inputTextAnimals ? animal.name === inputTextAnimals : true;
+    const filterByName = animal.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase());
     const filterBySpecies = checkboxSpeciesAnimals ? animal.species_name === checkboxSpeciesAnimals : true;
 
     return (filterByName && filterBySpecies);
