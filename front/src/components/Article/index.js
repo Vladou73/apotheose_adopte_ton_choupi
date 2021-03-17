@@ -2,9 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-import Error404 from '../Error404';
-import './style.scss';
+
 import classname from 'classnames';
+import './style.scss';
+import Error404 from '../Error404';
 
 const Article = ({ article }) => {
   const { id } = useParams();
