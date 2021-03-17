@@ -42,4 +42,23 @@
     font-weight: bold;
     margin-right: .2em;
   }
+  & img {
+    width: 35%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .admin {
+    & img {
+      width: 60%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .admin {
+    & img {
+      width: 100%;
+    }
+  }
 }
