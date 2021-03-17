@@ -539,7 +539,6 @@ const App = () => {
   const filterGender = (event) => {
     setCheckboxGenderAnimals(event.target.value);
     setFilterAnimalsReset(false);
-    console.log(event);
   };
   // AGE FILTER ! bug
   const filterAge = (event) => {
