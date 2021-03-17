@@ -24,10 +24,8 @@ const Adoption = ({
   filterGender,
   filterSpecies,
   filterBreeds,
-  resetFilterAnimals,
   onClickPageAnimals,
   pageAnimals,
-  isCheckedSOS,
 }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
@@ -44,9 +42,7 @@ const Adoption = ({
       filterSpecies={filterSpecies}
       filterBreeds={filterBreeds}
       filterAge={filterAge}
-      resetFilterAnimals={resetFilterAnimals}
       filterSOS={filterSOS}
-      isCheckedSOS={isCheckedSOS}
     />
     <section className="section-animals">
       <h2 className="section-animals__title">{animalsCount}
@@ -94,8 +90,6 @@ Adoption.propTypes = {
   filterGender: PropTypes.func.isRequired,
   filterSpecies: PropTypes.func.isRequired,
   filterBreeds: PropTypes.func.isRequired,
-  resetFilterAnimals: PropTypes.func.isRequired,
-  isCheckedSOS: PropTypes.func.isRequired,
   animalsCount: PropTypes.number.isRequired,
 };
 
