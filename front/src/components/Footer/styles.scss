@@ -1,8 +1,8 @@
 .footer {
-  background-color: #30322F;
+  background-color:  #3b2332;
   display: flex;
   justify-content: space-evenly;
-  padding: 2em;
+  padding: 1.5em;
 }
 
 .titleFooter {
@@ -21,7 +21,7 @@
 }
 
 .adress {
-  color: #656766;
+  color: #fff;
   text-align: left;
   width: 800px;
   &__mail {
@@ -30,7 +30,7 @@
 }
 
 .copyright {
-  color: #656766;
+  color: #fff;
   &__fbLogo {
     margin-bottom: 1em;
     max-width: 30px;

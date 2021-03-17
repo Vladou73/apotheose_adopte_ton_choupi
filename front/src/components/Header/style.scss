@@ -1,7 +1,7 @@
 .header {
   text-align: center;
   width: 100%;
-  background-color: #677369;
+  background-color: #c5a996;
   padding-bottom: 1.5em;
 }
 
@@ -18,7 +18,7 @@
   padding: 0.5em 1.5em;
   border-radius: 5px;
   color: white;
-  background-color: #49554b;
+  background-color: #5f3d52;
   letter-spacing: 1px;
   transition: all 500ms ease;
   &:hover {
@@ -33,7 +33,7 @@
   padding: 0.5em 1em;
   border-radius: 4px;
   color: white;
-  background-color: #49554b;
+  background-color: #5f3d52;
 }
 
 .logoHeader {
@@ -51,7 +51,7 @@
   }
 }
 
-$color: #49554b;
+$color: #5f3d52;
 $submenu-width: 180px;
 
 
@@ -133,7 +133,7 @@ nav {
     background: rgba(#000, 0.3);
   }
   &--active {
-    background-color: #49554b;
+    background-color: #3a112a;
   }
 }
 
