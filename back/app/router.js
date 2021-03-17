@@ -101,7 +101,7 @@ router.get('/medias', mediaController.allMedias);
 
 //ROUTE INUTILE, A SUPPRIMER
 //regex data validation : id has to be a digit
-router.get('/animals/:id(\\d+)', animalController.oneAnimal);
+// router.get('/animals/:id(\\d+)', animalController.oneAnimal);
 
 
 // ici, une 404 pour l'API
