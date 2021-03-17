@@ -138,7 +138,6 @@ const App = () => {
       });
   };
 
-
   // Breeds get list
   const getBreeds = async () => {
     setLoading(true);
@@ -606,9 +605,6 @@ const App = () => {
   // FILTER SOS
   const filterSOS = (event) => {
     setCheckboxSOSAnimals(event.target.value);
-    setIsCheckedSOS(!isCheckedSOS);
-    setFilterAnimalsReset(false);
-    // isCheckedSOS === false ? setCheckboxSOSAnimals('');
   };
 
   const newAnimalsList = animals.filter((animal) => {
@@ -622,16 +618,6 @@ const App = () => {
 
     return (filterByName && filterBySpecies && filterByBreeds && filterByGender && filterByTags && filterByAge && filterBySOS);
   });
-
-  // reset filters of animals list
-  const resetFilterAnimals = (event) => {
-    event.preventDefault();
-    // setFilterAnimalsReset(event.target.value);
-    // setInputTextAnimals('');
-    // setIsCheckedSOS(false);
-    // event.target.reset();
-    window.location.reload();
-  };
 
   // Method for filter articles with categories
   const filterCategories = (event) => {
@@ -671,8 +657,6 @@ const App = () => {
               filterGender={filterGender}
               filterAge={filterAge}
               filterSOS={filterSOS}
-              isCheckedSOS={isCheckedSOS}
-              resetFilterAnimals={resetFilterAnimals}
             />
           </Route>
           <Route path="/animaux/:id" exact>
