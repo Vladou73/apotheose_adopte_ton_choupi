@@ -11,6 +11,8 @@ const articleController = require('./controllers/articleController');
 const categoryController = require('./controllers/categoryController');
 const mediaController = require('./controllers/mediaController');
 
+const validate = require('./services/validator');
+const animalPostSchema = require('./shemas/joi');
 
 const router = Router();
 // const routerPublic = Router();
@@ -42,7 +44,7 @@ router.post('/admin/signIn', userController.signIn); // sign in with JWT stored 
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
 
-router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
+router.post('/admin/addAnimal', userController.authenticate, validate(animalPostSchema, 'body'),animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
     .get(userController.authenticate, animalController.oneAnimal)
     .delete(userController.authenticate, animalController.deleteAnimal)
