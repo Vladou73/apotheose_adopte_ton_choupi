@@ -18,6 +18,7 @@ const Adoption = ({
   tags,
   species,
   filterTags,
+  filterGender,
   filterSpecies,
   filterBreeds,
   resetFilterAnimals,
@@ -32,6 +33,7 @@ const Adoption = ({
       animals={animals}
       tags={tags}
       species={species}
+      filterGender={filterGender}
       inputTextAnimals={inputTextAnimals}
       filterName={filterName}
       filterTags={filterTags}

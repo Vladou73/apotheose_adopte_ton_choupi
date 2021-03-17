@@ -86,13 +86,13 @@ const Search = ({
       <select
         className="search-form__case"
         name="tags"
+        onChange={filterTags}
       >
         <option value="null">Indifférent</option>
         {tags.map((tag) => (
           <option
             key={tag.id}
             value={tag.name}
-            onChange={filterTags}
           >
             {tag.name}
           </option>
@@ -126,8 +126,7 @@ const Search = ({
             id="gender-female"
             aria-describedby="gender"
             type="checkbox"
-
-            value={2}
+            value="female"
             onChange={filterGender}
           />
         </label>
@@ -143,8 +142,7 @@ const Search = ({
             id="gender-male"
             aria-describedby="gender"
             type="checkbox"
-
-            value={1}
+            value="male"
             onChange={filterGender}
           />
         </label>

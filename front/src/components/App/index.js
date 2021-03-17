@@ -536,6 +536,7 @@ const App = () => {
   };
   // GENDER FILTER ! bug
   const filterGender = (event) => {
+    console.log(event.target.value);
     setCheckboxGenderAnimals(event.target.value);
     setFilterAnimalsReset(false);
   };
@@ -551,17 +552,18 @@ const App = () => {
   };
   // SELECT BREEDS ! bug
   const filterTags = (event) => {
-    setSelectTagsAnimals(event.value);
+    setSelectTagsAnimals(event.target.value);
     setFilterAnimalsReset(false);
   };
 
   const newAnimalsList = animals.filter((animal) => {
-    // const filterByGender = checkboxGenderAnimals ? animal.gender_id === checkboxGenderAnimals : true;
+    const filterByGender = checkboxGenderAnimals ? animal.gender_name === checkboxGenderAnimals : true;
     const filterByBreeds = checkboxBreedsAnimals ? animal.breeds[0].name === checkboxBreedsAnimals : true;
+    const filterByTags = selectTagsAnimals ? animal.tags[0].name === selectTagsAnimals : true;
     const filterByName = animal.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase());
     const filterBySpecies = checkboxSpeciesAnimals ? animal.species_name === checkboxSpeciesAnimals : true;
 
-    return (filterByName && filterBySpecies && filterByBreeds);
+    return (filterByName && filterBySpecies && filterByBreeds && filterByGender && filterByTags);
   });
 
   // reset filters of animals list
