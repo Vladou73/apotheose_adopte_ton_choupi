@@ -9,9 +9,9 @@ mediaMapper.findAll = async() => {
         SELECT
             id, 
             type,
-            url,
-            created_at
+            url
         FROM media
+        ORDER BY type, media;
     `
     const result = await db.query(query);
     // et les retourne, sous forme d'instances de media
@@ -24,8 +24,7 @@ mediaMapper.findOne = async(id) => {
         SELECT
             id, 
             type,
-            url,
-            created_at
+            url
         FROM media
         WHERE id = $1
     `

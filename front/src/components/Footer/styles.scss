@@ -36,3 +36,26 @@
     max-width: 30px;
   }
 }
+
+@media (max-width: 750px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .titleFooter {
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+  .adress {
+    text-align: center;
+    width: auto;
+    margin: 1em 0;
+  }
+  .copyright__fbLogo {
+    margin-bottom: 0;
+  }
+  .copyright {
+    margin-top: 1em;
+  }
+}

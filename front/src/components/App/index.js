@@ -35,6 +35,8 @@ const App = () => {
   // States hooks
   const [loading, setLoading] = useState(false);
   const [animals, setAnimals] = useState([]);
+  const [allAnimals, setAllAnimals] = useState([]);
+  const [allArticles, setAllArticles] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
@@ -102,9 +104,9 @@ const App = () => {
   };
 
   // Animals get list
-  const getAnimals = () => {
+  const getAnimals = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/animals?page=${pageAnimals}&items=8`,
     })
@@ -119,10 +121,28 @@ const App = () => {
       });
   };
 
-  // Breeds get list
-  const getBreeds = () => {
+  const getAllAnimals = async () => {
     setLoading(true);
-    axios({
+    await axios({
+      method: 'get',
+      url: `${baseUrl}/animals`,
+    })
+      .then((response) => {
+        setAllAnimals(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+
+  // Breeds get list
+  const getBreeds = async () => {
+    setLoading(true);
+    await axios({
       method: 'get',
       url: `${baseUrl}/breeds`,
     })
@@ -138,9 +158,9 @@ const App = () => {
   };
 
   // Tags get list
-  const getTags = () => {
+  const getTags = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/tags`,
     })
@@ -156,9 +176,9 @@ const App = () => {
   };
 
   // Species get list
-  const getSpecies = () => {
+  const getSpecies = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/species`,
     })
@@ -191,10 +211,27 @@ const App = () => {
       });
   };
 
-  // Categories get list
-  const getCategories = () => {
+  const getAllArticles = () => {
     setLoading(true);
     axios({
+      method: 'get',
+      url: `${baseUrl}/articles`,
+    })
+      .then((response) => {
+        setAllArticles(response.data);
+      })
+      .catch((error) => {
+        console.trace(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  // Categories get list
+  const getCategories = async () => {
+    setLoading(true);
+    await axios({
       method: 'get',
       url: `${baseUrl}/categories`,
     })
@@ -208,6 +245,18 @@ const App = () => {
         setLoading(false);
       });
   };
+
+  // Hooks effects
+  useEffect(() => {
+    getArticles();
+    getAnimals();
+    getAllAnimals();
+    getAllArticles();
+    getBreeds();
+    getTags();
+    getSpecies();
+    getCategories();
+  }, []);
 
   // handle change & submit to add an article
 
@@ -234,8 +283,8 @@ const App = () => {
 
   const handleSubmitAddArticle = (e) => {
     e.preventDefault();
-    const addArticle = () => {
-      axios({
+    const addArticle = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/addArticle`,
         data: {
@@ -273,8 +322,8 @@ const App = () => {
   // Connection admin
   const handleSubmitAdmin = (evt) => {
     evt.preventDefault();
-    const postUser = () => {
-      axios({
+    const postUser = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/signIn`,
         data: {
@@ -297,9 +346,9 @@ const App = () => {
   };
 
   // Animal delete list
-  const deleteAnimalsList = (animal) => {
+  const deleteAnimalsList = async (animal) => {
     if (window.confirm(`Voulez vous supprimer ${animal.name} ? `)) {
-      axios({
+      await axios({
         method: 'delete',
         url: `${baseUrl}/admin/animals/${animal.id}`,
       })
@@ -316,8 +365,8 @@ const App = () => {
   // Animal add list
   const addAnimalSubmit = (evt) => {
     evt.preventDefault();
-    const postAnimal = () => {
-      axios({
+    const postAnimal = async () => {
+      await axios({
         method: 'POST',
         url: `${baseUrl}/admin/addAnimal`,
         data: {
@@ -351,10 +400,10 @@ const App = () => {
     postAnimal();
   };
 
-  const deleteArticle = (article) => {
+  const deleteArticle = async (article) => {
     if (window.confirm(`Etes vous sur de vouloir supprimer l'article : ${article.title} ?`)) {
       setLoading(true);
-      axios({
+      await axios({
         method: 'delete',
         url: `${baseUrl}/admin/articles/${article.id}`,
       })
@@ -397,8 +446,8 @@ const App = () => {
   // Method onSubmit to edit an animal
   const handleSubmitEditAnimal = (id, newAnimalData) => {
     console.log(id);
-    const editAnimal = () => {
-      axios({
+    const editAnimal = async () => {
+      await axios({
         method: 'PUT',
         url: `${baseUrl}/admin/animals/${id}`,
         data: {
@@ -430,8 +479,8 @@ const App = () => {
   const handleSubmitEditArticle = (id, newArticleData) => {
     console.log(id);
     console.log(newArticleData);
-    const editArticle = () => {
-      axios({
+    const editArticle = async () => {
+      await axios({
         method: 'PUT',
         url: `${baseUrl}/admin/articles/${id}`,
         data: {
@@ -603,11 +652,12 @@ const App = () => {
         !loading && (
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Home articles={articles} />
           </Route>
           <Route path="/animaux" exact>
             <Adoption
               animals={filterAnimalsReset ? animals : newAnimalsList}
+              animalsCount={allAnimals.length}
               breeds={breeds}
               tags={tags}
               species={species}
@@ -657,7 +707,7 @@ const App = () => {
             <>
               <Route path="/admin/gestion-animaux" exact>
                 <ManageAnimals
-                  animals={animals}
+                  animals={allAnimals}
                   tags={tags}
                   breeds={breeds}
                   buttonDeleteAnimals={deleteAnimalsList}
@@ -681,7 +731,7 @@ const App = () => {
               </Route>
               <Route path="/admin/gestion-articles" exact>
                 <ManageArticles
-                  articles={articles}
+                  articles={allArticles}
                   deleteArticle={deleteArticle}
                   modalAddArticleIsOpen={modalAddArticleIsOpen}
                   handleSubmitAddArticle={handleSubmitAddArticle}
@@ -787,6 +837,7 @@ const App = () => {
                   filterCategories={filterCategories}
                   onClickPageArticles={onClickPageArticles}
                   pageArticles={pageArticles}
+                  articlesCount={allArticles.length}
                 />
               </Route>
               <Route path="/articles/:id" exact>
