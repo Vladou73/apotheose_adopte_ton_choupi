@@ -156,3 +156,10 @@
     width: 80%;
   }
 }
+
+@media (max-width: 500px) {
+  .cards-animals {
+    margin: 0;
+
+  }
+}
