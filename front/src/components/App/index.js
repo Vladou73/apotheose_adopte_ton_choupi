@@ -80,7 +80,6 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [buttonCategories, setButtonCategories] = useState('');
   // filter animals
-  const [filterAnimalsReset, setFilterAnimalsReset] = useState('');
   const [inputTextAnimals, setInputTextAnimals] = useState('');
   const [checkboxSpeciesAnimals, setCheckboxSpeciesAnimals] = useState('');
   const [checkboxGenderAnimals, setCheckboxGenderAnimals] = useState('');
@@ -88,7 +87,6 @@ const App = () => {
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxSOSAnimals, setCheckboxSOSAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
-  const [isCheckedSOS, setIsCheckedSOS] = useState(false);
 
   // Method to change the modal state to add an article (true/false)
   const changeModalStateAddArticle = () => {
@@ -137,7 +135,6 @@ const App = () => {
         setLoading(false);
       });
   };
-
 
   // Breeds get list
   const getBreeds = async () => {
@@ -575,40 +572,30 @@ const App = () => {
   // Method filter of animals list by name
   const filterName = (event) => {
     setInputTextAnimals(event);
-    setFilterAnimalsReset(false);
   };
   // SPECIES FILTER
   const filterSpecies = (event) => {
     setCheckboxSpeciesAnimals(event.target.value);
-    setFilterAnimalsReset(false);
-    console.log(checkboxSpeciesAnimals);
   };
   // GENDER FILTER
   const filterGender = (event) => {
     setCheckboxGenderAnimals(event.target.value);
-    setFilterAnimalsReset(false);
   };
   // AGE FILTER
   const filterAge = (event) => {
     setCheckboxAgeAnimals(event.target.value);
-    setFilterAnimalsReset(false);
   };
   // CHECKBOX BREEDS
   const filterBreeds = (event) => {
     setCheckboxBreedsAnimals(event.target.value);
-    setFilterAnimalsReset(false);
   };
   // SELECT TAGS
   const filterTags = (event) => {
     setSelectTagsAnimals(event.target.value);
-    setFilterAnimalsReset(false);
   };
   // FILTER SOS
   const filterSOS = (event) => {
     setCheckboxSOSAnimals(event.target.value);
-    setIsCheckedSOS(!isCheckedSOS);
-    setFilterAnimalsReset(false);
-    // isCheckedSOS === false ? setCheckboxSOSAnimals('');
   };
 
   const newAnimalsList = animals.filter((animal) => {
@@ -622,16 +609,6 @@ const App = () => {
 
     return (filterByName && filterBySpecies && filterByBreeds && filterByGender && filterByTags && filterByAge && filterBySOS);
   });
-
-  // reset filters of animals list
-  const resetFilterAnimals = (event) => {
-    event.preventDefault();
-    // setFilterAnimalsReset(event.target.value);
-    // setInputTextAnimals('');
-    // setIsCheckedSOS(false);
-    // event.target.reset();
-    window.location.reload();
-  };
 
   // Method for filter articles with categories
   const filterCategories = (event) => {
@@ -656,7 +633,7 @@ const App = () => {
           </Route>
           <Route path="/animaux" exact>
             <Adoption
-              animals={filterAnimalsReset ? animals : newAnimalsList}
+              animals={newAnimalsList}
               animalsCount={allAnimals.length}
               breeds={breeds}
               tags={tags}
@@ -671,8 +648,6 @@ const App = () => {
               filterGender={filterGender}
               filterAge={filterAge}
               filterSOS={filterSOS}
-              isCheckedSOS={isCheckedSOS}
-              resetFilterAnimals={resetFilterAnimals}
             />
           </Route>
           <Route path="/animaux/:id" exact>

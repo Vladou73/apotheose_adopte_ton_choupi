@@ -18,8 +18,6 @@ const Search = ({
   filterAge,
   filterGender,
   filterSOS,
-  resetFilterAnimals,
-  isCheckedSOS,
 }) => (
   <form>
     <div className="search-div search-form">
@@ -30,6 +28,7 @@ const Search = ({
           className="search-form__case"
           aria-describedby="animal_name"
           type="text"
+          placeholder="Ex: Choupi"
           value={inputTextAnimals}
           onChange={(event) => {
             const searchName = event.target.value;
@@ -39,36 +38,30 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR SPECIES */}
-      <div className="search-form__species">
+      <div className="search-form__filter">
         <p className="search-form__text">Espèce</p>
-
-        {species.map((specie) => (
-          <label
-            htmlFor="species__name"
-            className="search-form__label"
-            key={specie.id}
-          >
-            {specie.name}
-            <input
-              id={specie.id}
-              type="radio"
-              className="search-form__checkbox"
-              aria-describedby={specie.name}
-              name="specie"
+        <select
+          className="search-form__caseFilter"
+          name="species"
+          onChange={filterSpecies}
+        >
+          <option value="">Indifférent</option>
+          {species.map((specie) => (
+            <option
               key={specie.id}
               value={specie.name}
-              onChange={filterSpecies}
-            />
-
-          </label>
-        ))}
+            >
+              {specie.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* SELECT FOR BREED */}
-      <div className="search-form__breed">
+      <div className="search-form__filter">
         <p className="search-form__text">Race</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="breed"
           onChange={filterBreeds}
         >
@@ -85,14 +78,14 @@ const Search = ({
       </div>
 
       {/* SELECT FOR TAG */}
-      <div className="search-form__tag">
+      <div className="search-form__filter">
         <p className="search-form__text">Caractère</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="tags"
           onChange={filterTags}
         >
-          <option value="null">Indifférent</option>
+          <option value="">Indifférent</option>
           {tags.map((tag) => (
             <option
               key={tag.id}
@@ -105,118 +98,70 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR TAG SOS */}
-      <div className="search-form__sos">
+      <div className="search-form__filter">
         <p className="search-form__text">SOS</p>
-        <input
-          className="search-form__checkbox"
-          id="checkbox-sos"
-          aria-describedby="SOS"
-          type="checkbox"
-          name="sos"
-          value="sos"
-          checked={isCheckedSOS}
+        <select
+          className="search-form__caseFilter"
+          name="species"
           onChange={filterSOS}
-        />
+        >
+          <option value="">Indifférent</option>
+          <option
+            value="sos"
+          >
+            Oui, je veux sauver un Choupi !!
+          </option>
+        </select>
       </div>
 
       {/* CHECKBOX FOR GENDER */}
-      <div className="search-form__gender">
-        <p className="search-form__text">Sexe :</p>
-        <div>
-          <label
-            htmlFor="gender"
-            className="search-form__label"
+      <div className="search-form__filter">
+        <p className="search-form__text">Sexe</p>
+        <select
+          className="search-form__caseFilter"
+          name="species"
+          onChange={filterGender}
+        >
+          <option value="">Indifférent</option>
+          <option
+            value="female"
           >
             Femelle
-            <input
-              className="search-form__checkbox"
-              id="gender-female"
-              aria-describedby="gender"
-              type="radio"
-              value="female"
-              name="sexe"
-              onChange={filterGender}
-            />
-          </label>
-        </div>
-        <div>
-          <label
-            htmlFor="gender"
-            className="search-form__label"
+          </option>
+          <option
+            value="male"
           >
             Male
-            <input
-              className="search-form__checkbox"
-              id="gender-male"
-              aria-describedby="gender"
-              type="radio"
-              value="male"
-              name="sexe"
-              onChange={filterGender}
-            />
-          </label>
-        </div>
+          </option>
+        </select>
       </div>
 
       {/* CHECKBOX FOR AGE */}
-      <div className="search-form__age">
-        <p className="search-form__text">Age :</p>
-        <div>
-          <label
-            htmlFor="junior"
-            className="search-form__label"
+      <div className="search-form__filter">
+        <p className="search-form__text">Age</p>
+        <select
+          className="search-form__caseFilter"
+          name="species"
+          onChange={filterAge}
+        >
+          <option value="">Indifférent</option>
+          <option
+            value="junior"
           >
             Junior
-            <input
-              className="search-form__checkbox"
-              id="checkbox-junior"
-              aria-describedby="junior"
-              type="radio"
-              name="age"
-              value="junior"
-              onChange={filterAge}
-            />
-          </label>
-          <label
-            htmlFor="adulte"
-            className="search-form__label"
+          </option>
+          <option
+            value="adulte"
           >
             Adulte
-            <input
-              className="search-form__checkbox"
-              id="checkbox-adulte"
-              aria-describedby="adulte"
-              type="radio"
-              name="age"
-              value="adulte"
-              onChange={filterAge}
-            />
-          </label>
-          <label
-            htmlFor="senior"
-            className="search-form__label"
+          </option>
+          <option
+            value="senior"
           >
             Senior
-            <input
-              className="search-form__checkbox"
-              id="checkbox-senior"
-              aria-describedby="senior"
-              type="radio"
-              name="age"
-              value="senior"
-              onChange={filterAge}
-            />
-          </label>
-        </div>
+          </option>
+        </select>
       </div>
-      <button
-        type="submit"
-        onClick={resetFilterAnimals}
-        className="search-form__button"
-        value="reset"
-      >
-        Je veux tous les voirs ! ❤️
-      </button>
     </div>
   </form>
 );
@@ -227,7 +172,6 @@ Search.propTypes = {
   filterBreeds: PropTypes.func.isRequired,
   filterTags: PropTypes.func.isRequired,
   filterSpecies: PropTypes.func.isRequired,
-  resetFilterAnimals: PropTypes.func.isRequired,
   breeds: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -249,7 +193,6 @@ Search.propTypes = {
   filterAge: PropTypes.func.isRequired,
   filterGender: PropTypes.func.isRequired,
   filterSOS: PropTypes.func.isRequired,
-  isCheckedSOS: PropTypes.bool.isRequired,
 };
 
 // == Export
