@@ -18,4 +18,21 @@ const animalPostSchema = Joi.object({
     tags: Joi.array().items(Joi.object({id:Joi.number().integer().required()}).length(1)).min(1)
 }).min(5).max(8);
 
-module.exports = animalPostSchema;
+const animalPutSchema = Joi.object({
+    name: Joi.string().min(2),
+    birthdate: Joi.date().format('DD-MM-YYYY'),
+    description: Joi.string().min(2),
+    creator_id: Joi.number().integer(),
+    gender_id: Joi.number().integer(), 
+    medias: Joi.array().items(
+        Joi.object({
+            id:Joi.number().integer(),
+            url:Joi.string(),
+            type:Joi.string()
+        }).and('url','type').xor('id','url').max(2)
+    ).min(1),
+    breeds: Joi.array().items(Joi.object({id:Joi.number().integer().required()}).length(1)).min(1),
+    tags: Joi.array().items(Joi.object({id:Joi.number().integer().required()}).length(1)).min(1)
+}).min(1).max(8);
+
+module.exports = {animalPostSchema, animalPutSchema};

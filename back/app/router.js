@@ -12,7 +12,7 @@ const categoryController = require('./controllers/categoryController');
 const mediaController = require('./controllers/mediaController');
 
 const validate = require('./services/validator');
-const animalPostSchema = require('./shemas/joi');
+const {animalPostSchema, animalPutSchema} = require('./shemas/joi');
 
 const router = Router();
 // const routerPublic = Router();
@@ -48,7 +48,7 @@ router.post('/admin/addAnimal', userController.authenticate, validate(animalPost
 router.route('/admin/animals/:id(\\d+)')
     .get(userController.authenticate, animalController.oneAnimal)
     .delete(userController.authenticate, animalController.deleteAnimal)
-    .put(userController.authenticate, animalController.editAnimal);
+    .put(userController.authenticate, validate(animalPutSchema, 'body'), animalController.editAnimal);
 
 router.post('/admin/addArticle',userController.authenticate, articleController.newArticle);
 router.route('/admin/articles/:id(\\d+)')
