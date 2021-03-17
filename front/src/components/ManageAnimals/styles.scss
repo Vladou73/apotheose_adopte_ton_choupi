@@ -135,3 +135,12 @@
     width: 60%;
   }
 }
+
+@media (max-width: 600px) {
+  .manageAnimals__link__add {
+    float: none;
+    margin-top: 2em;
+    margin-bottom: 0;
+    width: 100px;
+  }
+}

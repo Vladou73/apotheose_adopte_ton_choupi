@@ -151,3 +151,12 @@
     margin: .2em 1em;
   }
 }
+
+@media (max-width: 600px) {
+  .manageArticles__link__add {
+    float: none;
+    margin-top: 2em;
+    margin-bottom: 0;
+    width: 100px;
+  }
+}
