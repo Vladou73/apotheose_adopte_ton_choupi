@@ -26,6 +26,7 @@ import ManageAnimals from '../ManageAnimals';
 import ManageArticles from '../ManageArticles';
 import ManageAnimal from '../ManageAnimal';
 import ManageArticle from '../ManageArticle';
+import Creator from '../Creator';
 
 // Function to get the animals from the back api
 const baseUrl = 'https://spa-apotheose.herokuapp.com';
@@ -824,7 +825,10 @@ const App = () => {
         </Switch>
         )
       }
-      <Footer />
+      <Route path="/TousDroitsReserves" exact>
+      <Creator />
+      </Route>
+      <Footer/>
     </div>
   );
 };
