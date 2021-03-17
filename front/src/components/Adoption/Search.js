@@ -66,13 +66,13 @@ const Search = ({
       <select
         className="search-form__case"
         name="breed"
+        onChange={filterBreeds}
       >
         <option value="">Indifférent</option>
         {breeds.map((breed) => (
           <option
             key={breed.id}
             value={breed.name}
-            onChange={filterBreeds}
           >
             {breed.name}
           </option>
