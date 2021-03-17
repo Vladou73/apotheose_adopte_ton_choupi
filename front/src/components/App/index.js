@@ -527,8 +527,6 @@ const App = () => {
     setInputTextAnimals(event);
     setFilterAnimalsReset(false);
   };
-  // const filterNameAnimals = (
-  //   animals.filter((animalsObject) => animalsObject.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase())));
 
   // SPECIES FILTER
   const filterSpecies = (event) => {
@@ -548,7 +546,6 @@ const App = () => {
   };
   // CHECKBOX BREEDS ! bug
   const filterBreeds = (event) => {
-    console.log(event.target.value);
     setCheckboxBreedsAnimals(event.target.value);
     setFilterAnimalsReset(false);
   };
@@ -559,10 +556,8 @@ const App = () => {
   };
 
   const newAnimalsList = animals.filter((animal) => {
-    // const breedsObject = { ...animal.breeds };
-    // const filterByBreeds = checkboxBreedsAnimals ? breedsObject.name === checkboxBreedsAnimals : true;
     // const filterByGender = checkboxGenderAnimals ? animal.gender_id === checkboxGenderAnimals : true;
-    const filterByBreeds = checkboxBreedsAnimals ? animal.breeds.map((breedObject) => breedObject.name === checkboxBreedsAnimals) : true;
+    const filterByBreeds = checkboxBreedsAnimals ? animal.breeds[0].name === checkboxBreedsAnimals : true;
     const filterByName = animal.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase());
     const filterBySpecies = checkboxSpeciesAnimals ? animal.species_name === checkboxSpeciesAnimals : true;
 
