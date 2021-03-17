@@ -18,6 +18,7 @@ const Adoption = ({
   tags,
   species,
   filterTags,
+  filterSOS,
   filterAge,
   filterGender,
   filterSpecies,
@@ -25,6 +26,7 @@ const Adoption = ({
   resetFilterAnimals,
   onClickPageAnimals,
   pageAnimals,
+  isCheckedSOS,
 }) => (
   <div className="adoption-page">
     <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>
@@ -42,6 +44,8 @@ const Adoption = ({
       filterBreeds={filterBreeds}
       filterAge={filterAge}
       resetFilterAnimals={resetFilterAnimals}
+      filterSOS={filterSOS}
+      isCheckedSOS={isCheckedSOS}
     />
     <section className="section-animals">
       <h2 className="section-animals__title">{animals.length}
@@ -84,6 +88,13 @@ Adoption.propTypes = {
   filterTags: PropTypes.func.isRequired,
   onClickPageAnimals: PropTypes.func.isRequired,
   pageAnimals: PropTypes.number.isRequired,
+  filterSOS: PropTypes.func.isRequired,
+  filterAge: PropTypes.func.isRequired,
+  filterGender: PropTypes.func.isRequired,
+  filterSpecies: PropTypes.func.isRequired,
+  filterBreeds: PropTypes.func.isRequired,
+  resetFilterAnimals: PropTypes.func.isRequired,
+  isCheckedSOS: PropTypes.func.isRequired,
 };
 
 // == Export
