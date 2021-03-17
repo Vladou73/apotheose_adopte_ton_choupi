@@ -28,6 +28,7 @@ const Search = ({
           className="search-form__case"
           aria-describedby="animal_name"
           type="text"
+          placeholder="Ex: Choupi"
           value={inputTextAnimals}
           onChange={(event) => {
             const searchName = event.target.value;
@@ -37,10 +38,10 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR SPECIES */}
-      <div className="search-form__species">
+      <div className="search-form__filter">
         <p className="search-form__text">Espèce</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="species"
           onChange={filterSpecies}
         >
@@ -57,10 +58,10 @@ const Search = ({
       </div>
 
       {/* SELECT FOR BREED */}
-      <div className="search-form__breed">
+      <div className="search-form__filter">
         <p className="search-form__text">Race</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="breed"
           onChange={filterBreeds}
         >
@@ -77,10 +78,10 @@ const Search = ({
       </div>
 
       {/* SELECT FOR TAG */}
-      <div className="search-form__tag">
+      <div className="search-form__filter">
         <p className="search-form__text">Caractère</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="tags"
           onChange={filterTags}
         >
@@ -97,10 +98,10 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR TAG SOS */}
-      <div className="search-form__sos">
+      <div className="search-form__filter">
         <p className="search-form__text">SOS</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="species"
           onChange={filterSOS}
         >
@@ -114,10 +115,10 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR GENDER */}
-      <div className="search-form__gender">
+      <div className="search-form__filter">
         <p className="search-form__text">Sexe</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="species"
           onChange={filterGender}
         >
@@ -136,10 +137,10 @@ const Search = ({
       </div>
 
       {/* CHECKBOX FOR AGE */}
-      <div className="search-form__age">
+      <div className="search-form__filter">
         <p className="search-form__text">Age</p>
         <select
-          className="search-form__case"
+          className="search-form__caseFilter"
           name="species"
           onChange={filterAge}
         >
