@@ -558,12 +558,13 @@ const App = () => {
 
   const newAnimalsList = animals.filter((animal) => {
     const filterByGender = checkboxGenderAnimals ? animal.gender_name === checkboxGenderAnimals : true;
+    const filterByAge = checkboxAgeAnimals ? animal.ageLabel === checkboxAgeAnimals : true;
     const filterByBreeds = checkboxBreedsAnimals ? animal.breeds[0].name === checkboxBreedsAnimals : true;
     const filterByTags = selectTagsAnimals ? animal.tags[0].name === selectTagsAnimals : true;
     const filterByName = animal.name.toLowerCase().includes(inputTextAnimals.toLocaleLowerCase());
     const filterBySpecies = checkboxSpeciesAnimals ? animal.species_name === checkboxSpeciesAnimals : true;
 
-    return (filterByName && filterBySpecies && filterByBreeds && filterByGender && filterByTags);
+    return (filterByName && filterBySpecies && filterByBreeds && filterByGender && filterByTags && filterByAge);
   });
 
   // reset filters of animals list

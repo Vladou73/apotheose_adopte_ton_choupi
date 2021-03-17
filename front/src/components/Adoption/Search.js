@@ -164,6 +164,7 @@ const Search = ({
             aria-describedby="junior"
             type="radio"
             name="age"
+            value="junior"
             onChange={filterAge}
           />
         </label>
@@ -178,6 +179,7 @@ const Search = ({
             aria-describedby="adulte"
             type="radio"
             name="age"
+            value="adulte"
             onChange={filterAge}
           />
         </label>
@@ -192,6 +194,7 @@ const Search = ({
             aria-describedby="senior"
             type="radio"
             name="age"
+            value="senior"
             onChange={filterAge}
           />
         </label>

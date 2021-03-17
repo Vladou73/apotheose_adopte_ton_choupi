@@ -18,6 +18,7 @@ const Adoption = ({
   tags,
   species,
   filterTags,
+  filterAge,
   filterGender,
   filterSpecies,
   filterBreeds,
@@ -39,6 +40,7 @@ const Adoption = ({
       filterTags={filterTags}
       filterSpecies={filterSpecies}
       filterBreeds={filterBreeds}
+      filterAge={filterAge}
       resetFilterAnimals={resetFilterAnimals}
     />
     <section className="section-animals">
