@@ -11,31 +11,32 @@ const Blog = ({
   pageArticles, articleCount,
 }) => (
   <div className="blog">
-    <h2 className="blog__title">Nos articles</h2>
+    <h2 className="blog__title">L'ensemble de nos actualités</h2>
     <div className="blog__categories">
-      <p className="blog__categories__title">Les catégories</p>
       <Category
         filterCategories={filterCategories}
         categories={categories}
       />
     </div>
-    <div className="blog__articles">
-      {datas.map((data) => <Article key={data.id} {...data} />)}
-    </div>
-    <Pagination
-      activePage={pageArticles}
-      itemsCountPerPage={6}
-      pageRangeDisplayed={3}
-      totalItemsCount={articleCount}
-      onChange={onClickPageArticles}
-      prevPageText="<"
-      firstPageText=".."
-      lastPageText=".."
-      nextPageText=">"
-      innerClass="pagination"
-      activeClass="pagination__active"
-      itemClass="pagination__li"
-    />
+    <section className="blog__section">
+      <div className="blog__articles__blog">
+        {datas.map((data) => <Article key={data.id} {...data} />)}
+      </div>
+      <Pagination
+        activePage={pageArticles}
+        itemsCountPerPage={6}
+        pageRangeDisplayed={3}
+        totalItemsCount={articleCount}
+        onChange={onClickPageArticles}
+        prevPageText="<"
+        firstPageText=".."
+        lastPageText=".."
+        nextPageText=">"
+        innerClass="pagination"
+        activeClass="pagination__active"
+        itemClass="pagination__li"
+      />
+    </section>
   </div>
 );
 
