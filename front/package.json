@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "classnames": "^2.2.6",
     "emailjs": "^3.4.0",
     "emailjs-com": "^2.6.4",
     "firebase": "^8.3.0",

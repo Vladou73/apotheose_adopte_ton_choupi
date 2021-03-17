@@ -1,21 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import imageArticle from './image-article.jpg';
+import classname from 'classnames';
 
 import './style.scss';
 
 const Article = (data) => {
   const content = `${data.content.substring(0, 200)}...`;
   return (
-    <>
+    <Link to={`/articles/${data.id}`}>
       <div className="blog__article">
-        <h3 className="blog__article__title">{data.title}</h3>
-        <span className="blog__article__category">{data.category_name}</span>
-        <img src={data.media_url} alt="article" />
+        <h2 className="blog__article__title">{data.title}</h2>
+        <span
+          className={classname({
+            blog__article__category: true,
+            covid: data.category_name === 'covid',
+            actu: data.category_name === 'actu',
+            adoption: data.category_name === 'adoption',
+            maltraitance: data.category_name === 'maltraitance',
+          })}
+        >{data.category_name}
+        </span>
+        <img src={data.media_url} alt="article" className="blog__article__picture" />
         <p className="blog__article__content">{content}</p>
-        <Link className="blog__article__more" to={`/articles/${data.id}`}>Lire plus...</Link>
+        <p className="blog__article__more">En savoir d'avantage..</p>
       </div>
-    </>
+    </Link>
   );
 };
 

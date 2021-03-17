@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 // == Import npm
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 // == Import
 import News from './news';

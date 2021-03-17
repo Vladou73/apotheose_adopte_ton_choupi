@@ -1,17 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import classname from 'classnames';
 
 const Category = ({ categories, filterCategories }) => (
   <>
-    <button
-      type="button"
-      onClick={filterCategories}
-      className="blog__categories__category"
-      value="allCategories"
-    >
-      Voir toutes les catégories
-    </button>
 
     {categories.map((categorie) => (
       <button
@@ -19,11 +12,27 @@ const Category = ({ categories, filterCategories }) => (
         onClick={filterCategories}
         key={categorie.id}
         value={categorie.name}
-        className="blog__categories__category"
+        className={classname({
+          blog__categories__category: true,
+          covid: categorie.name === 'covid',
+          actu: categorie.name === 'actu',
+          adoption: categorie.name === 'adoption',
+          maltraitance: categorie.name === 'maltraitance',
+        })}
       >
         {categorie.name}
       </button>
     ))}
+    <div>
+      <button
+        type="button"
+        onClick={filterCategories}
+        className="blog__categories__category all"
+        value="allCategories"
+      >
+        Voir toutes les catégories
+      </button>
+    </div>
   </>
 );
 

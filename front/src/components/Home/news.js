@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 // == Import
 import './styles.scss';
-import cat from './cat.jpg';
 
 // == Composant
 const News = ({ article }) => {
