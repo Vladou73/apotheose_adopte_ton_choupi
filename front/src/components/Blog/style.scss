@@ -15,9 +15,11 @@
       text-transform: uppercase;
       width: 150px;
       margin: auto;
-      border-radius:50px;
-      color: white;
-      &:hover {
+      background-color: #fff;
+      letter-spacing: .1rem;
+      -webkit-box-shadow: 2px 2px 2px 0px #eeeeee, inset 1px 1px 8px 0px #eeeeee, 2px 2px 2px -9px rgba(248, 248, 248, 0); 
+      box-shadow: 2px 2px 2px 0px #eeeeee, inset 1px 1px 8px 0px #eeeeee, 2px 2px 2px -9px rgba(248, 248, 248, 0);
+        &:hover {
         -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
         transform: scale(1.1);
@@ -54,7 +56,8 @@
       padding: 1em;
       border-radius: 5px;
       text-transform: uppercase;
-      color: white;
+      letter-spacing: .2rem;
+      background-color: #f0f0f0;
     }
     &__content {
      margin: 1em;
@@ -63,27 +66,25 @@
     &__more {
       text-align: right;
       font-size: 0.8em;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
       margin-right: 0.5em;
     }
   }
 }
 .actu {
-  background-color: #822d4d;
+  color: #822d4d;
 }
 .adoption {
-  background-color: #ce6e14;
+  color: #ce6e14;
 }
 .covid {
-  background-color: #a3c0be;
+  color: #3e6086;
 }
 .maltraitance {
-  background-color: #506d6e
+  color: #506d6e
 }
 .all {
   margin: 2em;
-  background-color:#eeeeee;
-  color: black;
   width: 250px;
 }
 

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Error404 from '../Error404';
 import './style.scss';
+import classname from 'classnames';
 
 const Article = ({ article }) => {
   const { id } = useParams();
@@ -20,7 +21,15 @@ const Article = ({ article }) => {
   return (
     <div className="article">
       <h2 className="article__title">{title}</h2>
-      <span className="article__category">{category_name}</span>
+      <span className={classname({
+        blog__article__category: true,
+        covid: data.category_name === 'covid',
+        actu: data.category_name === 'actu',
+        adoption: data.category_name === 'adoption',
+        maltraitance: data.category_name === 'maltraitance',
+      })}
+      >{category_name}
+      </span>
       <img src={media_url} alt={title} />
       <div className="article__content">
         <p>{content}</p>
