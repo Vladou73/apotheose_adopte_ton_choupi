@@ -118,19 +118,6 @@ const ManageAnimal = ({
               )
         }
           </div>
-          <div className="animal__category__text">
-            {allBreeds.map((breed) => (
-              <label htmlFor="breed" key={breed.id}> {breed.name}
-                <input
-                  key={breed.id}
-                  className="animal__category__breed"
-                  type="checkbox"
-                  value={breed.id}
-                  onChange={(e) => handleChangeEditAnimal(e)}
-                />
-              </label>
-            ))}
-          </div>
           <div className="animal__content">
             <label className="animal__content__label" htmlFor="content">Contenu : </label>
             <textarea id="description" name="description" rows="20" cols="100" className="animal__content__textarea" value={animalData.description} onChange={(e) => handleChangeEditAnimal(e)} />
