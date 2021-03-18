@@ -570,7 +570,7 @@ const App = () => {
   const filterSpecies = (event) => {
     event.preventDefault();
     setCheckboxSpeciesAnimals(event.target.value);
-    let speciesId = null;
+    let speciesId = '';
     switch (event.target.value) {
       case 'NAC':
         speciesId = 3;
@@ -582,18 +582,23 @@ const App = () => {
         speciesId = 1;
         break;
       default:
-        speciesId = null;
+        speciesId = '';
     }
-    axios({
-      method: 'get',
-      url: `${baseUrl}/admin/species/${speciesId}`,
-    })
-      .then((response) => {
-        setBreedsSearch(response.data.breeds);
+    if (speciesId !== '') {
+      axios({
+        method: 'get',
+        url: `${baseUrl}/admin/species/${speciesId}`,
       })
-      .catch((error) => {
-        console.trace(error);
-      });
+        .then((response) => {
+          setBreedsSearch(response.data.breeds);
+        })
+        .catch((error) => {
+          console.trace(error);
+        });
+    }
+    else {
+      setBreedsSearch(breeds);
+    }
   };
   // GENDER FILTER
   const filterGender = (event) => {
