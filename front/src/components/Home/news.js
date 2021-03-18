@@ -22,7 +22,7 @@ const News = ({ article }) => {
           alt="article"
         />
         <div className="home-news__contain">
-          <p className="home-news__title">{article.title}</p>
+          <h1 className="home-news__title">{article.title}</h1>
           <span
             className={classname({
               'home-news__category': true,
