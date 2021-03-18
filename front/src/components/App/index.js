@@ -720,6 +720,7 @@ const App = () => {
                   handleUpload={handleUpload}
                   url={url}
                   progress={progress}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>
