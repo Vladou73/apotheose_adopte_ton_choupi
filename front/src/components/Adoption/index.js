@@ -12,7 +12,6 @@ import Cards from './Cards';
 // == Composant
 const Adoption = ({
   inputTextAnimals,
-  animalsCount,
   filterName,
   animals,
   breeds,
@@ -90,7 +89,6 @@ Adoption.propTypes = {
   filterGender: PropTypes.func.isRequired,
   filterSpecies: PropTypes.func.isRequired,
   filterBreeds: PropTypes.func.isRequired,
-  animalsCount: PropTypes.number.isRequired,
 };
 
 // == Export
