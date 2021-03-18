@@ -50,7 +50,7 @@ Blog.propTypes = {
   filterCategories: PropTypes.func.isRequired,
   onClickPageArticles: PropTypes.func.isRequired,
   pageArticles: PropTypes.number.isRequired,
-  articleCount: PropTypes.number.isRequired,
+  // articleCount: PropTypes.number.isRequired,
 };
 
 export default Blog;

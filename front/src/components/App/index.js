@@ -244,18 +244,6 @@ const App = () => {
       });
   };
 
-  // Hooks effects
-  useEffect(() => {
-    getArticles();
-    getAnimals();
-    getAllAnimals();
-    getAllArticles();
-    getBreeds();
-    getTags();
-    getSpecies();
-    getCategories();
-  }, []);
-
   // handle change & submit to add an article
 
   const handleChangeAddArticle = (e) => {
@@ -420,6 +408,8 @@ const App = () => {
 
   // Hooks effects
   useEffect(() => {
+    getAllAnimals();
+    getAllArticles();
     getAnimals();
     getBreeds();
     getTags();
@@ -599,7 +589,7 @@ const App = () => {
     setCheckboxSOSAnimals(event.target.value);
   };
 
-  const newAnimalsList = animals.filter((animal) => {
+  const newAnimalsList = allAnimals.filter((animal) => {
     const filterByGender = checkboxGenderAnimals ? animal.gender_name === checkboxGenderAnimals : true;
     const filterByAge = checkboxAgeAnimals ? animal.ageLabel === checkboxAgeAnimals : true;
     const filterByBreeds = checkboxBreedsAnimals ? animal.breeds[0].name === checkboxBreedsAnimals : true;

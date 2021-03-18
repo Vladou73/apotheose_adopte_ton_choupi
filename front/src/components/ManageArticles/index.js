@@ -19,6 +19,7 @@ const ManageArticles = ({
     <p className={confirmationDelete}>L'article a été supprimé !</p>
     <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
     <Modal isOpen={modalAddArticleIsOpen}>
+
       <button type="button" onClick={changeModalStateAddArticle} className="manageArticles__closeModal">X</button>
       <h3 className="manageArticles__titleModal">Ajouter un article</h3>
       <div className="formAddArticle">
@@ -28,12 +29,8 @@ const ManageArticles = ({
           <label className="formAddArticle__label__category" htmlFor="category-select">Catégorie :</label>
           <select onChange={(e) => handleChangeAddArticle(e)} className="formAddArticle__select" name="category_id" id="category_id">
             <option value="">-- Choisissez une catégorie --</option>
-            {categories.map((category) => <option id="category_id" value={category.id}>{category.name}</option>)}
+            {categories.map((category) =>  <option key={category.id} id="category_id" value={category.id}>{category.name}</option>)}
           </select>
-          {/*
-          <label className="formAddArticle__label__favoris" htmlFor="pin">Favoris</label>
-          <input onChange={(e) => handleChangeAddArticle(e)} type="checkbox" id="pin" name="pin" value="false" />
-          */}
           <div>
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
             <input type="file" onChange={handleChangeFirebase} />
@@ -48,6 +45,7 @@ const ManageArticles = ({
         </form>
       </div>
     </Modal>
+    
     <table className="manageArticles__table">
       <tbody>
         <tr>
@@ -58,7 +56,7 @@ const ManageArticles = ({
           <td className="manageArticles__table__head">Options</td>
         </tr>
         {articles.map((article) => (
-          <tr>
+          <tr key={article.id}>
             <td>{article.author_firstname} {article.author_lastname}</td>
             <td>{article.title}</td>
             <td>{article.created_at}</td>

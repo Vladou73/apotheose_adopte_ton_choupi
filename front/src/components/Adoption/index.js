@@ -45,9 +45,9 @@ const Adoption = ({
       filterSOS={filterSOS}
     />
     <section className="section-animals">
-      <h2 className="section-animals__title">{animalsCount}
+      <h2 className="section-animals__title">{animals.length}
         {
-        animalsCount === 1 ? " animal à l'adoption" : " animaux à l'adoption"
+        animals.length === 1 ? " animal à l'adoption" : " animaux à l'adoption"
       }
       </h2>
       <div className="cards-animals">
@@ -57,7 +57,7 @@ const Adoption = ({
         activePage={pageAnimals}
         itemsCountPerPage={8}
         pageRangeDisplayed={3}
-        totalItemsCount={animalsCount}
+        totalItemsCount={animals.length}
         onChange={onClickPageAnimals}
         prevPageText="<"
         firstPageText=".."

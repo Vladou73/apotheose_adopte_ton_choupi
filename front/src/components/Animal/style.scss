@@ -15,14 +15,17 @@
   }
   &__category {
     padding: 2em auto;
-    &-tags {
-      margin: 1em auto;
+    &__tag {
+      display: inline-block;
+      margin: .5em;
       text-transform: uppercase;
-      padding: 0.5em;     
+      padding: .5em 1em;
       background-color: #5f3d52;
       color: #fff;
       border-radius: 5px;
-      width: 100px;
+      &__sos {
+        background-color: #ff5454;
+      }
     }
     &-text {
       margin: 0.5em auto;
