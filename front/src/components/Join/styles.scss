@@ -1,19 +1,20 @@
-.participate{
-};
-
-.participateTitle{
-  font-size: 200%;
-  text-align: center;
-  padding-top: 1em;
-  padding-bottom: 1em;
-};
-
 .mainParticipate{
   padding-top: 2em;
   text-align: center;
   padding-bottom: 2em;
 };
-
+.act-title{
+  font-size: 2em;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+};
+.act-subtitle{
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+};
 .introText{
   padding-top: 1em;
   padding-bottom: 1em;
@@ -21,70 +22,70 @@
   border: 1px solid #000;
   width: 50%;
   margin: auto;
-  background-color: #677369;
-  color: rgb(240, 236, 236);
 };
-
 .participatePicture{
   padding-top: 2.5em;
   width: 40%;
   height: auto;
 };
-
 .sponsorElements{
   width: 60%;
   margin: 2em auto;
   padding: 2em;
-  background-color: rgb(250, 237, 214);
   border: 1px solid #677369;
-  border-radius: 5px;
   padding-top: 1em;
+  border-radius: 9px;
+  -webkit-box-shadow: 0px 1px 13px 7px rgba(36, 35, 35, 0.15); 
+  box-shadow: 0px 1px 13px 7px rgba(12,12,12,0.15);
 };
-
 .subTitleSponsor{
-  background-color: #677369;
   border: none;
-  color: #fff;
   padding: 15px 32px;
   border-radius: 5px;
   text-align: center;
   width: 100%;
   margin-top: 2.5em;
+  font-size: 1.5em;
 };
-
+.subTitleSponsor-subtitle{
+  border: none;
+  padding: 10px 15px;
+  text-align: left;
+  margin-top: 1.5em;
+  font-size: 1.5em;
+}
+.join-ul {
+  padding: .5em;
+  margin-bottom: 1.5em;
+}
+.join-li {
+  list-style-type: square;
+}
 .sponsorText{
   text-align: left;
   margin-top: 2em;
 };
-
-
 .walkingElements{
   margin: auto;
   padding: 2em;
   width: 60%;
   text-align: center;
-  background-color: rgb(250, 237, 214);
   border: 1px solid #677369;
   border-radius: 5px;
   padding-top: 1em;
 };
-
 .subTitleWalking{
-  background-color: #677369;
   border: none;
-  color: #fff;
   width: 100%;
   padding: 15px 32px;
   border-radius: 5px;
   text-align: center;
   margin-top: 2.5em;
 };
-
 .walkingText{
   text-align: left;
   margin-top: 2em;
 };
-
 .contactButton {
   display: inline-block;
   margin: 2em auto;
@@ -97,12 +98,3 @@
   text-decoration: none;
   font-size: 16px;
 }
-
-/* &__sponsorPicture{
-  width: 10%;
-}; */
-
-/*   &__walkingPicture{
-    width: 15%;
-    margin-left: auto;
-  }; */

@@ -16,7 +16,7 @@ const Footer = () => (
     </div>
     <div className="copyright">
       <a href="#"><img className="copyright__fbLogo" src={FacebookLogo} alt="Facebook logo" /></a>
-      <p className="copyright__text">© Tous droits réservés</p>
+      <a href="/TousDroitsReserves"><p className="copyright__text">© Tous droits réservés</p></a>
     </div>
   </div>
 );
