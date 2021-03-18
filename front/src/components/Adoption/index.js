@@ -31,8 +31,6 @@ const Adoption = ({
   const indexOfLastAnimal = pageAnimals * animalsPerPage;
   const indexOfFirstAnimal = indexOfLastAnimal - animalsPerPage;
   const currentAnimals = animals.slice(indexOfFirstAnimal, indexOfLastAnimal);
-  console.log(currentAnimals);
-
   return (
     <div className="adoption-page">
       <h1 className="adoption-page__title">Ton choupi se cache peut-être ici..</h1>

@@ -15,7 +15,6 @@ const Blog = ({
   const indexOfLastArticle = pageArticles * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = datas.slice(indexOfFirstArticle, indexOfLastArticle);
-  console.log(currentArticles);
   return (
     <div className="blog">
       <h2 className="blog__title">L'ensemble de nos articles</h2>
