@@ -9,6 +9,8 @@
   &__category {
     width:30%;
     margin: auto;
+    color: #5f3d52;
+    background-color: #eeeeee;
   }
   &__input {
   padding: 1em;
@@ -38,5 +40,6 @@
 }
 &__submit {
   margin-top: 3em;
+  background-color: #5f3d52;
 }
 }
