@@ -8,37 +8,45 @@ import './style.scss';
 
 const Blog = ({
   datas, categories, filterCategories, onClickPageArticles,
-  pageArticles, articlesCount,
-}) => (
-  <div className="blog">
-    <h2 className="blog__title">L'ensemble de nos articles</h2>
-    <div className="blog__categories">
-      <Category
-        filterCategories={filterCategories}
-        categories={categories}
-      />
-    </div>
-    <section className="blog__section">
-      <div className="blog__articles__blog">
-        {datas.map((data) => <Article key={data.id} {...data} />)}
+  pageArticles,
+}) => {
+  // PAGINATION
+  const articlesPerPage = 6;
+  const indexOfLastArticle = pageArticles * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = datas.slice(indexOfFirstArticle, indexOfLastArticle);
+  console.log(currentArticles);
+  return (
+    <div className="blog">
+      <h2 className="blog__title">L'ensemble de nos articles</h2>
+      <div className="blog__categories">
+        <Category
+          filterCategories={filterCategories}
+          categories={categories}
+        />
       </div>
-      <Pagination
-        activePage={pageArticles}
-        itemsCountPerPage={6}
-        pageRangeDisplayed={3}
-        totalItemsCount={articlesCount}
-        onChange={onClickPageArticles}
-        prevPageText="<"
-        firstPageText=".."
-        lastPageText=".."
-        nextPageText=">"
-        innerClass="pagination"
-        activeClass="pagination__active"
-        itemClass="pagination__li"
-      />
-    </section>
-  </div>
-);
+      <section className="blog__section">
+        <div className="blog__articles__blog">
+          {currentArticles.map((data) => <Article key={data.id} {...data} />)}
+        </div>
+        <Pagination
+          activePage={pageArticles}
+          itemsCountPerPage={articlesPerPage}
+          pageRangeDisplayed={3}
+          totalItemsCount={datas.length}
+          onChange={onClickPageArticles}
+          prevPageText="<"
+          firstPageText=".."
+          lastPageText=".."
+          nextPageText=">"
+          innerClass="pagination"
+          activeClass="pagination__active"
+          itemClass="pagination__li"
+        />
+      </section>
+    </div>
+  );
+};
 
 Blog.propTypes = {
   datas: PropTypes.arrayOf(
