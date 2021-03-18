@@ -82,6 +82,7 @@ animalMapper.findAll = async(request) => {
         return result.rows;
     } catch(error){
         console.log(error)
+        return error
     }
 }
 
@@ -144,6 +145,7 @@ animalMapper.findOne = async(id) => {
         return result.rows[0];
     } catch(error){
         console.log(error);
+        return error
     }
 }
 
@@ -179,6 +181,7 @@ animalMapper.save = async (theAnimal) => {
         theAnimal.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 
     //-----------------BINDING TABLES-----------------//
@@ -208,6 +211,7 @@ animalMapper.save = async (theAnimal) => {
             }
         } catch(error) {
             console.log(error);
+            return error
         }
     }
 }
@@ -224,6 +228,7 @@ animalMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 
 }
@@ -254,6 +259,7 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 
     //-----------------BINDING TABLES-----------------//
@@ -280,6 +286,7 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
             }
         } catch(error) {
             console.log(error);
+            return error
         }
     }
 }

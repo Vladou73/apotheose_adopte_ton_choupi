@@ -6,8 +6,12 @@ const categoryController = {}
 
 categoryController.allCategories = async (_, response) => {
     console.log('enter categoryController.allCategories')
-    const categories = await categoryMapper.findAll();
-    response.json(categories)
+    try {
+        const categories = await categoryMapper.findAll();
+        response.json(categories)
+    } catch(err) {
+        response.status(404).json(err.message);
+    }
 }
 
 categoryController.oneCategory = async (request, response) => {
