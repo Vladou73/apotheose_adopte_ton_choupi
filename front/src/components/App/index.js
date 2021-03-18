@@ -194,9 +194,9 @@ const App = () => {
   };
 
   // Articles get list
-  const getArticles = () => {
+  const getArticles = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/articles?page=${pageArticles}&items=8`,
     })
@@ -211,9 +211,9 @@ const App = () => {
       });
   };
 
-  const getAllArticles = () => {
+  const getAllArticles = async () => {
     setLoading(true);
-    axios({
+    await axios({
       method: 'get',
       url: `${baseUrl}/articles`,
     })
@@ -638,7 +638,7 @@ const App = () => {
     setButtonCategories(event.target.value);
     setPageArticles(1);
   };
-  const filterCategoriesArticles = articles.filter(
+  const filterCategoriesArticles = allArticles.filter(
     (articlesObject) => articlesObject.category_name.toLowerCase().includes(buttonCategories.toLowerCase()),
   );
 
@@ -657,7 +657,6 @@ const App = () => {
           <Route path="/animaux" exact>
             <Adoption
               animals={newAnimalsList}
-              animalsCount={allAnimals.length}
               breeds={breedsSearch}
               tags={tags}
               species={species}
@@ -831,12 +830,11 @@ const App = () => {
               </Route>
               <Route path="/articles" exact>
                 <Blog
-                  datas={buttonCategories === 'allCategories' ? articles : filterCategoriesArticles}
+                  datas={buttonCategories === 'allCategories' ? allArticles : filterCategoriesArticles}
                   categories={categories}
                   filterCategories={filterCategories}
                   onClickPageArticles={onClickPageArticles}
                   pageArticles={pageArticles}
-                  articlesCount={allArticles.length}
                 />
               </Route>
               <Route path="/articles/:id" exact>
