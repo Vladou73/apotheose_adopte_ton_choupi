@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import Logo from './logo.png';
 import FacebookLogo from './fb.png';
@@ -16,7 +17,7 @@ const Footer = () => (
     </div>
     <div className="copyright">
       <a href="#"><img className="copyright__fbLogo" src={FacebookLogo} alt="Facebook logo" /></a>
-      <a href="/TousDroitsReserves"><p className="copyright__text">© Tous droits réservés</p></a>
+      <Link to="/TousDroitsReserves"><p className="copyright__text">© Tous droits réservés</p></Link>
     </div>
   </div>
 );
