@@ -598,7 +598,7 @@ const App = () => {
     setCheckboxSOSAnimals(event.target.value);
   };
 
-  const newAnimalsList = animals.filter((animal) => {
+  const newAnimalsList = allAnimals.filter((animal) => {
     const filterByGender = checkboxGenderAnimals ? animal.gender_name === checkboxGenderAnimals : true;
     const filterByAge = checkboxAgeAnimals ? animal.ageLabel === checkboxAgeAnimals : true;
     const filterByBreeds = checkboxBreedsAnimals ? animal.breeds[0].name === checkboxBreedsAnimals : true;
