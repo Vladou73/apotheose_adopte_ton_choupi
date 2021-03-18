@@ -15,7 +15,7 @@
   }
   &__category {
     padding: 2em auto;
-    &-tags {
+    &__tag {
       margin: 1em auto;
       text-transform: uppercase;
       padding: 0.5em;     
@@ -23,6 +23,9 @@
       color: #fff;
       border-radius: 5px;
       width: 100px;
+      &__sos {
+        background-color: #ff5454;
+      }
     }
     &-text {
       margin: 0.5em auto;

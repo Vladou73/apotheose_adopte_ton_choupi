@@ -4,6 +4,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import './style.scss';
+import classname from 'classnames';
 import PropTypes from 'prop-types';
 import Error404 from '../Error404';
 
@@ -37,8 +38,18 @@ const Animal = ({ animal }) => {
         {
         tags === null
           ? <p>Nouveau pensionnaires, nous évaluons son comportement pour le moment.</p>
-          : tags.map((tag) => <p key={tag.id} className="animal__category-tags"> {tag.name} </p>)
-      }
+          : tags.map((tag) => (
+            <p
+              key={tag.id}
+              className={classname({
+                animal__category__tag: true,
+                animal__category__tag__sos: tag.name === 'sos',
+              })}
+            >
+              {tag.name}
+            </p>
+          ))
+        }
         <div className="animal__category">
           <p className="animal__category-text">Espèce : {species_name}</p>
           <p className="animal__category-text">Race / Apparence : {

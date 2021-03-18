@@ -10,10 +10,18 @@ import classname from 'classnames';
 
 // == Composant
 const Cards = ({
-  id, name, birthdate, gender_name, medias,
+  id, name, birthdate, gender_name, medias, tags,
 }) => (
   <Link to={`/animaux/${id}`}>
     <div className="card-animal">
+      <span
+        className={classname({
+          'card-animal__span': true,
+          female: gender_name === 'female',
+          male: gender_name === 'male',
+        })}
+      >SOS
+      </span>
       <h2 className="card-animal__name">{name}</h2>
       <img
         className="card-animal__picture"
@@ -43,6 +51,7 @@ Cards.propTypes = {
   birthdate: PropTypes.string.isRequired,
   gender_name: PropTypes.string.isRequired,
   medias: PropTypes.array.isRequired,
+  tags: PropTypes.array.isRequired,
 };
 // == Export
 export default Cards;
