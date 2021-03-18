@@ -13,15 +13,12 @@ function getAge(dateString) {
     return {ageYear, ageMonth};
 }
 function getAgeLabel(age) {
-    switch (age) {
-        case age <= 0:
-          return 'bébé';
-        case age <= 2:
-            return 'junior';
-        case age <= 8:
-            return 'adulte';
-        default:
-            return 'senior';
+    if(age<=3){
+        return 'junior';
+    }else if (age <= 7){
+        return 'adulte';
+    }else{
+        return 'senior';
     }
 }
 
