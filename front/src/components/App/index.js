@@ -406,7 +406,7 @@ const App = () => {
         url: `${baseUrl}/admin/articles/${article.id}`,
       })
         .then(() => {
-          getArticles();
+          getAllArticles();
           showConfirmationDelete();
         })
         .catch((error) => {
@@ -453,8 +453,8 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.id }],
-          // breeds: [{ id: newAnimalData.id }],
+          // tags: [{ id: newAnimalData.tags.id }],
+          // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
           medias: [{
             url,
             type: 'image',
@@ -463,7 +463,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
-          getAnimals();
+          getAllAnimals();
           showConfirmationAdd();
           setProgress(0);
         })

@@ -90,7 +90,7 @@ const ManageAnimal = ({
                 <input
                   type="checkbox"
                   name="tag"
-                  value={tag.id}
+                  value={animalData.tags.id}
                   onChange={(e) => handleChangeEditAnimal(e)}
                 />
               </label>
