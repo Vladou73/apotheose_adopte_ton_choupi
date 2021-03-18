@@ -244,18 +244,6 @@ const App = () => {
       });
   };
 
-  // Hooks effects
-  useEffect(() => {
-    getArticles();
-    getAnimals();
-    getAllAnimals();
-    getAllArticles();
-    getBreeds();
-    getTags();
-    getSpecies();
-    getCategories();
-  }, []);
-
   // handle change & submit to add an article
 
   const handleChangeAddArticle = (e) => {
@@ -420,6 +408,8 @@ const App = () => {
 
   // Hooks effects
   useEffect(() => {
+    getAllAnimals();
+    getAllArticles();
     getAnimals();
     getBreeds();
     getTags();
@@ -826,9 +816,9 @@ const App = () => {
         )
       }
       <Route path="/TousDroitsReserves" exact>
-      <Creator />
+        <Creator />
       </Route>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
