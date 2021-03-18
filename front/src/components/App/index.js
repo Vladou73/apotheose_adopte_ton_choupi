@@ -39,6 +39,7 @@ const App = () => {
   const [allAnimals, setAllAnimals] = useState([]);
   const [allArticles, setAllArticles] = useState([]);
   const [breeds, setBreeds] = useState([]);
+  const [breedsSearch, setBreedsSearch] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
@@ -145,6 +146,7 @@ const App = () => {
       url: `${baseUrl}/breeds`,
     })
       .then((response) => {
+        setBreedsSearch(response.data);
         setBreeds(response.data);
       })
       .catch((error) => {
@@ -566,7 +568,32 @@ const App = () => {
   };
   // SPECIES FILTER
   const filterSpecies = (event) => {
+    event.preventDefault();
     setCheckboxSpeciesAnimals(event.target.value);
+    let speciesId = null;
+    switch (event.target.value) {
+      case 'NAC':
+        speciesId = 3;
+        break;
+      case 'chat':
+        speciesId = 2;
+        break;
+      case 'chien':
+        speciesId = 1;
+        break;
+      default:
+        speciesId = null;
+    }
+    axios({
+      method: 'get',
+      url: `${baseUrl}/admin/species/${speciesId}`,
+    })
+      .then((response) => {
+        setBreedsSearch(response.data.breeds);
+      })
+      .catch((error) => {
+        console.trace(error);
+      });
   };
   // GENDER FILTER
   const filterGender = (event) => {
@@ -577,7 +604,7 @@ const App = () => {
     setCheckboxAgeAnimals(event.target.value);
   };
   // CHECKBOX BREEDS
-  const filterBreeds = (event) => {
+  const filterBreeds = async (event) => {
     setCheckboxBreedsAnimals(event.target.value);
   };
   // SELECT TAGS
@@ -626,7 +653,7 @@ const App = () => {
             <Adoption
               animals={newAnimalsList}
               animalsCount={allAnimals.length}
-              breeds={breeds}
+              breeds={breedsSearch}
               tags={tags}
               species={species}
               onClickPageAnimals={onClickPageAnimals}
