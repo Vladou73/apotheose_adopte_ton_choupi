@@ -351,7 +351,7 @@ const App = () => {
         url: `${baseUrl}/admin/animals/${animal.id}`,
       })
         .then(() => {
-          getAnimals();
+          getAllAnimals();
           showConfirmationDelete();
         })
         .catch((error) => {
@@ -491,7 +491,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
-          getArticles();
+          getAllArticles();
           showConfirmationAdd();
           setProgress(0);
         })
@@ -826,9 +826,9 @@ const App = () => {
         )
       }
       <Route path="/TousDroitsReserves" exact>
-      <Creator />
+        <Creator />
       </Route>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
