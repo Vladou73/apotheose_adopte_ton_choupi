@@ -14,13 +14,16 @@
 }
 
 .donate {
-  display: inline-block;
-  padding: 0.5em 1.5em;
-  border-radius: 5px;
-  color: white;
-  background-color: #795e6e;
-  letter-spacing: 1px;
-  transition: all 500ms ease;
+    font-size: 1.2em;
+    margin-bottom: .5em;
+    display: inline-block;
+    padding: .5em 1.5em;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #9e7f6a;
+    letter-spacing: 1px;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
   &:hover {
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
@@ -33,7 +36,7 @@
   padding: 0.5em 1em;
   border-radius: 4px;
   color: white;
-  background-color: #5f3d52;
+  background-color: #9e7f6a;
 }
 
 .logoHeader {
@@ -51,7 +54,7 @@
   }
 }
 
-$color: #795e6e;
+$color: #9e7f6a;
 $submenu-width: 180px;
 
 
@@ -135,7 +138,7 @@ nav {
     background: rgba(#000, 0.3);
   }
   &--active {
-    background-color:  #795e6e;
+    background-color:  #9e7f6a;
   }
 }
 
