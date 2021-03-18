@@ -5,10 +5,15 @@ const tagMapper = {}
 
 tagMapper.findAll = async() => {
         const query = `SELECT id, name, color FROM tag ORDER BY name;`
-        const result = await db.query(query);
-        // et les retourne, sous forme d'instances de Breed
-        return result.rows.map(tag => new Tag(tag));
-        // return result.rows;
+        try {
+            const result = await db.query(query);
+            // et les retourne, sous forme d'instances de Breed
+            return result.rows.map(tag => new Tag(tag));
+            // return result.rows;
+        } catch {
+            console.log(error);
+            return error;
+        }
 }    
 
 tagMapper.findOne = async(id) => {  
@@ -45,6 +50,7 @@ tagMapper.save = async (theTag) => {
         theTag.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error;
     }
 }
 
@@ -56,6 +62,7 @@ tagMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error;
     }
 }
 
@@ -82,6 +89,7 @@ tagMapper.edit = async (theTag) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error;
     }
 }
 

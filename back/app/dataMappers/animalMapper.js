@@ -75,10 +75,15 @@ animalMapper.findAll = async(request) => {
         ORDER BY a.created_at DESC
         ${pagination}
     `
-    const result = await db.query(query);
-    // et les retourne, sous forme d'instances de Animal
-    // return result.rows.map(animal => new Animal(animal));
-    return result.rows;
+    try {
+        const result = await db.query(query);
+        // et les retourne, sous forme d'instances de Animal
+        // return result.rows.map(animal => new Animal(animal));
+        return result.rows;
+    } catch(error){
+        console.log(error)
+        return error
+    }
 }
 
 animalMapper.findOne = async(id) => {  
@@ -129,15 +134,19 @@ animalMapper.findOne = async(id) => {
             GROUP BY 1
         ) m ON m.animal_id = a.id`
     
-    const result = await db.query(query, [id]);
-    // if no results throw error
-    if (!result.rows[0]) {
-        throw new Error("No animal found with id " + id);
+    try {
+        const result = await db.query(query, [id]);
+        // if no results throw error
+        if (!result.rows[0]) {
+            throw new Error("No animal found with id " + id);
+        }
+        // et les retourne, sous forme d'instances de Animal
+        // return result.rows.map(animal => new Animal(animal));
+        return result.rows[0];
+    } catch(error){
+        console.log(error);
+        return error
     }
-
-    // et les retourne, sous forme d'instances de Animal
-    // return result.rows.map(animal => new Animal(animal));
-    return result.rows[0];
 }
 
 // /**
@@ -172,6 +181,7 @@ animalMapper.save = async (theAnimal) => {
         theAnimal.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 
     //-----------------BINDING TABLES-----------------//
@@ -201,6 +211,7 @@ animalMapper.save = async (theAnimal) => {
             }
         } catch(error) {
             console.log(error);
+            return error
         }
     }
 }
@@ -217,6 +228,7 @@ animalMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 
 }
@@ -247,6 +259,7 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 
     //-----------------BINDING TABLES-----------------//
@@ -273,6 +286,7 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
             }
         } catch(error) {
             console.log(error);
+            return error
         }
     }
 }

@@ -39,10 +39,15 @@ articleMapper.findAll = async(request) => {
         ORDER BY a.created_at DESC
         ${pagination}
     `
-    const result = await db.query(query);
-    // et les retourne, sous forme d'instances de Article
-    // return result.rows.map(article => new Article(article));
-    return result.rows;
+    try {
+        const result = await db.query(query);
+        // et les retourne, sous forme d'instances de Article
+        // return result.rows.map(article => new Article(article));
+        return result.rows;
+    } catch(err) {
+        console.log(err);
+        return err
+    }
 }
 
 articleMapper.findOne = async(id) => {  
@@ -104,6 +109,7 @@ articleMapper.save = async (theArticle) => {
         theArticle.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -115,6 +121,7 @@ articleMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -145,6 +152,7 @@ articleMapper.edit = async (theArticle) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 

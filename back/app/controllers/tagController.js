@@ -6,8 +6,12 @@ const tagController = {}
 
 tagController.allTags = async (_, response) => {
     console.log('enter tagController.allTags')
-    const tags = await tagMapper.findAll();
-    response.json(tags)
+    try{
+        const tags = await tagMapper.findAll();
+        response.json(tags)
+    }catch(err){
+        response.status(404).json(err.message);
+    }
 }
 
 tagController.oneTag = async (request, response) => {

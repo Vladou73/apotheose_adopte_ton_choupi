@@ -8,12 +8,16 @@ const animalController = {}
 
 animalController.allAnimals = async (request, response) => {
     console.log('enter animalController.allAnimals')
-    // request paramter is used for pagination : limit & offset
-    const animals = await animalMapper.findAll(request);
+    try {
+        // request paramter is used for pagination : limit & offset
+        const animals = await animalMapper.findAll(request);
 
-    //add animal age and age category
-    animalsResult = animalService.addAgeLabels(animals);
-    response.json(animalsResult);
+        //add animal age and age category
+        animalsResult = animalService.addAgeLabels(animals);
+        response.json(animalsResult);
+    } catch(error) {
+        response.status(404).json(error.message);
+    }
 }
 
 animalController.oneAnimal = async (request, response) => {
@@ -34,7 +38,11 @@ animalController.newAnimal = async (request, response) => {
     if (request.body['medias']) { // check if medias change have been asked
         for (media of request.body['medias']) { 
             if (media.url){//check for all media if it a new media (ie if an url is sent)
-                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                try {
+                    await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                } catch(error){
+                    response.status(404).json(error.message);
+                }
             }
         }
     }
@@ -89,7 +97,11 @@ animalController.editAnimal = async (request, response)=>{
     if (request.body['medias']) { // check if medias change have been asked
         for (media of request.body['medias']) { 
             if (media.url){//check for all media if it a new media (ie if an url is sent)
-                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                try {
+                    await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                } catch(error){
+                    response.status(404).json(error.message);
+                }
             }
         }
     }

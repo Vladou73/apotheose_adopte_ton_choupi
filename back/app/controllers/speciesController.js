@@ -5,8 +5,12 @@ const Species = require('../models/species');
 const speciesController = {
     allSpecies : async (_, response) => {
         console.log('enter speciesController.allSpecies')
-        const species = await speciesMapper.findAll();
-        response.json(species)
+        try {
+            const species = await speciesMapper.findAll();
+            response.json(species)
+        } catch(err) {
+            response.status(404).json(err.message);
+        }
     }
 }
 
