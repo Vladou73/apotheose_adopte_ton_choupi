@@ -13,7 +13,7 @@ const Admin = ({
     isLogged && (
     <div className="admin">
       <h2 className="admin__title">Bienvenue sur l'espace Admin : {adminUsername}</h2>
-      <img src="https://media.giphy.com/media/xUPGcyi4YxcZp8dWZq/source.gif" alt="cat welcome" />
+      <img className="admin__img" src="https://media.giphy.com/media/xUPGcyi4YxcZp8dWZq/source.gif" alt="cat welcome" />
       <p className="admin__subtitle">Vous avez actuellement : </p>
       <ul>
         <li><p className="admin__number">{animalsNumber}</p> Animaux à l'adoption</li>

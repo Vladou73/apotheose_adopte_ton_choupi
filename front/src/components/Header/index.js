@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from './logo.png';
 import AdopterSubmenu from './AdopterSubmenu';
-import AgirSubmenu from './AgirSubmenu';
 
 const Header = ({ isLogged, adminDisconnect }) => (
   <div className="header">
