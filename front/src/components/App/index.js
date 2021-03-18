@@ -453,7 +453,7 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.tags.id }],
+          // tags: [{ id: newAnimalData.tags }],
           // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
           medias: [{
             url,
