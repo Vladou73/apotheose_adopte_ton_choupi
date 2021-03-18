@@ -136,7 +136,7 @@ const ManagedAnimals = ({
               {
               animalObject.tags === null
                 ? <td>En évaluation</td>
-                : <td>{animalObject.tags.map((tag) => <p key={tag.id}>{tag.name}</p>)}</td>
+                : <td>{animalObject.tags.map((tag) => <p key={tag.id}> {tag.name}</p>)}</td>
               }
               <td>
                 <Link to={`/admin/gestion-animaux/${animalObject.id}`} className="manageAnimals__link">

@@ -85,7 +85,7 @@ const ManageAnimal = ({
                   <p>Ajouter un tag</p>
                   {
             allTags.map((tag) => (
-              <label htmlFor="tag">
+              <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
                   type="checkbox"
@@ -103,7 +103,7 @@ const ManageAnimal = ({
                   <p>Ajouter un tag</p>
                   {
             allTags.map((tag) => (
-              <label htmlFor="tag">
+              <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
                   type="checkbox"
@@ -120,7 +120,7 @@ const ManageAnimal = ({
           </div>
           <div className="animal__category__text">
             {allBreeds.map((breed) => (
-              <label htmlFor="breed">{breed.name}
+              <label htmlFor="breed" key={breed.id}> {breed.name}
                 <input
                   key={breed.id}
                   className="animal__category__breed"
