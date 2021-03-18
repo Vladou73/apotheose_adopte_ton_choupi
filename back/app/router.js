@@ -11,8 +11,24 @@ const articleController = require('./controllers/articleController');
 const categoryController = require('./controllers/categoryController');
 const mediaController = require('./controllers/mediaController');
 
-const validate = require('./services/validator');
-const {animalPostSchema, animalPutSchema} = require('./shemas/joi');
+const validate = require('./services/validator'); //middleware to use joi
+const {
+    animalPostSchema,
+    animalPutSchema,
+    articlePostSchema,
+    articlePutSchema,
+    signInSchema,
+    mediaPostSchema,
+    mediaPutSchema,
+    speciesPostSchema,
+    speciesPutSchema,
+    breedPostSchema,
+    breedPutSchema,
+    tagPostSchema,
+    tagPutSchema,
+    categoryPostSchema,
+    categoryPutSchema
+} = require('./shemas/joi'); //joi input validation schemas
 
 const router = Router();
 // const routerPublic = Router();
@@ -39,7 +55,7 @@ const router = Router();
 
 
 //authentification with JWT
-router.post('/admin/signIn', userController.signIn); // sign in with JWT stored in cookie
+router.post('/admin/signIn', validate(signInSchema, 'body'), userController.signIn); // sign in with JWT stored in cookie
 // router.post('/admin/authenticate', userController.authenticate); //verify the cookie where JWT should be stored
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
@@ -50,41 +66,41 @@ router.route('/admin/animals/:id(\\d+)')
     .delete(userController.authenticate, animalController.deleteAnimal)
     .put(userController.authenticate, validate(animalPutSchema, 'body'), animalController.editAnimal);
 
-router.post('/admin/addArticle',userController.authenticate, articleController.newArticle);
+router.post('/admin/addArticle',userController.authenticate, validate(articlePostSchema, 'body'), articleController.newArticle);
 router.route('/admin/articles/:id(\\d+)')
     .get(userController.authenticate, articleController.oneArticle)
     .delete(userController.authenticate, articleController.deleteArticle)
-    .put(userController.authenticate, articleController.editArticle);
+    .put(userController.authenticate, validate(articlePutSchema, 'body'), articleController.editArticle);
 
-router.post('/admin/addMedia', mediaController.newMedia);
+router.post('/admin/addMedia', validate(mediaPostSchema, 'body'), mediaController.newMedia);
 router.route('/admin/medias/:id(\\d+)')
     .get(mediaController.oneMedia)
     .delete(mediaController.deleteMedia)
-    .put(mediaController.editMedia);
+    .put(validate(mediaPutSchema, 'body'), mediaController.editMedia);
 
-router.post('/admin/addTag', tagController.newTag);
+router.post('/admin/addTag', validate(tagPostSchema, 'body'), tagController.newTag);
 router.route('/admin/tags/:id(\\d+)')
     .get(tagController.oneTag)
     .delete(tagController.deleteTag)
-    .put(tagController.editTag);
+    .put(validate(tagPutSchema, 'body'), tagController.editTag);
 
-router.post('/admin/addCategory', categoryController.newCategory);
+router.post('/admin/addCategory', validate(categoryPostSchema, 'body'), categoryController.newCategory);
 router.route('/admin/categories/:id(\\d+)')
     .get(categoryController.oneCategory)
     .delete(categoryController.deleteCategory)
-    .put(categoryController.editCategory);
+    .put(validate(categoryPutSchema, 'body'), categoryController.editCategory);
 
-router.post('/admin/addSpecies', speciesController.newSpecies);
+router.post('/admin/addSpecies', validate(speciesPostSchema, 'body'), speciesController.newSpecies);
 router.route('/admin/species/:id(\\d+)')
     .get(speciesController.oneSpecies)
     .delete(speciesController.deleteSpecies)
-    .put(speciesController.editSpecies);
+    .put(validate(speciesPutSchema, 'body'), speciesController.editSpecies);
 
-router.post('/admin/addBreed', breedController.newBreed);
+router.post('/admin/addBreed', validate(breedPostSchema, 'body'), breedController.newBreed);
 router.route('/admin/breeds/:id(\\d+)')
     .get(breedController.oneBreed)
     .delete(breedController.deleteBreed)
-    .put(breedController.editBreed);
+    .put(validate(breedPutSchema, 'body'), breedController.editBreed);
 
 
 //animal infos
