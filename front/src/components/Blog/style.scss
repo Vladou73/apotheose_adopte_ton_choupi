@@ -34,10 +34,8 @@
   &__articles__blog{
     display:flex;
     flex-wrap: wrap;
-    a {
-      max-width: 100%;
-    }
   }
+  
   &__article{
     width:600px;
     border-radius: 30px;
