@@ -61,17 +61,17 @@ router.post('/admin/signIn', userController.signIn); // sign in with JWT stored 
 router.get('/admin/logout', userController.logout); //destroy cookie JWT => it is not saved anymore
 
 
-router.post('/admin/addAnimal', userController.authenticate, animalController.newAnimal);
+router.post('/admin/addAnimal', animalController.newAnimal);
 router.route('/admin/animals/:id(\\d+)')
-    .get(userController.authenticate, animalController.oneAnimal)
-    .delete(userController.authenticate, animalController.deleteAnimal)
-    .put(userController.authenticate, animalController.editAnimal);
+    .get(animalController.oneAnimal)
+    .delete(animalController.deleteAnimal)
+    .put(animalController.editAnimal);
 
-router.post('/admin/addArticle',userController.authenticate, articleController.newArticle);
+router.post('/admin/addArticle',articleController.newArticle);
 router.route('/admin/articles/:id(\\d+)')
-    .get(userController.authenticate, articleController.oneArticle)
-    .delete(userController.authenticate, articleController.deleteArticle)
-    .put(userController.authenticate, articleController.editArticle);
+    .get(articleController.oneArticle)
+    .delete(articleController.deleteArticle)
+    .put(articleController.editArticle);
 
 router.post('/admin/addMedia', mediaController.newMedia);
 router.route('/admin/medias/:id(\\d+)')
