@@ -65,7 +65,7 @@ const ManageArticle = ({
           <label className="" htmlFor="media">Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
           <progress value={progress} max="100" />
-          <button type="button" onClick={handleUpload} className="article__upluad">Aperçu de ma photo </button>
+          <button type="button" onClick={handleUpload} className="article__upload">Aperçu de ma photo </button>
           <button type="button" className="article__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
           <label className="article__content__label" htmlFor="content">Contenu : </label>
           <textarea onChange={(e) => handleChangeEditArticle(e)} className="article__content__textarea" id="content" name="content" rows="20" cols="100" value={articleData.content} />

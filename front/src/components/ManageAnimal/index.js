@@ -73,7 +73,7 @@ const ManageAnimal = ({
           <label htmlFor="media" className=""> Modifier la photo :</label>
           <input type="file" onChange={handleChangeFirebase} />
           <progress value={progress} max="100" />
-          <button type="button" onClick={handleUpload} className="manage__animal__upluad">Aperçu de ma photo </button>
+          <button type="button" onClick={handleUpload} className="manage__animal__upload">Aperçu de ma photo </button>
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
         </div>
         <div className="manage__animal__contain">
