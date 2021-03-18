@@ -19,7 +19,7 @@
       margin: 1em auto;
       text-transform: uppercase;
       padding: 0.5em;     
-      background-color: #ef9999;
+      background-color: #5f3d52;
       color: #fff;
       border-radius: 5px;
       width: 100px;
@@ -45,14 +45,15 @@
   &__link {
     display: block;
     width: 200px;
-    padding: 1em;
     margin: auto;
     &-adoption {
       background-color: #eeeeee;
+      border-radius: 5px;
     }
     &-contact {
-      background-color: #49554b;
-      color: #fff;
+      background-color: #cfcdcd;
+      border-radius: 5px;
+      padding: 1em;
     }
   }
 };
