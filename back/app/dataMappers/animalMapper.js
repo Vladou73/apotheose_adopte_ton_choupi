@@ -34,7 +34,7 @@ animalMapper.findAll = async(request) => {
         SELECT
             a.id,
             a.name,
-            TO_CHAR(a.birthdate, 'YYYY-MM-DD') birthdate,
+            TO_CHAR(a.birthdate, 'DD-MM-YYYY') birthdate,
             a.description,
             a.gender_id,
             g.name as gender_name,
@@ -87,7 +87,7 @@ animalMapper.findOne = async(id) => {
         SELECT
             a.id,
             a.name,
-            TO_CHAR(a.birthdate, 'YYYY-MM-DD') birthdate,
+            TO_CHAR(a.birthdate, 'DD-MM-YYYY') birthdate,
             a.description,
             a.gender_id,
             g.name as gender_name,

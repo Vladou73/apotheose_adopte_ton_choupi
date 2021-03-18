@@ -57,7 +57,7 @@ const ManageArticle = ({
         <div className="article__category">
           <label htmlFor="category">Catégorie : </label>
           <select onChange={(e) => handleChangeEditArticle(e)} name="category_id" id="category_id" value={articleData.category_id}>
-            {categories.map((category) => <option id="category_id" value={category.id}>{category.name}</option>)}
+            {categories.map((category) => <option key={category.id} id="category_id" value={category.id}>{category.name} </option>)}
           </select>
         </div>
         <div>

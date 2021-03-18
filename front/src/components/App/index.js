@@ -339,7 +339,7 @@ const App = () => {
         url: `${baseUrl}/admin/animals/${animal.id}`,
       })
         .then(() => {
-          getAnimals();
+          getAllAnimals();
           showConfirmationDelete();
         })
         .catch((error) => {
@@ -394,7 +394,7 @@ const App = () => {
         url: `${baseUrl}/admin/articles/${article.id}`,
       })
         .then(() => {
-          getArticles();
+          getAllArticles();
           showConfirmationDelete();
         })
         .catch((error) => {
@@ -443,8 +443,8 @@ const App = () => {
           birthdate: newAnimalData.birthdate,
           description: newAnimalData.description,
           gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.id }],
-          // breeds: [{ id: newAnimalData.id }],
+          // tags: [{ id: newAnimalData.tags }],
+          // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
           medias: [{
             url,
             type: 'image',
@@ -453,7 +453,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
-          getAnimals();
+          getAllAnimals();
           showConfirmationAdd();
           setProgress(0);
         })
@@ -481,7 +481,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
-          getArticles();
+          getAllArticles();
           showConfirmationAdd();
           setProgress(0);
         })
@@ -710,6 +710,7 @@ const App = () => {
                   handleUpload={handleUpload}
                   url={url}
                   progress={progress}
+                  handleUploadDelete={handleUploadDelete}
                 />
               </Route>
               <Route path="/admin/gestion-animaux/:id" exact>

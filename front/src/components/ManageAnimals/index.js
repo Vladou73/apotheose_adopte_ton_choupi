@@ -119,53 +119,50 @@ const ManagedAnimals = ({
 
     <table className="manageAnimals__table">
       <tbody>
-        <tr>
-          <td className="manageAnimals__table__head">Nom</td>
-          <td className="manageAnimals__table__head">Espèce</td>
-          <td className="manageAnimals__table__head">Race</td>
-          <td className="manageAnimals__table__head">Date de naissance</td>
-          <td className="manageAnimals__table__head">Tags</td>
-          <td className="manageAnimals__table__head">Options</td>
-        </tr>
-        {animals.map((animalObject) => (
-
-          <tr key={animalObject.id}>
-            <td>{animalObject.name}</td>
-            <td> {animalObject.species_name} </td>
-            <td>{animalObject.breeds.map((breed) => <tr>{breed.name}</tr>)}</td>
-            <td>{animalObject.birthdate}</td>
-            {
-            animalObject.tags === null
-              ? <td>En évaluation</td>
-              : <td>{animalObject.tags.map((tag) => <tr>{tag.name}</tr>)}</td>
-            }
-            <td>
-              <Link to={`/admin/gestion-animaux/${animalObject.id}`} className="manageAnimals__link">
-                <img
-                  src={EditIcon}
-                  alt="editer"
-                  className="manageArticles__editIcon"
-                />
-              </Link>
-
-              <img
-                src={TrashIcon}
-                alt="supprimer"
-                className="manageAnimals__trashIcon"
-                value={animalObject.id}
-                onClick={(event) => {
-                  event.preventDefault();
-                  buttonDeleteAnimals(animalObject);
-                }}
-              />
-            </td>
+          <tr>
+            <td className="manageAnimals__table__head">Nom</td>
+            <td className="manageAnimals__table__head">Espèce</td>
+            <td className="manageAnimals__table__head">Race</td>
+            <td className="manageAnimals__table__head">Date de naissance</td>
+            <td className="manageAnimals__table__head">Tags</td>
+            <td className="manageAnimals__table__head">Options</td>
           </tr>
+          {animals.map((animalObject) => (
+            <tr key={animalObject.id}>
+              <td>{animalObject.name}</td>
+              <td> {animalObject.species_name} </td>
+              <td>{animalObject.breeds.map((breed) => <p key={breed.id}> {breed.name}</p>)}</td>
+              <td>{animalObject.birthdate}</td>
+              {
+              animalObject.tags === null
+                ? <td>En évaluation</td>
+                : <td>{animalObject.tags.map((tag) => <p key={tag.id}> {tag.name}</p>)}</td>
+              }
+              <td>
+                <Link to={`/admin/gestion-animaux/${animalObject.id}`} className="manageAnimals__link">
+                  <img
+                    src={EditIcon}
+                    alt="editer"
+                    className="manageArticles__editIcon"
+                  />
+                </Link>
 
-        ))}
+                <img
+                  src={TrashIcon}
+                  alt="supprimer"
+                  className="manageAnimals__trashIcon"
+                  value={animalObject.id}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    buttonDeleteAnimals(animalObject);
+                  }}
+                />
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   </div>
-
 );
 
 ManagedAnimals.propTypes = {
