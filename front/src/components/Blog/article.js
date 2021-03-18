@@ -7,7 +7,7 @@ import './style.scss';
 const Article = (data) => {
   const content = `${data.content.substring(0, 200)}...`;
   return (
-    <Link to={`/articles/${data.id}`}>
+    <Link to={`/articles/${data.id}`} className="blog__article__link">
       <div className="blog__article">
         <h2 className="blog__article__title">{data.title}</h2>
         <span
