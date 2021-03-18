@@ -8,7 +8,7 @@ import './style.scss';
 
 const Blog = ({
   datas, categories, filterCategories, onClickPageArticles,
-  pageArticles, articleCount,
+  pageArticles, articlesCount,
 }) => (
   <div className="blog">
     <h2 className="blog__title">L'ensemble de nos articles</h2>
@@ -26,7 +26,7 @@ const Blog = ({
         activePage={pageArticles}
         itemsCountPerPage={6}
         pageRangeDisplayed={3}
-        totalItemsCount={articleCount}
+        totalItemsCount={articlesCount}
         onChange={onClickPageArticles}
         prevPageText="<"
         firstPageText=".."
