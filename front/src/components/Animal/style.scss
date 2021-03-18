@@ -16,13 +16,13 @@
   &__category {
     padding: 2em auto;
     &__tag {
-      margin: 1em auto;
+      display: inline-block;
+      margin: .5em;
       text-transform: uppercase;
-      padding: 0.5em;     
+      padding: .5em 1em;
       background-color: #5f3d52;
       color: #fff;
       border-radius: 5px;
-      width: 100px;
       &__sos {
         background-color: #ff5454;
       }

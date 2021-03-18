@@ -16,9 +16,8 @@ const Cards = ({
     <div className="card-animal">
       <span
         className={classname({
-          'card-animal__span': true,
-          female: gender_name === 'female',
-          male: gender_name === 'male',
+          sos__tag: tags[0].name === 'sos',
+          hidden: tags[0].name !== 'sos',
         })}
       >SOS
       </span>
