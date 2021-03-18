@@ -5,7 +5,7 @@ const joiSchemas = {}
 
 joiSchemas.animalPostSchema = Joi.object({
     name: Joi.string().min(2).required(),
-    birthdate: Joi.date().format('DD-MM-YYYY').required(),
+    birthdate: Joi.date().format(['YYYY-MM-DD', 'DD-MM-YYYY']).required(),
     description: Joi.string().min(2).required(),
     creator_id: Joi.number().integer().required(),
     gender_id: Joi.number().integer().required(), 
@@ -22,7 +22,7 @@ joiSchemas.animalPostSchema = Joi.object({
 
 joiSchemas.animalPutSchema = Joi.object({
     name: Joi.string().min(2),
-    birthdate: Joi.date().format('DD-MM-YYYY'),
+    birthdate: Joi.date().format(['YYYY-MM-DD', 'DD-MM-YYYY']),
     description: Joi.string().min(2),
     creator_id: Joi.number().integer(),
     gender_id: Joi.number().integer(), 

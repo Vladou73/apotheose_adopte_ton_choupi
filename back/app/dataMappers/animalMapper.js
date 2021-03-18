@@ -161,7 +161,7 @@ animalMapper.save = async (theAnimal) => {
     //insert animal data in DB
     let queryAnimal = `
         INSERT INTO animal (name, birthdate, description, creator_id, gender_id)
-        VALUES ($1, TO_DATE($2,'DD-MM-YYYY'), $3, $4, $5)
+        VALUES ($1, $2::date, $3, $4, $5)
         RETURNING animal.id;
     `;
 
@@ -236,7 +236,7 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
     ];
     //update animal data in DB
     let queryAnimal = `
-        UPDATE animal SET (name, birthdate, description, gender_id) = ($1, TO_DATE($2,'DD-MM-YYYY'), $3, $4)
+        UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
         WHERE id = $5
         RETURNING *;
     `;
