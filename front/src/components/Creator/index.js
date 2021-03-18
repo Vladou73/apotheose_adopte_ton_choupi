@@ -1,5 +1,6 @@
 // == Import npm
 import React from 'react';
+import photoManel from './manel.jpg';
 import photoRomain from './romain_light.jpg';
 import './styles.scss';
 
@@ -18,7 +19,7 @@ const Creator = () => (
         </div>
         <div className="card-creator">
           <h3 className="card-creator__name"> Manel DJEDIR</h3>
-          <img className="card-creator__picture" src="https://firebasestorage.googleapis.com/v0/b/adopte-ton-choupi.appspot.com/o/images%2Fpexels-andreas-schmolmueller-3376610.jpg?alt=media&amp;token=531701c3-e297-4659-886f-efa7a8bf184c" alt="Manel Djedir" />
+          <img className="card-creator__picture" src={photoManel} alt="Manel Djedir" />
           <p className="card-creator__span"> Rôle:</p>
           <p className="card-creator__span">Scrum Master / Dev Front </p>
         </div>
