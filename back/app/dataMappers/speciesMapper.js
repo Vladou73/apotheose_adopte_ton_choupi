@@ -12,7 +12,15 @@ const speciesMapper = {
 }
 
 speciesMapper.findOne = async(id) => {  
-    const query = `SELECT id, name FROM species WHERE id = $1;`
+    const query = `
+    SELECT 
+        s.id,
+        s.name,
+        json_agg(json_build_object('id',b.id, 'name',b.name)) as breeds
+    FROM species s
+        JOIN breed b ON b.species_id = s.id
+    WHERE s.id = $1
+    GROUP BY s.id,s.name;`
     try {
         const result = await db.query(query, [id]);
         return result.rows[0];
