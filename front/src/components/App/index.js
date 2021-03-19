@@ -198,7 +198,7 @@ const App = () => {
     setLoading(true);
     await axios({
       method: 'get',
-      url: `${baseUrl}/articles?page=${pageArticles}&items=8`,
+      url: `${baseUrl}/articles?page=${pageArticles}&items=20`,
     })
       .then((response) => {
         setArticles(response.data);
@@ -286,7 +286,7 @@ const App = () => {
       })
         .then((response) => {
           console.log(response.data);
-          getArticles();
+          getAllArticles();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
           setImage(null);
@@ -372,7 +372,7 @@ const App = () => {
         },
       })
         .then((response) => {
-          getAnimals();
+          getAllAnimals();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
           setImage(null);
@@ -407,6 +407,16 @@ const App = () => {
         });
     }
   };
+  useEffect(() => {
+    getAllAnimals();
+    getAllArticles();
+    getAnimals();
+    getBreeds();
+    getTags();
+    getSpecies();
+    getArticles();
+    getCategories();
+  }, []);
 
   // Hooks effects
   useEffect(() => {
@@ -419,6 +429,7 @@ const App = () => {
     getArticles();
     getCategories();
   }, [pageAnimals, pageArticles]);
+
 
   // ** Method for Admin ** //
   // Control input admin page connection
@@ -435,35 +446,66 @@ const App = () => {
   };
   // Method onSubmit to edit an animal
   const handleSubmitEditAnimal = (id, newAnimalData) => {
-    console.log(id);
-    const editAnimal = async () => {
-      await axios({
-        method: 'PUT',
-        url: `${baseUrl}/admin/animals/${id}`,
-        data: {
-          name: newAnimalData.name,
-          birthdate: newAnimalData.birthdate,
-          description: newAnimalData.description,
-          gender_id: newAnimalData.gender_id,
-          // tags: [{ id: newAnimalData.tags }],
-          // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
-          medias: [{
-            url,
-            type: 'image',
-          }],
-        },
-      })
-        .then((response) => {
-          console.log(response.data);
-          getAllAnimals();
-          showConfirmationAdd();
-          setProgress(0);
+    if (url !== '') {
+      const editAnimal = async () => {
+        await axios({
+          method: 'PUT',
+          url: `${baseUrl}/admin/animals/${id}`,
+          data: {
+            name: newAnimalData.name,
+            birthdate: newAnimalData.birthdate,
+            description: newAnimalData.description,
+            gender_id: newAnimalData.gender_id,
+            // tags: [{ id: newAnimalData.tags }],
+            // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
+            medias: [{
+              url,
+              type: 'image',
+            }],
+          },
         })
-        .catch((error) => {
-          console.trace(error);
-        });
-    };
-    editAnimal();
+          .then((response) => {
+            console.log(response.data);
+            getAllAnimals();
+            showConfirmationAdd();
+            setProgress(0);
+          })
+          .catch((error) => {
+            console.trace(error);
+          });
+      };
+      editAnimal();
+    }
+    else {
+      const editAnimal = async () => {
+        await axios({
+          method: 'PUT',
+          url: `${baseUrl}/admin/animals/${id}`,
+          data: {
+            name: newAnimalData.name,
+            birthdate: newAnimalData.birthdate,
+            description: newAnimalData.description,
+            gender_id: newAnimalData.gender_id,
+            // tags: [{ id: newAnimalData.tags }],
+            // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
+            // medias: [{
+            //   url,
+            //   type: 'image',
+            // }],
+          },
+        })
+          .then((response) => {
+            console.log(response.data);
+            getAllAnimals();
+            showConfirmationAdd();
+            setProgress(0);
+          })
+          .catch((error) => {
+            console.trace(error);
+          });
+      };
+      editAnimal();
+    }
   };
   // Method onSubmit to edit an article
   const handleSubmitEditArticle = (id, newArticleData) => {
@@ -747,7 +789,7 @@ const App = () => {
               <Route path="/admin/gestion-animaux/:id" exact>
                 <ManageAnimal
                   handleSubmitEditAnimal={handleSubmitEditAnimal}
-                  animal={animals}
+                  animal={allAnimals}
                   animalData={animalData}
                   handleChangeFirebase={handleChangeFirebase}
                   handleUpload={handleUpload}
@@ -761,7 +803,7 @@ const App = () => {
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>
                 <ManageArticle
-                  articles={articles}
+                  articles={allArticles}
                   categories={categories}
                   handleSubmitEditArticle={handleSubmitEditArticle}
                   confirmation={confirmationAdd}

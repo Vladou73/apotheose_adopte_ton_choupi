@@ -33,11 +33,11 @@ const ManageArticles = ({
           </select>
           <div>
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
+            <img src={url} alt="" className="formAddArticle__image" />
             <input type="file" onChange={handleChangeFirebase} />
             <progress value={progress} max="100" />
             <button type="button" onClick={handleUpload} className="formAddArticles__upluad">Aperçu de ma photo </button>
             <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
-            <img src={url} alt="" className="formAddArticle__image" />
           </div>
           <label className="formAddArticle__label__content" htmlFor="content">Contenu : </label>
           <textarea onChange={(e) => handleChangeAddArticle(e)} id="content" name="content" rows="20" cols="100" className="formAddArticle__content" />
