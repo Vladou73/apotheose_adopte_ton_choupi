@@ -80,6 +80,7 @@ const ManagedAnimals = ({
                 <input
                   type="checkbox"
                   name="tag"
+                  id="tag"
                   value={tag.id}
                   onChange={(e) => addChangeTagsAnimal(e)}
                 />
@@ -105,12 +106,12 @@ const ManagedAnimals = ({
           </div>
           <div>
             <label className="formAddAnimal__label__content" htmlFor="media">Médias :</label>
+            <img src={url} alt="" className="formAddAnimal__image" />
             <input type="file" onChange={handleChangeFirebase} />
             <button type="button" className="formAddAnimal__upluad" onClick={handleUpload}>Aperçu de ma photo </button>
             <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
 
             <progress value={progress} max="100" />
-            <img src={url} alt="" className="formAddAnimal__image" />
           </div>
           <button type="submit">Envoyer</button>
         </form>

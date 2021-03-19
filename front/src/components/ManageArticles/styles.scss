@@ -122,6 +122,9 @@
     border-radius: 5px;
   }
   &__image {
+    display: block;
+    margin: auto;
+    margin-bottom: 2em;
     border-radius: 30px;
     -webkit-box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0); 
     box-shadow: 5px 5px 5px 0px #eeeeee, inset 4px 4px 15px 0px #eeeeee, 5px 5px 5px -9px rgba(236, 236, 236, 0);
@@ -169,5 +172,11 @@
     margin-top: 2em;
     margin-bottom: 0;
     width: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+  .manageArticles {
+    width: 100%;
   }
 }
