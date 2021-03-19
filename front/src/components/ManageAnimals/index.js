@@ -12,11 +12,13 @@ import TrashIcon from './trash.png';
 const ManagedAnimals = ({
   animals,
   tags,
-  breeds,
+  species,
+  breedsAdd,
   buttonDeleteAnimals,
   modalAddArticleIsOpen,
   changeModalStateAddArticle,
   addAnimalSubmit,
+  addChangeSpeciesAnimal,
   addChangeNameAnimal,
   addChangeBirthdateAnimal,
   addChangeDescriptionAnimal,
@@ -37,7 +39,7 @@ const ManagedAnimals = ({
     <p className={confirmationDelete}>La carte de animal a été supprimé !</p>
     <button type="button" className="manageAnimals__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
 
-    <Modal isOpen={modalAddArticleIsOpen}>
+    <Modal isOpen={modalAddArticleIsOpen} ariaHideApp={false}>
       <button type="button" className="manageAnimals__closeModal" onClick={changeModalStateAddArticle}>X</button>
       <h3 className="manageArticles__titleModal">Ajouter un animal</h3>
       <div className="formAddAnimal">
@@ -89,20 +91,38 @@ const ManagedAnimals = ({
           }
           </div>
           <div className="formAddAnimal__block">
+            <p>Espèce :</p>
+            <select
+              name="species"
+              onChange={(e) => addChangeSpeciesAnimal(e)}
+            >
+              {species.map((specie) => (
+                <option
+                  key={specie.id}
+                  value={specie.id}
+                  name="specie"
+                >
+                  {specie.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="formAddAnimal__block">
             <p>Race :</p>
-            {
-            breeds.map((breed) => (
-              <label htmlFor="breed" key={breed.id}>
-                {breed.name}
-                <input
-                  type="checkbox"
-                  name="breed"
+            <select
+              name="breeds"
+              onChange={(e) => addChangeBreedsAnimal(e)}
+            >
+              {breedsAdd.map((breed) => (
+                <option
+                  key={breed.id}
                   value={breed.id}
-                  onChange={(e) => addChangeBreedsAnimal(e)}
-                />
-              </label>
-            ))
-          }
+                  name="breed"
+                >
+                  {breed.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="formAddAnimal__label__content" htmlFor="media">Médias :</label>
@@ -169,12 +189,14 @@ const ManagedAnimals = ({
 ManagedAnimals.propTypes = {
   animals: PropTypes.array.isRequired,
   tags: PropTypes.array.isRequired,
-  breeds: PropTypes.array.isRequired,
+  species: PropTypes.array.isRequired,
+  breedsAdd: PropTypes.array.isRequired,
   buttonDeleteAnimals: PropTypes.func.isRequired,
   modalAddArticleIsOpen: PropTypes.bool.isRequired,
   changeModalStateAddArticle: PropTypes.func.isRequired,
   addChangeNameAnimal: PropTypes.func.isRequired,
   addAnimalSubmit: PropTypes.func.isRequired,
+  addChangeSpeciesAnimal: PropTypes.func.isRequired,
   addChangeBirthdateAnimal: PropTypes.func.isRequired,
   addChangeDescriptionAnimal: PropTypes.func.isRequired,
   addChangeGenderAnimal: PropTypes.func.isRequired,

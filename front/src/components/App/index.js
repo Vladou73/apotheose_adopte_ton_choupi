@@ -40,6 +40,7 @@ const App = () => {
   const [allArticles, setAllArticles] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [breedsSearch, setBreedsSearch] = useState([]);
+  const [breedsAdd, setBreedsAdd] = useState([]);
   const [tags, setTags] = useState([]);
   const [species, setSpecies] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
@@ -89,11 +90,6 @@ const App = () => {
   const [selectTagsAnimals, setSelectTagsAnimals] = useState('');
   const [checkboxSOSAnimals, setCheckboxSOSAnimals] = useState('');
   const [checkboxBreedsAnimals, setCheckboxBreedsAnimals] = useState('');
-
-  // Method to change the modal state to add an article (true/false)
-  const changeModalStateAddArticle = () => {
-    setModalAddArticleIsOpen(!modalAddArticleIsOpen);
-  };
 
   const onClickPageAnimals = (event) => {
     setPageAnimals(event);
@@ -372,13 +368,13 @@ const App = () => {
         },
       })
         .then((response) => {
+          console.log(response.data);
           getAllAnimals();
           setModalAddArticleIsOpen(false);
           showConfirmationAdd();
           setImage(null);
           setUrl('');
           setProgress(0);
-          console.log(response.data);
           setAddNameAnimal('');
           setAddBirthdateAnimal('');
           setAddGenderAnimal();
@@ -412,6 +408,23 @@ const App = () => {
           setLoading(false);
         });
     }
+  };
+  const defaultSpecies = () => {
+    axios({
+      method: 'get',
+      url: `${baseUrl}/admin/species/2`,
+    })
+      .then((response) => {
+        setBreedsAdd(response.data.breeds);
+      })
+      .catch((error) => {
+        console.trace(error);
+      });
+  };
+  // Method to change the modal state to add an article (true/false)
+  const changeModalStateAddArticle = () => {
+    setModalAddArticleIsOpen(!modalAddArticleIsOpen);
+    defaultSpecies();
   };
   useEffect(() => {
     getAllAnimals();
@@ -569,6 +582,22 @@ const App = () => {
     // }
     setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
     addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
+  };
+
+  // FILTRER BREEDS BY SPECIES ON CHANGE
+
+  const addChangeSpeciesAnimal = (event) => {
+    event.preventDefault();
+    axios({
+      method: 'get',
+      url: `${baseUrl}/admin/species/${event.target.value}`,
+    })
+      .then((response) => {
+        setBreedsAdd(response.data.breeds);
+      })
+      .catch((error) => {
+        console.trace(error);
+      });
   };
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
@@ -758,10 +787,13 @@ const App = () => {
                   animals={allAnimals}
                   tags={tags}
                   breeds={breeds}
+                  species={species}
+                  breedsAdd={breedsAdd}
                   buttonDeleteAnimals={deleteAnimalsList}
                   changeModalStateAddArticle={changeModalStateAddArticle}
                   modalAddArticleIsOpen={modalAddArticleIsOpen}
                   addAnimalSubmit={addAnimalSubmit}
+                  addChangeSpeciesAnimal={addChangeSpeciesAnimal}
                   addChangeNameAnimal={addChangeNameAnimal}
                   addChangeBirthdateAnimal={addChangeBirthdateAnimal}
                   addChangeDescriptionAnimal={addChangeDescriptionAnimal}
