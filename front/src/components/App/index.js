@@ -379,6 +379,12 @@ const App = () => {
           setUrl('');
           setProgress(0);
           console.log(response.data);
+          setAddNameAnimal('');
+          setAddBirthdateAnimal('');
+          setAddGenderAnimal();
+          setAddTagsAnimal([]);
+          setAddBreedsAnimal([]);
+          setAddDescriptionAnimal('');
         })
         .catch((error) => {
           console.trace(error);
