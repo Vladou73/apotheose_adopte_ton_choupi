@@ -44,9 +44,9 @@ articleMapper.findAll = async(request) => {
         // et les retourne, sous forme d'instances de Article
         // return result.rows.map(article => new Article(article));
         return result.rows;
-    } catch(err) {
-        console.log(err);
-        return err
+    } catch(error) {
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -75,9 +75,9 @@ articleMapper.findOne = async(id) => {
     try{
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 
 }
@@ -108,8 +108,8 @@ articleMapper.save = async (theArticle) => {
         //retrieve id of article inserted and assign to the article instance 
         theArticle.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -120,8 +120,8 @@ articleMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -151,8 +151,8 @@ articleMapper.edit = async (theArticle) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 

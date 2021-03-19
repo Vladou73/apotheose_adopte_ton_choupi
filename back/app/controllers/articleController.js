@@ -2,32 +2,30 @@ const { response } = require('express');
 const articleMapper = require('../dataMappers/articleMapper');
 const Article = require('../models/article');
 const mediaMapper = require('../dataMappers/mediaMapper');
-
-
 const articleController = {}
 
-articleController.allArticles = async (request, response) => {
+articleController.allArticles = async (request, response, next) => {
     console.log('enter articleController.allArticles');
     try {
         // request paramter is used for pagination : limit & offset
         const articles = await articleMapper.findAll(request);
         response.json(articles)
-    } catch (err) {
-        response.status(404).json(err.message);
+    } catch (error) {
+        next(error);
     }
 }
 
-articleController.oneArticle = async (request, response) => {
+articleController.oneArticle = async (request, response, next) => {
     console.log('enter articleController.oneArticle')
     try {
         const article = await articleMapper.findOne(request.params.id);
         response.json(article);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 }
 
-articleController.newArticle = async (request, response) => {
+articleController.newArticle = async (request, response, next) => {
     console.log('enter articleController.newArticle')
 
     //check if a new media has to be added to the DB ie check if client sends a new url rather than a media id
@@ -46,8 +44,8 @@ articleController.newArticle = async (request, response) => {
             await mediaMapper.save(media);
             //Save/add the newly created media id in the request.body object
             request.body.media_id = media.id;
-        } catch(err){
-            response.status(404).json(err.message);
+        } catch(error){
+            next(error);
         }
 
     }
@@ -57,12 +55,12 @@ articleController.newArticle = async (request, response) => {
     try {
         await articleMapper.save(newArticle);
         response.json(newArticle);
-    } catch (err) {
-        response.status(403).json(err.message);
+    } catch (error) {
+        next(error);
     }
 }
 
-articleController.deleteArticle = async(request, response)=> {
+articleController.deleteArticle = async(request, response, next)=> {
     console.log('enter articleController.deleteArticle')
     const articleId = Number(request.params.id);
     if (isNaN(articleId)) {
@@ -73,14 +71,12 @@ articleController.deleteArticle = async(request, response)=> {
     try {
         const article = await articleMapper.deleteOne(articleId);
         response.json(article);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 }
 
-
-
-articleController.editArticle = async(request, response)=> {
+articleController.editArticle = async(request, response, next)=> {
     console.log('enter articleController.editArticle')
     const articleId = Number(request.params.id);
     if (isNaN(articleId)) {
@@ -93,8 +89,8 @@ articleController.editArticle = async(request, response)=> {
     let article = {}
     try {
         article = await articleMapper.findOne(articleId);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 
     //check if a new media has to be added to the DB ie check if client sends a new url rather than a media id
@@ -113,8 +109,8 @@ articleController.editArticle = async(request, response)=> {
             await mediaMapper.save(media);
             //Save/add the newly created media id in the request.body object
             request.body.media_id = media.id;
-        } catch(err){
-            response.status(404).json(err.message);
+        } catch(error){
+            next(error);
         }
     }
 
@@ -131,8 +127,8 @@ articleController.editArticle = async(request, response)=> {
     try {
         await articleMapper.edit(article);
         response.json(article);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 
 

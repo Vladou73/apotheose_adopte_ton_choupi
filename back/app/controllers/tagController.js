@@ -4,27 +4,27 @@ const Tag = require('../models/tag');
 
 const tagController = {}
 
-tagController.allTags = async (_, response) => {
+tagController.allTags = async (_, response, next) => {
     console.log('enter tagController.allTags')
     try{
         const tags = await tagMapper.findAll();
         response.json(tags)
-    }catch(err){
-        response.status(404).json(err.message);
+    }catch(error){
+        next(error)
     }
 }
 
-tagController.oneTag = async (request, response) => {
+tagController.oneTag = async (request, response, next) => {
     console.log('enter tagController.oneTag')
     try {
         const tag = await tagMapper.findOne(request.params.id);
         response.json(tag);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 }
 
-tagController.newTag = async (request, response) => {
+tagController.newTag = async (request, response, next) => {
     console.log('enter tagController.newTag')
     // create instance of tag directly from data sent through payload
     const newTag = new Tag(request.body);
@@ -32,12 +32,12 @@ tagController.newTag = async (request, response) => {
     try {
         await tagMapper.save(newTag);
         response.json(newTag);
-    } catch (err) {
-        response.status(403).json(err.message);
+    } catch (error) {
+        next(error)
     }
 }
 
-tagController.deleteTag = async(request, response)=> {
+tagController.deleteTag = async(request, response, next)=> {
     console.log('enter tagController.deleteTag')
     const tagId = Number(request.params.id);
     if (isNaN(tagId)) {
@@ -48,12 +48,12 @@ tagController.deleteTag = async(request, response)=> {
     try {
         const tag = await tagMapper.deleteOne(tagId);
         response.json(tag);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 }
 
-tagController.editTag = async(request, response)=> {
+tagController.editTag = async(request, response, next)=> {
     console.log('enter tagController.editTag')
     const tagId = Number(request.params.id);
     if (isNaN(tagId)) {
@@ -66,8 +66,8 @@ tagController.editTag = async(request, response)=> {
     let tag = {}
     try {
         tag = await tagMapper.findOne(tagId);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 
     //Check to keep only properties accepted from client side
@@ -83,8 +83,8 @@ tagController.editTag = async(request, response)=> {
     try {
         await tagMapper.edit(tag);
         response.json(tag);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 
 

@@ -19,8 +19,8 @@ mediaMapper.findAll = async() => {
         // return result.rows.map(media => new media(media));
         return result.rows;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -36,9 +36,9 @@ mediaMapper.findOne = async(id) => {
     try{
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -64,8 +64,8 @@ mediaMapper.save = async (theMedia) => {
         //retrieve id of media inserted and assign to the media instance 
         theMedia.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -76,8 +76,8 @@ mediaMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -103,8 +103,8 @@ mediaMapper.edit = async (theMedia) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 

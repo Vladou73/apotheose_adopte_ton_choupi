@@ -11,8 +11,8 @@ categoryMapper.findAll = async() => {
         return result.rows.map(category => new Category(category));
         // return result.rows;
     }catch(error){
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 
 }
@@ -22,9 +22,9 @@ categoryMapper.findOne = async(id) => {
     try {
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -50,8 +50,8 @@ categoryMapper.save = async (theCategory) => {
         //retrieve id of category inserted and assign to the category instance 
         theCategory.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -64,8 +64,8 @@ categoryMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -91,11 +91,8 @@ categoryMapper.edit = async(theCategory) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
-
-
-
 module.exports = categoryMapper;
