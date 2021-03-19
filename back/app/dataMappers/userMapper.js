@@ -6,8 +6,8 @@ userMapper = {
             result = await db.query('SELECT * FROM "user";')
             return result.rows
         } catch(error) {
-            console.log(error);
-            return error
+            console.log('dataMapper error raised');
+            throw new Error(error);
         }
     }
 }

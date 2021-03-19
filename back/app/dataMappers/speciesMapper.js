@@ -10,8 +10,8 @@ const speciesMapper = {
             return result.rows.map(species => new Species(species));
             // return result.rows;
         } catch(error) {
-            console.log(error);
-            return error
+            console.log('dataMapper error raised');
+            throw new Error(error);
         }
     }    
 }
@@ -29,9 +29,9 @@ speciesMapper.findOne = async(id) => {
     try {
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -56,8 +56,8 @@ speciesMapper.save = async (theSpecies) => {
         //retrieve id of species inserted and assign to the species instance 
         theSpecies.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -68,8 +68,8 @@ speciesMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -94,8 +94,8 @@ speciesMapper.edit = async(theSpecies) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 

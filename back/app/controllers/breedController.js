@@ -4,28 +4,28 @@ const Breed = require('../models/breed');
 
 
 const breedController = {
-    allBreeds : async (_, response) => {
+    allBreeds : async (_, response, next) => {
         console.log('enter breedController.allbreeds')
         try {
             const breeds = await breedMapper.findAll();
             response.json(breeds)
-        } catch(err) {
-            response.status(404).json(err.message);
+        } catch(error) {
+            next(error);
         }
     }
 }
 
-breedController.oneBreed = async (request, response) => {
+breedController.oneBreed = async (request, response, next) => {
     console.log('enter breedController.oneBreed')
     try {
         const breed = await breedMapper.findOne(request.params.id);
         response.json(breed);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 }
 
-breedController.newBreed = async (request, response) => {
+breedController.newBreed = async (request, response, next) => {
     console.log('enter breedController.newBreed')
     // create instance of breed directly from data sent through payload
     const newBreed = new Breed(request.body);
@@ -33,12 +33,12 @@ breedController.newBreed = async (request, response) => {
     try {
         await breedMapper.save(newBreed);
         response.json(newBreed);
-    } catch (err) {
-        response.status(403).json(err.message);
+    } catch (error) {
+        next(error);
     }
 }
 
-breedController.deleteBreed = async(request, response)=> {
+breedController.deleteBreed = async(request, response, next)=> {
     console.log('enter breedController.deleteBreed')
     const breedId = Number(request.params.id);
     if (isNaN(breedId)) {
@@ -49,12 +49,12 @@ breedController.deleteBreed = async(request, response)=> {
     try {
         const breed = await breedMapper.deleteOne(breedId);
         response.json(breed);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) {
+        next(error);
     }
 }
 
-breedController.editBreed = async(request, response)=> {
+breedController.editBreed = async(request, response, next)=> {
     console.log('enter breedController.editBreed')
     const breedId = Number(request.params.id);
     if (isNaN(breedId)) {
@@ -67,8 +67,8 @@ breedController.editBreed = async(request, response)=> {
     let breed = {}
     try {
         breed = await breedMapper.findOne(breedId);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 
     //Check to keep only properties accepted from client side
@@ -84,8 +84,8 @@ breedController.editBreed = async(request, response)=> {
     try {
         await breedMapper.edit(breed);
         response.json(breed);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 
 

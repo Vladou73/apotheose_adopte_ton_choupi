@@ -26,7 +26,7 @@ animalController.oneAnimal = async (request, response, next) => {
     try {
         const animal = await animalMapper.findOne(animalId);
         response.json(animal);
-    } catch (err) { // Error thrown in data mapper gets here
+    } catch (error) { // Error thrown in data mapper gets here
         next(error);
     }
 }
@@ -54,7 +54,7 @@ animalController.newAnimal = async (request, response, next) => {
     try {
         await animalMapper.save(newAnimal);
         response.json(newAnimal);
-    } catch (err) {
+    } catch (error) {
         next(error);
     }
     console.log('newAnimal',newAnimal);
@@ -71,7 +71,7 @@ animalController.deleteAnimal = async (request, response, next)=>{
     try {
         const animal = await animalMapper.deleteOne(animalId);
         response.json(animal);
-    } catch (err) { // Error thrown in data mapper gets here
+    } catch (error) { // Error thrown in data mapper gets here
         next(error);
     }
 }
