@@ -3,28 +3,28 @@ const speciesMapper = require('../dataMappers/speciesMapper');
 const Species = require('../models/species');
 
 const speciesController = {
-    allSpecies : async (_, response) => {
+    allSpecies : async (_, response, next) => {
         console.log('enter speciesController.allSpecies')
         try {
             const species = await speciesMapper.findAll();
             response.json(species)
-        } catch(err) {
-            response.status(404).json(err.message);
+        } catch(error) {
+            next(error)
         }
     }
 }
 
-speciesController.oneSpecies = async (request, response) => {
+speciesController.oneSpecies = async (request, response, next) => {
     console.log('enter speciesController.oneSpecies')
     try {
         const species = await speciesMapper.findOne(request.params.id);
         response.json(species);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 }
 
-speciesController.newSpecies = async (request, response) => {
+speciesController.newSpecies = async (request, response, next) => {
     console.log('enter speciesController.newSpecies')
     // create instance of species directly from data sent through payload
     const newSpecies = new Species(request.body);
@@ -32,12 +32,12 @@ speciesController.newSpecies = async (request, response) => {
     try {
         await speciesMapper.save(newSpecies);
         response.json(newSpecies);
-    } catch (err) {
-        response.status(403).json(err.message);
+    } catch (error) {
+        next(error)
     }
 }
 
-speciesController.deleteSpecies = async(request, response)=> {
+speciesController.deleteSpecies = async(request, response, next)=> {
     console.log('enter speciesController.deleteSpecies')
     const speciesId = Number(request.params.id);
     if (isNaN(speciesId)) {
@@ -48,12 +48,12 @@ speciesController.deleteSpecies = async(request, response)=> {
     try {
         const species = await speciesMapper.deleteOne(speciesId);
         response.json(species);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 }
 
-speciesController.editSpecies = async(request, response)=> {
+speciesController.editSpecies = async(request, response, next)=> {
     console.log('enter speciesController.editSpecies')
     const speciesId = Number(request.params.id);
     if (isNaN(speciesId)) {
@@ -66,8 +66,8 @@ speciesController.editSpecies = async(request, response)=> {
     let species = {}
     try {
         species = await speciesMapper.findOne(speciesId);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 
     //Check to keep only properties accepted from client side
@@ -83,8 +83,8 @@ speciesController.editSpecies = async(request, response)=> {
     try {
         await speciesMapper.edit(species);
         response.json(species);
-    } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error)
     }
 
 

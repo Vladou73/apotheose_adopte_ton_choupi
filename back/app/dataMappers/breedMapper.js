@@ -10,8 +10,8 @@ const breedMapper = {
             return result.rows.map(breed => new Breed(breed));
             // return result.rows;
         }catch(error){
-            console.log(error)
-            return error
+            console.log('dataMapper error raised');
+            throw new Error(error);
         }
 
     }    
@@ -22,9 +22,9 @@ breedMapper.findOne = async(id) => {
     try{
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -50,8 +50,8 @@ breedMapper.save = async (theBreed) => {
         //retrieve id of breed inserted and assign to the breed instance 
         theBreed.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -62,8 +62,8 @@ breedMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -89,8 +89,8 @@ breedMapper.edit = async (theBreed) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 

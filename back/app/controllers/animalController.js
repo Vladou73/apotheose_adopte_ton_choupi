@@ -6,7 +6,7 @@ const mediaMapper = require('../dataMappers/mediaMapper');
 
 const animalController = {}
 
-animalController.allAnimals = async (request, response) => {
+animalController.allAnimals = async (request, response, next) => {
     console.log('enter animalController.allAnimals')
     try {
         // request paramter is used for pagination : limit & offset
@@ -16,22 +16,22 @@ animalController.allAnimals = async (request, response) => {
         animalsResult = animalService.addAgeLabels(animals);
         response.json(animalsResult);
     } catch(error) {
-        return response.status(404).json(error.message);
+        next(error);
     }
 }
 
-animalController.oneAnimal = async (request, response) => {
+animalController.oneAnimal = async (request, response, next) => {
     console.log('enter animalController.oneAnimal')
     const animalId = request.params.id;
     try {
         const animal = await animalMapper.findOne(animalId);
         response.json(animal);
-    } catch (err) { // Error thrown in data mapper gets here
-        return response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 }
 
-animalController.newAnimal = async (request, response) => {
+animalController.newAnimal = async (request, response, next) => {
     console.log('enter animalController.newAnimal')
     
     //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
@@ -41,7 +41,7 @@ animalController.newAnimal = async (request, response) => {
                 try {
                     await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
                 } catch(error){
-                    return response.status(404).json(error.message);
+                    next(error);
                 }
             }
         }
@@ -54,13 +54,13 @@ animalController.newAnimal = async (request, response) => {
     try {
         await animalMapper.save(newAnimal);
         response.json(newAnimal);
-    } catch (err) {
-        return response.status(403).json(err.message);
+    } catch (error) {
+        next(error);
     }
     console.log('newAnimal',newAnimal);
 }
 
-animalController.deleteAnimal = async (request, response)=>{
+animalController.deleteAnimal = async (request, response, next)=>{
     console.log('enter animalController.deleteAnimal')
     const animalId = Number(request.params.id);
     if (isNaN(animalId)) {
@@ -71,66 +71,57 @@ animalController.deleteAnimal = async (request, response)=>{
     try {
         const animal = await animalMapper.deleteOne(animalId);
         response.json(animal);
-    } catch (err) { // Error thrown in data mapper gets here
-        return response.status(404).json(err.message);
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
 }
 
-animalController.editAnimal = async (request, response)=>{
-    console.log('enter animalController.editAnimal')
-    const animalId = Number(request.params.id);
-    if (isNaN(animalId)) {
-        return response.status(400).json({
-            error: `the provided id must be a number`
-        });
-    }
-
-    //get the animal data from DB
-    let animal = {}
+animalController.editAnimal = async (request, response, next)=>{
     try {
-        animal = await animalMapper.findOne(animalId);
-    } catch (err) { // Error thrown in data mapper gets here
-        return response.status(404).json(err.message);
-    }
+        console.log('enter animalController.editAnimal')
+        const animalId = Number(request.params.id);
+        if (isNaN(animalId)) {
+            return response.status(400).json({
+                error: `the provided id must be a number`
+            });
+        }
 
-    //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
-    if (request.body['medias']) { // check if medias change have been asked
-        for (media of request.body['medias']) { 
-            if (media.url){//check for all media if it a new media (ie if an url is sent)
-                try {
+        //get the animal data from DB
+        let animal = {}
+        animal = await animalMapper.findOne(animalId);
+
+        //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
+        if (request.body['medias']) { // check if medias change have been asked
+            for (media of request.body['medias']) { 
+                if (media.url){//check for all media if it a new media (ie if an url is sent)
                     await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
-                } catch(error){
-                    return response.status(404).json(error.message);
                 }
             }
         }
-    }
 
-    //Check to keep only properties accepted from client side
-    const acceptedProperties = ['name','birthdate','description','gender_id','breeds','tags','medias']
-    //Check if other tables are impacted too (binding tables)
-    let otherTablesImpacted = {};
-    const otherTables = ['tags','breeds','medias']
-    for (prop in request.body){
-            //change to animal properties the updated values
-        if (acceptedProperties.includes(prop)){
-            animal[prop] = request.body[prop];
-        };
-        if (otherTables.includes(prop)){
-            otherTablesImpacted[prop] = true;
-        };
-    }
+        //Check to keep only properties accepted from client side
+        const acceptedProperties = ['name','birthdate','description','gender_id','breeds','tags','medias']
+        //Check if other tables are impacted too (binding tables)
+        let otherTablesImpacted = {};
+        const otherTables = ['tags','breeds','medias']
+        for (prop in request.body){
+                //change to animal properties the updated values
+            if (acceptedProperties.includes(prop)){
+                animal[prop] = request.body[prop];
+            };
+            if (otherTables.includes(prop)){
+                otherTablesImpacted[prop] = true;
+            };
+        }
 
-       
-    console.log('otherTablesImpacted',otherTablesImpacted)
-    // update DB with animal edited properties
-    try {
+        console.log('otherTablesImpacted',otherTablesImpacted)
+        // update DB with animal edited properties
         await animalMapper.edit(animal, otherTablesImpacted);
         response.json(animal);
-    } catch (err) { // Error thrown in data mapper gets here
-        return response.status(404).json(err.message);
+        
+    } catch (error) { // Error thrown in data mapper gets here
+        next(error);
     }
-
 
     //WIP  ==> TO DO LATER
     //create new animal instance with all the data

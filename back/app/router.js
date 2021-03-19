@@ -10,7 +10,7 @@ const userController = require('./controllers/userController');
 const articleController = require('./controllers/articleController');
 const categoryController = require('./controllers/categoryController');
 const mediaController = require('./controllers/mediaController');
-
+const errorController = require('./controllers/errorController');
 
 //joi validation schemas are not implemented yet on frontend side
 // const validate = require('./services/validator'); //middleware to use joi
@@ -123,6 +123,9 @@ router.get('/medias', mediaController.allMedias);
 //regex data validation : id has to be a digit
 // router.get('/animals/:id(\\d+)', animalController.oneAnimal);
 
+//errorController => 
+router.use(errorController.notFound);
+router.use(errorController.errorHandler);
 
 // ici, une 404 pour l'API
 router.use((_, response) => {

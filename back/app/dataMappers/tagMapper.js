@@ -10,9 +10,9 @@ tagMapper.findAll = async() => {
             // et les retourne, sous forme d'instances de Breed
             return result.rows.map(tag => new Tag(tag));
             // return result.rows;
-        } catch {
-            console.log(error);
-            return error;
+        } catch(error) {
+            console.log('dataMapper error raised');
+            throw new Error(error);
         }
 }    
 
@@ -21,9 +21,9 @@ tagMapper.findOne = async(id) => {
     try{
         const result = await db.query(query, [id]);
         return result.rows[0];
-    } catch(err){
-        console.log(err)
-        return err;
+    } catch(error){
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -49,8 +49,8 @@ tagMapper.save = async (theTag) => {
         //retrieve id of tag inserted and assign to the tag instance 
         theTag.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error;
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -61,8 +61,8 @@ tagMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error;
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -88,8 +88,8 @@ tagMapper.edit = async (theTag) => {
         // let { rows } =
         // return rows[0]
     } catch(error) {
-        console.log(error);
-        return error;
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
