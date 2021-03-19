@@ -80,6 +80,7 @@ const ManagedAnimals = ({
                 <input
                   type="checkbox"
                   name="tag"
+                  id="tag"
                   value={tag.id}
                   onChange={(e) => addChangeTagsAnimal(e)}
                 />

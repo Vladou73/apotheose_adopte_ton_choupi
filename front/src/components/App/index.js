@@ -563,6 +563,10 @@ const App = () => {
 
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
+    // console.log(addTagsAnimal);
+    // if (addTagsAnimal.find((tag) => tag.id === Number(event.target.value))) {
+    //   addTagsAnimal.filter((tag) => tag.id !== Number(event.target.value));
+    // }
     setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
     addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
   };

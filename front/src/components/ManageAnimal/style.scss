@@ -29,3 +29,12 @@
     width: 90%;
   }
 }
+
+.animal {
+  &__content {
+    &__label {
+      display: block;
+      margin-bottom: 2em;
+    }
+  }
+}
