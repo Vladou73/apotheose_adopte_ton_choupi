@@ -81,8 +81,8 @@ animalMapper.findAll = async(request) => {
         // return result.rows.map(animal => new Animal(animal));
         return result.rows;
     } catch(error){
-        console.log(error)
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -144,8 +144,8 @@ animalMapper.findOne = async(id) => {
         // return result.rows.map(animal => new Animal(animal));
         return result.rows[0];
     } catch(error){
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
@@ -180,8 +180,8 @@ animalMapper.save = async (theAnimal) => {
         //retrieve id of animal inserted and assign to the animal instance 
         theAnimal.id = rows[0].id;
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 
     //-----------------BINDING TABLES-----------------//
@@ -210,8 +210,8 @@ animalMapper.save = async (theAnimal) => {
                 }
             }
         } catch(error) {
-            console.log(error);
-            return error
+            console.log('dataMapper error raised');
+            throw new Error(error);
         }
     }
 }
@@ -227,46 +227,43 @@ animalMapper.deleteOne = async(id)=>{
         const result = await db.query(query, [id]);
         return result.rows[0];
     } catch(error) {
-        console.log(error);
-        return error
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 
 }
 
 animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
     console.log('enter animalMapper.edit');
-
-    //-----------------TABLE animal-----------------//
-
-    //store data from the animal in an array
-    const dataAnimal = [
-        theAnimal.name, //optional
-        theAnimal.birthdate, //optional
-        theAnimal.description, //optional
-        theAnimal.gender_id,  //optional
-        theAnimal.id // for the WHERE close
-    ];
-    //update animal data in DB
-    let queryAnimal = `
-        UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
-        WHERE id = $5
-        RETURNING *;
-    `;
     try {
+        //-----------------TABLE animal-----------------//
+
+        //store data from the animal in an array
+        const dataAnimal = [
+            theAnimal.name, //optional
+            theAnimal.birthdate, //optional
+            theAnimal.description, //optional
+            theAnimal.gender_id,  //optional
+            theAnimal.id // for the WHERE close
+        ];
+        console.log(dataAnimal)
+        //update animal data in DB
+        let queryAnimal = `
+            UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
+            WHERE id = $5
+            RETURNING *;
+        `;
+        console.log(queryAnimal)
         //trigger query
-        await db.query(queryAnimal, dataAnimal);
+        result = await db.query(queryAnimal, dataAnimal);
         // let { rows } =
         // return rows[0]
-    } catch(error) {
-        console.log(error);
-        return error
-    }
+        console.log(result.rows)
 
-    //-----------------BINDING TABLES-----------------//
+        //-----------------BINDING TABLES-----------------//
 
-    // Check changes in other tables
-    for (elements in otherTablesImpacted) {
-        try {
+        // Check changes in other tables
+        for (elements in otherTablesImpacted) {
             console.log('enter '+elements+' processing')
             
             //delete rows from corresponding binding table with the animal id
@@ -284,10 +281,10 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
                 //trigger query
                 await db.query(query, data);
             }
-        } catch(error) {
-            console.log(error);
-            return error
         }
+    } catch(error) {
+        console.log('dataMapper error raised');
+        throw new Error(error);
     }
 }
 
