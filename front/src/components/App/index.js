@@ -430,7 +430,6 @@ const App = () => {
     getCategories();
   }, [pageAnimals, pageArticles]);
 
-
   // ** Method for Admin ** //
   // Control input admin page connection
   const handleChangeUsername = (event) => {
@@ -694,7 +693,7 @@ const App = () => {
         !loading && (
         <Switch>
           <Route path="/" exact>
-            <Home articles={articles} />
+            <Home articles={allArticles} />
           </Route>
           <Route path="/animaux" exact>
             <Adoption
