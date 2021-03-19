@@ -90,6 +90,17 @@ animalController.editAnimal = async (request, response, next)=>{
         let animal = {}
         animal = await animalMapper.findOne(animalId);
 
+        //check that the date format is the right one, else change it
+        console.log('animal.birthdate', animal.birthdate);
+        let parts = animal.birthdate.split('-');
+        //check if first part is year or day. If date starts with date, change string format to start with year
+        if(parts[0].length=2) {
+            console.log('change date format')
+            animal.birthdate = `${parts[2]}-${parts[1]}-${parts[0]}` 
+        }
+        console.log('new animal.birthdate', animal.birthdate);
+
+
         //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
         if (request.body['medias']) { // check if medias change have been asked
             for (media of request.body['medias']) { 

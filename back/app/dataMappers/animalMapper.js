@@ -246,19 +246,19 @@ animalMapper.edit = async (theAnimal, otherTablesImpacted) => {
             theAnimal.gender_id,  //optional
             theAnimal.id // for the WHERE close
         ];
-        console.log(dataAnimal)
+        // console.log(dataAnimal)
         //update animal data in DB
         let queryAnimal = `
             UPDATE animal SET (name, birthdate, description, gender_id) = ($1, $2::date, $3, $4)
             WHERE id = $5
             RETURNING *;
         `;
-        console.log(queryAnimal)
+        // console.log(queryAnimal)
         //trigger query
         result = await db.query(queryAnimal, dataAnimal);
         // let { rows } =
         // return rows[0]
-        console.log(result.rows)
+        // console.log(result.rows)
 
         //-----------------BINDING TABLES-----------------//
 
