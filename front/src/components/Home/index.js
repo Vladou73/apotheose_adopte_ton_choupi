@@ -25,7 +25,7 @@ const Home = ({ articles }) => {
         <h2 className="home__subtitle"> Société protectrice des animaux</h2>
         <div className="home__paragraph">
           <p>
-            Le premier combat du refuge créée en 1845 par Etienne Pariset portait sur la protection des chevaux que les cochers parisiens maltraitaient. Au fil du temps, notre action s'est developpée et notre intérêt s'est élargi aux autres éspèces animales, en particulier nos plus proches compagnons, les chiens et les chats.
+            Le premier combat de la SPA créée en 1845 par Etienne Pariset portait sur la protection des chevaux que les cochers parisiens maltraitaient. Au fil du temps, notre action s'est developpée et notre intérêt s'est élargi aux autres éspèces animales, en particulier nos plus proches compagnons, les chiens et les chats.
           </p>
           <p>L’association a pour but d’améliorer, par tous les moyens qui sont en son pouvoir, le sort de tous les animaux, de lutter contre leur trafic, de veiller à ce que soient respectées les dispositions législatives et réglementaires qui les protègent et de leur accorder assistance, et de participer en ce sens à la sensibilisation de l’opinion publique.
           </p>
