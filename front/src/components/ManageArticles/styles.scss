@@ -173,6 +173,11 @@
     margin-bottom: 0;
     width: 100px;
   }
+  .formAddArticle {
+    &__image {
+      max-width: 100%;
+    }
+  }
 }
 
 @media (max-width: 500px) {
