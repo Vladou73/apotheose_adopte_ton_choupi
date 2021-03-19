@@ -724,7 +724,7 @@ const App = () => {
             />
           </Route>
           <Route path="/animaux/:id" exact>
-            <Animal animal={animals} />
+            <Animal animal={allAnimals} />
           </Route>
           <Route path="/info_adoption" exact>
             <InfoAdoption />
@@ -889,7 +889,7 @@ const App = () => {
                 />
               </Route>
               <Route path="/articles/:id" exact>
-                <Article article={articles} />
+                <Article article={allArticles} />
               </Route>
             </>
           )}
