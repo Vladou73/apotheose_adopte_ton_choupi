@@ -18,7 +18,7 @@ const ManageArticles = ({
     <p className={confirmationAdd}>Votre article a été ajouté !</p>
     <p className={confirmationDelete}>L'article a été supprimé !</p>
     <button type="button" className="manageArticles__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
-    <Modal isOpen={modalAddArticleIsOpen}>
+    <Modal isOpen={modalAddArticleIsOpen} ariaHideApp={false}>
 
       <button type="button" onClick={changeModalStateAddArticle} className="manageArticles__closeModal">X</button>
       <h3 className="manageArticles__titleModal">Ajouter un article</h3>
@@ -29,7 +29,7 @@ const ManageArticles = ({
           <label className="formAddArticle__label__category" htmlFor="category-select">Catégorie :</label>
           <select onChange={(e) => handleChangeAddArticle(e)} className="formAddArticle__select" name="category_id" id="category_id">
             <option value="">-- Choisissez une catégorie --</option>
-            {categories.map((category) =>  <option key={category.id} id="category_id" value={category.id}>{category.name}</option>)}
+            {categories.map((category) => <option key={category.id} id="category_id" value={category.id}>{category.name}</option>)}
           </select>
           <div>
             <label className="formAddArticle__label__content" htmlFor="media">Médias :</label>
