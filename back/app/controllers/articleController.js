@@ -8,9 +8,13 @@ const articleController = {}
 
 articleController.allArticles = async (request, response) => {
     console.log('enter articleController.allArticles');
-    // request paramter is used for pagination : limit & offset
-    const articles = await articleMapper.findAll(request);
-    response.json(articles)
+    try {
+        // request paramter is used for pagination : limit & offset
+        const articles = await articleMapper.findAll(request);
+        response.json(articles)
+    } catch (err) {
+        response.status(404).json(err.message);
+    }
 }
 
 articleController.oneArticle = async (request, response) => {
@@ -37,10 +41,15 @@ articleController.newArticle = async (request, response) => {
             'url':request.body.media_url,
             'type':'image'
         }
-        //call mapper to save new media.
-        await mediaMapper.save(media);
-        //Save/add the newly created media id in the request.body object
-        request.body.media_id = media.id;
+        try{
+            //call mapper to save new media.
+            await mediaMapper.save(media);
+            //Save/add the newly created media id in the request.body object
+            request.body.media_id = media.id;
+        } catch(err){
+            response.status(404).json(err.message);
+        }
+
     }
     
     // create instance of Article directly from data sent through payload
@@ -99,10 +108,14 @@ articleController.editArticle = async(request, response)=> {
             'url':request.body.media_url,
             'type':'image'
         }
-        //call mapper to save new media.
-        await mediaMapper.save(media);
-        //Save/add the newly created media id in the request.body object
-        request.body.media_id = media.id;
+        try {
+            //call mapper to save new media.
+            await mediaMapper.save(media);
+            //Save/add the newly created media id in the request.body object
+            request.body.media_id = media.id;
+        } catch(err){
+            response.status(404).json(err.message);
+        }
     }
 
     //Check to keep only properties accepted from client side

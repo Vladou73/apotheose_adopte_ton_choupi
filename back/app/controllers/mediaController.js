@@ -7,8 +7,12 @@ const mediaController = {}
 
 mediaController.allMedias = async (_, response) => {
     console.log('enter mediaController.allmedias')
-    const medias = await mediaMapper.findAll();
-    response.json(medias)
+    try {
+        const medias = await mediaMapper.findAll();
+        response.json(medias)
+    } catch(err) {
+        response.status(404).json(err.message);
+    }
 }
 
 mediaController.oneMedia = async (request, response) => {

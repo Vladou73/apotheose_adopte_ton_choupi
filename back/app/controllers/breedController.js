@@ -6,8 +6,12 @@ const Breed = require('../models/breed');
 const breedController = {
     allBreeds : async (_, response) => {
         console.log('enter breedController.allbreeds')
-        const breeds = await breedMapper.findAll();
-        response.json(breeds)
+        try {
+            const breeds = await breedMapper.findAll();
+            response.json(breeds)
+        } catch(err) {
+            response.status(404).json(err.message);
+        }
     }
 }
 

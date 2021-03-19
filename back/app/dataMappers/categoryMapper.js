@@ -5,10 +5,16 @@ const categoryMapper = {}
 
 categoryMapper.findAll = async() => {  
     const query = `SELECT id, name, color FROM category ORDER BY name;`
-    const result = await db.query(query);
-    // et les retourne, sous forme d'instances de Categories
-    return result.rows.map(category => new Category(category));
-    // return result.rows;
+    try{
+        const result = await db.query(query);
+        // et les retourne, sous forme d'instances de Categories
+        return result.rows.map(category => new Category(category));
+        // return result.rows;
+    }catch(error){
+        console.log(error);
+        return error
+    }
+
 }
 
 categoryMapper.findOne = async(id) => {  
@@ -45,6 +51,7 @@ categoryMapper.save = async (theCategory) => {
         theCategory.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -58,6 +65,7 @@ categoryMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -84,6 +92,7 @@ categoryMapper.edit = async(theCategory) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 

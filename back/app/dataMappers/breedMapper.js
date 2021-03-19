@@ -4,10 +4,16 @@ const db = require('../database');
 const breedMapper = {
     findAll : async() => {  
         const query = `SELECT id, name, species_id FROM breed ORDER BY species_id, name;`
-        const result = await db.query(query);
-        // et les retourne, sous forme d'instances de Breed
-        return result.rows.map(breed => new Breed(breed));
-        // return result.rows;
+        try{
+            const result = await db.query(query);
+            // et les retourne, sous forme d'instances de Breed
+            return result.rows.map(breed => new Breed(breed));
+            // return result.rows;
+        }catch(error){
+            console.log(error)
+            return error
+        }
+
     }    
 }
 
@@ -45,6 +51,7 @@ breedMapper.save = async (theBreed) => {
         theBreed.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -56,6 +63,7 @@ breedMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -82,6 +90,7 @@ breedMapper.edit = async (theBreed) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 

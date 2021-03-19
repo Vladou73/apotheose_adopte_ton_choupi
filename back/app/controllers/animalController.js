@@ -8,12 +8,16 @@ const animalController = {}
 
 animalController.allAnimals = async (request, response) => {
     console.log('enter animalController.allAnimals')
-    // request paramter is used for pagination : limit & offset
-    const animals = await animalMapper.findAll(request);
+    try {
+        // request paramter is used for pagination : limit & offset
+        const animals = await animalMapper.findAll(request);
 
-    //add animal age and age category
-    animalsResult = animalService.addAgeLabels(animals);
-    response.json(animalsResult);
+        //add animal age and age category
+        animalsResult = animalService.addAgeLabels(animals);
+        response.json(animalsResult);
+    } catch(error) {
+        return response.status(404).json(error.message);
+    }
 }
 
 animalController.oneAnimal = async (request, response) => {
@@ -23,7 +27,7 @@ animalController.oneAnimal = async (request, response) => {
         const animal = await animalMapper.findOne(animalId);
         response.json(animal);
     } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+        return response.status(404).json(err.message);
     }
 }
 
@@ -34,7 +38,11 @@ animalController.newAnimal = async (request, response) => {
     if (request.body['medias']) { // check if medias change have been asked
         for (media of request.body['medias']) { 
             if (media.url){//check for all media if it a new media (ie if an url is sent)
-                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                try {
+                    await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                } catch(error){
+                    return response.status(404).json(error.message);
+                }
             }
         }
     }
@@ -47,7 +55,7 @@ animalController.newAnimal = async (request, response) => {
         await animalMapper.save(newAnimal);
         response.json(newAnimal);
     } catch (err) {
-        response.status(403).json(err.message);
+        return response.status(403).json(err.message);
     }
     console.log('newAnimal',newAnimal);
 }
@@ -64,7 +72,7 @@ animalController.deleteAnimal = async (request, response)=>{
         const animal = await animalMapper.deleteOne(animalId);
         response.json(animal);
     } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+        return response.status(404).json(err.message);
     }
 }
 
@@ -82,14 +90,18 @@ animalController.editAnimal = async (request, response)=>{
     try {
         animal = await animalMapper.findOne(animalId);
     } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+        return response.status(404).json(err.message);
     }
 
     //check if new medias have to be added to the DB ie check if client sends new urls in medias objects
     if (request.body['medias']) { // check if medias change have been asked
         for (media of request.body['medias']) { 
             if (media.url){//check for all media if it a new media (ie if an url is sent)
-                await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                try {
+                    await mediaMapper.save(media); //call mapper to save new media. Save/add the new media id in the request.body object
+                } catch(error){
+                    return response.status(404).json(error.message);
+                }
             }
         }
     }
@@ -116,7 +128,7 @@ animalController.editAnimal = async (request, response)=>{
         await animalMapper.edit(animal, otherTablesImpacted);
         response.json(animal);
     } catch (err) { // Error thrown in data mapper gets here
-        response.status(404).json(err.message);
+        return response.status(404).json(err.message);
     }
 
 

@@ -4,10 +4,15 @@ const db = require('../database');
 const speciesMapper = {
     findAll : async() => {  
         const query = `SELECT id, name FROM species ORDER BY name;`
-        const result = await db.query(query);
-        // et les retourne, sous forme d'instances de Species
-        return result.rows.map(species => new Species(species));
-        // return result.rows;
+        try{
+            const result = await db.query(query);
+            // et les retourne, sous forme d'instances de Species
+            return result.rows.map(species => new Species(species));
+            // return result.rows;
+        } catch(error) {
+            console.log(error);
+            return error
+        }
     }    
 }
 
@@ -52,6 +57,7 @@ speciesMapper.save = async (theSpecies) => {
         theSpecies.id = rows[0].id;
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -63,6 +69,7 @@ speciesMapper.deleteOne = async(id)=>{
         return result.rows[0];
     } catch(error) {
         console.log(error);
+        return error
     }
 }
 
@@ -88,8 +95,8 @@ speciesMapper.edit = async(theSpecies) => {
         // return rows[0]
     } catch(error) {
         console.log(error);
+        return error
     }
 }
-
 
 module.exports = speciesMapper;
