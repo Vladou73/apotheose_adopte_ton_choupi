@@ -36,7 +36,7 @@ const ManagedAnimals = ({
   <div className="manageAnimals">
     <h2 className="manageAnimals__title">Liste des animaux à l'adoption :</h2>
     <p className={confirmationAdd}>Votre carte animal a été ajouté !</p>
-    <p className={confirmationDelete}>La carte de animal a été supprimé !</p>
+    <p className={confirmationDelete}>La carte animal a été supprimé !</p>
     <button type="button" className="manageAnimals__link__add" onClick={changeModalStateAddArticle}>Ajouter</button>
 
     <Modal isOpen={modalAddArticleIsOpen} ariaHideApp={false}>
