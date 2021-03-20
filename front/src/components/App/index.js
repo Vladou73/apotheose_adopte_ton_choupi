@@ -486,6 +486,8 @@ const App = () => {
             console.log(response.data);
             getAllAnimals();
             showConfirmationAdd();
+            setImage(null);
+            setUrl('');
             setProgress(0);
           })
           .catch((error) => {
@@ -516,6 +518,8 @@ const App = () => {
             console.log(response.data);
             getAllAnimals();
             showConfirmationAdd();
+            setImage(null);
+            setUrl('');
             setProgress(0);
           })
           .catch((error) => {
@@ -545,6 +549,8 @@ const App = () => {
           console.log(response.data);
           getAllArticles();
           showConfirmationAdd();
+          setImage(null);
+          setUrl('');
           setProgress(0);
         })
         .catch((error) => {
