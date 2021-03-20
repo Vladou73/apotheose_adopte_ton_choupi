@@ -61,7 +61,7 @@ const ManageAnimal = ({
         handleSubmitEditAnimal(id, animalData);
       }}
       >
-        <p className={confirmation}>Votre article a été modifié !</p>
+        <p className={confirmation}>Votre carte animal a été modifié !</p>
         <div className="manage__animal__name">
           <p>Nom de l'animal : </p>
           <input className="manage__animal__input" type="text" id="name" name="name" value={animalData.name} onChange={(e) => handleChangeEditAnimal(e)} />
