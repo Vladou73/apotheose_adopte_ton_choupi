@@ -255,7 +255,7 @@ const App = () => {
     setConfirmationDelete('visible');
     setTimeout(() => {
       setConfirmationDelete('hidden');
-    }, 5000);
+    }, 3000);
   };
 
   const showConfirmationAdd = () => {
@@ -576,12 +576,21 @@ const App = () => {
 
   // TAGS ONCHANGE ADD ANIMAL LIST
   const addChangeTagsAnimal = (event) => {
-    // console.log(addTagsAnimal);
-    // if (addTagsAnimal.find((tag) => tag.id === Number(event.target.value))) {
-    //   addTagsAnimal.filter((tag) => tag.id !== Number(event.target.value));
-    // }
-    setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
-    addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
+    const sameId = addTagsAnimal.find((tag) => tag.id === event.target.value);
+    if (event.target.checked) {
+      if (sameId === undefined) {
+        console.log("pas d'id trouvé, je rajoute le tag");
+        setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
+        // addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
+      }
+      else {
+        console.log('sameId, je ne fais rien');
+      }
+    }
+    else {
+      const filteredTags = addTagsAnimal.filter((item) => item.id !== event.target.value);
+      setAddTagsAnimal(filteredTags);
+    }
   };
 
   // FILTRER BREEDS BY SPECIES ON CHANGE
@@ -775,8 +784,8 @@ const App = () => {
               handleChangePassword={handleChangePassword}
               handleSubmitAdmin={handleSubmitAdmin}
               isLogged={isLogged}
-              articlesNumber={articles.length}
-              animalsNumber={animals.length}
+              articlesNumber={allArticles.length}
+              animalsNumber={allAnimals.length}
               adminUsername={adminUsername}
             />
           </Route>
@@ -867,8 +876,8 @@ const App = () => {
                   handleChangePassword={handleChangePassword}
                   handleSubmitAdmin={handleSubmitAdmin}
                   isLogged={isLogged}
-                  articlesNumber={articles.length}
-                  animalsNumber={animals.length}
+                  articlesNumber={allArticles.length}
+                  animalsNumber={allAnimals.length}
                   adminUsername={adminUsername}
                 />
               </Route>
@@ -880,8 +889,8 @@ const App = () => {
                   handleChangePassword={handleChangePassword}
                   handleSubmitAdmin={handleSubmitAdmin}
                   isLogged={isLogged}
-                  articlesNumber={articles.length}
-                  animalsNumber={animals.length}
+                  articlesNumber={allArticles.length}
+                  animalsNumber={allAnimals.length}
                   adminUsername={adminUsername}
                 />
               </Route>
@@ -893,8 +902,8 @@ const App = () => {
                   handleChangePassword={handleChangePassword}
                   handleSubmitAdmin={handleSubmitAdmin}
                   isLogged={isLogged}
-                  articlesNumber={articles.length}
-                  animalsNumber={animals.length}
+                  articlesNumber={allArticles.length}
+                  animalsNumber={allAnimals.length}
                   adminUsername={adminUsername}
                 />
               </Route>
@@ -906,8 +915,8 @@ const App = () => {
                   handleChangePassword={handleChangePassword}
                   handleSubmitAdmin={handleSubmitAdmin}
                   isLogged={isLogged}
-                  articlesNumber={articles.length}
-                  animalsNumber={animals.length}
+                  articlesNumber={allArticles.length}
+                  animalsNumber={allAnimals.length}
                   adminUsername={adminUsername}
                 />
               </Route>

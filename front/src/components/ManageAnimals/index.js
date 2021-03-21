@@ -95,6 +95,7 @@ const ManagedAnimals = ({
             <select
               name="species"
               onChange={(e) => addChangeSpeciesAnimal(e)}
+              required
             >
               {species.map((specie) => (
                 <option
@@ -112,7 +113,14 @@ const ManagedAnimals = ({
             <select
               name="breeds"
               onChange={(e) => addChangeBreedsAnimal(e)}
+              required
             >
+              <option
+                value=""
+                name="breed"
+              >
+                -- Choisissez une race --
+              </option>
               {breedsAdd.map((breed) => (
                 <option
                   key={breed.id}
