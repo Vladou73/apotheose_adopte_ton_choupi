@@ -596,6 +596,7 @@ const App = () => {
 
   const addChangeSpeciesAnimal = (event) => {
     event.preventDefault();
+    setAddBreedsAnimal([]);
     axios({
       method: 'get',
       url: `${baseUrl}/admin/species/${event.target.value}`,
