@@ -945,7 +945,6 @@ const App = () => {
         </Switch>
         )
       }
-      <Error404 />
       <Route path="/TousDroitsReserves" exact>
         <Creator />
       </Route>
