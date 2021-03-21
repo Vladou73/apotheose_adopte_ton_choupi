@@ -581,7 +581,6 @@ const App = () => {
       if (sameId === undefined) {
         console.log("pas d'id trouvé, je rajoute le tag");
         setAddTagsAnimal((addTagsAnimal) => [...addTagsAnimal, { id: event.target.value }]);
-        // addTagsAnimal.filter((tags, index) => addTagsAnimal.indexOf(tags) === index);
       }
       else {
         console.log('sameId, je ne fais rien');
