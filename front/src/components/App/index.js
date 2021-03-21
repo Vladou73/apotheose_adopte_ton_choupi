@@ -617,6 +617,7 @@ const App = () => {
 
   // BREEDS ONCHANGE ADD ANIMAL LIST
   const addChangeBreedsAnimal = (event) => {
+    setAddBreedsAnimal([]);
     setAddBreedsAnimal((addBreedsAnimal) => [...addBreedsAnimal, { id: event.target.value }]);
     addBreedsAnimal.filter((breeds, index) => addBreedsAnimal.indexOf(breeds) === index);
   };
