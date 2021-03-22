@@ -474,7 +474,7 @@ const App = () => {
             birthdate: newAnimalData.birthdate,
             description: newAnimalData.description,
             gender_id: newAnimalData.gender_id,
-            // tags: [{ id: newAnimalData.tags }],
+            tags: [...addTagsAnimal, { id: addTagsAnimal.id }],
             // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
             medias: [{
               url,
@@ -506,7 +506,7 @@ const App = () => {
             birthdate: newAnimalData.birthdate,
             description: newAnimalData.description,
             gender_id: newAnimalData.gender_id,
-            // tags: [{ id: newAnimalData.tags }],
+            tags: [...addTagsAnimal, { id: addTagsAnimal.id }],
             // breeds: [{ id: newAnimalData.tags.filter((tag) => tag.id) }],
             // medias: [{
             //   url,
@@ -856,6 +856,7 @@ const App = () => {
                   confirmation={confirmationAdd}
                   handleUploadDelete={handleUploadDelete}
                   progress={progress}
+                  addChangeTagsAnimal={addChangeTagsAnimal}
                 />
               </Route>
               <Route path="/admin/gestion-articles/:id" exact>

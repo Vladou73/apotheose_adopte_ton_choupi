@@ -17,7 +17,7 @@ const ManageAnimal = ({
   confirmation,
   handleUploadDelete,
   progress,
-
+  addChangeTagsAnimal,
 }) => {
   const { id } = useParams();
   const data = animal.find((animalObject) => animalObject.id === parseInt(id, 10));
@@ -77,19 +77,20 @@ const ManageAnimal = ({
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
         </div>
         <div className="manage__animal__contain">
-          {/* <div className="manage__animal__category">
+          <div className="manage__animal__category">
             {
             tags === null
               ? (
                 <>
                   <p>Ajouter un tag</p>
                   {
-            allTags.map((tag) => (
+            animalData.tags.map((tag) => (
               <label htmlFor="tag" key={tag.id}>
                 {tag.name}
                 <input
                   type="checkbox"
                   name="tag"
+                  id="tag"
                   value={tag.id}
                   onChange={(e) => handleChangeEditAnimal(e)}
                 />
@@ -109,7 +110,7 @@ const ManageAnimal = ({
                   type="checkbox"
                   name="tag"
                   value={tag.id}
-                  onChange={(e) => handleChangeEditAnimal(e)}
+                  onChange={(e) => addChangeTagsAnimal(e)}
                 />
               </label>
             ))
@@ -117,7 +118,7 @@ const ManageAnimal = ({
                 </>
               )
         }
-          </div> */}
+          </div>
           <div className="animal__content">
             <label className="animal__content__label" htmlFor="content">Contenu : </label>
             <textarea id="description" name="description" rows="20" cols="100" className="animal__content__textarea" value={animalData.description} onChange={(e) => handleChangeEditAnimal(e)} />
