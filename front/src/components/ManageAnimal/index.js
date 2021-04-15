@@ -77,6 +77,7 @@ const ManageAnimal = ({
           <button type="button" className="formAddAnimal__upluadDelete" onClick={handleUploadDelete}>Supprimer ma photo </button>
         </div>
         <div className="manage__animal__contain">
+          {/*
           <div className="manage__animal__category">
             {
             tags === null
@@ -119,6 +120,7 @@ const ManageAnimal = ({
               )
         }
           </div>
+          */}
           <div className="animal__content">
             <label className="animal__content__label" htmlFor="content">Contenu : </label>
             <textarea id="description" name="description" rows="20" cols="100" className="animal__content__textarea" value={animalData.description} onChange={(e) => handleChangeEditAnimal(e)} />
